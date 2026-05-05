@@ -8,19 +8,75 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: #ffffff;
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  margin: 0;
+  background: #ffffff;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 }
+
+* {
+  box-sizing: border-box;
+}
+@media (min-width: 320px) {
+    html {
+      font-size: 11px;
+    }
+  }
+  @media (min-width: 375px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  @media (min-width: 768px) {
+    html {
+      font-size: 9px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 12px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    html {
+      font-size: 18px;
+    }
+  }
+  @media (min-width: 2560px) {
+    html {
+      font-size: 28px;
+    }
+  }
+  @media (min-width: 3840px) {
+    html {
+      font-size: 40px;
+    }
+  }
+  @media (min-width: 5120px) {
+    html {
+      font-size: 56px;
+    }
+    body {
+      max-width: 5120px;
+      margin: auto;
+    }
+  }
