@@ -186,11 +186,20 @@ export const FloatingItem = styled.div`
   }
 
   img.dotted-item {
-    width: 5rem;
-    height: 5rem;
-
+    width: 7rem;
+    height: 7rem;
+    margin-right: 7rem;
+    margin-top: -1.56rem;
   }
+img.dotted-item-count{
+ width: 7rem;
+ height: 7rem;
+ margin-left: 7.3rem;
+ margin-top: -2.86rem;
 
+    
+
+}
   transition: all 0.6s ease;
 
   /* Base line */

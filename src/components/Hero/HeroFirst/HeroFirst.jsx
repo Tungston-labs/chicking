@@ -18,9 +18,9 @@ const texts = [
 ];
 
 const images = [
-  "/images/frame1.svg",
-  "/images/frame2.svg",
-  "/images/frame3.svg",
+  "/images/animated1.svg",
+  "/images/animated2.svg",
+  "/images/animated3.svg",
 ];
 
 const HeroFirst = () => {
@@ -59,14 +59,14 @@ const HeroFirst = () => {
           src={images[imageIndex]}
           alt="hero visual"
           width="700"
-          height="550"
+          height="750"
         />
 
         {/* Floating Items */}
         <FloatingItem className="left">
           <img src="/images/countries.svg" width="120" height="120" alt="" />
           <span>Countries</span>
-          <img src="/images/dotted.svg" alt="" className="dotted-item" />
+          <img src="/images/dotted1.svg" alt="" className="dotted-item-count" />
         </FloatingItem>
 
         <FloatingItem className="rightTop">
