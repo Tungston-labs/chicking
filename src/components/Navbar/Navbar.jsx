@@ -1,6 +1,3 @@
-"use client";
-
-import Image from "next/image";
 import {
   BrandLink,
   FindLocationButton,
@@ -9,7 +6,7 @@ import {
   NavInner,
   NavLink,
   NavLinks,
-} from "./Navbar.style";
+} from "./Navbar.style.js";
 
 const navItems = [
   "Home",
@@ -24,16 +21,14 @@ const navItems = [
 
 const Navbar = () => {
   return (
-   
     <Header>
       <NavInner>
         <BrandLink href="/" aria-label="Chicking home">
-          <Image
+          <img
             src="/images/logo.svg"
             alt="Chicking"
-            width={155}
-            height={52}
-            priority
+            width="155"
+            height="52"
           />
         </BrandLink>
 

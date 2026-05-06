@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import Image from "next/image";
 
 const slideUp = keyframes`
   from {
@@ -71,6 +70,7 @@ export const HeroButton = styled.a`
     transform: translateX(4px);
   }
 `;
+
 export const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -98,6 +98,7 @@ export const ImageWrapper = styled.div`
     top: 50%;
     transform: translateY(-50%);
   }
+
   .left::after {
     transform: translateX(-50%) rotate(-40deg);
   }
@@ -158,10 +159,14 @@ export const ImageWrapper = styled.div`
 `;
 
 /* Main Image */
-export const MainImage = styled(Image)`
+export const MainImage = styled.img`
   width: 55rem;
   max-height: 55rem;
   animation: ${slideUp} 0.6s ease;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const FloatingItem = styled.div`
@@ -178,10 +183,17 @@ export const FloatingItem = styled.div`
   img {
     width: 5rem;
     height: 5rem;
-    margin-left: 1.5rem;
+  }
+
+  img.dotted-item {
+    width: 5rem;
+    height: 5rem;
+
   }
 
   transition: all 0.6s ease;
 
   /* Base line */
 `;
+
+

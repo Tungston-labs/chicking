@@ -1,5 +1,5 @@
-import Navbar from "../Navbar";
-import HeroFirst from "./HeroFirst";
+import Navbar from "../Navbar/index.jsx";
+import HeroFirst from "./HeroFirst/index.jsx";
 
 const Hero = () => {
   return (
