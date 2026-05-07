@@ -94,8 +94,13 @@ export const FindLocationButton = styled.a`
     line-height: 1;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: none;
+  }
+
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    padding: 0 0.875rem;
+    font-size: 0.875rem;
   }
 `;
 
@@ -120,8 +125,78 @@ export const MobileMenuButton = styled.button`
     background: #111111;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: inline-flex;
     margin-left: auto;
   }
+`;
+
+export const MobileMenuContainer = styled.div`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  min-width: 250px;
+  z-index: 999;
+
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+
+  animation: slideDown 0.3s ease-out;
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (min-width: 1025px) {
+    display: none;
+  }
+`;
+
+export const MobileMenuItem = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: #f6f6f6;
+    color: #a11f24;
+  }
+
+  ${(props) =>
+    props.isFindLocation &&
+    `
+    background: #F39200;
+    color: #ffffff;
+    margin: 0.5rem 0.5rem;
+    border-radius: 0.25rem;
+    justify-content: center;
+
+    &:hover {
+      background: #dd8200;
+      color: #ffffff;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+  `}
 `;

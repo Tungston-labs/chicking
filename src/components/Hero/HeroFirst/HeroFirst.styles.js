@@ -47,7 +47,6 @@ export const HeroButton = styled.a`
   border-radius: 0.25rem;
   background: #891b1c;
   cursor: pointer;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -78,23 +77,22 @@ export const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;
 
-  /* Positions */
   .left {
-    left: -80px;
-    top: 50%;
+    left: -120px;
+    top: 10%;
     transform: translateY(-50%);
   }
 
   .rightTop {
     right: -80px;
-    top: -10%;
+    top: -30%;
   }
   .star {
     right: -80px;
-    top: 10%;
+    top: 20%;
   }
   .rightCenter {
-    right: -140px;
+    right: -280px;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -103,106 +101,256 @@ export const ImageWrapper = styled.div`
     transform: translateX(-50%) rotate(-40deg);
   }
 
-  &.state-0 {
-    .left {
-      transform: translate(-10px, -50%);
-    }
-    .rightTop {
-      transform: translateY(0);
-    }
-    .rightCenter {
-      transform: translate(0, -50%);
-    }
-    .star {
-      transform: translate(0, -50%);
-    }
-  }
-
   &.state-1 {
     .left {
-      transform: translate(100px, -100%);
+      transform: translate(-20px, -30%);
     }
     .rightTop {
-      transform: translateY(200px);
+      transform: translate(180px, 140px);
     }
     .rightCenter {
-      transform: translate(-800px, -10%);
+      transform: translate(0, -20%);
     }
-    .star {
-      transform: translate(150px, -10%);
+      .star {
+      transform: translate(-50px, -80%);
     }
   }
 
   &.state-2 {
     .left {
-      transform: translate(0, -50%);
+      transform: translate(0, -20%);
     }
     .rightTop {
-      transform: translateY(0);
+      transform: translateX(180px) translateY(480px);
     }
     .rightCenter {
-      transform: translate(0, -50%);
+      transform: translateX(-960px) translateY(-20%);
     }
     .star {
-      transform: translate(0, -50%);
+      transform: translate(50px, -100%);
     }
   }
 
-  /* Responsive */
+    @media (max-width: 1300px) {
+    .left {
+      left: -80px;
+    }
+
+    .rightCenter {
+      right: -180px;
+    }
+
+    &.state-1 {
+      .rightTop {
+        transform: translate(120px, 100px);
+      }
+      .star {
+        transform: translate(-30px, -60%);
+      }
+    }
+
+    &.state-2 {
+      .rightTop {
+        transform: translate(40px, 240px);
+      }
+      .rightCenter {
+        transform: translate(-650px, -20%);
+      }
+      .star {
+        transform: translate(30px, 100%);
+      }
+    }
+  }
+
+
+  @media (max-width: 1024px) {
+    .left {
+      left: -60px;
+    }
+
+    .rightTop {
+      right: 0;
+      top: -20%;
+    }
+
+    .rightCenter {
+      right: -120px;
+      top: 50%;
+    }
+     .star {
+    right: -80px;
+    top: -10%;
+  }
+    &.state-1 {
+      .left {
+        transform: translate(-10px, -30%);
+      }
+      .rightTop {
+        transform: translate(80px, 80px);
+      }
+      .rightCenter {
+        transform: translate(0, -30%);
+      }
+      .star {
+        transform: translate(-20px, -50%);
+      }
+    }
+
+    &.state-2 {
+      .left {
+        transform: translate(0, -20%);
+      }
+      .rightTop {
+        transform: translate(80px, 120px);
+      }
+      .rightCenter {
+        transform: translate(-500px, -20%);
+      }
+      .star {
+        transform: translate(20px, -60%);
+      }
+    }
+  }
+
+
   @media (max-width: 768px) {
     .left,
     .rightTop,
-    .rightCenter {
+    .rightCenter,
+    .star {
       display: none;
     }
   }
 `;
 
-/* Main Image */
 export const MainImage = styled.img`
   width: 55rem;
-  max-height: 55rem;
+  max-width: 100%;
+  height: auto;
   animation: ${slideUp} 0.6s ease;
-  
+
+  @media (max-width: 1300px) {
+    width: 50rem;
+  }
+
+  @media (max-width: 1024px) {
+    width: 50rem;
+  }
+
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
+
 
 export const FloatingItem = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 0.4rem;
-
   padding: 1.2rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-
-  img {
-    width: 5rem;
-    height: 5rem;
-  }
-
-  img.dotted-item {
-    width: 7rem;
-    height: 7rem;
-    margin-right: 7rem;
-    margin-top: -1.56rem;
-  }
-img.dotted-item-count{
- width: 7rem;
- height: 7rem;
- margin-left: 7.3rem;
- margin-top: -2.86rem;
-
-    
-
-}
   transition: all 0.6s ease;
 
-  /* Base line */
+  span {
+    z-index: 2;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  img:not(.dotted-item, .dotted-item-count) {
+    width: 5rem;
+    height: 5rem;
+    z-index: 2;
+  }
+
+  .dotted-item,
+  .dotted-item-count {
+    position: absolute;
+    width: 7rem;
+    height: 7rem;
+    z-index: 1;
+    pointer-events: none;
+    transition: transform 0.6s ease;
+  }
+
+  &.left .dotted-item-count {
+    top: 60%;
+    left: 60%;
+  }
+
+  &.rightTop .dotted-item,
+  &.rightCenter .dotted-item {
+    top: 70%;
+    right: 60%;
+  }
+
+
+  @media (max-width: 1300px) {
+    padding: 1rem;
+
+    img:not(.dotted-item, .dotted-item-count) {
+      width: 6rem;
+      height: 6rem;
+    }
+
+    .dotted-item,
+    .dotted-item-count {
+      width: 6rem;
+      height: 6rem;
+    }
+
+    &.left .dotted-item-count {
+      left: 55%;
+    }
+
+    &.rightTop .dotted-item,
+    &.rightCenter .dotted-item {
+      right: 55%;
+    }
+  }
+
+  /* =========================
+     ✅ ≤1024px
+  ========================= */
+  @media (max-width: 1024px) {
+    padding: 0.8rem;
+
+    span {
+      font-size: 0.7rem;
+    }
+
+    img:not(.dotted-item, .dotted-item-count) {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    .dotted-item,
+    .dotted-item-count {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    &.left .dotted-item-count {
+      left: 50%;
+      top: 65%;
+    }
+
+    &.rightTop .dotted-item,
+    &.rightCenter .dotted-item {
+      right: 50%;
+      top: 75%;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    position: relative;
+     
+    .dotted-item,
+    .dotted-item-count {
+      display: none;
+    }
+  }
 `;
 
 

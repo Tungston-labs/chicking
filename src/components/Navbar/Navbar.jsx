@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   BrandLink,
   FindLocationButton,
@@ -6,6 +7,8 @@ import {
   NavInner,
   NavLink,
   NavLinks,
+  MobileMenuContainer,
+  MobileMenuItem,
 } from "./Navbar.style.js";
 
 const navItems = [
@@ -20,6 +23,12 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <Header>
       <NavInner>
@@ -45,11 +54,31 @@ const Navbar = () => {
           <span aria-hidden="true">⌖</span>
         </FindLocationButton>
 
-        <MobileMenuButton aria-label="Open navigation" type="button">
+        <MobileMenuButton 
+          aria-label="Open navigation" 
+          type="button"
+          onClick={toggleMenu}
+          isOpen={isMenuOpen}
+        >
           <span />
           <span />
           <span />
         </MobileMenuButton>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <MobileMenuContainer>
+            {navItems.map((item) => (
+              <MobileMenuItem key={item} href={item === "Home" ? "/" : "#"}>
+                {item}
+              </MobileMenuItem>
+            ))}
+            <MobileMenuItem href="#" isFindLocation>
+              Find Location
+              <span aria-hidden="true">⌖</span>
+            </MobileMenuItem>
+          </MobileMenuContainer>
+        )}
       </NavInner>
     </Header>
   );
