@@ -100,7 +100,23 @@ export const ImageWrapper = styled.div`
   .left::after {
     transform: translateX(-50%) rotate(-40deg);
   }
+&.state-0 {
+  .left {
+    transform: translate(0, -50%);
+  }
 
+  .rightTop {
+    transform: translate(0, 0);
+  }
+
+  .rightCenter {
+    transform: translate(0, -50%);
+  }
+
+  .star {
+    transform: translate(0, 0);
+  }
+}
   &.state-1 {
     .left {
       transform: translate(-20px, -30%);
@@ -163,7 +179,7 @@ export const ImageWrapper = styled.div`
   }
 
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     .left {
       left: -60px;
     }
@@ -249,8 +265,9 @@ export const FloatingItem = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 1.2rem;
-  transition: all 0.6s ease;
-
+transition:
+  transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+  opacity 0.8s ease;
   span {
     z-index: 2;
     white-space: nowrap;
@@ -270,8 +287,7 @@ export const FloatingItem = styled.div`
     height: 7rem;
     z-index: 1;
     pointer-events: none;
-    transition: transform 0.6s ease;
-  }
+transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);  }
 
   &.left .dotted-item-count {
     top: 60%;
