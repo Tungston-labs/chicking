@@ -1,129 +1,55 @@
-# Chicking - React App
+# Chicking - Vite React App
 
-A modern React application for Chicking, the world's fastest-growing Halal quick-service restaurant chain.
+A React/Vite application for Chicking, the world's fastest-growing Halal quick-service restaurant chain.
+
+## Requirements
+
+- Node.js 20.19+ or 22.12+
+- npm
 
 ## Getting Started
 
-### Prerequisites
-- Node.js (v14+)
-- npm or yarn
+Install dependencies:
 
-### Installation
-
-1. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
 ```
 
-2. Start the development server:
-```bash
-npm start
-# or
-yarn start
-```
-
-The app will open at [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Building for Production
+Start the development server:
 
 ```bash
-npm run build
-# or
-yarn build
+npm run dev
 ```
 
-The build artifacts will be stored in the `build/` directory.
+The app runs on the URL printed by Vite, usually `http://localhost:5173/`.
+
+## Scripts
+
+- `npm run dev` - Start the Vite dev server
+- `npm run build` - Create a production build in `dist/`
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint
 
 ## Project Structure
 
-```
+```text
 src/
-├── app/
-│   ├── App.jsx          # Main React component with routing
-│   ├── index.jsx        # React entry point
-│   └── globals.css      # Global styles
-├── pages/               # Page components (main routes)
-│   ├── Home.jsx         # Home page with Hero section
-│   └── index.js         # Page exports
-├── components/          # Reusable components
-│   ├── Hero/            # Hero section component
-│   │   ├── Hero.jsx
-│   │   ├── HeroFirst/   # Hero first variant with floating items
-│   │   │   ├── HeroFirst.jsx
-│   │   │   ├── HeroFirst.styles.js
-│   │   │   └── index.jsx
-│   │   └── index.jsx
-│   └── Navbar/          # Navigation component
-│       ├── Navbar.jsx
-│       ├── Navbar.style.js
-│       └── index.jsx
-├── index.jsx            # React DOM render entry
-└── ...
+  App.jsx                 Main React component with routing
+  main.jsx                React DOM entry point
+  styles/global.css       Global styles
+  pages/                  Page components
+  components/             Reusable UI components
 public/
-├── index.html           # HTML entry point
-├── images/              # Image assets
-│   ├── logo.svg
-│   ├── frame*.svg
-│   ├── dotted-line.svg
-│   └── ...
+  images/                 Static image assets served from /images
+index.html                Vite HTML entry point
+vite.config.js            Vite configuration
+eslint.config.js          ESLint flat config
 ```
-
-## Features
-
-- **Responsive Design**: Mobile-first responsive design with Tailwind CSS
-- **Styled Components**: Component-scoped styling with styled-components
-- **Icon Library**: React Icons for SVG icons
-- **Floating Items Animation**: Animated floating items in the hero section
-- **Dotted Line Decoration**: Visual connection between hero elements
-- **React Router**: Client-side routing with React Router v6
 
 ## Routing
 
-The app uses React Router v6 for client-side routing. Current routes:
+The app uses React Router v6. Current routes:
 
-- `/` - Home page with Hero section
+- `/` - Home page with the hero section
 
-To add more pages:
-
-1. Create a new component in `src/pages/YourPage.jsx`
-2. Export it from `src/pages/index.js`
-3. Add a new route in `src/app/App.jsx`:
-
-```jsx
-import { YourPage } from '../pages/index.js';
-
-// In Routes:
-<Route path="/your-path" element={<YourPage />} />
-```
-
-## Available Scripts
-
-- `npm start` - Start development server
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm test` - Run tests
-
-## Technologies Used
-
-- **React** 19.2.4
-- **React Router DOM** 6.24.0
-- **Styled Components** 6.4.1
-- **React Icons** 5.6.0
-- **Tailwind CSS** 4
-- **React Scripts** 5.0.1
-
-## Deployment
-
-The app can be deployed to various platforms:
-- Vercel
-- AWS S3 + CloudFront
-- Netlify
-- Any static hosting service
-
-## License
-
-This project is private and for use within the Chicking organization.
+To add a page, create a component in `src/pages`, export it from `src/pages/index.js`, and add a route in `src/App.jsx`.

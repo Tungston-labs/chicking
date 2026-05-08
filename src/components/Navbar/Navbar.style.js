@@ -89,7 +89,7 @@ export const FindLocationButton = styled.a`
     transform: translateY(-0.0625rem);
   }
 
-  span {
+  svg {
     font-size: 1rem;
     line-height: 1;
   }
@@ -182,7 +182,7 @@ export const MobileMenuItem = styled.a`
   }
 
   ${(props) =>
-    props.isFindLocation &&
+    props.$isFindLocation &&
     `
     background: #F39200;
     color: #ffffff;
@@ -195,7 +195,7 @@ export const MobileMenuItem = styled.a`
       color: #ffffff;
     }
 
-    span {
+    svg {
       font-size: 1rem;
     }
   `}

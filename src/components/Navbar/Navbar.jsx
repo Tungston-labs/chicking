@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { CiLocationArrow1 } from "react-icons/ci";
 import {
   BrandLink,
   FindLocationButton,
   Header,
   MobileMenuButton,
+  MobileMenuContainer,
+  MobileMenuItem,
   NavInner,
   NavLink,
   NavLinks,
-  MobileMenuContainer,
-  MobileMenuItem,
 } from "./Navbar.style.js";
 
 const navItems = [
@@ -26,7 +27,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((current) => !current);
   };
 
   return (
@@ -51,21 +52,19 @@ const Navbar = () => {
 
         <FindLocationButton href="#">
           Find Location
-          <span aria-hidden="true">⌖</span>
+          <CiLocationArrow1 aria-hidden="true" />
         </FindLocationButton>
 
-        <MobileMenuButton 
-          aria-label="Open navigation" 
+        <MobileMenuButton
+          aria-label="Open navigation"
           type="button"
           onClick={toggleMenu}
-          isOpen={isMenuOpen}
         >
           <span />
           <span />
           <span />
         </MobileMenuButton>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <MobileMenuContainer>
             {navItems.map((item) => (
@@ -73,9 +72,9 @@ const Navbar = () => {
                 {item}
               </MobileMenuItem>
             ))}
-            <MobileMenuItem href="#" isFindLocation>
+            <MobileMenuItem href="#" $isFindLocation>
               Find Location
-              <span aria-hidden="true">⌖</span>
+              <CiLocationArrow1 aria-hidden="true" />
             </MobileMenuItem>
           </MobileMenuContainer>
         )}
