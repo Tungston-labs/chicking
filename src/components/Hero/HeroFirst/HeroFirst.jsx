@@ -18,9 +18,9 @@ const texts = [
 ];
 
 const images = [
-  "/images/animated1.svg",
-  "/images/animated2.svg",
-  "/images/animated3.svg",
+  "/images/frame6.svg",
+  "/images/frame5.svg",
+  "/images/frame4.svg",
 ];
 
 const HeroFirst = () => {

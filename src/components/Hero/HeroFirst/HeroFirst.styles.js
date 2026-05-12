@@ -71,12 +71,48 @@ export const HeroButton = styled.a`
 `;
 
 export const ImageWrapper = styled.div`
-  position: relative;
+   position: relative;
   width: 100%;
   max-width: 45rem;
   display: flex;
   justify-content: center;
+  isolation: isolate;
 
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/images/Earth.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    width: 120%;
+    height: 120%;
+
+    left: 40%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: -1;
+    opacity: 0.9;
+
+    animation: floatBg 6s ease-in-out infinite;
+  }
+
+  @keyframes floatBg {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    50% {
+      transform: translate(-50%, -48%) rotate(2deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+  }
+
+  
   .left {
     left: -120px;
     top: 10%;
