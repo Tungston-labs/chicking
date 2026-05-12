@@ -132,3 +132,13 @@ export const stories = [
     text: "We've had the pleasure of partnering with Zennial Pro through their subsidiary Smart Recruitz, and it's been a game-changer for our recruitment processes. Their AI-driven platform has significantly reduced our time-to-hire and improved the quality of candidates we attract. We couldn't be happier with the results."
   },
 ];
+export const navItems = [
+  "Home",
+  "About Us",
+  "Unique Propositions",
+  "Global Presence",
+  "BMI",
+  "Management",
+  "FAQ",
+  "Blog",
+];

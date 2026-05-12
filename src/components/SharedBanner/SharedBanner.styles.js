@@ -55,17 +55,13 @@ export const PaintEdge = styled.svg`
   left: 0;
   z-index: 333;
   width: 100%;
-  height: 2.35rem;
+  height: 2rem;
   color: ${({ $edgeColor }) => $edgeColor};
   pointer-events: none;
   fill: ${({ $edgeColor }) => $edgeColor || "white"};
 
   path {
-    shape-rendering: geometricPrecision;
-  }
-
-  path + path {
-    opacity: 0.72;
+    shape-rendering: auto;
   }
 
   ${({ $position }) =>
@@ -78,7 +74,7 @@ export const PaintEdge = styled.svg`
       `}
 
   @media (max-width: 768px) {
-    height: 1.85rem;
+    height: 1.35rem;
   }
 `;
 

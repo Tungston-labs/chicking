@@ -13,7 +13,6 @@ const HomeSections = () => {
       <FaqSection />
       <ReasonsSection />
       <PartnerCta />
-      <SiteFooter />
     </>
   );
 };

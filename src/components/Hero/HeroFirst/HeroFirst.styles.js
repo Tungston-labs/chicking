@@ -71,7 +71,7 @@ export const HeroButton = styled.a`
 `;
 
 export const ImageWrapper = styled.div`
-   position: relative;
+  position: relative;
   width: 100%;
   max-width: 45rem;
   display: flex;
@@ -94,8 +94,8 @@ export const ImageWrapper = styled.div`
     top: 50%;
     transform: translate(-50%, -50%);
 
-    z-index: -1;
-    opacity: 0.9;
+    z-index: 0;
+    opacity: 1;
 
     animation: floatBg 6s ease-in-out infinite;
   }
@@ -276,6 +276,8 @@ export const ImageWrapper = styled.div`
 `;
 
 export const MainImage = styled.img`
+  position: relative;
+  z-index: 2;
   width: 55rem;
   max-width: 100%;
   height: auto;
@@ -297,6 +299,7 @@ export const MainImage = styled.img`
 
 export const FloatingItem = styled.div`
   position: absolute;
+  z-index: 3;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -404,4 +407,3 @@ transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);  }
     }
   }
 `;
-

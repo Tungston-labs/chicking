@@ -6,7 +6,7 @@ const PartnerCta = () => (
     action={{ href: "#", label: "Franchise Inquiry" }}
     actionBackground="#b01f24"
     background="#ffffff"
-    bottomEdgeColor="#050505"
+    bottomEdgeColor="#ffffff"
     description="Start with a franchise inquiry and the team will help you understand the right market, format, and next steps."
     textColor="#171717"
     title="Ready to partner with Chicking industry leaders?"

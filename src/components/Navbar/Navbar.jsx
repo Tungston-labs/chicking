@@ -12,16 +12,7 @@ import {
   NavLinks,
 } from "./Navbar.style.js";
 
-const navItems = [
-  "Home",
-  "About Us",
-  "Unique Propositions",
-  "Global Presence",
-  "BMI",
-  "Management",
-  "FAQ",
-  "Blog",
-];
+import { navItems } from "../HomeSections/data/homeSectionsData.js";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
