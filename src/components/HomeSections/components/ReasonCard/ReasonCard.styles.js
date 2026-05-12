@@ -38,7 +38,7 @@ export const Text = styled.p`
 `;
 
 export const Image = styled.img`
-  width: 100%;
-  height: 7.5rem;
+  width: 12.5rem;
+  height: 10.5rem;
   object-fit: contain;
 `;

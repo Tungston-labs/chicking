@@ -87,6 +87,7 @@ const SharedBanner = ({
       $backgroundImage={backgroundImage}
       $backgroundImageRepeat={backgroundImageRepeat}
       $backgroundImageSize={backgroundImageSize}
+      $hasBackgroundImage={Boolean(backgroundImage && !hideBackgroundImage)}
       $hideBackgroundImage={hideBackgroundImage}
       $reverse={reverse}
       $textColor={textColor}

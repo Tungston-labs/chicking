@@ -9,7 +9,6 @@ const PartnerCta = () => (
     bottomEdgeColor="#050505"
     description="Start with a franchise inquiry and the team will help you understand the right market, format, and next steps."
     textColor="#171717"
-    eyebrow="Ready to Partner"
     title="Ready to partner with Chicking industry leaders?"
   />
 );

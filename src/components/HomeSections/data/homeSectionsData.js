@@ -1,4 +1,4 @@
-export const  blogPosts = [
+export const blogPosts = [
   {
     author: "Chicking Marketing",
     date: "Nov 29, 2025",
@@ -20,8 +20,7 @@ export const  blogPosts = [
     readTime: "2 min Read",
     title:
       "Chicking Makes History with Its First Store in South America: Grand Opening in",
-          url: "https://www.chickingprofile.com/blog",
-
+    url: "https://www.chickingprofile.com/blog",
   },
   {
     author: "Chicking Marketing",
@@ -33,60 +32,64 @@ export const  blogPosts = [
     title:
       "🚀 Grow with a Global Brand – Chicking Franchise Opportunity in the UK 🇬🇧",
     url: "https://www.chickingprofile.com/blog",
-
   },
 ];
 
 export const faqs = [
   {
     answer:
-      "A suitable location, operational commitment, and the ability to meet the investment plan are the core starting points.",
-    question: "What makes a strong franchise partner?",
+      "Yes. The brand team provides design guidelines and the approved store layout direction for the selected format.",
+    question: "Will you provide the design?",
   },
   {
     answer:
-      "The franchise team supports site planning, launch preparation, operations training, marketing guidance, and continuing brand standards.",
-    question: "What support does Chicking provide?",
+      "The franchisee can appoint a contractor, subject to brand approval and compliance with the required specifications.",
+    question: "Does Franchisee can appoint the contractor?",
   },
   {
     answer:
-      "Timelines vary by market, location readiness, fit-out, approvals, and team training. The inquiry process helps clarify the path.",
-    question: "How long does the setup take?",
+      "The franchisee purchases the kitchen equipment based on the approved equipment list and brand standards.",
+    question: "Who buy the kitchen equipment?",
   },
   {
     answer:
-      "Yes. The model can be discussed for single-store operators and multi-unit development depending on the market opportunity.",
-    question: "Can I open more than one outlet?",
+      "Both options can be reviewed depending on the site requirements, local regulations, and approved kitchen setup.",
+    question: "Gas or Electric?",
   },
   {
     answer:
-      "Use the franchise inquiry form and the team will review your details before moving into the next conversation.",
-    question: "How do I get started?",
+      "Training covers operations, food preparation, service standards, brand procedures, and launch readiness.",
+    question: "What kind of training is provided?",
+  },
+  {
+    answer:
+      "Yes. Opening support is provided to help the team prepare for launch and follow the operating standards.",
+    question: "Is Opening Support provided?",
   },
 ];
 
 export const reasons = [
   {
     icon: "store",
-    image: "/images/group1.svg",
+    image: "/images/chick.svg",
     text: "A flexible store model shaped for high-traffic urban, mall, and neighborhood formats.",
     title: "Scalable Formats",
   },
   {
     icon: "handshake",
-    image: "/images/group2.svg",
+    image: "/images/chick2.svg",
     text: "A partner-first operating system for launch, training, marketing, and continuous improvement.",
     title: "Partner Support",
   },
   {
     icon: "chart",
-    image: "/images/group3.svg",
+    image: "/images/chick3.svg",
     text: "Menu innovation and proven category demand help strengthen customer repeat visits.",
     title: "Growth Potential",
   },
   {
     icon: "map",
-    image: "/images/frame6.svg",
+    image: "/images/chick4.svg",
     text: "A brand presence across global markets with a clear identity and recognizable guest experience.",
     title: "Global Footprint",
   },
@@ -120,12 +123,12 @@ export const stories = [
     author: "John Thompson",
     image: "/images/success2.svg",
     location: "COO, Stellar Enterprises",
-    text: "Zennial Pro's strategy helped our workforce move faster, reduce operational friction, and improve customer service across the business. Their insights and execution support helped us streamline operations and improve workforce efficiency.",
+    text: "Zennial Pro's strategic consulting arm, WorkforceZ, has been an invaluable partner in optimizing our workforce management strategies. Their insights and expertise have helped us streamline operations, improve productivity, and drive growth. We highly recommend WorkforceZ to any organization seeking to enhance their workforce efficiency.",
   },
   {
     author: "Sarah Ahmed",
     image: "/images/success3.svg",
     location: "Franchise Partner, GCC",
-    text: "The Chicking franchise model gave us a practical path to launch with confidence. From store planning to training and opening support, the team helped us create a guest experience that feels consistent, confident, and ready to grow.",
+    text: "We've had the pleasure of partnering with Zennial Pro through their subsidiary Smart Recruitz, and it's been a game-changer for our recruitment processes. Their AI-driven platform has significantly reduced our time-to-hire and improved the quality of candidates we attract. We couldn't be happier with the results."
   },
 ];

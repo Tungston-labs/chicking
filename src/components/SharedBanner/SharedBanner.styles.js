@@ -37,22 +37,13 @@ export const BannerShell = styled.section`
     position: absolute;
     inset: 0;
 
-    background:
-      radial-gradient(
-        circle at 50% 48%,
-        rgba(255, 255, 255, 0.06) 0 18rem,
-        transparent 18.25rem
-      ),
-      radial-gradient(
-        circle at 72% 42%,
-        rgba(0, 0, 0, 0.09) 0 8rem,
-        transparent 8.25rem
-      ),
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.03),
-        rgba(0, 0, 0, 0.04)
-      );
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(0, 0, 0, 0.04)
+    );
+
+    opacity: ${({ $hasBackgroundImage }) => ($hasBackgroundImage ? 1 : 0)};
 
     z-index: 1;
     pointer-events: none;

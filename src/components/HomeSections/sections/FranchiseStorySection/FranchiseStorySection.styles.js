@@ -2,32 +2,32 @@ import styled, { keyframes } from "styled-components";
 
 const slideFromRight = keyframes`
   from {
-    opacity: 0.72;
-    transform: translateX(2rem);
+    opacity: 0.68;
+    transform: translateX(2.6rem) scale(0.985);
   }
 
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
 `;
 
 const slideFromLeft = keyframes`
   from {
-    opacity: 0.72;
-    transform: translateX(-2rem);
+    opacity: 0.68;
+    transform: translateX(-2.6rem) scale(0.985);
   }
 
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
 `;
 
 const previewFromRight = keyframes`
   from {
     opacity: 0;
-    transform: translateX(1.5rem);
+    transform: translateX(2rem);
   }
 
   to {
@@ -39,7 +39,7 @@ const previewFromRight = keyframes`
 const previewFromLeft = keyframes`
   from {
     opacity: 0;
-    transform: translateX(-1.5rem);
+    transform: translateX(-2rem);
   }
 
   to {
@@ -70,7 +70,8 @@ export const StoryStage = styled.div`
   margin: 0 auto;
   animation: ${({ $direction }) =>
       $direction === "previous" ? slideFromLeft : slideFromRight}
-    260ms ease both;
+    680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform;
 
   @media (max-width: 900px) {
     width: min(100%, 44rem);
@@ -182,14 +183,15 @@ export const SidePreview = styled.article`
   z-index: 1;
   width: clamp(8.8rem, 14.75vw, 16rem);
   height: 20.75rem;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 0 0.85rem 0.85rem 0;
   background: rgba(255, 255, 255, 0.68);
   color: #121d35;
   opacity: 0.72;
   animation: ${({ $direction }) =>
       $direction === "previous" ? previewFromLeft : previewFromRight}
-    260ms ease both;
+    680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform;
 
   ${({ $position }) =>
     $position === "left"
@@ -201,6 +203,10 @@ export const SidePreview = styled.article`
         padding: 2.5rem 2rem;
         border-radius: 0.85rem 0 0 0.85rem;
       `}
+
+  > ${StoryImage} {
+    border-radius: inherit;
+  }
 
   ${StoryFlag} {
     margin-bottom: 1.9rem;
@@ -230,48 +236,72 @@ export const SidePreview = styled.article`
 export const CarouselArrow = styled.button`
   position: absolute;
   top: 50%;
-  z-index: 3;
-  width: 3.1rem;
-  height: 2.1rem;
-  display: inline-flex;
+  z-index: 5;
+
+  width: 1.95rem;
+  height: 1.95rem;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  border: 0;
-  border-radius: 99rem;
-  background: rgba(92, 35, 47, 0.72);
-  color: #ffffff;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(91, 36, 48, 0.82);
+  color: #fff;
+  box-shadow: 0 0.65rem 1.4rem rgba(46, 13, 20, 0.2);
+
   cursor: pointer;
+
+  transform: translateY(-50%);
   transition:
-    background 160ms ease,
-    transform 160ms ease;
+    background 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s ease;
 
   ${({ $position }) =>
     $position === "left"
       ? `
-        right: -1.05rem;
+        right: -0.98rem;
       `
       : `
-        left: -1.05rem;
+        left: -0.98rem;
       `}
-  transform: translateY(-50%);
 
   &:hover {
     background: #54e1e8;
-    transform: translateY(calc(-50% - 0.0625rem));
+    box-shadow: 0 0.9rem 1.6rem rgba(46, 13, 20, 0.26);
+    transform: translateY(calc(-50% - 1px)) scale(1.04);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.96);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.9);
+    outline-offset: 3px;
   }
 
   svg {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2.1;
   }
 
   @media (max-width: 900px) {
-    left: ${({ $position }) => ($position === "left" ? "0.75rem" : "auto")};
-    right: ${({ $position }) => ($position === "right" ? "0.75rem" : "auto")};
+    width: 2.2rem;
+    height: 2.2rem;
 
-    &:hover {
-      transform: translateY(calc(-50% - 0.0625rem));
-    }
+    ${({ $position }) =>
+      $position === "left"
+        ? `
+          right: -1.1rem;
+        `
+        : `
+          left: -1.1rem;
+        `}
   }
 `;
 
@@ -294,6 +324,16 @@ export const DotButton = styled.button`
   background: ${({ $active }) => ($active ? "#f39200" : "#ffffff")};
   cursor: pointer;
   transition:
-    background 160ms ease,
-    width 160ms ease;
+    background 0.28s ease,
+    transform 0.28s ease,
+    width 0.28s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.9);
+    outline-offset: 4px;
+  }
 `;

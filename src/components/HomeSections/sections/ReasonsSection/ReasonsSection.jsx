@@ -10,11 +10,10 @@ const ReasonsSection = () => (
     backgroundImageSize="min(76rem, 94%) auto"
     description="A focused brand platform for operators who want recognizable products, dependable systems, and room to grow."
     edgeColor="#ffffff"
-    eyebrow="Why Chicking"
     title={
       <>
-        More reasons to revolutionize the world with our{" "}
-        <strong>fried chicken</strong>
+        We're Here To <strong>Revolutionize</strong><br></br> The World With Best 
+        <strong> fried chicken</strong>
       </>
     }
   >

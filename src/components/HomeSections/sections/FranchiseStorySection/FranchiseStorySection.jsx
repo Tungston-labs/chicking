@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import SharedBanner from "../../../SharedBanner/SharedBanner.jsx";
 import {
   CarouselArrow,
@@ -49,6 +49,10 @@ const FranchiseStorySection = () => {
   };
 
   const goToStory = (index) => {
+    if (index === activeStory) {
+      return;
+    }
+
     setSlideDirection(index > activeStory ? "next" : "previous");
     setActiveStory(index);
   };
@@ -79,7 +83,7 @@ const FranchiseStorySection = () => {
             aria-label="Show previous success story"
             onClick={goToPreviousStory}
           >
-            <FaArrowLeft aria-hidden="true" />
+            <FiArrowLeft aria-hidden="true" />
           </CarouselArrow>
         </SidePreview>
         <SidePreview
@@ -99,7 +103,7 @@ const FranchiseStorySection = () => {
             aria-label="Show next success story"
             onClick={goToNextStory}
           >
-            <FaArrowRight aria-hidden="true" />
+            <FiArrowRight aria-hidden="true" />
           </CarouselArrow>
         </SidePreview>
 
