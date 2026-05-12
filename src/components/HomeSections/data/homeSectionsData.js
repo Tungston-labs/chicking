@@ -109,3 +109,23 @@ export const footerInfo = [
     text: "franchise@chickingglobal.com",
   },
 ];
+export const stories = [
+  {
+    author: "David Lee",
+    image: "/images/success1.svg",
+    location: "Franchise Partner, UAE",
+    text: "Abodah, under the umbrella of Zennial Pro, has completely transformed our approach to learning and development. Their tailored solutions have not only improved employee engagement but also boosted productivity across our organization. Working with Abodah has been a game-changer for us.",
+  },
+  {
+    author: "John Thompson",
+    image: "/images/success2.svg",
+    location: "COO, Stellar Enterprises",
+    text: "Zennial Pro's strategy helped our workforce move faster, reduce operational friction, and improve customer service across the business. Their insights and execution support helped us streamline operations and improve workforce efficiency.",
+  },
+  {
+    author: "Sarah Ahmed",
+    image: "/images/success3.svg",
+    location: "Franchise Partner, GCC",
+    text: "The Chicking franchise model gave us a practical path to launch with confidence. From store planning to training and opening support, the team helped us create a guest experience that feels consistent, confident, and ready to grow.",
+  },
+];

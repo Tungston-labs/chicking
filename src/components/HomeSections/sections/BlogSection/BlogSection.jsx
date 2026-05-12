@@ -1,27 +1,31 @@
+import SharedBanner from "../../../SharedBanner/index.jsx";
 import BlogCard from "../../components/BlogCard/index.jsx";
-import SectionFrame from "../../components/SectionFrame/index.jsx";
 import SectionHeader from "../../components/SectionHeader/index.jsx";
 import { blogPosts } from "../../data/homeSectionsData.js";
 import { BlogGrid } from "./BlogSection.styles.js";
 
 const BlogSection = () => (
-  <SectionFrame compact>
+  <SharedBanner
+    compact
+    background="#ffffff"
+    textColor="#171717"
+  >
     <SectionHeader
       align="left"
       eyebrowAsTitle
       eyebrow={
-        <>        
+        <>
           Our <strong>Blog</strong>
         </>
       }
-      description="Explore Expert Tips, B   rand Highlights, And Trends Shaping Our Journey And The World Of Quick-Service Dining."
+      description="Explore expert tips, brand highlights, and trends shaping our journey and the world of quick-service dining."
     />
     <BlogGrid>
       {blogPosts.map((post) => (
         <BlogCard key={post.title} {...post} />
       ))}
     </BlogGrid>
-  </SectionFrame>
+  </SharedBanner>
 );
 
 export default BlogSection;

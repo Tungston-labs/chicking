@@ -1,6 +1,5 @@
 import SharedBanner from "../../../SharedBanner/SharedBanner.jsx";
 import FaqItem from "../../components/FaqItem/index.jsx";
-import SectionFrame from "../../components/SectionFrame/index.jsx";
 import SectionHeader from "../../components/SectionHeader/index.jsx";
 import { faqs } from "../../data/homeSectionsData.js";
 import {
@@ -10,7 +9,7 @@ import {
 } from "./FaqSection.styles.js";
 
 const FaqSection = () => (
-  <SharedBanner background="#fff">
+  <SharedBanner background="#ffffff" textColor="#171717">
     <FaqLayout>
       <FaqImagePanel>
         <img src="/images/animated1.svg" alt="" />
@@ -28,7 +27,7 @@ const FaqSection = () => (
         </FaqListWrap>
       </div>
     </FaqLayout>
-  </SharedBanner >
+  </SharedBanner>
 );
 
 export default FaqSection;

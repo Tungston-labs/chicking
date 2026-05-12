@@ -64,17 +64,17 @@ export const PaintEdge = styled.svg`
   left: 0;
   z-index: 333;
   width: 100%;
-  height: 2.1rem;
+  height: 2.35rem;
   color: ${({ $edgeColor }) => $edgeColor};
   pointer-events: none;
   fill: ${({ $edgeColor }) => $edgeColor || "white"};
 
   path {
-    shape-rendering: crispEdges;
+    shape-rendering: geometricPrecision;
   }
 
   path + path {
-    opacity: 1.62;
+    opacity: 0.72;
   }
 
   ${({ $position }) =>
@@ -87,20 +87,21 @@ export const PaintEdge = styled.svg`
       `}
 
   @media (max-width: 768px) {
-    height: 2.25rem;
+    height: 1.85rem;
   }
 `;
 
 export const BannerContent = styled.div`
   position: relative;
   z-index: 2;
-  width: min(100%, 96rem);
+  width: min(100%, ${({ $contentWidth }) => $contentWidth || "85rem"});
   margin: 0 auto;
-  min-height: 24.5rem;
+  min-height: ${({ $compact }) => ($compact ? "17rem" : "24.5rem")};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 6rem 4rem 5.5rem;
+  padding: ${({ $compact }) =>
+    $compact ? "4.8rem 2rem 4.6rem" : "6rem 2rem 5.5rem"};
 
   ${({ $reverse }) =>
     $reverse &&
@@ -111,7 +112,8 @@ export const BannerContent = styled.div`
 
   @media (max-width: 768px) {
     min-height: auto;
-    padding: 5rem 1.5rem;
+    padding: ${({ $compact }) =>
+      $compact ? "3.75rem 1.25rem" : "5rem 1.25rem"};
     text-align: left;
     align-items: stretch;
   }
@@ -164,8 +166,8 @@ export const BannerAction = styled.a`
   margin-top: 1.5rem;
   padding: 0 1.25rem;
   border-radius: 0.25rem;
-  background: #f39200;
-  color: #ffffff;
+  background: ${({ $background }) => $background || "#f39200"};
+  color: ${({ $textColor }) => $textColor || "#ffffff"};
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
@@ -174,7 +176,7 @@ export const BannerAction = styled.a`
     transform 160ms ease;
 
   &:hover {
-    background: #dd8200;
+    filter: brightness(0.92);
     transform: translateY(-0.0625rem);
   }
 
@@ -261,4 +263,14 @@ export const BannerImage = styled.img`
   width: min(100%, 24rem);
   height: auto;
   display: block;
+`;
+
+export const BannerChildren = styled.div`
+  width: 100%;
+
+  ${BannerBody} + &,
+  ${BannerFeatureGrid} + &,
+  ${BannerMedia} + & {
+    margin-top: 2.7rem;
+  }
 `;

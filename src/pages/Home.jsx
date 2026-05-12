@@ -1,6 +1,6 @@
-import Hero from '../components/Hero/index.jsx';
+import Hero from "../components/Hero/index.jsx";
 import HomeSections from "../components/HomeSections/index.jsx";
-import PageLayout, { PageSection } from "../components/Layout/PageLayout.jsx";
+import PageLayout from "../components/Layout/PageLayout.jsx";
 import SharedBanner from "../components/SharedBanner/index.jsx";
 
 const homeBanners = [
@@ -46,9 +46,7 @@ const Home = () => {
     <PageLayout>
       <Hero />
       {homeBanners.map((banner) => (
-        <PageSection key={banner.id} fullBleed spacing="0 0 3rem">
-          <SharedBanner {...banner} />
-        </PageSection>
+        <SharedBanner key={banner.id} {...banner} />
       ))}
       <HomeSections />
     </PageLayout>
