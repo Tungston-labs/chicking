@@ -1,10 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "../pages/Home/index.js";
+import FranchiseForm from "../pages/Franchise/index.jsx";
 
 const pageRoutes = [
   {
     path: "/",
     Component: Home,
+  },
+   {
+    path: "/franchiseform",
+    Component:FranchiseForm ,
   },
 ];
 
