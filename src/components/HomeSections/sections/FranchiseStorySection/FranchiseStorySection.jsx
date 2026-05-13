@@ -107,6 +107,15 @@ const FranchiseStorySection = () => {
 
         <StoryStage key={story.image} $direction={slideDirection}>
           <StoryCard>
+            <CarouselArrow
+              type="button"
+              $placement="card"
+              $position="left"
+              aria-label="Show previous success story"
+              onClick={goToPreviousStory}
+            >
+              <FiArrowLeft aria-hidden="true" />
+            </CarouselArrow>
             <StoryCardCopy>
               <StoryFlag />
               <StoryText>{story.text}</StoryText>
@@ -118,6 +127,15 @@ const FranchiseStorySection = () => {
             <StoryImagePanel>
               <StoryImage src={story.image} alt="" />
             </StoryImagePanel>
+            <CarouselArrow
+              type="button"
+              $placement="card"
+              $position="right"
+              aria-label="Show next success story"
+              onClick={goToNextStory}
+            >
+              <FiArrowRight aria-hidden="true" />
+            </CarouselArrow>
           </StoryCard>
         </StoryStage>
 

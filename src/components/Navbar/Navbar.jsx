@@ -63,10 +63,6 @@ const Navbar = () => {
                 {item}
               </MobileMenuItem>
             ))}
-            <MobileMenuItem href="#" $isFindLocation>
-              Find Location
-              <CiLocationArrow1 aria-hidden="true" />
-            </MobileMenuItem>
           </MobileMenuContainer>
         )}
       </NavInner>

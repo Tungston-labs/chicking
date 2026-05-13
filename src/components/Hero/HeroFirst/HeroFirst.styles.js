@@ -62,6 +62,8 @@ export const HeroButton = styled.a`
     transform 160ms ease;
 
   svg {
+    pointer-events: none;
+    cursor: pointer;
     transition: transform 0.2s ease;
   }
 
