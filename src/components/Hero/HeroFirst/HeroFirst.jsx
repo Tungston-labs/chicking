@@ -20,7 +20,7 @@ const texts = [
 const images = [
   "/images/frame6.svg",
   "/images/frame5.svg",
-  "/images/frame1.svg",
+  "/images/frame4.svg",
 ];
 
 const HeroFirst = () => {

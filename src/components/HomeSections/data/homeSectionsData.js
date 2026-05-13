@@ -98,18 +98,22 @@ export const reasons = [
 export const footerInfo = [
   {
     icon: "map",
-    label: "Corporate Office",
-    text: "Chicking franchise development team",
+    label: "Our Address",
+    lines: [
+      "1106, ETA Star's Al Manara Tower,",
+      "PO Box: 87548,",
+      "Business Bay, Dubai, UAE.",
+    ],
   },
   {
     icon: "phone",
-    label: "Call Us",
-    text: "+971 000 000 000",
+    label: "Our Phone Number",
+    lines: ["+971 4 259 4808"],
   },
   {
     icon: "email",
-    label: "Email",
-    text: "franchise@chickingglobal.com",
+    label: "Our Email",
+    lines: ["Franchise@Chickingglobal.Com"],
   },
 ];
 export const stories = [
@@ -135,10 +139,11 @@ export const stories = [
 export const navItems = [
   "Home",
   "About Us",
-  "Unique Propositions",
+  "Opportunity",
   "Global Presence",
   "BMI",
   "Management",
   "FAQ",
   "Blog",
+  "Contact Us",
 ];
