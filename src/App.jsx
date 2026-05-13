@@ -1,12 +1,10 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Home } from "./pages/index.js";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./routes/index.jsx";
 
 export default function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <AppRoutes />
     </Router>
   );
 }

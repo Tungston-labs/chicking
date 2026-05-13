@@ -1,7 +1,7 @@
-import Hero from "../components/Hero/index.jsx";
-import HomeSections from "../components/HomeSections/index.jsx";
-import PageLayout from "../components/Layout/PageLayout.jsx";
-import SharedBanner from "../components/SharedBanner/index.jsx";
+import Hero from "../../components/Hero/index.jsx";
+import HomeSections from "../../components/HomeSections/index.jsx";
+import PageLayout from "../../components/Layout/PageLayout.jsx";
+import SharedBanner from "../../components/SharedBanner/index.jsx";
 
 const homeBanners = [
   {

@@ -91,7 +91,6 @@ export const FooterNavRow = styled.div`
   align-items: center;
   justify-content: center;
   gap: clamp(1.5rem, 4vw, 4.5rem);
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.38);
 
   @media (max-width: 980px) {
     flex-direction: column;
@@ -100,7 +99,22 @@ export const FooterNavRow = styled.div`
   }
 
   @media (max-width: 760px) {
+    align-items: flex-start;
     padding: 1.35rem 1.25rem 2rem;
+  }
+`;
+
+export const FooterNavHeading = styled.h2`
+  display: none;
+  margin: 0;
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 800;
+  text-transform: uppercase;
+
+  @media (max-width: 760px) {
+    display: block;
   }
 `;
 
@@ -110,6 +124,12 @@ export const FooterNav = styled.nav`
   justify-content: center;
   flex-wrap: wrap;
   gap: clamp(1.2rem, 3vw, 2.55rem);
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
 `;
 
 export const FooterNavLink = styled.a`
@@ -160,16 +180,27 @@ export const FooterSocialLink = styled.a`
 export const FooterBottom = styled.div`
   position: relative;
   z-index: 1;
+  width: 100%;
+  border-top: 1px dashed rgba(255, 255, 255, 0.38);
+
+  @media (max-width: 760px) {
+    padding: 0;
+  }
+`;
+
+export const FooterBottomInner = styled.div`
   width: min(100%, 85rem);
   margin: 0 auto;
   padding: 1.35rem 2rem 1.6rem;
-  border-top: 1px dashed rgba(255, 255, 255, 0.38);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  gap: 1.35rem;
 
   @media (max-width: 760px) {
     padding: 1.2rem 1rem 1.5rem;
+    align-items: center;
+    gap: 1rem;
   }
 `;
 
@@ -178,7 +209,7 @@ export const FooterCopyright = styled.p`
   color: rgba(255, 255, 255, 0.72);
   font-size: 0.82rem;
   line-height: 1.5;
-  text-align: center;
+  text-align: right;
 
   a {
     color: #ffffff;

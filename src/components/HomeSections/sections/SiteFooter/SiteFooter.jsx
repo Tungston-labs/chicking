@@ -13,7 +13,9 @@ import {
   FooterIconWrap,
   FooterNavRow,
   FooterBottom,
+  FooterBottomInner,
   FooterCopyright,
+  FooterNavHeading,
 } from "./SiteFooter.styles.js";
 
 const icons = {
@@ -40,6 +42,7 @@ const SiteFooter = () => (
       ))}
     </FooterTop>
     <FooterNavRow>
+      <FooterNavHeading>Quick links</FooterNavHeading>
       <FooterNav aria-label="Footer navigation">
         {navItems.map((item) => (
           <FooterNavLink key={item} href={item === "Home" ? "/" : "#"}>
@@ -47,24 +50,26 @@ const SiteFooter = () => (
           </FooterNavLink>
         ))}
       </FooterNav>
-      <FooterSocials aria-label="Social links">
-        <FooterSocialLink href="#" aria-label="Twitter">
-          <FiTwitter aria-hidden="true" />
-        </FooterSocialLink>
-        <FooterSocialLink href="#" aria-label="Instagram">
-          <FiInstagram aria-hidden="true" />
-        </FooterSocialLink>
-        <FooterSocialLink href="#" aria-label="Meta">
-          <SiMeta aria-hidden="true" />
-        </FooterSocialLink>
-      </FooterSocials>
     </FooterNavRow>
     <FooterBottom>
-  <FooterCopyright>
-    © Copyright 2026, Chicking. Designed By{" "}
-    <a href="https://tungstonlabs.com">Tungston Labs.</a>
-  </FooterCopyright>
-</FooterBottom>
+      <FooterBottomInner>
+        <FooterSocials aria-label="Social links">
+          <FooterSocialLink href="#" aria-label="Twitter">
+            <FiTwitter aria-hidden="true" />
+          </FooterSocialLink>
+          <FooterSocialLink href="#" aria-label="Instagram">
+            <FiInstagram aria-hidden="true" />
+          </FooterSocialLink>
+          <FooterSocialLink href="#" aria-label="Meta">
+            <SiMeta aria-hidden="true" />
+          </FooterSocialLink>
+        </FooterSocials>
+        <FooterCopyright>
+          © Copyright 2026, Chicking. Designed By{" "}
+          <a href="https://tungstonlabs.com">Tungston Labs.</a>
+        </FooterCopyright>
+      </FooterBottomInner>
+    </FooterBottom>
   </Footer>
 );
 
