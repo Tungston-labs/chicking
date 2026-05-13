@@ -16,9 +16,15 @@ import { navItems } from "../HomeSections/data/homeSectionsData.js";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("Home");
 
   const toggleMenu = () => {
     setIsMenuOpen((current) => !current);
+  };
+
+  const handleNavItemClick = (item) => {
+    setActiveItem(item);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -35,7 +41,12 @@ const Navbar = () => {
 
         <NavLinks aria-label="Primary navigation">
           {navItems.map((item) => (
-            <NavLink key={item} href={item === "Home" ? "/" : "#"}>
+            <NavLink
+              key={item}
+              href={item === "Home" ? "/" : "#"}
+              $active={activeItem === item}
+              onClick={() => handleNavItemClick(item)}
+            >
               {item}
             </NavLink>
           ))}
@@ -59,7 +70,12 @@ const Navbar = () => {
         {isMenuOpen && (
           <MobileMenuContainer>
             {navItems.map((item) => (
-              <MobileMenuItem key={item} href={item === "Home" ? "/" : "#"}>
+              <MobileMenuItem
+                key={item}
+                href={item === "Home" ? "/" : "#"}
+                $active={activeItem === item}
+                onClick={() => handleNavItemClick(item)}
+              >
                 {item}
               </MobileMenuItem>
             ))}

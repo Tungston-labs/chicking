@@ -8,7 +8,7 @@ export const FaqBlockGrid = styled.div`
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 `;
 
@@ -28,6 +28,10 @@ export const FaqIntro = styled.div`
     margin-right: 0.28rem;
     font-weight: 800;
   }
+
+  @media (min-width: 561px) and (max-width: 900px) {
+    text-align: left;
+  }
 `;
 
 export const FaqCopy = styled.p`
@@ -36,6 +40,10 @@ export const FaqCopy = styled.p`
   color: #565656;
   font-size: clamp(0.88rem, 1vw, 0.98rem);
   line-height: 1.75;
+
+  @media (min-width: 561px) and (max-width: 900px) {
+    width: min(100%, 30rem);
+  }
 `;
 
 export const FaqVisual = styled.div`
@@ -43,6 +51,12 @@ export const FaqVisual = styled.div`
   width: min(100%, 34rem);
   min-height: clamp(11.5rem, 23vw, 18.25rem);
   margin-top: 1.65rem;
+
+  @media (min-width: 561px) and (max-width: 900px) {
+    width: min(100%, 29rem);
+    min-height: 14.5rem;
+    margin-top: 1.95rem;
+  }
 `;
 
 export const FaqVisualImage = styled.img`
@@ -69,6 +83,22 @@ export const FaqVisualImage = styled.img`
         width: min(91%, 31rem);
         opacity: 0.95;
       `}
+
+  @media (min-width: 561px) and (max-width: 900px) {
+    ${({ $variant }) =>
+      $variant === "pin"
+        ? `
+          left: 0.15rem;
+          top: 0.55rem;
+          width: min(47%, 13.5rem);
+        `
+        : `
+          left: 3rem;
+          right: auto;
+          bottom: 0;
+          width: min(86%, 24rem);
+        `}
+  }
 
   @media (max-width: 560px) {
     ${({ $variant }) =>

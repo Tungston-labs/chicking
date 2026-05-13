@@ -55,7 +55,7 @@ export const NavLinks = styled.div`
 `;
 
 export const NavLink = styled.a`
-  color: #000000;
+  color: ${({ $active }) => ($active ? "#a11f24" : "#000000")};
   font-size: 1rem;
   font-weight: 500;
   line-height: 1;
@@ -64,7 +64,7 @@ export const NavLink = styled.a`
   transition: color 160ms ease;
 
   &:hover {
-    color: #a11f24;
+    color: #891b1c;
   }
 `;
 
@@ -178,7 +178,7 @@ export const MobileMenuItem = styled.a`
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  color: #000000;
+  color: ${({ $active }) => ($active ? "#891b1c" : "#000000")};
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
@@ -187,7 +187,7 @@ export const MobileMenuItem = styled.a`
 
   &:hover {
     background: #f6f6f6;
-    color: #a11f24;
+    color: #891b1c;
   }
 
   ${(props) =>

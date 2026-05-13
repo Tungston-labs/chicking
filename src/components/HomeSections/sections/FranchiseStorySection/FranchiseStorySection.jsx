@@ -60,7 +60,13 @@ const FranchiseStorySection = () => {
   return (
     <SharedBanner
       background="#891B1C"
-      description="Starting with one outlet, this franchise partner expanded into multiple locations through strong brand support, operational excellence, and high customer demand."
+      description={
+        <>
+          Starting with one outlet, this franchise partner expanded into
+          multiple locations through strong brand <br />
+          support, operational excellence, and high customer demand.
+        </>
+      }
       edgeColor="#ffffff"
       title={
         <>
