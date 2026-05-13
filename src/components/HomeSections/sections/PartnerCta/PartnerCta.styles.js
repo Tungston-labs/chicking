@@ -9,7 +9,7 @@ export const PartnerCtaArtwork = styled.div`
   position: absolute;
   inset: 0;
   z-index: 3;
-  width: min(100%, 85rem);
+  width: min(100%, var(--section-max-width));
   margin: 0 auto;
   left: 50%;
   transform: translateX(-50%);

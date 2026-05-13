@@ -50,38 +50,34 @@ export const BannerShell = styled.section`
   }
 `;
 
-export const PaintEdge = styled.svg`
+export const PaintEdge = styled.img`
   position: absolute;
-  left: 0;
+  left: -0.15rem;
   z-index: 333;
-  width: 100%;
-  height: 2rem;
-  color: ${({ $edgeColor }) => $edgeColor};
+  width: calc(100% + 0.3rem);
+  height: ${({ $position }) =>
+    $position === "top"
+      ? "clamp(1.5rem, 6.85vw, 2.5rem)"
+      : "clamp(1.7rem, 8.1vw, 2.7rem)"};
+  display: block;
+  object-fit: fill;
   pointer-events: none;
-  fill: ${({ $edgeColor }) => $edgeColor || "white"};
-
-  path {
-    shape-rendering: auto;
-  }
+  user-select: none;
 
   ${({ $position }) =>
     $position === "top"
       ? `
-        top: -0.0625rem;
+        top: 0;
       `
       : `
-        bottom: -0.0625rem;
+        bottom: 0;
       `}
-
-  @media (max-width: 768px) {
-    height: 1.35rem;
-  }
 `;
 
 export const BannerContent = styled.div`
   position: relative;
   z-index: 2;
-  width: min(100%, ${({ $contentWidth }) => $contentWidth || "85rem"});
+  width: min(100%, ${({ $contentWidth }) => $contentWidth || "var(--section-max-width)"});
   margin: 0 auto;
   min-height: ${({ $compact }) => ($compact ? "17rem" : "24.5rem")};
   display: flex;
@@ -107,7 +103,7 @@ export const BannerContent = styled.div`
 `;
 
 export const BannerBody = styled.div`
-  width: min(100%, 85rem);
+  width: min(100%, var(--section-max-width));
   margin: 0 auto;
   text-align: center;
 `;

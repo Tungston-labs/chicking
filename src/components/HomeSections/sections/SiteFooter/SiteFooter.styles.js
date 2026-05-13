@@ -2,18 +2,20 @@ import styled from "styled-components";
 
 export const Footer = styled.footer`
   position: relative;
-  background: #080808;
+  background: #000;
   color: #ffffff;
   overflow: hidden;
 
   &::before {
     content: "";
     position: absolute;
-    top: -0.0625rem;
-    left: 0;
+    top: 0;
+    left: -0.15rem;
     z-index: 0;
-    width: 100%;
-    height: 1.45rem;
+    width: calc(100% + 0.3rem);
+    height: clamp(2rem, 5.6vw, 3.2rem);
+    background: url("/images/footerblack.png") center top / 100% 100%
+      no-repeat;
     pointer-events: none;
   }
 `;
@@ -21,7 +23,7 @@ export const Footer = styled.footer`
 export const FooterTop = styled.div`
   position: relative;
   z-index: 1;
-  width: min(100%, 85rem);
+  width: min(100%, var(--section-max-width));
   margin: 0 auto;
   padding: 5.25rem 2rem 2.25rem;
   display: grid;
@@ -111,7 +113,7 @@ export const FooterContactText = styled.p`
 export const FooterNavRow = styled.div`
   position: relative;
   z-index: 1;
-  width: min(100%, 85rem);
+  width: min(100%, var(--section-max-width));
   margin: 0 auto;
   padding: 1.85rem 2rem 2.55rem;
   display: flex;
@@ -251,7 +253,7 @@ export const FooterBottom = styled.div`
 `;
 
 export const FooterBottomInner = styled.div`
-  width: min(100%, 85rem);
+  width: min(100%, var(--section-max-width));
   margin: 0 auto;
   padding: 1.35rem 2rem 1.6rem;
   display: flex;

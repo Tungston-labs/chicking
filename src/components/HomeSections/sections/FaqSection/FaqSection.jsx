@@ -5,7 +5,7 @@ import { faqs } from "../../data/homeSectionsData.js";
 const FaqSection = () => (
   <SharedBanner
     background="#ffffff"
-    contentWidth="82rem"
+    contentWidth="var(--section-max-width-narrow)"
     textColor="#171717"
     hideBackgroundImage
 
