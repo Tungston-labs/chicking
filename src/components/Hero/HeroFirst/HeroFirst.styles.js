@@ -95,7 +95,7 @@ export const ImageWrapper = styled.div`
     transform: translate(-50%, -50%);
 
     z-index: 0;
-    opacity: 0.2;
+    opacity: 0.15;
 
     animation: floatBg 6s ease-in-out infinite;
   }

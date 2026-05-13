@@ -56,15 +56,15 @@ export const FaqVisualImage = styled.img`
   ${({ $variant }) =>
     $variant === "pin"
       ? `
-        left: 0;
+        left: -6%;
         top: 0;
         z-index: 2;
-        width: clamp(9.5rem, 42%, 16rem);
+        width: clamp(15.5rem, 52%, 20rem);
       `
       : `
         left: clamp(3.5rem, 16%, 6rem);
         right: 0;
-        bottom: 0;
+        bottom: -12%;
         z-index: 1;
         width: min(91%, 31rem);
         opacity: 0.95;
