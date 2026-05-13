@@ -89,36 +89,22 @@ export const FaqAccordion = styled.div`
   min-width: 0;
 `;
 
-export const FaqQuestion = styled.details`
-  border-radius: 0;
-  background: #fff8e9;
-  color: #171717;
-  overflow: hidden;
-  transition:
-    background 0.25s ease,
-    box-shadow 0.25s ease;
-
-  &[open] {
-    background: #ffffff;
-    box-shadow: 0 0.8rem 1.85rem rgba(78, 49, 17, 0.08);
-  }
-
-  &[open] svg {
-    transform: rotate(45deg);
-  }
-`;
-
 export const FaqSummary = styled.summary`
-  min-height: clamp(2.85rem, 4.4vw, 3.45rem);
+  min-height: 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0 1.4rem;
+  padding: 0 1.5rem;
   cursor: pointer;
-  font-size: clamp(0.86rem, 1vw, 0.98rem);
-  font-weight: 700;
   list-style: none;
+
+  background: #f7f1e4;
+  color: #171717;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
 
   &::-webkit-details-marker {
     display: none;
@@ -126,17 +112,36 @@ export const FaqSummary = styled.summary`
 
   svg {
     flex: 0 0 auto;
-    width: 0.72rem;
-    height: 0.72rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    transition:
+      transform 0.25s ease,
+      color 0.25s ease;
     color: #171717;
-    transition: transform 0.25s ease;
   }
 `;
 
-export const FaqAnswer = styled.p`
-  margin: 0;
-  padding: 0 1.4rem 1.15rem;
-  color: #5f5f5f;
+export const FaqQuestion = styled.details`
+  overflow: hidden;
+  border: 1px solid #d8d1c4;
+  background: #f7f1e4;
+  transition: all 0.25s ease;
+
+  &[open] ${FaqSummary} {
+    background: #9d1515;
+    color: #fff;
+  }
+
+  &[open] ${FaqSummary} svg {
+    transform: rotate(45deg);
+    color: #fff;
+  }
+`;
+
+export const FaqAnswer = styled.div`
+  background: #f7f1e4;
+  padding: 1.8rem 1.5rem;
+  color: #4e4e4e;
   font-size: 0.92rem;
-  line-height: 1.7;
+  line-height: 1.8;
 `;

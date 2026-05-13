@@ -24,6 +24,20 @@ const icons = {
   phone: <FiPhoneCall aria-hidden="true" />,
 };
 
+const socialLinks = (
+  <>
+    <FooterSocialLink href="#" aria-label="Twitter">
+      <FiTwitter aria-hidden="true" />
+    </FooterSocialLink>
+    <FooterSocialLink href="#" aria-label="Instagram">
+      <FiInstagram aria-hidden="true" />
+    </FooterSocialLink>
+    <FooterSocialLink href="#" aria-label="Meta">
+      <SiMeta aria-hidden="true" />
+    </FooterSocialLink>
+  </>
+);
+
 const SiteFooter = () => (
   <Footer>
     <FooterTop>
@@ -50,19 +64,14 @@ const SiteFooter = () => (
           </FooterNavLink>
         ))}
       </FooterNav>
+      <FooterSocials $placement="nav" aria-label="Social links">
+        {socialLinks}
+      </FooterSocials>
     </FooterNavRow>
     <FooterBottom>
       <FooterBottomInner>
-        <FooterSocials aria-label="Social links">
-          <FooterSocialLink href="#" aria-label="Twitter">
-            <FiTwitter aria-hidden="true" />
-          </FooterSocialLink>
-          <FooterSocialLink href="#" aria-label="Instagram">
-            <FiInstagram aria-hidden="true" />
-          </FooterSocialLink>
-          <FooterSocialLink href="#" aria-label="Meta">
-            <SiMeta aria-hidden="true" />
-          </FooterSocialLink>
+        <FooterSocials $placement="bottom" aria-label="Social links">
+          {socialLinks}
         </FooterSocials>
         <FooterCopyright>
           © Copyright 2026, Chicking. Designed By{" "}

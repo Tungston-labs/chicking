@@ -28,6 +28,11 @@ export const FooterTop = styled.div`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.5rem, 6vw, 5.5rem);
 
+  @media (min-width: 761px) and (max-width: 1024px) {
+    padding: 4rem 1.25rem 1.5rem;
+    gap: 0.75rem;
+  }
+
   @media (max-width: 760px) {
     grid-template-columns: 1fr;
     padding: 4rem 1.25rem 1.6rem;
@@ -59,6 +64,21 @@ export const FooterInfoCard = styled.div`
     text-transform: uppercase;
   }
 
+  @media (min-width: 761px) and (max-width: 1024px) {
+    gap: 0.8rem;
+    min-height: 7.1rem;
+    padding: 1rem 0.9rem;
+
+    svg {
+      width: 1.35rem;
+      height: 1.35rem;
+    }
+
+    strong {
+      font-size: 0.88rem;
+    }
+  }
+
   @media (max-width: 760px) {
     min-height: auto;
     padding: 1.35rem;
@@ -79,6 +99,13 @@ export const FooterContactText = styled.p`
   color: rgba(255, 255, 255, 0.88);
   font-size: 0.92rem;
   line-height: 1.45;
+
+  @media (min-width: 761px) and (max-width: 1024px) {
+    gap: 0.22rem;
+    margin-top: 0.45rem;
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
 `;
 
 export const FooterNavRow = styled.div`
@@ -92,15 +119,17 @@ export const FooterNavRow = styled.div`
   justify-content: center;
   gap: clamp(1.5rem, 4vw, 4.5rem);
 
-  @media (max-width: 980px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+  @media (min-width: 761px) and (max-width: 1024px) {
+    justify-content: center;
+    padding: 1.2rem 1.25rem 1.25rem;
+    gap: 1rem;
   }
 
   @media (max-width: 760px) {
+    flex-direction: column;
     align-items: flex-start;
     padding: 1.35rem 1.25rem 2rem;
+    gap: 1.5rem;
   }
 `;
 
@@ -125,6 +154,11 @@ export const FooterNav = styled.nav`
   flex-wrap: wrap;
   gap: clamp(1.2rem, 3vw, 2.55rem);
 
+  @media (min-width: 761px) and (max-width: 1024px) {
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
   @media (max-width: 760px) {
     flex-direction: column;
     align-items: flex-start;
@@ -134,7 +168,7 @@ export const FooterNav = styled.nav`
 
 export const FooterNavLink = styled.a`
   color: #ffffff;
-  font-size: 0.82rem;
+  font-size: 0.92rem;
   font-weight: 400;
   line-height: 1;
   text-decoration: none;
@@ -148,6 +182,10 @@ export const FooterNavLink = styled.a`
   &:hover {
     color: #f39200;
   }
+
+  @media (min-width: 761px) and (max-width: 1024px) {
+    font-size: 0.88rem;
+  }
 `;
 
 export const FooterSocials = styled.div`
@@ -155,6 +193,23 @@ export const FooterSocials = styled.div`
   align-items: center;
   gap: 1rem;
   flex: 0 0 auto;
+
+  ${({ $placement }) =>
+    $placement === "nav"
+      ? `
+        @media (max-width: 1024px) {
+          display: none;
+        }
+      `
+      : `
+        @media (min-width: 1025px) {
+          display: none;
+        }
+      `}
+
+  @media (min-width: 761px) and (max-width: 1024px) {
+    gap: 0.8rem;
+  }
 `;
 
 export const FooterSocialLink = styled.a`
@@ -170,6 +225,13 @@ export const FooterSocialLink = styled.a`
   svg {
     width: 1.35rem;
     height: 1.35rem;
+  }
+
+  @media (min-width: 761px) and (max-width: 1024px) {
+    svg {
+      width: 0.9rem;
+      height: 0.9rem;
+    }
   }
 
   &:hover {
@@ -194,12 +256,18 @@ export const FooterBottomInner = styled.div`
   padding: 1.35rem 2rem 1.6rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1.35rem;
+
+  @media (min-width: 761px) and (max-width: 1024px) {
+    justify-content: space-between;
+    padding: 1rem 1.25rem 1.1rem;
+  }
 
   @media (max-width: 760px) {
     padding: 1.2rem 1rem 1.5rem;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
   }
 `;
@@ -207,9 +275,18 @@ export const FooterBottomInner = styled.div`
 export const FooterCopyright = styled.p`
   margin: 0;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.82rem;
+  font-size: 0.92rem;
   line-height: 1.5;
-  text-align: right;
+  text-align: center;
+
+  @media (min-width: 761px) and (max-width: 1024px) {
+    font-size: 0.88rem;
+    text-align: right;
+  }
+
+  @media (max-width: 760px) {
+    text-align: right;
+  }
 
   a {
     color: #ffffff;

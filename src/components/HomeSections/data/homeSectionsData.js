@@ -38,32 +38,33 @@ export const blogPosts = [
 export const faqs = [
   {
     answer:
-      "Yes. The brand team provides design guidelines and the approved store layout direction for the selected format.",
-    question: "Will you provide the design?",
+      "Yes. BFi will provide the design and 3D of the shop",
+    question: "BFI will provide the design?",
   },
   {
     answer:
-      "The franchisee can appoint a contractor, subject to brand approval and compliance with the required specifications.",
-    question: "Does Franchisee can appoint the contractor?",
+      "Yes.Franchise has to appoint the contractor locally",
+    question: "Does Franchise can appoint the contractor?",
   },
   {
     answer:
-      "The franchisee purchases the kitchen equipment based on the approved equipment list and brand standards.",
+      "Franchise can buy the equipment’s based on the specs approved by BFI. If the franchise needs support, BFI can assist in sourcing the equipment’s .",
     question: "Who buy the kitchen equipment?",
   },
   {
     answer:
-      "Both options can be reviewed depending on the site requirements, local regulations, and approved kitchen setup.",
+      "Either Gas or Electric.",
     question: "Gas or Electric?",
   },
+  
+{
+  answer:
+    "Restaurant Management, Food Safety, SOPs, Customer Service, and POS systems.\n\nTraining Location – Chicking HQ, Dubai.\nTraining Period – 3 weeks.",
+  question: "What kind of training is provided?",
+},
   {
     answer:
-      "Training covers operations, food preparation, service standards, brand procedures, and launch readiness.",
-    question: "What kind of training is provided?",
-  },
-  {
-    answer:
-      "Yes. Opening support is provided to help the team prepare for launch and follow the operating standards.",
+      "Yes. Pre-opening and launch support is provided. Associated costs with regard to travel and accommodation shall be provided by the franchise.",
     question: "Is Opening Support provided?",
   },
 ];
@@ -113,7 +114,7 @@ export const footerInfo = [
   {
     icon: "email",
     label: "Our Email",
-    lines: ["Franchise@Chickingglobal.Com"],
+    lines: ["franchise@chickingglobal.com"],
   },
 ];
 export const stories = [
