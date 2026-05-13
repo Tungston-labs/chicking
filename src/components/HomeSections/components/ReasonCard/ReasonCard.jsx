@@ -1,22 +1,11 @@
-import {
-  FaChartLine,
-  FaHandshake,
-  FaMapMarkerAlt,
-  FaStore,
-} from "react-icons/fa";
-import { Card, Icon, Image, Text, Title } from "./ReasonCard.styles.js";
 
-const icons = {
-  chart: <FaChartLine aria-hidden="true" />,
-  handshake: <FaHandshake aria-hidden="true" />,
-  map: <FaMapMarkerAlt aria-hidden="true" />,
-  store: <FaStore aria-hidden="true" />,
-};
+import { Card,  Image, Text, Title } from "./ReasonCard.styles.js";
 
-const ReasonCard = ({ icon, image, text, title }) => (
+
+
+const ReasonCard = ({ image, text, title }) => (
   <Card>
     <div>
-      <Icon>{icons[icon]}</Icon>
       <Title>{title}</Title>
       <Text>{text}</Text>
     </div>

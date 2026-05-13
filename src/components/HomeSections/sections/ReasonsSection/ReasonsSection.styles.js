@@ -3,10 +3,7 @@ import { HomeSection } from "../../components/SectionFrame/SectionFrame.styles.j
 
 export const ReasonBand = styled(HomeSection)`
   overflow: hidden;
-  background:
-    linear-gradient(rgba(137, 27, 28, 0.96), rgba(137, 27, 28, 0.96)),
-    url("/images/mapbackground.svg") center / 76rem auto no-repeat;
-`;
+`
 
 export const ReasonGrid = styled.div`
   display: grid;
@@ -14,10 +11,30 @@ export const ReasonGrid = styled.div`
   gap: 1rem;
 
   @media (max-width: 980px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: none;
+    grid-auto-columns: minmax(14.75rem, 15.75rem);
+    grid-auto-flow: column;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    padding: 0 0 0.45rem;
+    scrollbar-width: thin;
+
+    & > * {
+      scroll-snap-align: start;
+    }
   }
 
   @media (max-width: 560px) {
     grid-template-columns: 1fr;
+    grid-auto-columns: unset;
+    grid-auto-flow: row;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+
+    & > * {
+      scroll-snap-align: none;
+    }
   }
 `;

@@ -273,6 +273,8 @@ export const CarouselArrow = styled.button`
     background: #54e1e8;
     box-shadow: 0 0.9rem 1.6rem rgba(46, 13, 20, 0.26);
     transform: translateY(calc(-50% - 1px)) scale(1.04);
+    width: 2.5rem;
+  height: 2.5rem;
   }
 
   &:active {

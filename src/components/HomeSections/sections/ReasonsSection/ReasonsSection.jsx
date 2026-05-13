@@ -6,9 +6,8 @@ import { ReasonGrid } from "./ReasonsSection.styles.js";
 const ReasonsSection = () => (
   <SharedBanner
     background="#891b1c"
-    backgroundImage="/images/mapbackground.svg"
-    backgroundImageSize="min(76rem, 94%) auto"
-    description="A focused brand platform for operators who want recognizable products, dependable systems, and room to grow."
+    description="Chicking aims to be the top choice for dining out, known for bringing unmatched happiness with our one-of-a-kind menu items. We strive for a future where all patrons savor our delicious dishes, leading the way in fast-food quality.
+"
     edgeColor="#ffffff"
     title={
       <>

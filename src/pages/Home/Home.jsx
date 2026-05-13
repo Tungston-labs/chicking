@@ -8,7 +8,7 @@ const homeBanners = [
     id: "franchise-intro",
     background: "#891b1c",
     backgroundImage: "/images/mapbackground.svg",
-    backgroundImageSize: "min(76rem, 94%) auto",
+    backgroundImageSize: "min(70rem, 86%) auto",
     description:
       "Chicking began year-long celebrations on July 20 as the halal-certified quick service restaurant chain marked its 20th anniversary with an influential run across the globe. Chicking has spread its wings to the Middle East, Europe and Asia and boasts more than 160 outlets worldwide.",
 

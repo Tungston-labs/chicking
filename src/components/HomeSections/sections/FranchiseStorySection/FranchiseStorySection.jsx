@@ -60,8 +60,6 @@ const FranchiseStorySection = () => {
   return (
     <SharedBanner
       background="#891B1C"
-      backgroundImage="/images/mapbackground.svg"
-      backgroundImageSize="min(76rem, 94%) auto"
       description="Starting with one outlet, this franchise partner expanded into multiple locations through strong brand support, operational excellence, and high customer demand."
       edgeColor="#ffffff"
       title={

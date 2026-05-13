@@ -35,7 +35,7 @@ export const PartnerCtaDecorImage = styled.img`
 
     if ($variant === "arrow") {
       return `
-        right: clamp(14rem, 19vw, 20.5rem);
+        right: clamp(14rem, 29vw, 20.5rem);
         bottom: clamp(1.8rem, 3vw, 2.7rem);
         width: clamp(4.2rem, 6.2vw, 5.5rem);
       `;
@@ -76,15 +76,15 @@ export const PartnerCtaDecorImage = styled.img`
 
       if ($variant === "arrow") {
         return `
-          right: 11.2rem;
-          bottom: 2.45rem;
+          right: 12.8rem;
+          bottom: 2rem;
         `;
       }
 
       if ($variant === "smiley") {
         return `
-          right: 1.5rem;
-          bottom: 2.2rem;
+          right: 0.85rem;
+          bottom: 1.15rem;
           width: 7.6rem;
         `;
       }
@@ -105,16 +105,16 @@ export const PartnerCtaDecorImage = styled.img`
 
       if ($variant === "arrow") {
         return `
-          right: 8.7rem;
-          bottom: 2.35rem;
+          right: 9.6rem;
+          bottom: 1.7rem;
           width: 4.2rem;
         `;
       }
 
       return `
-        right: 0.75rem;
-        bottom: 2.2rem;
-        width: 6.5rem;
+        right: 0.5rem;
+        bottom: 0.8rem;
+        width: 5.8rem;
       `;
     }}
   }
@@ -127,10 +127,10 @@ export const PartnerCtaDecorImage = styled.img`
 
       if ($variant === "smiley") {
         return `
-          right: 50%;
-          bottom: 1.7rem;
-          width: 6.2rem;
-          transform: translateX(50%);
+          right: 0.75rem;
+          bottom: 0.55rem;
+          width: 5.25rem;
+          transform: none;
         `;
       }
 

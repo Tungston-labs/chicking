@@ -71,28 +71,24 @@ export const faqs = [
 
 export const reasons = [
   {
-    icon: "store",
     image: "/images/chick.svg",
-    text: "A flexible store model shaped for high-traffic urban, mall, and neighborhood formats.",
-    title: "Scalable Formats",
+    text: "Made from fresh, plump and juicy pieces of chicken marinated in our secret recipe of appetizing herbs and aromatic spices ",
+    title: "ORIGINAL FRIED CHICKEN",
   },
   {
-    icon: "handshake",
     image: "/images/chick2.svg",
-    text: "A partner-first operating system for launch, training, marketing, and continuous improvement.",
-    title: "Partner Support",
-  },
+    text: "One of our bestsellers that is loved by all, and with good reason. Scrumptious, crunchy 4-inch strips of succulent, boneless chicken breast pieces. ",
+    title: "CHICKEN STRIPS",
+  },               
   {
-    icon: "chart",
     image: "/images/chick3.svg",
-    text: "Menu innovation and proven category demand help strengthen customer repeat visits.",
-    title: "Growth Potential",
+    text: "The new Flaming Grilled Chicken has been a runaway success right from day one. Made with the most succulent pieces of chicken.",
+    title: "GRILLED CHICKEN",
   },
   {
-    icon: "map",
     image: "/images/chick4.svg",
-    text: "A brand presence across global markets with a clear identity and recognizable guest experience.",
-    title: "Global Footprint",
+    text: "It is only fitting that an item that carries such a grand name be truly majestic. Sample our luscious, signature Chicking® sandwich.",
+    title: "ROYAL CRUNCHY",
   },
 ];
 

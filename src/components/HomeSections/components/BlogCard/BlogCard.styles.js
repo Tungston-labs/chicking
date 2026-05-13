@@ -7,6 +7,13 @@ export const Card = styled.article`
   overflow: hidden;
   border: 1px solid #dddddd;
   background: #ffffff;
+
+  @media (min-width: 600px) and (max-width: 1000px) {
+    flex: 1 0 17.5rem;
+    min-width: 17.5rem;
+    min-height: 34rem;
+    scroll-snap-align: start;
+  }
 `;
 
 export const MediaLink = styled.a`
@@ -21,6 +28,10 @@ export const MediaLink = styled.a`
     height: 100%;
     display: block;
     object-fit: cover;
+  }
+
+  @media (min-width: 600px) and (max-width: 1000px) {
+    aspect-ratio: 1.18;
   }
 `;
 
@@ -45,6 +56,10 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem 1.2rem 0;
+
+  @media (min-width: 600px) and (max-width: 1000px) {
+    padding: 0.9rem 1rem 0;
+  }
 `;
 
 export const AuthorRow = styled.div`
@@ -81,6 +96,10 @@ export const Title = styled.h3`
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 700;
+
+  @media (min-width: 600px) and (max-width: 1000px) {
+    font-size: 0.95rem;
+  }
 `;
 
 export const Text = styled.p`
@@ -88,6 +107,11 @@ export const Text = styled.p`
   color: #555555;
   font-size: 0.84rem;
   line-height: 1.65;
+
+  @media (min-width: 600px) and (max-width: 1000px) {
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
 `;
 
 export const Stats = styled.div`
@@ -104,5 +128,11 @@ export const Stats = styled.div`
   span:last-child {
     margin-left: auto;
     color: #b01f24;
+  }
+
+  @media (min-width: 600px) and (max-width: 1000px) {
+    min-height: 3.15rem;
+    margin: auto -1rem 0;
+    padding: 0 1rem;
   }
 `;
