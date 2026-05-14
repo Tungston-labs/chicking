@@ -264,12 +264,46 @@ export const ImageWrapper = styled.div`
   }
 
 
-  @media (max-width: 768px) {
-    .left,
-    .rightTop,
-    .rightCenter,
+  @media (max-width: 767px) {
+    min-height: clamp(28rem, 110vw, 34rem);
+
+    &::before {
+      animation: none;
+    }
+
+    .left {
+      left: -0.5rem;
+      top: 18%;
+      transform: none;
+    }
+
+    .rightTop {
+      right: -0.5rem;
+      top: 2%;
+      transform: none;
+    }
+
+    .rightCenter {
+      right: 10.5rem;
+      top: 70%;
+      transform: none;
+    }
+
     .star {
-      display: none;
+      right: 1rem;
+      top: 28%;
+      transform: none;
+    }
+
+    &.state-0,
+    &.state-1,
+    &.state-2 {
+      .left,
+      .rightTop,
+      .rightCenter,
+      .star {
+        transform: none;
+      }
     }
   }
 `;
@@ -399,11 +433,35 @@ transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);  }
 
 
   @media (max-width: 768px) {
-    position: relative;
-     
+    position: absolute;
+    padding: 0.6rem;
+
+    span {
+      font-size: 0.62rem;
+      line-height: 1.1;
+    }
+
+    img:not(.dotted-item, .dotted-item-count) {
+      width: 3.8rem;
+      height: 3.8rem;
+    }
+
     .dotted-item,
     .dotted-item-count {
-      display: none;
+      width: 4.8rem;
+      height: 4.8rem;
+      display: block;
+    }
+
+    &.left .dotted-item-count {
+      top: 58%;
+      left: 58%;
+    }
+
+    &.rightTop .dotted-item,
+    &.rightCenter .dotted-item {
+      top: 68%;
+      right: 58%;
     }
   }
 `;

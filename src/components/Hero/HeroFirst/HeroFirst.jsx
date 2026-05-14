@@ -49,7 +49,7 @@ const HeroFirst = () => {
       </HeroSubtitle>
 
       <HeroButton href="#">
-        Franchise Inquiry <CiLocationArrow1 />
+        Franchise With Us <CiLocationArrow1 />
       </HeroButton>
 
       <ImageWrapper className={`state-${state}`}>

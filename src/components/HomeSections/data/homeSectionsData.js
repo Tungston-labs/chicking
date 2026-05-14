@@ -136,11 +136,10 @@ export const stories = [
 export const navItems = [
   "Home",
   "About Us",
-  "Opportunity",
+  "Unique Propositions",
   "Global Presence",
   "BMI",
   "Management",
   "FAQ",
   "Blog",
-  "Contact Us",
 ];
