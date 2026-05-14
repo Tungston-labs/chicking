@@ -34,8 +34,7 @@ const homeBanners = [
       <>
         Take The <strong>First Step</strong> Toward Owning A
         <br />
-        Successful Global{" "}
-        <strong>Chicking Franchise.</strong>
+        Successful Global <strong>Chicking Franchise.</strong>
       </>
     ),
   },

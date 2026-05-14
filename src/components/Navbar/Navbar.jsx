@@ -31,12 +31,7 @@ const Navbar = () => {
     <Header>
       <NavInner>
         <BrandLink href="/" aria-label="Chicking home">
-          <img
-            src="/images/logo.svg"
-            alt="Chicking"
-            width="155"
-            height="52"
-          />
+          <img src="/images/logo.svg" alt="Chicking" width="155" height="52" />
         </BrandLink>
 
         <NavLinks aria-label="Primary navigation">
