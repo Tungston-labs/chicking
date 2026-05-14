@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "../pages/Home/index.js";
+import FranchiseForm from "../pages/Franchise/index.jsx";
+import Propositions from "../pages/Proposition/index.jsx";
 
 
 const pageRoutes = [
@@ -7,7 +9,14 @@ const pageRoutes = [
     path: "/",
     Component: Home,
   },
-  
+   {
+    path: "/franchiseform",
+    Component:FranchiseForm ,
+  },
+   {
+    path: "/Unique-Propositions",
+    Component:Propositions ,
+  },
 ];
 
 const AppRoutes = () => (
