@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CiLocationArrow1 } from "react-icons/ci";
+import { NavLink as RouterLink } from "react-router-dom";
 import {
   BrandLink,
   FindLocationButton,
@@ -30,7 +31,10 @@ const Navbar = () => {
   return (
     <Header>
       <NavInner>
-        <BrandLink href="/" aria-label="Chicking home">
+ <BrandLink
+          as={RouterLink}
+          to="/"
+        >
           <img
             src="/images/logo.svg"
             alt="Chicking"
@@ -39,17 +43,18 @@ const Navbar = () => {
           />
         </BrandLink>
 
-        <NavLinks aria-label="Primary navigation">
+         <NavLinks>
           {navItems.map((item) => (
-            <NavLink
-              key={item}
-              href={item === "Home" ? "/" : "#"}
-              $active={activeItem === item}
-              onClick={() => handleNavItemClick(item)}
-            >
-              {item}
-            </NavLink>
-          ))}
+  <NavLink
+    as={RouterLink}
+    key={item.path}
+    to={item.path}
+    $active={activeItem === item.name}
+    onClick={() => handleNavItemClick(item.name)}
+  >
+    {item.name}
+  </NavLink>
+))}
         </NavLinks>
 
         <FindLocationButton href="#">
@@ -69,16 +74,17 @@ const Navbar = () => {
 
         {isMenuOpen && (
           <MobileMenuContainer>
-            {navItems.map((item) => (
-              <MobileMenuItem
-                key={item}
-                href={item === "Home" ? "/" : "#"}
-                $active={activeItem === item}
-                onClick={() => handleNavItemClick(item)}
-              >
-                {item}
-              </MobileMenuItem>
-            ))}
+           {navItems.map((item) => (
+  <MobileMenuItem
+    as={RouterLink}
+    key={item.path}
+    to={item.path}
+    $active={activeItem === item.name}
+    onClick={() => handleNavItemClick(item.name)}
+  >
+    {item.name}
+  </MobileMenuItem>
+))}
           </MobileMenuContainer>
         )}
       </NavInner>
