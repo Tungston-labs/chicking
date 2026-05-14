@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CiLocationArrow1 } from "react-icons/ci";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import {
   BrandLink,
   FindLocationButton,
@@ -16,21 +17,20 @@ import { navItems } from "../HomeSections/data/homeSectionsData.js";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("Home");
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen((current) => !current);
   };
 
-  const handleNavItemClick = (item) => {
-    setActiveItem(item);
+  const handleNavItemClick = () => {
     setIsMenuOpen(false);
   };
 
   return (
     <Header>
       <NavInner>
-        <BrandLink href="/" aria-label="Chicking home">
+        <BrandLink as={RouterLink} to="/" aria-label="Chicking home">
           <img
             src="/images/logo.svg"
             alt="Chicking"
@@ -42,12 +42,13 @@ const Navbar = () => {
         <NavLinks aria-label="Primary navigation">
           {navItems.map((item) => (
             <NavLink
-              key={item}
-              href={item === "Home" ? "/" : "#"}
-              $active={activeItem === item}
-              onClick={() => handleNavItemClick(item)}
+              as={RouterLink}
+              key={item.path}
+              to={item.path}
+              $active={location.pathname === item.path}
+              onClick={handleNavItemClick}
             >
-              {item}
+              {item.name}
             </NavLink>
           ))}
         </NavLinks>
@@ -59,6 +60,7 @@ const Navbar = () => {
 
         <MobileMenuButton
           aria-label="Open navigation"
+          aria-expanded={isMenuOpen}
           type="button"
           onClick={toggleMenu}
         >
@@ -71,14 +73,19 @@ const Navbar = () => {
           <MobileMenuContainer>
             {navItems.map((item) => (
               <MobileMenuItem
-                key={item}
-                href={item === "Home" ? "/" : "#"}
-                $active={activeItem === item}
-                onClick={() => handleNavItemClick(item)}
+                as={RouterLink}
+                key={item.path}
+                to={item.path}
+                $active={location.pathname === item.path}
+                onClick={handleNavItemClick}
               >
-                {item}
+                {item.name}
               </MobileMenuItem>
             ))}
+            <MobileMenuItem href="#" $isFindLocation>
+              Find Location
+              <CiLocationArrow1 aria-hidden="true" />
+            </MobileMenuItem>
           </MobileMenuContainer>
         )}
       </NavInner>

@@ -1,7 +1,15 @@
-import { useState } from "react";
-import { FiInstagram, FiMail, FiMap, FiPhoneCall, FiTwitter } from "react-icons/fi";
+import { NavLink as RouterLink, useLocation } from "react-router-dom";
+import {
+  FiInstagram,
+  FiMail,
+  FiMap,
+  FiPhoneCall,
+  FiTwitter,
+} from "react-icons/fi";
 import { SiMeta } from "react-icons/si";
+
 import { footerInfo, navItems } from "../../data/homeSectionsData.js";
+
 import {
   Footer,
   FooterContactText,
@@ -20,71 +28,89 @@ import {
 } from "./SiteFooter.styles.js";
 
 const icons = {
-  email: <FiMail aria-hidden="true" />,
-  map: <FiMap aria-hidden="true" />,
-  phone: <FiPhoneCall aria-hidden="true" />,
+  email: <FiMail />,
+  map: <FiMap />,
+  phone: <FiPhoneCall />,
 };
 
 const socialLinks = (
   <>
-    <FooterSocialLink href="#" aria-label="Twitter">
-      <FiTwitter aria-hidden="true" />
+    <FooterSocialLink href="#">
+      <FiTwitter />
     </FooterSocialLink>
-    <FooterSocialLink href="#" aria-label="Instagram">
-      <FiInstagram aria-hidden="true" />
+
+    <FooterSocialLink href="#">
+      <FiInstagram />
     </FooterSocialLink>
-    <FooterSocialLink href="#" aria-label="Meta">
-      <SiMeta aria-hidden="true" />
+
+    <FooterSocialLink href="#">
+      <SiMeta />
     </FooterSocialLink>
   </>
 );
 
 const SiteFooter = () => {
-  const [activeItem, setActiveItem] = useState("Home");
+  const location = useLocation();
 
   return (
     <Footer>
       <FooterTop>
         {footerInfo.map((item) => (
           <FooterInfoCard key={item.label}>
-            <FooterIconWrap>{icons[item.icon]}</FooterIconWrap>
+            <FooterIconWrap>
+              {icons[item.icon]}
+            </FooterIconWrap>
+
             <div>
               <strong>{item.label}</strong>
+
               <FooterContactText>
                 {item.lines.map((line) => (
-                  <span key={line}>{line}</span>
+                  <span key={line}>
+                    {line}
+                  </span>
                 ))}
               </FooterContactText>
             </div>
           </FooterInfoCard>
         ))}
       </FooterTop>
+
       <FooterNavRow>
-        <FooterNavHeading>Quick links</FooterNavHeading>
-        <FooterNav aria-label="Footer navigation">
+        <FooterNavHeading>
+          Quick links
+        </FooterNavHeading>
+
+        <FooterNav>
           {navItems.map((item) => (
             <FooterNavLink
-              key={item}
-              href={item === "Home" ? "/" : "#"}
-              $active={activeItem === item}
-              onClick={() => setActiveItem(item)}
+              as={RouterLink}
+              key={item.path}
+              to={item.path}
+              $active={location.pathname === item.path}
             >
-              {item}
+              {item.name}
             </FooterNavLink>
           ))}
         </FooterNav>
-        <FooterSocials $placement="nav" aria-label="Social links">
+
+        <FooterSocials>
           {socialLinks}
         </FooterSocials>
       </FooterNavRow>
+
       <FooterBottom>
         <FooterBottomInner>
-          <FooterSocials $placement="bottom" aria-label="Social links">
+          <FooterSocials>
             {socialLinks}
           </FooterSocials>
+
           <FooterCopyright>
-            © Copyright 2026, Chicking. Designed By{" "}
-            <a href="https://tungstonlabs.com">Tungston Labs.</a>
+            © Copyright 2026, Chicking.
+            Designed By{" "}
+            <a href="https://tungstonlabs.com">
+              Tungston Labs
+            </a>
           </FooterCopyright>
         </FooterBottomInner>
       </FooterBottom>

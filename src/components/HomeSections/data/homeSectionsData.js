@@ -137,16 +137,43 @@ export const stories = [
   },
 ];
 export const navItems = [
-  "Home",
-  "About Us",
-  "Unique Propositions",
-  "Global Presence",
-  "BMI",
-  "Management",
-  "FAQ",
-  "Blog",
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "About Us",
+    path: "/about",
+  },
+  {
+    name: "Franchise Form",
+    path: "/franchiseform",
+  },
+  {
+    name: "Unique Propositions",
+    path: "/Unique-Propositions",
+  },
+  {
+    name: "Global Presence",
+    path: "/global-presence",
+  },
+  {
+    name: "BMI",
+    path: "/bmi",
+  },
+  {
+    name: "Management",
+    path: "/management",
+  },
+  {
+    name: "FAQ",
+    path: "/faq",
+  },
+  {
+    name: "Blog",
+    path: "/blog",
+  },
 ];
-
 export const homeBanners = [
   {
     id: "franchise-intro",
