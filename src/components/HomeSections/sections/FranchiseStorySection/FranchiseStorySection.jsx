@@ -63,14 +63,17 @@ const FranchiseStorySection = () => {
       description={
         <>
           Starting with one outlet, this franchise partner expanded into
-          multiple locations through strong brand <br />
+          multiple locations through strong brand
           support, operational excellence, and high customer demand.
         </>
       }
       edgeColor="#ffffff"
       title={
         <>
-          Franchise <strong>Success</strong> Story
+          <span >
+            Franchise <strong>Success</strong> Story
+          </span>
+        
         </>
       }
     >

@@ -1,4 +1,5 @@
 import SharedBanner from "../../../SharedBanner/SharedBanner.jsx";
+import sharedBannerImages from "../../../../assets/images/sharedBannerImages.js";
 import {
   PartnerCtaArtwork,
   PartnerCtaDecorImage,
@@ -22,11 +23,11 @@ const PartnerCta = ({
   background = "#ffffff",
   bottomEdgeColor = "#000",
   compact = true,
-  darkArrowImage = "/images/darkarrow.svg",
+  darkArrowImage = sharedBannerImages.partnerCta.darkArrow,
   description = "BFI doesn't just provide a brand name; we deliver a complete chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success.",
-  locationFlagImage = "/images/locationflag.svg",
+  locationFlagImage = sharedBannerImages.partnerCta.locationFlag,
   showDecorations = true,
-  smileyImage = "/images/smiley.svg",
+  smileyImage = sharedBannerImages.partnerCta.smiley,
   textColor = "#171717",
   title = defaultTitle,
   ...bannerProps
