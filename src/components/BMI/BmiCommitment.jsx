@@ -6,6 +6,7 @@ import {
   CommitmentCards,
   CommitmentEdge,
   CommitmentHand,
+  CommitmentHeader,
   CommitmentIconBox,
   CommitmentInner,
   CommitmentSection,
@@ -23,11 +24,13 @@ const BmiCommitment = () => (
     />
 
     <CommitmentInner>
-      <SectionHeader
-        title="Commitment To Endurance"
-        description="Our comprehensive support systems are designed to ensure your franchise success through three core pillars built to scale efficiency and profitability."
-        light
-      />
+      <CommitmentHeader>
+        <SectionHeader
+          title="Commitment To Endurance"
+          description="Our comprehensive support systems are designed to ensure your franchise success through three core pillars built to scale efficiency and profitability."
+          light
+        />
+      </CommitmentHeader>
 
       <CommitmentCards>
         {bmiCommitments.map((item) => (

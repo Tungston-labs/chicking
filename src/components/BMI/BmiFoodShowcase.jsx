@@ -6,6 +6,7 @@ import {
   FoodCopy,
   FoodImage,
   FoodScroller,
+  FoodScrollerViewport,
   FoodSection,
   FoodText,
   FoodTitle,
@@ -16,27 +17,28 @@ const BmiFoodShowcase = () => (
     <PageSection>
       <SectionHeader
         align="left"
-        description="Menu breadth is part of the investment story. Chicking expands customer choice through craveable signature products and dependable everyday favorites."
+        description="We are focused on improving the nutritional attributes of the Chicking menu, promoting physical activity programs, and always providing great-tasting food. The global debate regarding health and nutrition and the role of quick service restaurants has highlighted many challenges. We are committed to being a productive part of this debate and to helping identify solutions."
         title={
           <>
             Balanced Options By Offering More
-            <br />
             Choice Across The <strong>Chicking Menu.</strong>
           </>
         }
       />
 
-      <FoodScroller>
-        {bmiFoods.map((food) => (
-          <FoodCard key={food.title}>
-            <FoodImage src={food.image} alt={food.title} />
-            <FoodCopy>
-              <FoodTitle>{food.title}</FoodTitle>
-              <FoodText>{food.text}</FoodText>
-            </FoodCopy>
-          </FoodCard>
-        ))}
-      </FoodScroller>
+      <FoodScrollerViewport>
+        <FoodScroller>
+          {bmiFoods.map((food) => (
+            <FoodCard key={food.title}>
+              <FoodImage src={food.image} alt={food.title} />
+              <FoodCopy>
+                <FoodTitle>{food.title}</FoodTitle>
+                <FoodText>{food.text}</FoodText>
+              </FoodCopy>
+            </FoodCard>
+          ))}
+        </FoodScroller>
+      </FoodScrollerViewport>
     </PageSection>
   </FoodSection>
 );

@@ -27,6 +27,10 @@ export const MilestonesGrid = styled.div`
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
 
+  @media (min-width: 768px) and (max-width: 1024px) {
+    gap: 1.4rem;
+  }
+
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
   }
@@ -43,6 +47,10 @@ export const MilestonesHeading = styled.h2`
   line-height: 1.18;
   font-weight: 400;
 
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 1.45rem;
+  }
+
   strong {
     font-weight: 700;
   }
@@ -53,6 +61,11 @@ export const MilestonesText = styled.p`
   color: #555555;
   font-size: 0.96rem;
   line-height: 1.7;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
 `;
 
 export const MilestoneVisual = styled.div`
@@ -115,6 +128,10 @@ export const TimelineYear = styled.h3`
   font-size: 1rem;
   line-height: 1.3;
   font-weight: 700;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 0.86rem;
+  }
 `;
 
 export const TimelineList = styled.ul`
@@ -131,6 +148,11 @@ export const TimelineItem = styled.li`
   color: #626262;
   font-size: 0.92rem;
   line-height: 1.65;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
 
   &::before {
     content: "";

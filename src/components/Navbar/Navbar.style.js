@@ -66,6 +66,9 @@ export const NavLink = styled.a`
   &:hover {
     color: #891b1c;
   }
+  @media (min-width: 1025px) and (max-width: 1380px) {
+    font-size: 0.92rem;
+  }
 `;
 
 export const FindLocationButton = styled.a`
@@ -112,7 +115,7 @@ export const FindLocationButton = styled.a`
     font-size: 0.82rem;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
@@ -140,7 +143,7 @@ export const MobileMenuButton = styled.button`
 
   @media (max-width: 1024px) {
     display: inline-flex;
-    margin-left: 0;
+    margin-left: auto;
   }
 `;
 

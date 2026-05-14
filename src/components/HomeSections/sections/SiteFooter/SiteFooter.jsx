@@ -49,11 +49,11 @@ const socialLinks = (
   </>
 );
 
-const SiteFooter = () => {
+const SiteFooter = ({topEdgeImage}) => {
   const location = useLocation();
 
   return (
-    <Footer>
+    <Footer $topEdgeImage={topEdgeImage}>
       <FooterTop>
         {footerInfo.map((item) => (
           <FooterInfoCard key={item.label}>
@@ -93,10 +93,6 @@ const SiteFooter = () => {
             </FooterNavLink>
           ))}
         </FooterNav>
-
-        <FooterSocials>
-          {socialLinks}
-        </FooterSocials>
       </FooterNavRow>
 
       <FooterBottom>
