@@ -23,6 +23,6 @@ export const PageBody = styled.section`
 
 export const SectionContent = styled.div`
   width: 100%;
-  max-width: 85rem;
+  max-width: var(--section-max-width);
   margin: 0 auto;
 `;

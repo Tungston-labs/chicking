@@ -8,7 +8,7 @@ export const FaqBlockGrid = styled.div`
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 `;
 
@@ -28,6 +28,10 @@ export const FaqIntro = styled.div`
     margin-right: 0.28rem;
     font-weight: 800;
   }
+
+  @media (min-width: 561px) and (max-width: 900px) {
+    text-align: left;
+  }
 `;
 
 export const FaqCopy = styled.p`
@@ -36,6 +40,10 @@ export const FaqCopy = styled.p`
   color: #565656;
   font-size: clamp(0.88rem, 1vw, 0.98rem);
   line-height: 1.75;
+
+  @media (min-width: 561px) and (max-width: 900px) {
+    width: min(100%, 30rem);
+  }
 `;
 
 export const FaqVisual = styled.div`
@@ -43,6 +51,12 @@ export const FaqVisual = styled.div`
   width: min(100%, 34rem);
   min-height: clamp(11.5rem, 23vw, 18.25rem);
   margin-top: 1.65rem;
+
+  @media (min-width: 561px) and (max-width: 900px) {
+    width: min(100%, 29rem);
+    min-height: 15.5rem;
+    margin-top: 1.95rem;
+  }
 `;
 
 export const FaqVisualImage = styled.img`
@@ -56,19 +70,35 @@ export const FaqVisualImage = styled.img`
   ${({ $variant }) =>
     $variant === "pin"
       ? `
-        left: 0;
+        left: -6%;
         top: 0;
         z-index: 2;
-        width: clamp(9.5rem, 42%, 16rem);
+        width: clamp(15.5rem, 52%, 20rem);
       `
       : `
         left: clamp(3.5rem, 16%, 6rem);
         right: 0;
-        bottom: 0;
+        bottom: -12%;
         z-index: 1;
         width: min(91%, 31rem);
         opacity: 0.95;
       `}
+
+  @media (min-width: 561px) and (max-width: 900px) {
+    ${({ $variant }) =>
+      $variant === "pin"
+        ? `
+          left: -0.35rem;
+          top: 0.1rem;
+          width: min(39%, 11.75rem);
+        `
+        : `
+          left: auto;
+          right: -0.15rem;
+          bottom: -0.2rem;
+          width: min(68%, 19.75rem);
+        `}
+  }
 
   @media (max-width: 560px) {
     ${({ $variant }) =>
@@ -89,36 +119,22 @@ export const FaqAccordion = styled.div`
   min-width: 0;
 `;
 
-export const FaqQuestion = styled.details`
-  border-radius: 0;
-  background: #fff8e9;
-  color: #171717;
-  overflow: hidden;
-  transition:
-    background 0.25s ease,
-    box-shadow 0.25s ease;
-
-  &[open] {
-    background: #ffffff;
-    box-shadow: 0 0.8rem 1.85rem rgba(78, 49, 17, 0.08);
-  }
-
-  &[open] svg {
-    transform: rotate(45deg);
-  }
-`;
-
 export const FaqSummary = styled.summary`
-  min-height: clamp(2.85rem, 4.4vw, 3.45rem);
+  min-height: 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0 1.4rem;
+  padding: 0 1.5rem;
   cursor: pointer;
-  font-size: clamp(0.86rem, 1vw, 0.98rem);
-  font-weight: 700;
   list-style: none;
+
+  background: #f7f1e4;
+  color: #171717;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
 
   &::-webkit-details-marker {
     display: none;
@@ -126,17 +142,36 @@ export const FaqSummary = styled.summary`
 
   svg {
     flex: 0 0 auto;
-    width: 0.72rem;
-    height: 0.72rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    transition:
+      transform 0.25s ease,
+      color 0.25s ease;
     color: #171717;
-    transition: transform 0.25s ease;
   }
 `;
 
-export const FaqAnswer = styled.p`
-  margin: 0;
-  padding: 0 1.4rem 1.15rem;
-  color: #5f5f5f;
+export const FaqQuestion = styled.details`
+  overflow: hidden;
+  border: 1px solid #d8d1c4;
+  background: #f7f1e4;
+  transition: all 0.25s ease;
+
+  &[open] ${FaqSummary} {
+    background: #9d1515;
+    color: #fff;
+  }
+
+  &[open] ${FaqSummary} svg {
+    transform: rotate(45deg);
+    color: #fff;
+  }
+`;
+
+export const FaqAnswer = styled.div`
+  background: #f7f1e4;
+  padding: 1.8rem 1.5rem;
+  color: #4e4e4e;
   font-size: 0.92rem;
-  line-height: 1.7;
+  line-height: 1.8;
 `;

@@ -59,10 +59,14 @@ const FranchiseStorySection = () => {
 
   return (
     <SharedBanner
-      background="#991b1e"
-      backgroundImage="/images/mapbackground.svg"
-      backgroundImageSize="min(76rem, 94%) auto"
-      description="Starting with one outlet, this franchise partner expanded into multiple locations through strong brand support, operational excellence, and high customer demand."
+      background="#891B1C"
+      description={
+        <>
+          Starting with one outlet, this franchise partner expanded into
+          multiple locations through strong brand <br />
+          support, operational excellence, and high customer demand.
+        </>
+      }
       edgeColor="#ffffff"
       title={
         <>
@@ -109,6 +113,15 @@ const FranchiseStorySection = () => {
 
         <StoryStage key={story.image} $direction={slideDirection}>
           <StoryCard>
+            <CarouselArrow
+              type="button"
+              $placement="card"
+              $position="left"
+              aria-label="Show previous success story"
+              onClick={goToPreviousStory}
+            >
+              <FiArrowLeft aria-hidden="true" />
+            </CarouselArrow>
             <StoryCardCopy>
               <StoryFlag />
               <StoryText>{story.text}</StoryText>
@@ -120,6 +133,15 @@ const FranchiseStorySection = () => {
             <StoryImagePanel>
               <StoryImage src={story.image} alt="" />
             </StoryImagePanel>
+            <CarouselArrow
+              type="button"
+              $placement="card"
+              $position="right"
+              aria-label="Show next success story"
+              onClick={goToNextStory}
+            >
+              <FiArrowRight aria-hidden="true" />
+            </CarouselArrow>
           </StoryCard>
         </StoryStage>
 

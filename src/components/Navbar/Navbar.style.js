@@ -49,13 +49,13 @@ export const NavLinks = styled.div`
   justify-content: space-evenly;
   min-width: 0;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
 
 export const NavLink = styled.a`
-  color: #000000;
+  color: ${({ $active }) => ($active ? "#a11f24" : "#000000")};
   font-size: 1rem;
   font-weight: 500;
   line-height: 1;
@@ -64,13 +64,14 @@ export const NavLink = styled.a`
   transition: color 160ms ease;
 
   &:hover {
-    color: #a11f24;
+    color: #891b1c;
   }
 `;
 
 export const FindLocationButton = styled.a`
   display: inline-flex;
   align-items: center;
+  gap: 0.35rem;
   min-height: 2.5rem;
   padding: 0 1.375rem;
   border-radius: 0.25rem;
@@ -94,13 +95,21 @@ export const FindLocationButton = styled.a`
     line-height: 1;
   }
 
-  @media (max-width: 1024px) {
-    display: none;
-  }
-
   @media (min-width: 1025px) and (max-width: 1280px) {
     padding: 0 0.875rem;
     font-size: 0.875rem;
+  }
+
+  @media (max-width: 1024px) {
+    margin-left: auto;
+    padding: 0 1.2rem;
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 420px) {
+    min-height: 2.35rem;
+    padding: 0 0.85rem;
+    font-size: 0.82rem;
   }
 `;
 
@@ -127,7 +136,7 @@ export const MobileMenuButton = styled.button`
 
   @media (max-width: 1024px) {
     display: inline-flex;
-    margin-left: auto;
+    margin-left: 0;
   }
 `;
 
@@ -169,7 +178,7 @@ export const MobileMenuItem = styled.a`
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  color: #000000;
+  color: ${({ $active }) => ($active ? "#891b1c" : "#000000")};
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
@@ -178,7 +187,7 @@ export const MobileMenuItem = styled.a`
 
   &:hover {
     background: #f6f6f6;
-    color: #a11f24;
+    color: #891b1c;
   }
 
   ${(props) =>

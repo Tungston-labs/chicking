@@ -14,6 +14,6 @@ export const HomeSection = styled.section`
 `;
 
 export const SectionInner = styled.div`
-  width: min(100%, 85rem);
+  width: min(100%, var(--section-max-width));
   margin: 0 auto;
 `;

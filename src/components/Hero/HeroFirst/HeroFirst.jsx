@@ -20,7 +20,7 @@ const texts = [
 const images = [
   "/images/frame6.svg",
   "/images/frame5.svg",
-  "/images/frame4.svg",
+  "/images/frame1.svg",
 ];
 
 const HeroFirst = () => {
@@ -39,7 +39,7 @@ const HeroFirst = () => {
 
   return (
     <HeroFirstContainer>
-      <HeroTitle key={`title-${index}`}>
+      <HeroTitle>
         {texts[index]}
       </HeroTitle>
 
@@ -49,13 +49,12 @@ const HeroFirst = () => {
       </HeroSubtitle>
 
       <HeroButton href="#">
-        Franchise Inquiry <CiLocationArrow1 />
+        Franchise With Us <CiLocationArrow1 />
       </HeroButton>
 
       <ImageWrapper className={`state-${state}`}>
         {/* Main Image */}
         <MainImage
-          key={`image-${imageIndex}`}
           src={images[imageIndex]}
           alt="hero visual"
           width="700"

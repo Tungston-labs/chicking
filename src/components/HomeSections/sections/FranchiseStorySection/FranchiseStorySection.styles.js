@@ -79,6 +79,7 @@ export const StoryStage = styled.div`
 `;
 
 export const StoryCard = styled.article`
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 0.92fr;
   min-height: 25.75rem;
@@ -238,8 +239,8 @@ export const CarouselArrow = styled.button`
   top: 50%;
   z-index: 5;
 
-  width: 1.95rem;
-  height: 1.95rem;
+  width: 2.25rem;
+  height: 2.25rem;
 
   display: flex;
   align-items: center;
@@ -260,19 +261,31 @@ export const CarouselArrow = styled.button`
     box-shadow 0.28s ease,
     transform 0.28s ease;
 
-  ${({ $position }) =>
-    $position === "left"
-      ? `
-        right: -0.98rem;
-      `
-      : `
-        left: -0.98rem;
-      `}
+  ${({ $placement, $position }) =>
+    $placement === "card"
+      ? $position === "left"
+        ? `
+          left: 0.9rem;
+          right: auto;
+        `
+        : `
+          right: 0.9rem;
+          left: auto;
+        `
+      : $position === "left"
+        ? `
+          right: -0.98rem;
+        `
+        : `
+          left: -0.98rem;
+        `}
 
   &:hover {
     background: #54e1e8;
     box-shadow: 0 0.9rem 1.6rem rgba(46, 13, 20, 0.26);
     transform: translateY(calc(-50% - 1px)) scale(1.04);
+     width: 2.75rem;
+  height: 2.75rem;
   }
 
   &:active {
@@ -291,17 +304,38 @@ export const CarouselArrow = styled.button`
   }
 
   @media (max-width: 900px) {
-    width: 2.2rem;
-    height: 2.2rem;
-
-    ${({ $position }) =>
-      $position === "left"
+    ${({ $placement }) =>
+      $placement === "card"
         ? `
-          right: -1.1rem;
+          display: inline-flex;
+          width: 2.4rem;
+          height: 2.4rem;
         `
         : `
-          left: -1.1rem;
+          display: none;
         `}
+  }
+
+  @media (min-width: 901px) {
+    ${({ $placement }) =>
+      $placement === "card"
+        ? `
+          display: none;
+        `
+        : ""}
+  }
+
+  @media (max-width: 760px) {
+    ${({ $placement, $position }) =>
+      $placement === "card"
+        ? $position === "left"
+          ? `
+            left: 0.75rem;
+          `
+          : `
+            right: 0.75rem;
+          `
+        : ""}
   }
 `;
 

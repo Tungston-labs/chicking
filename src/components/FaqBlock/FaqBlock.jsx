@@ -57,8 +57,9 @@ const FaqBlock = ({
             {faq.question}
             <FaPlus aria-hidden="true" />
           </FaqSummary>
-          <FaqAnswer>{faq.answer}</FaqAnswer>
-        </FaqQuestion>
+<FaqAnswer>
+  <p>{faq.answer}</p>
+</FaqAnswer>        </FaqQuestion>
       ))}
     </FaqAccordion>
   </FaqBlockGrid>

@@ -38,60 +38,57 @@ export const blogPosts = [
 export const faqs = [
   {
     answer:
-      "Yes. The brand team provides design guidelines and the approved store layout direction for the selected format.",
-    question: "Will you provide the design?",
+      "Yes. BFi will provide the design and 3D of the shop",
+    question: "BFI will provide the design?",
   },
   {
     answer:
-      "The franchisee can appoint a contractor, subject to brand approval and compliance with the required specifications.",
-    question: "Does Franchisee can appoint the contractor?",
+      "Yes.Franchise has to appoint the contractor locally",
+    question: "Does Franchise can appoint the contractor?",
   },
   {
     answer:
-      "The franchisee purchases the kitchen equipment based on the approved equipment list and brand standards.",
+      "Franchise can buy the equipment’s based on the specs approved by BFI. If the franchise needs support, BFI can assist in sourcing the equipment’s .",
     question: "Who buy the kitchen equipment?",
   },
   {
     answer:
-      "Both options can be reviewed depending on the site requirements, local regulations, and approved kitchen setup.",
+      "Either Gas or Electric.",
     question: "Gas or Electric?",
   },
+  
+{
+  answer:
+    "Restaurant Management, Food Safety, SOPs, Customer Service, and POS systems.\n\nTraining Location – Chicking HQ, Dubai.\nTraining Period – 3 weeks.",
+  question: "What kind of training is provided?",
+},
   {
     answer:
-      "Training covers operations, food preparation, service standards, brand procedures, and launch readiness.",
-    question: "What kind of training is provided?",
-  },
-  {
-    answer:
-      "Yes. Opening support is provided to help the team prepare for launch and follow the operating standards.",
+      "Yes. Pre-opening and launch support is provided. Associated costs with regard to travel and accommodation shall be provided by the franchise.",
     question: "Is Opening Support provided?",
   },
 ];
 
 export const reasons = [
   {
-    icon: "store",
     image: "/images/chick.svg",
-    text: "A flexible store model shaped for high-traffic urban, mall, and neighborhood formats.",
-    title: "Scalable Formats",
+    text: "Made from fresh, plump and juicy pieces of chicken marinated in our secret recipe of appetizing herbs and aromatic spices ",
+    title: "ORIGINAL FRIED CHICKEN",
   },
   {
-    icon: "handshake",
     image: "/images/chick2.svg",
-    text: "A partner-first operating system for launch, training, marketing, and continuous improvement.",
-    title: "Partner Support",
-  },
+    text: "One of our bestsellers that is loved by all, and with good reason. Scrumptious, crunchy 4-inch strips of succulent, boneless chicken breast pieces. ",
+    title: "CHICKEN STRIPS",
+  },               
   {
-    icon: "chart",
     image: "/images/chick3.svg",
-    text: "Menu innovation and proven category demand help strengthen customer repeat visits.",
-    title: "Growth Potential",
+    text: "The new Flaming Grilled Chicken has been a runaway success right from day one. Made with the most succulent pieces of chicken.",
+    title: "GRILLED CHICKEN",
   },
   {
-    icon: "map",
     image: "/images/chick4.svg",
-    text: "A brand presence across global markets with a clear identity and recognizable guest experience.",
-    title: "Global Footprint",
+    text: "It is only fitting that an item that carries such a grand name be truly majestic. Sample our luscious, signature Chicking® sandwich.",
+    title: "ROYAL CRUNCHY",
   },
 ];
 
@@ -113,7 +110,7 @@ export const footerInfo = [
   {
     icon: "email",
     label: "Our Email",
-    lines: ["Franchise@Chickingglobal.Com"],
+    lines: ["franchise@chickingglobal.com"],
   },
 ];
 export const stories = [
@@ -139,11 +136,10 @@ export const stories = [
 export const navItems = [
   "Home",
   "About Us",
-  "Opportunity",
+  "Unique Propositions",
   "Global Presence",
   "BMI",
   "Management",
   "FAQ",
   "Blog",
-  "Contact Us",
 ];
