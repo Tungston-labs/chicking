@@ -20,6 +20,7 @@ export const HeroFirstContainer = styled.section`
 `;
 
 export const HeroTitle = styled.h1`
+  min-height: clamp(3.75rem, 9vw, 6.75rem);
   font-size: 3rem;
   font-weight: 400;
   text-align: center;
@@ -76,6 +77,7 @@ export const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   max-width: 45rem;
+  min-height: clamp(26rem, 54vw, 39rem);
   display: flex;
   justify-content: center;
   isolation: isolate;
@@ -123,7 +125,7 @@ export const ImageWrapper = styled.div`
 
   .rightTop {
     right: -80px;
-    top: -30%;
+    top: -20%;
   }
   .star {
     right: -80px;
@@ -219,49 +221,44 @@ export const ImageWrapper = styled.div`
 
   @media (max-width: 1023px) {
     .left {
-      left: -60px;
+      left: -2rem;
+      top: 16%;
+      transform: translateY(-50%);
     }
 
     .rightTop {
-      right: 0;
-      top: -20%;
+      right: -1rem;
+      top: -6%;
     }
 
     .rightCenter {
-      right: -120px;
-      top: 50%;
+      right: -2.5rem;
+      top: 48%;
+      transform: translateY(-50%);
     }
-     .star {
-    right: -80px;
-    top: -10%;
-  }
-    &.state-1 {
-      .left {
-        transform: translate(-10px, -30%);
-      }
-      .rightTop {
-        transform: translate(80px, 80px);
-      }
-      .rightCenter {
-        transform: translate(0, -30%);
-      }
-      .star {
-        transform: translate(-20px, -50%);
-      }
+    
+    .star {
+      right: -1.5rem;
+      top: 8%;
     }
 
+    &.state-0,
+    &.state-1,
     &.state-2 {
       .left {
-        transform: translate(0, -20%);
+        transform: translateY(-50%);
       }
+
       .rightTop {
-        transform: translate(80px, 120px);
+        transform: none;
       }
+
       .rightCenter {
-        transform: translate(-500px, -20%);
+        transform: translateY(-50%);
       }
+
       .star {
-        transform: translate(20px, -60%);
+        transform: none;
       }
     }
   }
@@ -283,7 +280,6 @@ export const MainImage = styled.img`
   width: 55rem;
   max-width: 100%;
   height: auto;
-  animation: ${slideUp} 0.6s ease;
 
   @media (max-width: 1300px) {
     width: 50rem;
@@ -371,6 +367,7 @@ transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);  }
   ========================= */
   @media (max-width: 1024px) {
     padding: 0.8rem;
+    transition: none;
 
     span {
       font-size: 0.7rem;
@@ -385,6 +382,7 @@ transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);  }
     .dotted-item-count {
       width: 5rem;
       height: 5rem;
+      transition: none;
     }
 
     &.left .dotted-item-count {

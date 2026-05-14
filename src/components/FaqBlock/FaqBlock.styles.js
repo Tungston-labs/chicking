@@ -54,7 +54,7 @@ export const FaqVisual = styled.div`
 
   @media (min-width: 561px) and (max-width: 900px) {
     width: min(100%, 29rem);
-    min-height: 14.5rem;
+    min-height: 15.5rem;
     margin-top: 1.95rem;
   }
 `;
@@ -88,15 +88,15 @@ export const FaqVisualImage = styled.img`
     ${({ $variant }) =>
       $variant === "pin"
         ? `
-          left: 0.15rem;
-          top: 0.55rem;
-          width: min(47%, 13.5rem);
+          left: -0.35rem;
+          top: 0.1rem;
+          width: min(39%, 11.75rem);
         `
         : `
-          left: 3rem;
-          right: auto;
-          bottom: 0;
-          width: min(86%, 24rem);
+          left: auto;
+          right: -0.15rem;
+          bottom: -0.2rem;
+          width: min(68%, 19.75rem);
         `}
   }
 

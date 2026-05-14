@@ -39,7 +39,7 @@ const HeroFirst = () => {
 
   return (
     <HeroFirstContainer>
-      <HeroTitle key={`title-${index}`}>
+      <HeroTitle>
         {texts[index]}
       </HeroTitle>
 
@@ -55,7 +55,6 @@ const HeroFirst = () => {
       <ImageWrapper className={`state-${state}`}>
         {/* Main Image */}
         <MainImage
-          key={`image-${imageIndex}`}
           src={images[imageIndex]}
           alt="hero visual"
           width="700"

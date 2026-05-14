@@ -169,7 +169,7 @@ export const FooterNav = styled.nav`
 `;
 
 export const FooterNavLink = styled.a`
-  color: #ffffff;
+  color: ${({ $active }) => ($active ? "#a11f24" : "#ffffff")};
   font-size: 0.92rem;
   font-weight: 400;
   line-height: 1;
@@ -179,10 +179,6 @@ export const FooterNavLink = styled.a`
 
   &:first-child {
     font-weight: 800;
-  }
-
-  &:hover {
-    color: #f39200;
   }
 
   @media (min-width: 761px) and (max-width: 1024px) {
