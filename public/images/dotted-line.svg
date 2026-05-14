@@ -1,5 +1,0 @@
-<svg width="400" height="80" viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Dotted curves connecting the floating items -->
-  <path d="M 20 40 Q 100 20, 180 40 Q 260 60, 380 40" stroke="#E8E8E8" stroke-width="2" stroke-dasharray="8,4" fill="none"/>
-  <path d="M 20 45 Q 100 65, 180 45 Q 260 25, 380 45" stroke="#E8E8E8" stroke-width="2" stroke-dasharray="8,4" fill="none"/>
-</svg>

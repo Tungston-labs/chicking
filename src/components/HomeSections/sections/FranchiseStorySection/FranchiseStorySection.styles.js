@@ -55,7 +55,7 @@ export const StorySlider = styled.div`
   margin-left: calc(50% - 50vw);
   padding: 0 0 4.5rem;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1023px) {
     width: 100%;
     min-height: auto;
     margin-left: 0;
@@ -73,7 +73,7 @@ export const StoryStage = styled.div`
     680ms cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: opacity, transform;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1023px) {
     width: min(100%, 44rem);
   }
 `;
@@ -88,9 +88,10 @@ export const StoryCard = styled.article`
   background: #ffffff;
   box-shadow: 0 1.6rem 4.5rem rgba(0, 0, 0, 0.22);
 
-  @media (max-width: 760px) {
-    grid-template-columns: 1fr;
-    min-height: auto;
+  @media (max-width: 1023px) {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    min-height: 18.5rem;
+    border-radius: 1rem;
   }
 `;
 
@@ -98,6 +99,10 @@ export const StoryCardCopy = styled.div`
   display: flex;
   flex-direction: column;
   padding: clamp(2.2rem, 4.2vw, 3.5rem) clamp(1.8rem, 4vw, 3rem);
+
+  @media (max-width: 1023px) {
+    padding: 1.35rem 1rem 1.15rem 3.25rem;
+  }
 `;
 
 export const StoryFlag = styled.span`
@@ -136,6 +141,11 @@ export const StoryText = styled.p`
   font-size: clamp(0.95rem, 1.35vw, 1.08rem);
   font-weight: 500;
   line-height: 1.65;
+
+  @media (max-width: 1023px) {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
 `;
 
 export const StoryCardMeta = styled.p`
@@ -158,16 +168,16 @@ export const StoryCardMeta = styled.p`
   span {
     font-weight: 700;
   }
+
+  @media (max-width: 1023px) {
+    padding-top: 0.85rem;
+    font-size: 0.64rem;
+  }
 `;
 
 export const StoryImagePanel = styled.div`
   min-height: 100%;
   overflow: hidden;
-
-  @media (max-width: 760px) {
-    order: -1;
-    min-height: auto;
-  }
 `;
 
 export const StoryImage = styled.img`
@@ -176,6 +186,10 @@ export const StoryImage = styled.img`
   min-height: 18rem;
   display: block;
   object-fit: cover;
+
+  @media (max-width: 1023px) {
+    min-height: 15rem;
+  }
 `;
 
 export const SidePreview = styled.article`
@@ -229,7 +243,7 @@ export const SidePreview = styled.article`
     font-size: 0.65rem;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1023px) {
     display: none;
   }
 `;
@@ -303,20 +317,20 @@ export const CarouselArrow = styled.button`
     stroke-width: 2.1;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1023px) {
     ${({ $placement }) =>
       $placement === "card"
         ? `
           display: inline-flex;
-          width: 2.4rem;
-          height: 2.4rem;
+          width: 2rem;
+          height: 2rem;
         `
         : `
           display: none;
         `}
   }
 
-  @media (min-width: 901px) {
+  @media (min-width: 1023px) {
     ${({ $placement }) =>
       $placement === "card"
         ? `
@@ -325,17 +339,22 @@ export const CarouselArrow = styled.button`
         : ""}
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 1024px) {
     ${({ $placement, $position }) =>
       $placement === "card"
         ? $position === "left"
           ? `
-            left: 0.75rem;
+            left: 0.4rem;
           `
           : `
-            right: 0.75rem;
+            right: 0.4rem;
           `
         : ""}
+
+    svg {
+      width: 0.9rem;
+      height: 0.9rem;
+    }
   }
 `;
 

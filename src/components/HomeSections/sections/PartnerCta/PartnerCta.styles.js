@@ -35,15 +35,15 @@ export const PartnerCtaDecorImage = styled.img`
 
     if ($variant === "arrow") {
       return `
-        right: clamp(14rem, 29vw, 20.5rem);
-        bottom: clamp(1.8rem, 3vw, 2.7rem);
+        right: clamp(14rem, 29vw, 28.5rem);
+        bottom: clamp(1.8rem, 3vw, 0.7rem);
         width: clamp(4.2rem, 6.2vw, 5.5rem);
       `;
     }
 
     return `
-      right: clamp(2.4rem, 5vw, 4.5rem);
-      bottom: clamp(1.95rem, 3vw, 2.75rem);
+      right: clamp(2.4rem, 5vw, 20.5rem);
+      bottom: clamp(1.95rem, 3vw, 0.75rem);
       width: clamp(7.2rem, 11vw, 9.8rem);
     `;
   }}
@@ -76,7 +76,7 @@ export const PartnerCtaDecorImage = styled.img`
 
       if ($variant === "arrow") {
         return `
-          right: 12.8rem;
+          right: 16.8rem;
           bottom: 2rem;
         `;
       }
@@ -105,8 +105,8 @@ export const PartnerCtaDecorImage = styled.img`
 
       if ($variant === "arrow") {
         return `
-          right: 9.6rem;
-          bottom: 1.7rem;
+          right: 15.6rem;
+          bottom: .7rem;
           width: 4.2rem;
         `;
       }

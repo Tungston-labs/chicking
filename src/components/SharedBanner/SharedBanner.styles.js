@@ -79,7 +79,7 @@ export const BannerContent = styled.div`
   z-index: 2;
   width: min(100%, ${({ $contentWidth }) => $contentWidth || "var(--section-max-width)"});
   margin: 0 auto;
-  min-height: ${({ $compact }) => ($compact ? "17rem" : "24.5rem")};
+  min-height: ${({ $compact }) => ($compact ? "17rem" : "38.5rem")};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,7 +96,7 @@ export const BannerContent = styled.div`
   @media (max-width: 768px) {
     min-height: auto;
     padding: ${({ $compact }) =>
-      $compact ? "3.75rem 1.25rem" : "5rem 1.25rem"};
+      $compact ? "3.4rem 1.25rem" : "4.25rem 1.25rem 3.5rem"};
     text-align: left;
     align-items: stretch;
   }
@@ -127,8 +127,28 @@ export const BannerTitle = styled.h2`
     font-weight: 700;
   }
 
-  @media (max-width: 768px) {
-    font-size: 1.75rem;
+  .desktop-only {
+    display: inline;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 48rem;
+    margin: 0 auto;
+    font-size: clamp(1.45rem, 5.25vw, 1.9rem);
+    line-height: 1.18;
+    text-wrap: balance;
+
+    .desktop-only {
+      display: none;
+    }
+
+    .mobile-only {
+      display: inline;
+    }
   }
 `;
 
@@ -138,6 +158,13 @@ export const BannerLead = styled.p`
   font-size: 1rem;
   line-height: 1.8;
   font-weight: 300;
+
+  @media (max-width: 768px) {
+    max-width: 38rem;
+    margin-top: 0.9rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
 `;
 
 export const BannerAction = styled.a`
@@ -255,7 +282,7 @@ export const BannerFeatureText = styled.p`
 
   @media (max-width: 900px) {
     margin-top: 0.45rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     line-height: 1.5;
   }
 `;
