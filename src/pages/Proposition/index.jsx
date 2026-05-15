@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import FranchiseBanner from "../../components/TopBanner";
 import franchiseImg from "../../../public/images/franchise.svg";
-import CompetitiveAdvantage from "../../components/Proposition/CompetitiveAdvantage";
+import CompetitiveAdvantage from "../../components/Proposition/CompetitiveAdvantage/CompetitiveAdvantage";
+import PageLayout from "../../components/Layout/PageLayout";
+import MajorMarkets from "../../components/Proposition/MajorMarkets/MajorMarkets";
+import SiteFooter from "../../components/HomeSections/sections/SiteFooter";
 
 const Propositions = () => {
     const titles = [
@@ -20,6 +23,7 @@ const Propositions = () => {
     }, [titles.length]);
     return (
         <>
+        <PageLayout/>
         <FranchiseBanner
             key={titleIndex}
             title={titles[titleIndex]}
@@ -33,6 +37,8 @@ const Propositions = () => {
             image={franchiseImg}
         />
         <CompetitiveAdvantage/>
+        <MajorMarkets/>
+            <SiteFooter />
         </>
     );
 };

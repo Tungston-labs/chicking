@@ -1,4 +1,5 @@
-import { NavLink as RouterLink, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { NavLink as RouterLink, } from "react-router-dom";
 import {
   FiInstagram,
   FiMail,
@@ -50,8 +51,7 @@ const socialLinks = (
 );
 
 const SiteFooter = ({topEdgeImage}) => {
-  const location = useLocation();
-
+const [activeItem, setActiveItem] = useState("Home");
   return (
     <Footer $topEdgeImage={topEdgeImage}>
       <FooterTop>
@@ -87,7 +87,10 @@ const SiteFooter = ({topEdgeImage}) => {
               as={RouterLink}
               key={item.path}
               to={item.path}
-              $active={location.pathname === item.path}
+              $active={activeItem === item.name}
+              onClick={() =>
+                setActiveItem(item.name)
+              }
             >
               {item.name}
             </FooterNavLink>
