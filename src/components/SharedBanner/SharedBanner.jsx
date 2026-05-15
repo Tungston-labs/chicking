@@ -1,4 +1,5 @@
 import { CiLocationArrow1 } from "react-icons/ci";
+import { NavLink as RouterLink } from "react-router-dom";
 import {
   BannerAction,
   BannerBody,
@@ -196,7 +197,9 @@ const SharedBanner = ({
           >
             {action && (
               <BannerAction
-                href={action.href || "#"}
+                as={action.to ? RouterLink : undefined}
+                href={action.to ? undefined : action.href || "#"}
+                to={action.to}
                 $background={actionBackground || action.background}
                 $textColor={actionTextColor || action.textColor}
               >

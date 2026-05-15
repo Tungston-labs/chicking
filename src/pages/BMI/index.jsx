@@ -26,7 +26,7 @@ const BMI = () => (
     <BmiFoodShowcase />
     <PartnerCta
       action={{
-        href: "#",
+        to: "/franchiseform",
         label: "Franchise Inquiry",
       }}
       actionBackground="#ffffff"

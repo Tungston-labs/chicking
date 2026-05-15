@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { NavLink as RouterLink } from "react-router-dom";
 import {
   HeroButton,
   HeroFirstContainer,
@@ -47,8 +48,8 @@ const HeroFirst = () => {
         restaurant chain, and capitalize on a proven business model.
       </HeroSubtitle>
 
-      <HeroButton href="#">
-        Franchise With Us <CiLocationArrow1 />
+      <HeroButton as={RouterLink} to="/franchiseform">
+        Franchise With Us <CiLocationArrow1 aria-hidden="true" />
       </HeroButton>
 
       <ImageWrapper className={`state-${state}`}>

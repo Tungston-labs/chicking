@@ -18,6 +18,10 @@ export const HeroFirstContainer = styled.section`
   justify-content: center;
   padding: 2rem 2rem;
   flex-direction: column;
+
+  @media (max-width: 767px) {
+    padding: 1.25rem 1rem 0.75rem;
+  }
 `;
 
 export const HeroTitle = styled.h1`
@@ -37,7 +41,12 @@ export const HeroTitle = styled.h1`
     }
      @media (max-width: 767px) {
       font-size: 2rem;
+      min-height: auto;
+    }
 
+    @media (max-width: 480px) {
+      font-size: 1.7rem;
+      line-height: 1.2;
     }
 `;
 
@@ -47,6 +56,13 @@ export const HeroSubtitle = styled.p`
   max-width: 46rem;
   text-align: center;
   color: #000;
+  margin: 0.9rem 0 0;
+
+  @media (max-width: 767px) {
+    max-width: 21rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
 `;
 
 export const HeroButton = styled.a`
@@ -70,6 +86,9 @@ export const HeroButton = styled.a`
     transform 160ms ease;
 
   svg {
+    display: block;
+    flex: 0 0 auto;
+    font-size: 1.05rem;
     pointer-events: none;
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -77,6 +96,10 @@ export const HeroButton = styled.a`
 
   &:hover svg {
     transform: translateX(4px);
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 1.1rem;
   }
 `;
 
@@ -272,33 +295,36 @@ export const ImageWrapper = styled.div`
 
 
   @media (max-width: 767px) {
-    min-height: clamp(28rem, 110vw, 34rem);
+    max-width: 22rem;
+    min-height: clamp(18rem, 78vw, 23rem);
+    margin-top: 0.5rem;
 
     &::before {
       animation: none;
+      width: 105%;
+      height: 105%;
+      left: 50%;
     }
 
     .left {
-      left: -0.5rem;
-      top: 18%;
+      left: -0.1rem;
+      top: 13%;
       transform: none;
     }
 
     .rightTop {
-      right: -0.5rem;
-      top: 2%;
+      right: -0.1rem;
+      top: 1%;
       transform: none;
     }
 
     .rightCenter {
-      right: 10.5rem;
-      top: 70%;
-      transform: none;
+      display: none;
     }
 
     .star {
-      right: 1rem;
-      top: 28%;
+      right: 0.65rem;
+      top: 22%;
       transform: none;
     }
 
@@ -356,6 +382,19 @@ transition:
     width: 5rem;
     height: 5rem;
     z-index: 2;
+  }
+
+  @media (max-width: 767px) {
+    padding: 0.55rem;
+
+    span {
+      font-size: 0.7rem;
+    }
+
+    img:not(.dotted-item, .dotted-item-count) {
+      width: 3.3rem;
+      height: 3.3rem;
+    }
   }
 
   .dotted-item,

@@ -182,7 +182,7 @@ export const FooterNavLink = styled.a`
   }
 
   @media (min-width: 761px) and (max-width: 1024px) {
-    font-size: 0.88rem;
+    font-size: 0.75rem;
   }
 `;
 

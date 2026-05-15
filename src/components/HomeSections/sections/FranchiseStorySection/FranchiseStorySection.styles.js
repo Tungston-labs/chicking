@@ -146,6 +146,11 @@ export const StoryCard = styled.article`
     min-height: 18.5rem;
     border-radius: 1rem;
   }
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
 `;
 
 export const StoryCardCopy = styled.div`
@@ -160,6 +165,10 @@ export const StoryCardCopy = styled.div`
 
   @media (max-width: 1023px) {
     padding: 1.35rem 1rem 1.15rem 1rem;
+  }
+
+  @media (max-width: 767px) {
+    padding: 1.4rem 1.1rem 1.3rem;
   }
 `;
 
@@ -240,6 +249,10 @@ export const StoryImagePanel = styled.div`
       $direction === "previous" ? imageFromLeft : imageFromRight}
     860ms cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: opacity, transform;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const StoryImage = styled.img`

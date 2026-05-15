@@ -7,7 +7,7 @@ import {
 } from "./PartnerCta.styles.js";
 
 const defaultAction = {
-  href: "#",
+  to: "/franchiseform",
   label: "Franchise With Us",
 };
 
