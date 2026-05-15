@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import sharedBannerImages from "../../../../assets/images/sharedBannerImages.js";
 
 export const Footer = styled.footer`
   position: relative;
@@ -15,8 +14,10 @@ export const Footer = styled.footer`
     z-index: 0;
     width: calc(100% + 0.3rem);
     height: clamp(2rem, 5.6vw, 3.2rem);
-    background: url(${sharedBannerImages.edges.footerBlack}) center top / 100%
-      100% no-repeat;
+  background: ${({ $topEdgeImage }) =>
+  $topEdgeImage
+    ? `url(${$topEdgeImage}) center top / 100% 100% no-repeat`
+    : "none"};
     pointer-events: none;
   }
 `;

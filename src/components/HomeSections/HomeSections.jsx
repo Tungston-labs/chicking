@@ -1,3 +1,4 @@
+import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import BlogSection from "./sections/BlogSection/index.jsx";
 import FaqSection from "./sections/FaqSection/index.jsx";
 import FranchiseStorySection from "./sections/FranchiseStorySection/index.jsx";
@@ -13,7 +14,7 @@ const HomeSections = () => {
       <FaqSection />
       <ReasonsSection />
       <PartnerCta />
-      <SiteFooter />
+      <SiteFooter topEdgeImage={sharedBannerImages.edges.footerBlack}/>
     </>
   );
 };

@@ -66,6 +66,9 @@ export const NavLink = styled.a`
   &:hover {
     color: #891b1c;
   }
+  @media (min-width: 1025px) and (max-width: 1380px) {
+    font-size: 0.92rem;
+  }
 `;
 
 export const FindLocationButton = styled.a`
@@ -111,6 +114,10 @@ export const FindLocationButton = styled.a`
     padding: 0 0.85rem;
     font-size: 0.82rem;
   }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const MobileMenuButton = styled.button`
@@ -136,24 +143,29 @@ export const MobileMenuButton = styled.button`
 
   @media (max-width: 1024px) {
     display: inline-flex;
-    margin-left: 0;
+    margin-left: auto;
   }
 `;
 
 export const MobileMenuContainer = styled.div`
   position: absolute;
   top: 100%;
-  right: 0;
-  background: #ffffff;
-  border: 1px solid #f0f0f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 0.25rem;
-  min-width: 250px;
+  left: 50%;
+  right: auto;
+  width: 100vw;
+  min-width: 100vw;
+  max-height: calc(100vh - 4.5rem);
+  overflow-y: auto;
+  border: 0;
+  border-radius: 0;
+  background: #971b1d;
+  box-shadow: 0 0.9rem 2rem rgba(37, 7, 11, 0.2);
   z-index: 999;
 
   display: flex;
   flex-direction: column;
-  padding: 0.5rem 0;
+  padding: 0.9rem 0 1.25rem;
+  transform: translateX(-50%);
 
   animation: slideDown 0.3s ease-out;
 
@@ -171,6 +183,11 @@ export const MobileMenuContainer = styled.div`
   @media (min-width: 1025px) {
     display: none;
   }
+
+  @media (max-width: 768px) {
+    max-height: calc(100vh - 4.2rem);
+    padding: 1rem 0 1.25rem;
+  }
 `;
 
 export const MobileMenuItem = styled.a`
@@ -178,16 +195,18 @@ export const MobileMenuItem = styled.a`
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  color: ${({ $active }) => ($active ? "#891b1c" : "#000000")};
-  font-size: 1rem;
-  font-weight: 500;
+  color: ${({ $active }) => ($active ? "#f7c86f" : "#ffffff")};
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
   transition: background 160ms ease, color 160ms ease;
   white-space: nowrap;
 
   &:hover {
-    background: #f6f6f6;
-    color: #891b1c;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
   }
 
   ${(props) =>
@@ -208,4 +227,30 @@ export const MobileMenuItem = styled.a`
       font-size: 1rem;
     }
   `}
+
+  @media (max-width: 1024px) {
+    padding: 0.9rem 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.76rem;
+
+    ${({ $isFindLocation }) =>
+      $isFindLocation
+        ? `
+          min-height: 2.6rem;
+          margin: 0.9rem 1.5rem 0;
+          padding: 0 1rem;
+          justify-content: center;
+          color: #ffffff;
+          font-size: 0.78rem;
+          letter-spacing: 0;
+          text-transform: none;
+
+          &:hover {
+            background: #dd8200;
+          }
+        `
+        : ""}
+  }
 `;

@@ -174,7 +174,6 @@ export const navItems = [
     path: "/blog",
   },
 ];
-
 export const homeBanners = [
   {
     id: "franchise-intro",

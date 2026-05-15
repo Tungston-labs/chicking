@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink as RouterLink } from "react-router-dom";
+import { NavLink as RouterLink, } from "react-router-dom";
 import {
   FiInstagram,
   FiMail,
@@ -50,11 +50,10 @@ const socialLinks = (
   </>
 );
 
-const SiteFooter = () => {
-  const [activeItem, setActiveItem] = useState("Home");
-
+const SiteFooter = ({topEdgeImage}) => {
+const [activeItem, setActiveItem] = useState("Home");
   return (
-    <Footer>
+    <Footer $topEdgeImage={topEdgeImage}>
       <FooterTop>
         {footerInfo.map((item) => (
           <FooterInfoCard key={item.label}>
@@ -97,10 +96,6 @@ const SiteFooter = () => {
             </FooterNavLink>
           ))}
         </FooterNav>
-
-        <FooterSocials>
-          {socialLinks}
-        </FooterSocials>
       </FooterNavRow>
 
       <FooterBottom>

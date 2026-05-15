@@ -17,14 +17,12 @@ import { navItems } from "../HomeSections/data/homeSectionsData.js";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("Home");
-
+const [activeItem, setActiveItem] = useState("Home");
   const toggleMenu = () => {
     setIsMenuOpen((current) => !current);
   };
 
-  const handleNavItemClick = (item) => {
-    setActiveItem(item);
+  const handleNavItemClick = () => {
     setIsMenuOpen(false);
   };
 
@@ -64,6 +62,7 @@ const Navbar = () => {
 
         <MobileMenuButton
           aria-label="Open navigation"
+          aria-expanded={isMenuOpen}
           type="button"
           onClick={toggleMenu}
         >
