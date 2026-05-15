@@ -213,10 +213,11 @@ export const homeBanners = [
       ],
       mobileLines: [
         [
-          { text: "Take The " },
+          { text: "Take The  " },
           { strong: "First Step" },
+          { text: " Toward " }
         ],
-        [{ text: "Toward Owning A Successful Global" }],
+        [{ text: " Owning A Successful Global" }],
         [{ strong: "Chicking Franchise." }],
       ],
     },

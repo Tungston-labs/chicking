@@ -14,11 +14,15 @@ export const FoodSection = styled.section`
 `;
 
 export const FoodHeader = styled.div`
-  width: min(100%, 42rem);
+  width: min(100%, 50rem);
   margin-bottom: 2.5rem;
 
+  @media (min-width: 901px) and (max-width: 1180px) {
+    width: min(100%, 46rem);
+  }
+
   @media (min-width: 768px) and (max-width: 1024px) {
-    width: min(100%, 34rem);
+    width: min(100%, 40rem);
     margin-bottom: 2rem;
   }
 
@@ -50,8 +54,10 @@ export const FoodScroller = styled.div`
   grid-auto-columns: minmax(31rem, 33.5rem);
   gap: 1.4rem;
   overflow-x: auto;
+  margin-right:2rem;
   overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0.1rem;
   padding-bottom: 0.7rem;
 
   & > * {
@@ -59,12 +65,12 @@ export const FoodScroller = styled.div`
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    grid-auto-columns: minmax(22rem, 25rem);
+    grid-auto-columns: minmax(24rem, 25rem);
     gap: 1rem;
   }
 
   @media (max-width: 767px) {
-    grid-auto-columns: minmax(13.5rem, 15.5rem);
+    grid-auto-columns: 90%;
     gap: 0.9rem;
     padding-bottom: 0.55rem;
   }
@@ -108,7 +114,7 @@ export const FoodTitle = styled.h3`
   text-transform: uppercase;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.72rem;
+    font-size: 0.875rem;
     line-height: 1.35;
   }
 
@@ -126,13 +132,13 @@ export const FoodText = styled.p`
 
   @media (min-width: 768px) and (max-width: 1024px) {
     margin-top: 0.35rem;
-    font-size: 0.92rem;
+    font-size: 0.875rem;
     line-height: 1.6;
   }
 
   @media (max-width: 767px) {
     margin-top: 0.28rem;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     line-height: 1.55;
   }
 `;

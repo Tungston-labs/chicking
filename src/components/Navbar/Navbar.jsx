@@ -81,8 +81,9 @@ const Navbar = () => {
           </FindLocationButton>
 
           <MobileMenuButton
-            aria-label="Open navigation"
+            aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={isMenuOpen}
+            $open={isMenuOpen}
             type="button"
             onClick={toggleMenu}
           >

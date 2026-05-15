@@ -128,7 +128,7 @@ export const FindLocationButton = styled.a`
   @media (max-width: 420px) {
     min-height: 2.35rem;
     padding: 0 0.85rem;
-    font-size: 0.82rem;
+    font-size: 0.875rem;
   }
 `;
 
@@ -145,12 +145,32 @@ export const MobileMenuButton = styled.button`
   border-radius: 0.25rem;
   background: #f6f6f6;
   cursor: pointer;
+  transition: background 180ms ease;
 
   span {
+    position: absolute;
     width: 1.125rem;
     height: 0.125rem;
     border-radius: 999rem;
     background: #111111;
+    transition:
+      transform 180ms ease,
+      opacity 180ms ease,
+      background 180ms ease;
+  }
+
+  span:nth-child(1) {
+    transform: ${({ $open }) =>
+      $open ? "rotate(45deg)" : "translateY(-0.3125rem)"};
+  }
+
+  span:nth-child(2) {
+    opacity: ${({ $open }) => ($open ? 0 : 1)};
+  }
+
+  span:nth-child(3) {
+    transform: ${({ $open }) =>
+      $open ? "rotate(-45deg)" : "translateY(0.3125rem)"};
   }
 
   @media (max-width: 1023px) {
@@ -205,7 +225,7 @@ export const MobileMenuItem = styled.a`
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   color: ${({ $active }) => ($active ? "#f7c86f" : "#ffffff")};
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -223,6 +243,6 @@ export const MobileMenuItem = styled.a`
   }
 
   @media (max-width: 768px) {
-    font-size: 0.76rem;
+    font-size: 0.875rem;
   }
 `;

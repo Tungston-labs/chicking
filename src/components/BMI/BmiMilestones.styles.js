@@ -65,7 +65,7 @@ export const MilestonesHeading = styled.h2`
   font-weight: 400;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 1.45rem;
+    font-size: 1.95rem;
   }
 
   strong {
@@ -80,12 +80,12 @@ export const MilestonesText = styled.p`
   line-height: 1.7;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.92rem;
+    font-size: 0.875rem;
     line-height: 1.65;
   }
 
   @media (max-width: 767px) {
-    font-size: 0.92rem;
+    font-size: 0.875rem;
     line-height: 1.65;
   }
 `;
@@ -208,7 +208,7 @@ export const TimelineYear = styled.h3`
   overflow-wrap: anywhere;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 1rem;
+    font-size: 0%.875rem;
   }
 
   @media (max-width: 767px) {
@@ -224,12 +224,12 @@ export const TimelineDescription = styled.p`
   line-height: 1.7;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.92rem;
+    font-size: 0.875rem;
     line-height: 1.65;
   }
 
   @media (max-width: 767px) {
-    font-size: 0.92rem;
+    font-size: 0.875rem;
     line-height: 1.65;
   }
 `;
@@ -249,17 +249,17 @@ export const TimelineItem = styled.li`
   align-items: start;
   gap: 0.65rem;
   color: #000000;
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   line-height: 1.65;
   overflow-wrap: anywhere;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.92rem;
+    font-size: 0.875rem;
     line-height: 1.65;
   }
 
   @media (max-width: 767px) {
-    font-size: 0.92rem;
+    font-size: 0.875rem;
     line-height: 1.65;
   }
 `;

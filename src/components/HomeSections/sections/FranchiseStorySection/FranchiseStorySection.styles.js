@@ -201,7 +201,7 @@ export const StoryText = styled.p`
   line-height: 1.65;
 
   @media (max-width: 1023px) {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     line-height: 1.55;
   }
 `;
@@ -219,7 +219,7 @@ export const StoryCardMeta = styled.p`
   }
 
   strong {
-    font-size: 0.82rem;
+    font-size: 0.875rem;
     font-weight: 800;
   }
 
@@ -292,7 +292,7 @@ export const SidePreview = styled.article`
   ${StoryText} {
     max-height: 8.25rem;
     overflow: hidden;
-    font-size: 0.82rem;
+    font-size: 0.875rem;
     line-height: 1.55;
   }
 

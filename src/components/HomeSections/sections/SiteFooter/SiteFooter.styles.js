@@ -99,7 +99,7 @@ export const FooterContactText = styled.p`
   gap: 0.32rem;
   margin: 0.55rem 0 0;
   color: rgba(255, 255, 255, 0.88);
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   line-height: 1.45;
 
   @media (min-width: 761px) and (max-width: 1024px) {
@@ -139,7 +139,7 @@ export const FooterNavHeading = styled.h2`
   display: none;
   margin: 0;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 1.2;
   font-weight: 800;
   text-transform: uppercase;
@@ -169,8 +169,8 @@ export const FooterNav = styled.nav`
 `;
 
 export const FooterNavLink = styled.a`
-  color: ${({ $active }) => ($active ? "#a11f24" : "#ffffff")};
-  font-size: 0.92rem;
+  color: ${({ $active }) => ($active ? "#891b1c" : "#ffffff")};
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1;
   text-decoration: none;
@@ -274,7 +274,7 @@ export const FooterBottomInner = styled.div`
 export const FooterCopyright = styled.p`
   margin: 0;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   text-align: center;
 
@@ -285,7 +285,7 @@ export const FooterCopyright = styled.p`
 
   @media (max-width: 760px) {
     text-align: left;
-    font-size: 0.88rem;
+    font-size: 0.75rem;
   }
 
   a {
