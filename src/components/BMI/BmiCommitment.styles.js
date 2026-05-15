@@ -85,7 +85,7 @@ export const CommitmentHeader = styled.div`
     width: min(100%, 42rem);
     margin-left: auto;
     margin-right: auto;
-    font-size: 0.98rem;
+    font-size: 0.96rem;
     line-height: 1.7;
   }
 

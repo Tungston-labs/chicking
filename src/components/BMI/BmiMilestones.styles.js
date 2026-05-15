@@ -1,4 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const visualFadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(0.8rem) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+`;
 
 export const MilestonesSection = styled.section`
   padding: 2.5rem 0 2rem;
@@ -15,9 +27,14 @@ export const BrandStamp = styled.div`
   margin-bottom: 2rem;
 
   img {
-    width: 5.5rem;
+    width: clamp(6rem, 8vw, 7rem);
     height: auto;
     display: block;
+  }
+
+  @media (max-width: 767px) {
+    justify-content: flex-start;
+    margin-bottom: 1.6rem;
   }
 `;
 
@@ -58,7 +75,7 @@ export const MilestonesHeading = styled.h2`
 
 export const MilestonesText = styled.p`
   margin: 0.8rem 0 0;
-  color: #555555;
+  color: #000000;
   font-size: 0.96rem;
   line-height: 1.7;
 
@@ -78,12 +95,13 @@ export const MilestoneVisual = styled.div`
   border-radius: 1.1rem;
   overflow: hidden;
   background: linear-gradient(180deg, #fff7ef 0%, #ffffff 100%);
+`;
 
-  img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+export const MilestoneVisualImage = styled.img`
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: ${visualFadeIn} 420ms ease both;
 `;
 
 export const Timeline = styled.div`
@@ -183,7 +201,7 @@ export const TimelineYearIcon = styled.span`
 
 export const TimelineYear = styled.h3`
   margin: 0;
-  color: #171717;
+  color: #000000;
   font-size: 1.08rem;
   line-height: 1.3;
   font-weight: 700;
@@ -194,14 +212,14 @@ export const TimelineYear = styled.h3`
   }
 
   @media (max-width: 767px) {
-    font-size: 0.98rem;
+    font-size: 0.96rem;
   }
 `;
 
 export const TimelineDescription = styled.p`
   margin: 0.7rem 0 0
     calc(var(--timeline-year-icon-size) + var(--timeline-year-gap));
-  color: #383838;
+  color: #000000;
   font-size: 0.96rem;
   line-height: 1.7;
 
@@ -230,7 +248,7 @@ export const TimelineItem = styled.li`
   grid-template-columns: auto 1fr;
   align-items: start;
   gap: 0.65rem;
-  color: #626262;
+  color: #000000;
   font-size: 0.92rem;
   line-height: 1.65;
   overflow-wrap: anywhere;
