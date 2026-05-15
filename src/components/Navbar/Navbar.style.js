@@ -84,7 +84,7 @@ export const NavLink = styled.a`
     color: #891b1c;
   }
   @media (min-width: 1024px) and (max-width: 1380px) {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 `;
 
