@@ -1,0 +1,76 @@
+import React from "react";
+import {
+  Wrapper,
+  Container,
+  SideCard,
+  CardTop,
+  Country,
+  Package,
+  Button,
+  CardImage,
+  CenterContent,
+  BreadTop,
+  BreadBottom,
+  Heading,
+  Description,
+  Curly,
+  ContentBox,
+} from "./style";
+
+import usaImg from "../../../../public/images/Majorman.svg";
+import ukImg from "../../../../public/images/Majorflag.svg";
+import breadTop from "../../../../public/images/breadtop.svg";
+import breadBottom from "../../../../public/images/breadbottom.svg";
+import curly from "../../../../public/images/curly.svg";
+import curlyright from "../../../../public/images/curlyright.svg";
+const MajorMarkets = () => {
+  return (
+    <Wrapper>
+      <Container>
+        <SideCard>
+          <CardTop>
+            <Country>United States Of America</Country>
+            <Package>Franchise Package</Package>
+            <Button>View Package</Button>
+          </CardTop>
+
+          <CardImage src={usaImg} alt="USA" />
+        </SideCard>
+
+        <CenterContent> 
+          <Curly src={curly} alt="" />
+
+          <ContentBox>
+            <BreadTop src={breadTop} alt="" />
+
+            <Heading>
+              Tailored Models For <span>Major Markets</span>
+            </Heading>
+
+            <Description>
+              BFI Offers Specialized Support And Compliant Business
+              Structures For Key Regulatory Environments,
+              Ensuring A Targeted Approach For Serious Investors
+            </Description>
+
+            <BreadBottom src={breadBottom} alt="" />
+          </ContentBox>
+
+          <Curly src={curlyright} alt="" />
+        </CenterContent>
+
+        <SideCard>
+          <CardTop>
+            <Country>United Kingdom</Country>
+            <Package>Franchise Package</Package>
+            <Button>View Package</Button>
+          </CardTop>
+
+          <CardImage src={ukImg} alt="UK" />
+        </SideCard>
+      </Container>
+    </Wrapper>
+  );
+};
+
+export default MajorMarkets;
