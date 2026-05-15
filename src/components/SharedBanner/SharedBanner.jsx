@@ -18,9 +18,10 @@ import {
   BannerTitle,
   PaintEdge,
 } from "./SharedBanner.styles.js";
+import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 
-const TOP_EDGE_IMAGE = "/images/bottom.png";
-const BOTTOM_EDGE_IMAGE = "/images/top.png";
+const TOP_EDGE_IMAGE = sharedBannerImages.edges.top;
+const BOTTOM_EDGE_IMAGE = sharedBannerImages.edges.bottom;
 const WHITE_EDGE_COLORS = new Set(["#fff", "#ffffff", "white"]);
 const RASTER_EDGE_BACKGROUNDS = new Set(["#891b1c", "#991b1e"]);
 

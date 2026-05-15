@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import homeImages from "../../../assets/images/homeImages.js";
 
 const slideUp = keyframes`
   from {
@@ -15,12 +16,12 @@ export const HeroFirstContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
   flex-direction: column;
 `;
 
 export const HeroTitle = styled.h1`
-  min-height: clamp(3.75rem, 9vw, 6.75rem);
+  min-height: clamp(2.75rem, 5vw, 3.25rem);
   font-size: 3rem;
   font-weight: 400;
   text-align: center;
@@ -31,13 +32,19 @@ export const HeroTitle = styled.h1`
   strong {
     font-weight: 700;
   }
+   @media (max-width: 1023px) {
+   font-size: 2.5rem;
+    }
+     @media (max-width: 767px) {
+      font-size: 2rem;
+
+    }
 `;
 
 export const HeroSubtitle = styled.p`
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 300;
   max-width: 46rem;
-  margin-top: 1rem;
   text-align: center;
   color: #000;
 `;
@@ -86,7 +93,7 @@ export const ImageWrapper = styled.div`
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("/images/Earth.svg");
+    background-image: url("${homeImages.hero.earth}");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

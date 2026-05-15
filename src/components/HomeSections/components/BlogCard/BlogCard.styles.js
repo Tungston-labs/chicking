@@ -109,7 +109,7 @@ export const Text = styled.p`
   line-height: 1.65;
 
   @media (min-width: 600px) and (max-width: 1000px) {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     line-height: 1.55;
   }
 `;

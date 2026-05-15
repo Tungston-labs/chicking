@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import sharedBannerImages from "../../../../assets/images/sharedBannerImages.js";
 
 export const Footer = styled.footer`
   position: relative;
@@ -14,8 +15,8 @@ export const Footer = styled.footer`
     z-index: 0;
     width: calc(100% + 0.3rem);
     height: clamp(2rem, 5.6vw, 3.2rem);
-    background: url("/images/footerblack.png") center top / 100% 100%
-      no-repeat;
+    background: url(${sharedBannerImages.edges.footerBlack}) center top / 100%
+      100% no-repeat;
     pointer-events: none;
   }
 `;
@@ -265,7 +266,10 @@ export const FooterBottomInner = styled.div`
   @media (max-width: 760px) {
     padding: 1.2rem 1rem 1.5rem;
     align-items: center;
-    justify-content: space-between;
+      align-items: flex-start;
+
+    flex-direction: column;
+    justify-content:flex-start;
     gap: 1rem;
   }
 `;
@@ -283,7 +287,8 @@ export const FooterCopyright = styled.p`
   }
 
   @media (max-width: 760px) {
-    text-align: right;
+    text-align: left;
+     font-size: 0.88rem;
   }
 
   a {

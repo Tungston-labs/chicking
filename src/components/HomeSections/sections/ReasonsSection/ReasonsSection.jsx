@@ -6,20 +6,22 @@ import { ReasonGrid } from "./ReasonsSection.styles.js";
 const ReasonsSection = () => (
   <SharedBanner
     background="#891b1c"
-description={
-  <>
-    Chicking aims to be the top choice for dining out, known for
-    bringing unmatched happiness with our one-of-a-kind menu items.
-    <br />
-    We strive for a future where all patrons savor our delicious
-    dishes, leading the way in fast-food quality.
-  </>
-}
+    description={
+      <>
+        Chicking aims to be the top choice for dining out, known for
+        bringing unmatched happiness with our one-of-a-kind menu items.
+        We strive for a future where all patrons savor our delicious
+        dishes, leading the way in fast-food quality.
+      </>
+    }
     edgeColor="#ffffff"
     title={
       <>
-        We're Here To <strong>Revolutionize</strong><br></br> The World With Best 
-        <strong> fried chicken</strong>
+        We&apos;re Here To
+     
+        <strong> Revolutionize</strong> The <br></br>World
+      
+        With Best <strong>Fried Chicken</strong>
       </>
     }
   >

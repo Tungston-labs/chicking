@@ -9,6 +9,7 @@ import {
   FloatingItem,
 } from "./HeroFirst.styles.js";
 import { CiLocationArrow1 } from "react-icons/ci";
+import homeImages from "../../../assets/images/homeImages.js";
 
 const texts = [
   <>A <strong>Global</strong> Brand, Built to <strong>Partner</strong>.</>,
@@ -18,9 +19,7 @@ const texts = [
 ];
 
 const images = [
-  "/images/frame6.svg",
-  "/images/frame5.svg",
-  "/images/frame1.svg",
+  ...homeImages.hero.frames,
 ];
 
 const HeroFirst = () => {
@@ -63,25 +62,44 @@ const HeroFirst = () => {
 
         {/* Floating Items */}
         <FloatingItem className="left">
-          <img src="/images/countries.svg" width="120" height="120" alt="" />
+          <img
+            src={homeImages.hero.floating.countries}
+            width="120"
+            height="120"
+            alt=""
+          />
           <span>Countries</span>
-          <img src="/images/dotted1.svg" alt="" className="dotted-item-count" />
+          <img
+            src={homeImages.hero.floating.dottedCount}
+            alt=""
+            className="dotted-item-count"
+          />
         </FloatingItem>
 
         <FloatingItem className="rightTop">
-          <img src="/images/locations.svg" width="120" height="120" alt="" />
+          <img
+            src={homeImages.hero.floating.locations}
+            width="120"
+            height="120"
+            alt=""
+          />
           <span>Locations</span>
-          <img src="/images/dotted.svg" alt="" className="dotted-item" />
+          <img src={homeImages.hero.floating.dotted} alt="" className="dotted-item" />
         </FloatingItem>
 
         <FloatingItem className="rightCenter">
-          <img src="/images/Years.svg" width="120" height="120" alt="" />
+          <img
+            src={homeImages.hero.floating.years}
+            width="120"
+            height="120"
+            alt=""
+          />
           <span>Years of excellence</span>
-          <img src="/images/dotted.svg" alt="" className="dotted-item" />
+          <img src={homeImages.hero.floating.dotted} alt="" className="dotted-item" />
         </FloatingItem>
 
         <FloatingItem className="star">
-          <img src="/images/star.svg" width="120" height="120" alt="" />
+          <img src={homeImages.hero.floating.star} width="120" height="120" alt="" />
         </FloatingItem>
 
 
