@@ -40,6 +40,22 @@ export const bmiMilestones = [
     ],
     year: "2014 - 2017 Franchise Growth",
   },
+  {
+    items: [
+      "The franchise network accelerated through smarter market selection.",
+      "Brand recognition and menu appeal supported long-term endurance.",
+      "Momentum turned into a platform for sustainable international growth.",
+    ],
+    year: "2014 - 2017 Franchise Growth",
+  },
+    {
+    items: [
+      "The franchise network accelerated through smarter market selection.",
+      "Brand recognition and menu appeal supported long-term endurance.",
+      "Momentum turned into a platform for sustainable international growth.",
+    ],
+    year: "2014 - 2017 Franchise Growth",
+  },
 ];
 
 export const bmiCommitments = [

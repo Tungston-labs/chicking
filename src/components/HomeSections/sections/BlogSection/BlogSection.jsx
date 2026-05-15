@@ -4,24 +4,31 @@ import SectionHeader from "../../components/SectionHeader/index.jsx";
 import { blogPosts } from "../../data/homeSectionsData.js";
 import { BlogGrid } from "./BlogSection.styles.js";
 
-const BlogSection = () => (
+const BlogSection = ({
+  background = "#ffffff",
+  compact = true,
+  description = "Explore expert tips, brand highlights, and trends shaping our journey and the world of quick-service dining.",
+  posts = blogPosts,
+  textColor = "#171717",
+  title = (
+    <>
+      Our <strong>Blog</strong>
+    </>
+  ),
+}) => (
   <SharedBanner
-    compact
-    background="#ffffff"
-    textColor="#171717"
+    compact={compact}
+    background={background}
+    textColor={textColor}
   >
     <SectionHeader
       align="left"
       eyebrowAsTitle
-      eyebrow={
-        <>
-          Our <strong>Blog</strong>
-        </>
-      }
-      description="Explore expert tips, brand highlights, and trends shaping our journey and the world of quick-service dining."
+      eyebrow={title}
+      description={description}
     />
     <BlogGrid>
-      {blogPosts.map((post) => (
+      {posts.map((post) => (
         <BlogCard key={post.title} {...post} />
       ))}
     </BlogGrid>

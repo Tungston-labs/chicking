@@ -79,7 +79,6 @@ export const CommitmentHeader = styled.div`
   h2 {
     font-size: clamp(1.55rem, 2.8vw, 2.5rem);
     line-height: 1.16;
-    text-wrap: balance;
   }
 
   p {
@@ -98,24 +97,28 @@ export const CommitmentHeader = styled.div`
     }
 
     p {
-      font-size: 0.88rem;
-      line-height: 1.6;
+      font-size: 0.92rem;
+      line-height: 1.65;
     }
   }
 
   @media (max-width: 767px) {
-    width: min(100%, 18rem);
-    margin-bottom: 2rem;
+    width: min(100%, 16rem);
+    margin: 0 0 2rem;
+    text-align: left;
 
     h2 {
-      font-size: 1.3rem;
+      font-size: 1.8rem;
       line-height: 1.2;
+      text-wrap: unset;
     }
 
     p {
       width: 100%;
-      font-size: 0.8rem;
-      line-height: 1.55;
+      margin-left: 0;
+      margin-right: 0;
+      font-size: 0.92rem;
+      line-height: 1.65;
     }
   }
 `;
@@ -192,8 +195,13 @@ export const CommitmentText = styled.p`
   line-height: 1.7;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.78rem;
-    line-height: 1.55;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 0.92rem;
+    line-height: 1.65;
   }
 `;
 

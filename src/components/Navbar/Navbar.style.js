@@ -54,7 +54,7 @@ export const NavLinks = styled.div`
   justify-content: space-evenly;
   min-width: 0;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     display: none;
   }
 `;
@@ -66,7 +66,7 @@ export const NavActions = styled.div`
   margin-left: auto;
   flex: 0 0 auto;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     gap: 0.625rem;
   }
 `;
@@ -83,8 +83,8 @@ export const NavLink = styled.a`
   &:hover {
     color: #891b1c;
   }
-  @media (min-width: 1025px) and (max-width: 1380px) {
-    font-size: 0.92rem;
+  @media (min-width: 1024px) and (max-width: 1380px) {
+    font-size: 0.85rem;
   }
 `;
 
@@ -115,12 +115,12 @@ export const FindLocationButton = styled.a`
     line-height: 1;
   }
 
-  @media (min-width: 1025px) and (max-width: 1280px) {
+  @media (min-width: 1024px) and (max-width: 1280px) {
     padding: 0 0.875rem;
     font-size: 0.875rem;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     padding: 0 1rem;
     font-size: 0.9rem;
   }
@@ -153,7 +153,7 @@ export const MobileMenuButton = styled.button`
     background: #111111;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     display: inline-flex;
   }
 `;
@@ -189,7 +189,7 @@ export const MobileMenuContainer = styled.div`
     }
   }
 
-  @media (min-width: 1025px) {
+  @media (min-width: 1024px) {
     display: none;
   }
 
@@ -218,7 +218,7 @@ export const MobileMenuItem = styled.a`
     color: #ffffff;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     padding: 0.9rem 1.5rem;
   }
 

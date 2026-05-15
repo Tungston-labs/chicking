@@ -13,6 +13,21 @@ export const FoodSection = styled.section`
   }
 `;
 
+export const FoodHeader = styled.div`
+  width: min(100%, 42rem);
+  margin-bottom: 2.5rem;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: min(100%, 34rem);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 767px) {
+    width: min(100%, 22rem);
+    margin-bottom: 1.75rem;
+  }
+`;
+
 export const FoodScrollerViewport = styled.div`
   width: calc(100% + 4rem);
   margin-right: -4rem;
@@ -73,12 +88,12 @@ export const FoodCopy = styled.div`
   background: #0b0b0b;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    min-height: 6.2rem;
+    min-height: 7.5rem;
     padding: 0.7rem 0.8rem 0.85rem;
   }
 
   @media (max-width: 767px) {
-    min-height: 5.5rem;
+    min-height: 7.2rem;
     padding: 0.6rem 0.7rem 0.75rem;
   }
 `;
@@ -111,13 +126,13 @@ export const FoodText = styled.p`
 
   @media (min-width: 768px) and (max-width: 1024px) {
     margin-top: 0.35rem;
-    font-size: 0.72rem;
-    line-height: 1.45;
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   @media (max-width: 767px) {
     margin-top: 0.28rem;
-    font-size: 0.6rem;
-    line-height: 1.35;
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 `;
