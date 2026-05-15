@@ -24,7 +24,7 @@ export const Title = styled.h3`
 export const Text = styled.p`
   margin: 0.7rem 0 0;
   color: rgba(255, 255, 255, 0.74);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.7;
 `;
 

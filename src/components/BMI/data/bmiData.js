@@ -9,36 +9,70 @@ export const bmiBanner = {
 
 export const bmiMilestones = [
   {
+    description:
+      "Chicking opened its first outlet in Deira, Dubai, becoming the world's first fully Halal international quick service restaurant. A bold vision was born.",
+    image: bmiImages.top,
     items: [
-      "The Chicking brand was born with a clear halal QSR vision.",
-      "Foundational operating systems and supply partnerships were established.",
-      "A scalable store concept created the runway for future growth.",
+      "Chicking was established in the UAE as a quick-service restaurant (QSR) brand.",
+      "Focused on high-quality fried chicken with affordable pricing.",
+      "Built a strong foundation around taste, consistency, and customer satisfaction.",
     ],
     year: "2000 - Brand Foundation",
   },
   {
+    description:
+      "Chicking opened its first outlet in Deira, Dubai, becoming the world's first fully Halal international quick service restaurant. A bold vision was born.",
+    image: bmiImages.foods[0],
     items: [
-      "First expansion milestones validated demand across multiple markets.",
-      "Brand consistency and product quality became key growth levers.",
-      "The business model matured with deeper operational discipline.",
+      "Rapid expansion across Gulf countries (GCC).",
+      "Entered key markets like Oman, Qatar, and Saudi Arabia.",
+      "Strengthened brand visibility in the Middle East.",
     ],
-    year: "2003 - Expansion Pace",
+    year: "2003-2005 - GCC Expansion Phase",
   },
   {
+    description:
+      "Chicking opened its first outlet in Deira, Dubai, becoming the world's first fully Halal international quick service restaurant. A bold vision was born.",
+    image: bmiImages.foods[1],
     items: [
-      "New territories opened with a stronger franchise playbook.",
-      "Support systems grew across marketing, sourcing, and training.",
-      "Chicking strengthened investor confidence through repeatable execution.",
+      "Entered international markets including India and parts of Africa.",
+      "Started building a global presence.",
+      "Adapted menu offerings to regional tastes.",
     ],
-    year: "2006 - Regional Establishment",
+    year: "2006-2010 - Brand Establishment",
   },
   {
+    description:
+      "The franchise business model matured with stronger market selection, operational discipline, and deeper support for long-term partners.",
+    image: bmiImages.foods[2],
     items: [
-      "The franchise network accelerated through smarter market selection.",
-      "Brand recognition and menu appeal supported long-term endurance.",
-      "Momentum turned into a platform for sustainable international growth.",
+      "Franchise systems scaled more confidently across priority regions.",
+      "Operational support and repeatability helped partners grow sustainably.",
+      "The brand created stronger momentum for the next stage of international expansion.",
     ],
     year: "2014 - 2017 Franchise Growth",
+  },
+  {
+    description:
+      "Stronger consumer recognition and menu familiarity helped Chicking deepen market confidence and broaden regional traction.",
+    image: bmiImages.top,
+    items: [
+      "Brand awareness improved through wider store presence.",
+      "Menu appeal helped increase repeat visits and familiarity.",
+      "The business strengthened its foundation for wider adoption.",
+    ],
+    year: "2018-2020 - Brand Acceleration",
+  },
+  {
+    description:
+      "Chicking continues to evolve as a resilient international franchise brand with sharper systems, stronger demand signals, and more scalable growth opportunities.",
+    image: bmiImages.foods[2],
+    items: [
+      "Refined support systems across operations, sourcing, and brand consistency.",
+      "Improved franchise readiness for future territories.",
+      "Positioned the business for its next chapter of global expansion.",
+    ],
+    year: "2021-Present - Scalable Global Momentum",
   },
 ];
 

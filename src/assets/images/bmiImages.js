@@ -5,6 +5,7 @@ export const bmiImages = {
   hand: "/images/bmi/hand.svg",
   icon: "/images/bmi/bmiicon.svg",
   logo: "/images/logo.svg",
+  tickRow: "/images/bmi/tickrow.svg",
   top:"/images/bmi/foodtop.svg",
   edges: {
     darkTop: "/images/bmi/footerblack.png",

@@ -4,6 +4,7 @@ import { bmiFoods } from "./data/bmiData.js";
 import {
   FoodCard,
   FoodCopy,
+  FoodHeader,
   FoodImage,
   FoodScroller,
   FoodScrollerViewport,
@@ -15,16 +16,18 @@ import {
 const BmiFoodShowcase = () => (
   <FoodSection>
     <PageSection>
-      <SectionHeader
-        align="left"
-        description="We are focused on improving the nutritional attributes of the Chicking menu, promoting physical activity programs, and always providing great-tasting food. The global debate regarding health and nutrition and the role of quick service restaurants has highlighted many challenges. We are committed to being a productive part of this debate and to helping identify solutions."
-        title={
-          <>
-            Balanced Options By Offering More
-            Choice Across The <strong>Chicking Menu.</strong>
-          </>
-        }
-      />
+      <FoodHeader>
+        <SectionHeader
+          align="left"
+          description="We are focused on improving the nutritional attributes of the Chicking menu, promoting physical activity programs, and always providing great-tasting food. The global debate regarding health and nutrition and the role of quick service restaurants has highlighted many challenges. We are committed to being a productive part of this debate and to helping identify solutions."
+          title={
+            <>
+              Balanced Options By Offering More Choice Across The{" "}
+              <strong>Chicking Menu.</strong>
+            </>
+          }
+        />
+      </FoodHeader>
 
       <FoodScrollerViewport>
         <FoodScroller>

@@ -40,84 +40,9 @@ export const CommitmentSection = styled.section`
   }
 `;
 
-export const CommitmentEdge = styled.img`
-  position: absolute;
-  left: -0.15rem;
-  z-index: 3;
-  width: calc(100% + 0.3rem);
-  height: ${({ $position }) =>
-    $position === "top"
-      ? "clamp(1.6rem, 7vw, 2.7rem)"
-      : "clamp(2rem, 6vw, 3rem)"};
-  display: block;
-  object-fit: fill;
-  pointer-events: none;
-
-  ${({ $position }) =>
-    $position === "top"
-      ? "top: 0;"
-      : "bottom: 0;"}
-`;
-
-export const CommitmentInner = styled.div`
+export const CommitmentBannerContent = styled.div`
   position: relative;
   z-index: 2;
-  width: min(100%, var(--section-max-width));
-  margin: 0 auto;
-  padding: 5.75rem 2rem 5rem;
-
-  @media (max-width: 768px) {
-    padding: 4.25rem 1.25rem 4rem;
-  }
-`;
-
-export const CommitmentHeader = styled.div`
-  width: min(100%, 52rem);
-  margin: 0 auto 2.75rem;
-  text-align: center;
-
-  h2 {
-    font-size: clamp(1.55rem, 2.8vw, 2.5rem);
-    line-height: 1.16;
-    text-wrap: balance;
-  }
-
-  p {
-    width: min(100%, 42rem);
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 0.98rem;
-    line-height: 1.7;
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    margin-bottom: 2.2rem;
-
-    h2 {
-      font-size: 1.75rem;
-    }
-
-    p {
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
-  }
-
-  @media (max-width: 767px) {
-    width: min(100%, 18rem);
-    margin-bottom: 2rem;
-
-    h2 {
-      font-size: 1.3rem;
-      line-height: 1.2;
-    }
-
-    p {
-      width: 100%;
-      font-size: 0.8rem;
-      line-height: 1.55;
-    }
-  }
 `;
 
 export const CommitmentCards = styled.div`
@@ -125,29 +50,37 @@ export const CommitmentCards = styled.div`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.75rem, 3vw, 3rem);
   align-items: start;
+  padding: 0 clamp(0.2rem, 1.4vw, 0.9rem);
+      margin-left: 8%;
 
   @media (min-width: 768px) and (max-width: 1024px) {
     gap: 1.3rem;
+    padding: 0 0.4rem;
   }
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 2rem;
+    padding: 0;
+          margin-left: 0;
+
   }
 `;
 
 export const CommitmentCard = styled.article`
+  box-sizing: border-box;
   position: relative;
   min-height: 14rem;
-  padding-right: 1rem;
+  padding: 0 1rem;
 
   @media (min-width: 768px) and (max-width: 1024px) {
     min-height: 12rem;
-    padding-right: 0.5rem;
+    padding: 0 0.5rem;
   }
 
   @media (max-width: 900px) {
     min-height: 0;
+    padding: 0;
   }
 `;
 
@@ -192,8 +125,13 @@ export const CommitmentText = styled.p`
   line-height: 1.7;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.78rem;
-    line-height: 1.55;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 0.875rem;
+    line-height: 1.65;
   }
 `;
 

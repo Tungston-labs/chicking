@@ -19,9 +19,9 @@ const ReasonsSection = () => (
       <>
         We&apos;re Here To
      
-        <strong> Revolutionize</strong> The <br></br>World
+        <strong> Revolutionize</strong> The World
       
-        With Best <strong>Fried Chicken</strong>
+        <br></br>With Best <strong>Fried Chicken</strong>
       </>
     }
   >

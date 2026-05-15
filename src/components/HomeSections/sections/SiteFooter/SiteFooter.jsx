@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { NavLink as RouterLink, } from "react-router-dom";
+import { useLocation, NavLink as RouterLink } from "react-router-dom";
 import {
   FiInstagram,
   FiMail,
@@ -13,6 +12,7 @@ import { footerInfo, navItems } from "../../data/homeSectionsData.js";
 
 import {
   Footer,
+  FooterEdge,
   FooterContactText,
   FooterInfoCard,
   FooterNav,
@@ -34,6 +34,22 @@ const icons = {
   phone: <FiPhoneCall />,
 };
 
+const normalizePath = (path) => (path === "/" ? "/" : path.replace(/\/+$/, ""));
+
+const isActivePath = (currentPath, itemPath) => {
+  const normalizedCurrentPath = normalizePath(currentPath);
+  const normalizedItemPath = normalizePath(itemPath);
+
+  if (normalizedItemPath === "/") {
+    return normalizedCurrentPath === "/";
+  }
+
+  return (
+    normalizedCurrentPath === normalizedItemPath ||
+    normalizedCurrentPath.startsWith(`${normalizedItemPath}/`)
+  );
+};
+
 const socialLinks = (
   <>
     <FooterSocialLink href="#">
@@ -50,10 +66,20 @@ const socialLinks = (
   </>
 );
 
-const SiteFooter = ({topEdgeImage}) => {
-const [activeItem, setActiveItem] = useState("Home");
+const SiteFooter = ({ topEdgeImage, topedgeImage }) => {
+  const location = useLocation();
+  const resolvedTopEdgeImage = topEdgeImage ?? topedgeImage;
+
   return (
-    <Footer $topEdgeImage={topEdgeImage}>
+    <Footer>
+      {resolvedTopEdgeImage && (
+        <FooterEdge
+          src={resolvedTopEdgeImage}
+          alt=""
+          aria-hidden="true"
+        />
+      )}
+
       <FooterTop>
         {footerInfo.map((item) => (
           <FooterInfoCard key={item.label}>
@@ -87,10 +113,7 @@ const [activeItem, setActiveItem] = useState("Home");
               as={RouterLink}
               key={item.path}
               to={item.path}
-              $active={activeItem === item.name}
-              onClick={() =>
-                setActiveItem(item.name)
-              }
+              $active={isActivePath(location.pathname, item.path)}
             >
               {item.name}
             </FooterNavLink>

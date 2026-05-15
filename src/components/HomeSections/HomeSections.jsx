@@ -1,4 +1,5 @@
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
+import { blogPosts } from "./data/homeSectionsData.js";
 import BlogSection from "./sections/BlogSection/index.jsx";
 import FaqSection from "./sections/FaqSection/index.jsx";
 import FranchiseStorySection from "./sections/FranchiseStorySection/index.jsx";
@@ -9,7 +10,7 @@ import SiteFooter from "./sections/SiteFooter/index.jsx";
 const HomeSections = () => {
   return (
     <>
-      <BlogSection />
+      <BlogSection posts={blogPosts.slice(0, 3)} />
       <FranchiseStorySection />
       <FaqSection />
       <ReasonsSection />
