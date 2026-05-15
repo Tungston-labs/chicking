@@ -5,21 +5,19 @@ export const Footer = styled.footer`
   background: #000;
   color: #ffffff;
   overflow: hidden;
+`;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -0.15rem;
-    z-index: 0;
-    width: calc(100% + 0.3rem);
-    height: clamp(2rem, 5.6vw, 3.2rem);
-  background: ${({ $topEdgeImage }) =>
-  $topEdgeImage
-    ? `url(${$topEdgeImage}) center top / 100% 100% no-repeat`
-    : "none"};
-    pointer-events: none;
-  }
+export const FooterEdge = styled.img`
+  position: absolute;
+  top: 0;
+  left: -0.15rem;
+  z-index: 0;
+  width: calc(100% + 0.3rem);
+  height: clamp(2rem, 5.6vw, 3.2rem);
+  display: block;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
 `;
 
 export const FooterTop = styled.div`
@@ -266,11 +264,9 @@ export const FooterBottomInner = styled.div`
 
   @media (max-width: 760px) {
     padding: 1.2rem 1rem 1.5rem;
-    align-items: center;
-      align-items: flex-start;
-
+    align-items: flex-start;
     flex-direction: column;
-    justify-content:flex-start;
+    justify-content: flex-start;
     gap: 1rem;
   }
 `;
@@ -289,7 +285,7 @@ export const FooterCopyright = styled.p`
 
   @media (max-width: 760px) {
     text-align: left;
-     font-size: 0.88rem;
+    font-size: 0.88rem;
   }
 
   a {

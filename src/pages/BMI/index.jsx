@@ -7,6 +7,7 @@ import BmiFoodShowcase from "../../components/BMI/BmiFoodShowcase.jsx";
 import BmiMilestones from "../../components/BMI/BmiMilestones.jsx";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import { bmiBanner } from "../../components/BMI/data/bmiData.js";
+import FaqSection from "../../components/HomeSections/sections/FaqSection/FaqSection.jsx";
 
 const BMI = () => (
   <PageLayout>

@@ -3,11 +3,16 @@ import styled from "styled-components";
 export const Header = styled.header`
   width: 100%;
   background: #ffffff;
+  --navbar-height: 4.875rem;
+
+  @media (max-width: 768px) {
+    --navbar-height: 4.5rem;
+  }
 `;
 
 export const NavInner = styled.nav`
   width: 100%;
-  min-height: 4.875rem;
+  min-height: var(--navbar-height);
   padding: 0 2rem;
 
   display: flex;
@@ -51,6 +56,18 @@ export const NavLinks = styled.div`
 
   @media (max-width: 1024px) {
     display: none;
+  }
+`;
+
+export const NavActions = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  flex: 0 0 auto;
+
+  @media (max-width: 1024px) {
+    gap: 0.625rem;
   }
 `;
 
@@ -104,19 +121,14 @@ export const FindLocationButton = styled.a`
   }
 
   @media (max-width: 1024px) {
-    margin-left: auto;
-    padding: 0 1.2rem;
-    font-size: 0.92rem;
+    padding: 0 1rem;
+    font-size: 0.9rem;
   }
 
   @media (max-width: 420px) {
     min-height: 2.35rem;
     padding: 0 0.85rem;
     font-size: 0.82rem;
-  }
-
-  @media (max-width: 1024px) {
-    display: none;
   }
 `;
 
@@ -143,18 +155,16 @@ export const MobileMenuButton = styled.button`
 
   @media (max-width: 1024px) {
     display: inline-flex;
-    margin-left: auto;
   }
 `;
 
 export const MobileMenuContainer = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  right: auto;
-  width: 100vw;
-  min-width: 100vw;
-  max-height: calc(100vh - 4.5rem);
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: calc(100dvh - var(--navbar-height));
   overflow-y: auto;
   border: 0;
   border-radius: 0;
@@ -164,15 +174,14 @@ export const MobileMenuContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-  padding: 0.9rem 0 1.25rem;
-  transform: translateX(-50%);
+  padding: 1rem 0 1.35rem;
 
   animation: slideDown 0.3s ease-out;
 
   @keyframes slideDown {
     from {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(-0.625rem);
     }
     to {
       opacity: 1;
@@ -185,8 +194,8 @@ export const MobileMenuContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    max-height: calc(100vh - 4.2rem);
-    padding: 1rem 0 1.25rem;
+    height: calc(100dvh - var(--navbar-height));
+    padding: 0.85rem 0 1.1rem;
   }
 `;
 
@@ -209,48 +218,11 @@ export const MobileMenuItem = styled.a`
     color: #ffffff;
   }
 
-  ${(props) =>
-    props.$isFindLocation &&
-    `
-    background: #F39200;
-    color: #ffffff;
-    margin: 0.5rem 0.5rem;
-    border-radius: 0.25rem;
-    justify-content: center;
-
-    &:hover {
-      background: #dd8200;
-      color: #ffffff;
-    }
-
-    svg {
-      font-size: 1rem;
-    }
-  `}
-
   @media (max-width: 1024px) {
     padding: 0.9rem 1.5rem;
   }
 
   @media (max-width: 768px) {
     font-size: 0.76rem;
-
-    ${({ $isFindLocation }) =>
-      $isFindLocation
-        ? `
-          min-height: 2.6rem;
-          margin: 0.9rem 1.5rem 0;
-          padding: 0 1rem;
-          justify-content: center;
-          color: #ffffff;
-          font-size: 0.78rem;
-          letter-spacing: 0;
-          text-transform: none;
-
-          &:hover {
-            background: #dd8200;
-          }
-        `
-        : ""}
   }
 `;
