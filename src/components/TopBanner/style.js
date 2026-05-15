@@ -26,7 +26,7 @@ export const BannerWrapper = styled.section`
   position: relative;
   overflow: hidden;
   background: #891B1C;
-  min-height: 230px;
+  min-height: 250px;
   display: flex;
   align-items: center;
 `;
@@ -39,7 +39,7 @@ export const BannerContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  padding: 20px 30px 20px ;
+  padding: 10px 30px 50px ;
 
   @media (max-width: 1100px) {
     padding: 30px 40px 25px;
@@ -125,7 +125,7 @@ export const RightSection = styled.div`
 
 export const BannerImage = styled.img`
   width: 100%;
-  max-width: 460px;
+  max-width: 450px;
   object-fit: contain;
 
   @media (max-width: 1200px) {
