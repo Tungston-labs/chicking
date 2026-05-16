@@ -2,12 +2,11 @@ import PageLayout from "../../components/Layout/PageLayout.jsx";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter/index.jsx";
 import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
 import TopBanner from "../../components/TopBanner/index.jsx";
-import BmiCommitment from "../../components/BMI/BmiCommitment.jsx";
-import BmiFoodShowcase from "../../components/BMI/BmiFoodShowcase.jsx";
-import BmiMilestones from "../../components/BMI/BmiMilestones.jsx";
+import BmiCommitment from "../../components/BMI/commitment/index.jsx";
+import BmiFoodShowcase from "../../components/BMI/showcase/index.jsx";
+import BmiMilestones from "../../components/BMI/milestone/index.jsx";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import { bmiBanner } from "../../components/BMI/data/bmiData.js";
-import FaqSection from "../../components/HomeSections/sections/FaqSection/FaqSection.jsx";
 
 const BMI = () => (
   <PageLayout>
@@ -22,7 +21,7 @@ const BMI = () => (
       image={bmiBanner.image}
     />
     <BmiMilestones />
-    <BmiCommit            ment />
+    <BmiCommitment />
     <BmiFoodShowcase />
     <PartnerCta
       action={{
@@ -39,7 +38,8 @@ const BMI = () => (
         <>
           Partner With Chicking <strong>- Where Proven</strong>
           <br />
-          <strong>Success Meets Global Opportunity</strong>
+          <strong>Success Meets Global Opportunity</strong>,
+          
         </>
       }
       topEdgeImage={sharedBannerImages.edges.top}

@@ -39,6 +39,6 @@ export const Text = styled.p`
   margin: 0.9rem ${({ $align }) => ($align === "left" ? "0 0" : "auto 0")};
   color: ${({ $tone }) =>
     $tone === "light" ? "rgba(255, 255, 255, 0.78)" : "#5f5f5f"};
-  font-size: 0.98rem;
+  font-size: 0.875rem;
   line-height: 1.8;
 `;
