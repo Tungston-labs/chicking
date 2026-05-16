@@ -1,4 +1,5 @@
 import { CiLocationArrow1 } from "react-icons/ci";
+import { NavLink as RouterLink } from "react-router-dom";
 import {
   BannerAction,
   BannerBody,
@@ -18,22 +19,35 @@ import {
   BannerTitle,
   PaintEdge,
 } from "./SharedBanner.styles.js";
+import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 
-const TOP_EDGE_IMAGE = "/images/bottom.png";
-const BOTTOM_EDGE_IMAGE = "/images/top.png";
+const TOP_EDGE_IMAGE = sharedBannerImages.edges.top;
+const BOTTOM_EDGE_IMAGE = sharedBannerImages.edges.bottom;
 const WHITE_EDGE_COLORS = new Set(["#fff", "#ffffff", "white"]);
 const RASTER_EDGE_BACKGROUNDS = new Set(["#891b1c", "#991b1e"]);
 
 const normalizeColor = (value) =>
   typeof value === "string" ? value.trim().toLowerCase() : "";
 
-const shouldUseRasterEdge = ({ background, edgeColor, edgeImage }) =>
+const shouldUseRasterEdge = ({
+  background,
+  edgeColor,
+  edgeImage,
+  forceEdgeImages,
+}) =>
   Boolean(edgeImage) &&
-  WHITE_EDGE_COLORS.has(normalizeColor(edgeColor)) &&
-  RASTER_EDGE_BACKGROUNDS.has(normalizeColor(background));
+  (forceEdgeImages ||
+    (WHITE_EDGE_COLORS.has(normalizeColor(edgeColor)) &&
+      RASTER_EDGE_BACKGROUNDS.has(normalizeColor(background))));
 
-const renderEdge = ({ background, edgeColor, edgeImage, position }) => {
-  if (shouldUseRasterEdge({ background, edgeColor, edgeImage })) {
+const renderEdge = ({
+  background,
+  edgeColor,
+  edgeImage,
+  forceEdgeImages,
+  position,
+}) => {
+  if (shouldUseRasterEdge({ background, edgeColor, edgeImage, forceEdgeImages })) {
     return (
       <PaintEdge
         aria-hidden="true"
@@ -47,12 +61,36 @@ const renderEdge = ({ background, edgeColor, edgeImage, position }) => {
   return null;
 };
 
-export const BannerHeader = ({ children, description, eyebrow, title }) => {
+export const BannerHeader = ({
+  align,
+  children,
+  description,
+  eyebrow,
+  leadWidth,
+  mobileAlign,
+  tabletAlign,
+  title,
+  width,
+}) => {
   return (
-    <BannerBody>
+    <BannerBody
+      $align={align}
+      $mobileAlign={mobileAlign}
+      $tabletAlign={tabletAlign}
+      $width={width}
+    >
       {eyebrow && <BannerEyebrow>{eyebrow}</BannerEyebrow>}
-      {title && <BannerTitle>{title}</BannerTitle>}
-      {description && <BannerLead>{description}</BannerLead>}
+      {title && <BannerTitle $mobileAlign={mobileAlign}>{title}</BannerTitle>}
+      {description && (
+        <BannerLead
+          $align={align}
+          $mobileAlign={mobileAlign}
+          $tabletAlign={tabletAlign}
+          $width={leadWidth}
+        >
+          {description}
+        </BannerLead>
+      )}
       {children}
     </BannerBody>
   );
@@ -91,16 +129,23 @@ const SharedBanner = ({
   backgroundImageRepeat,
   backgroundImageSize,
   children,
+  className,
   compact = false,
   contentWidth = "var(--section-max-width)",
   description,
   edgeColor = "#ffffff",
   eyebrow,
   features = [],
+  forceEdgeImages = false,
+  headerAlign = "center",
+  headerAlignMobile,
+  headerAlignTablet,
+  headerWidth = "var(--section-max-width)",
   hasEdges = true,
   image,
   hideBackgroundImage = false,
   imageAlt = "",
+  leadWidth = "72rem",
   reverse = false,
   textColor = "#ffffff",
   title,
@@ -115,6 +160,7 @@ const SharedBanner = ({
 
   return (
     <BannerShell
+      className={className}
       $background={background}
       $backgroundImage={backgroundImage}
       $backgroundImageRepeat={backgroundImageRepeat}
@@ -129,6 +175,7 @@ const SharedBanner = ({
           background,
           edgeColor: resolvedTopEdgeColor,
           edgeImage: topEdgeImage,
+          forceEdgeImages,
           position: "top",
         })
       )}
@@ -138,10 +185,21 @@ const SharedBanner = ({
         $reverse={reverse}
       >
         {hasHeader && (
-          <BannerHeader description={description} eyebrow={eyebrow} title={title}>
+          <BannerHeader
+            description={description}
+            eyebrow={eyebrow}
+            title={title}
+            align={headerAlign}
+            mobileAlign={headerAlignMobile || headerAlign}
+            tabletAlign={headerAlignTablet || headerAlign}
+            width={headerWidth}
+            leadWidth={leadWidth}
+          >
             {action && (
               <BannerAction
-                href={action.href || "#"}
+                as={action.to ? RouterLink : undefined}
+                href={action.to ? undefined : action.href || "#"}
+                to={action.to}
                 $background={actionBackground || action.background}
                 $textColor={actionTextColor || action.textColor}
               >
@@ -166,6 +224,7 @@ const SharedBanner = ({
           background,
           edgeColor: resolvedBottomEdgeColor,
           edgeImage: bottomEdgeImage,
+          forceEdgeImages,
           position: "bottom",
         })
       )}

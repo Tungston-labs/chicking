@@ -70,7 +70,7 @@ export const Heading = styled.h1`
   font-weight: 800;
   color: #fff;
   animation: ${jumpAnimation} 0.8s ease;
-  margin-bottom: 20px;
+  margin-bottom: -10px;
 
   @media (max-width: 1200px) {
     font-size: 3rem;
@@ -86,7 +86,7 @@ export const Heading = styled.h1`
   }
 
   @media (max-width: 480px) {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     line-height: 1.3;
   }
 `;
@@ -102,12 +102,12 @@ export const Description = styled.p`
     font-size: 12px;
   }
   @media (max-width: 768px) {
-    font-size: 12px;
+    font-size: 0.8rem;
     text-align: left;
   }
 
   @media (max-width: 480px) {
-    font-size: 11px;
+    font-size: 1rem;
     line-height: 1.7;
   }
 `;

@@ -18,8 +18,8 @@ export const FaqIntro = styled.div`
 
   h2 {
     margin: 0;
-    color: #171717;
-    font-size: clamp(1.45rem, 2.1vw, 2.05rem);
+    color: #000;
+    font-size: clamp(1.45rem, 1.9vw, 2.05rem);
     font-weight: 400;
     line-height: 1.15;
   }
@@ -37,8 +37,8 @@ export const FaqIntro = styled.div`
 export const FaqCopy = styled.p`
   width: min(100%, 34rem);
   margin: 0.85rem 0 0;
-  color: #565656;
-  font-size: clamp(0.88rem, 1vw, 0.98rem);
+  color: #000;
+  font-size: clamp(1rem, 1vw, 1.3rem);
   line-height: 1.75;
 
   @media (min-width: 561px) and (max-width: 900px) {
@@ -130,7 +130,7 @@ export const FaqSummary = styled.summary`
   list-style: none;
 
   background: #f7f1e4;
-  color: #171717;
+  color: #000;
 
   font-size: 0.95rem;
   font-weight: 600;
@@ -147,7 +147,7 @@ export const FaqSummary = styled.summary`
     transition:
       transform 0.25s ease,
       color 0.25s ease;
-    color: #171717;
+    color: #000;
   }
 `;
 
@@ -172,6 +172,6 @@ export const FaqAnswer = styled.div`
   background: #f7f1e4;
   padding: 1.8rem 1.5rem;
   color: #4e4e4e;
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   line-height: 1.8;
 `;

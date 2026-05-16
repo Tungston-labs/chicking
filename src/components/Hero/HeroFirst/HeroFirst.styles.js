@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import homeImages from "../../../assets/images/homeImages.js";
 
 const slideUp = keyframes`
   from {
@@ -15,12 +16,16 @@ export const HeroFirstContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
   flex-direction: column;
+
+  @media (max-width: 767px) {
+    padding: 1.25rem 1rem 0.75rem;
+  }
 `;
 
 export const HeroTitle = styled.h1`
-  min-height: clamp(3.75rem, 9vw, 6.75rem);
+  min-height: clamp(2.75rem, 5vw, 3.25rem);
   font-size: 3rem;
   font-weight: 400;
   text-align: center;
@@ -31,15 +36,33 @@ export const HeroTitle = styled.h1`
   strong {
     font-weight: 700;
   }
+   @media (max-width: 1023px) {
+   font-size: 2.5rem;
+    }
+     @media (max-width: 767px) {
+      font-size: 2rem;
+      min-height: auto;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.7rem;
+      line-height: 1.2;
+    }
 `;
 
 export const HeroSubtitle = styled.p`
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 300;
   max-width: 46rem;
-  margin-top: 1rem;
   text-align: center;
   color: #000;
+  margin: 0.9rem 0 0;
+
+  @media (max-width: 767px) {
+    max-width: 21rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
 `;
 
 export const HeroButton = styled.a`
@@ -63,6 +86,9 @@ export const HeroButton = styled.a`
     transform 160ms ease;
 
   svg {
+    display: block;
+    flex: 0 0 auto;
+    font-size: 1.05rem;
     pointer-events: none;
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -70,6 +96,10 @@ export const HeroButton = styled.a`
 
   &:hover svg {
     transform: translateX(4px);
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 1.1rem;
   }
 `;
 
@@ -86,7 +116,7 @@ export const ImageWrapper = styled.div`
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("/images/Earth.svg");
+    background-image: url("${homeImages.hero.earth}");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -99,7 +129,7 @@ export const ImageWrapper = styled.div`
     transform: translate(-50%, -50%);
 
     z-index: 0;
-    opacity: 0.15;
+    opacity: 0.10;
 
     animation: floatBg 6s ease-in-out infinite;
   }
@@ -265,33 +295,36 @@ export const ImageWrapper = styled.div`
 
 
   @media (max-width: 767px) {
-    min-height: clamp(28rem, 110vw, 34rem);
+    max-width: 22rem;
+    min-height: clamp(18rem, 78vw, 23rem);
+    margin-top: 0.5rem;
 
     &::before {
       animation: none;
+      width: 105%;
+      height: 105%;
+      left: 50%;
     }
 
     .left {
-      left: -0.5rem;
-      top: 18%;
+      left: -0.1rem;
+      top: 13%;
       transform: none;
     }
 
     .rightTop {
-      right: -0.5rem;
-      top: 2%;
+      right: -0.1rem;
+      top: 1%;
       transform: none;
     }
 
     .rightCenter {
-      right: 10.5rem;
-      top: 70%;
-      transform: none;
+      display: none;
     }
 
     .star {
-      right: 1rem;
-      top: 28%;
+      right: 0.65rem;
+      top: 22%;
       transform: none;
     }
 
@@ -349,6 +382,19 @@ transition:
     width: 5rem;
     height: 5rem;
     z-index: 2;
+  }
+
+  @media (max-width: 767px) {
+    padding: 0.55rem;
+
+    span {
+      font-size: 0.7rem;
+    }
+
+    img:not(.dotted-item, .dotted-item-count) {
+      width: 3.3rem;
+      height: 3.3rem;
+    }
   }
 
   .dotted-item,

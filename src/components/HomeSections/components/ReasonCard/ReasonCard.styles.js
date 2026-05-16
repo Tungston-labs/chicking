@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Card = styled.article`
-  min-height: 19rem;
+  min-height: 25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,9 +9,10 @@ export const Card = styled.article`
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 0.35rem;
   background: rgba(255, 255, 255, 0.045);
+  @media (max-width: 767px) {
+    min-height: 20rem;
+  }
 `;
-
-
 
 export const Title = styled.h3`
   margin: 1rem 0 0;
@@ -23,7 +24,7 @@ export const Title = styled.h3`
 export const Text = styled.p`
   margin: 0.7rem 0 0;
   color: rgba(255, 255, 255, 0.74);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.7;
 `;
 

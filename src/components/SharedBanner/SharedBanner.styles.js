@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+const getBodyMargin = (align) => (align === "left" ? "0 0" : "0 auto");
+const getLeadMargin = (align) => (align === "left" ? "1.125rem 0 0" : "1.125rem auto 0");
+const getMobileLeadMargin = (align) => (align === "left" ? "0.9rem 0 0" : "0.9rem auto 0");
+const getTitleMargin = (align) => (align === "left" ? "0" : "0 auto");
+
 export const BannerShell = styled.section`
   position: relative;
   width: 100%;
@@ -79,7 +84,7 @@ export const BannerContent = styled.div`
   z-index: 2;
   width: min(100%, ${({ $contentWidth }) => $contentWidth || "var(--section-max-width)"});
   margin: 0 auto;
-  min-height: ${({ $compact }) => ($compact ? "17rem" : "24.5rem")};
+  min-height: ${({ $compact }) => ($compact ? "17rem" : "38.5rem")};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,16 +101,26 @@ export const BannerContent = styled.div`
   @media (max-width: 768px) {
     min-height: auto;
     padding: ${({ $compact }) =>
-      $compact ? "3.75rem 1.25rem" : "5rem 1.25rem"};
+      $compact ? "3.4rem 1.25rem" : "4.25rem 1.25rem 3.5rem"};
     text-align: left;
     align-items: stretch;
   }
 `;
 
 export const BannerBody = styled.div`
-  width: min(100%, var(--section-max-width));
-  margin: 0 auto;
-  text-align: center;
+  width: min(100%, ${({ $width }) => $width || "var(--section-max-width)"});
+  margin: ${({ $align }) => getBodyMargin($align)};
+  text-align: ${({ $align }) => $align || "center"};
+
+  @media (min-width: 769px) and (max-width: 900px) {
+    margin: ${({ $tabletAlign }) => getBodyMargin($tabletAlign)};
+    text-align: ${({ $tabletAlign }) => $tabletAlign || "center"};
+  }
+
+  @media (max-width: 768px) {
+    margin: ${({ $mobileAlign }) => getBodyMargin($mobileAlign)};
+    text-align: ${({ $mobileAlign }) => $mobileAlign || "center"};
+  }
 `;
 
 export const BannerEyebrow = styled.p`
@@ -127,17 +142,48 @@ export const BannerTitle = styled.h2`
     font-weight: 700;
   }
 
-  @media (max-width: 768px) {
-    font-size: 1.75rem;
+  .desktop-only {
+    display: inline;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 48rem;
+    margin: ${({ $mobileAlign }) => getTitleMargin($mobileAlign)};
+    font-size: clamp(1.45rem, 5.25vw, 1.9rem);
+    line-height: 1.18;
+    text-wrap: balance;
+
+    .desktop-only {
+      display: none;
+    }
+
+    .mobile-only {
+      display: inline;
+    }
   }
 `;
 
 export const BannerLead = styled.p`
-  width: min(100%, 72rem);
-  margin: 1.125rem auto 0;
+  width: min(100%, ${({ $width }) => $width || "72rem"});
+  margin: ${({ $align }) => getLeadMargin($align)};
   font-size: 1rem;
   line-height: 1.8;
   font-weight: 300;
+
+  @media (min-width: 769px) and (max-width: 900px) {
+    margin: ${({ $tabletAlign }) => getMobileLeadMargin($tabletAlign)};
+  }
+
+  @media (max-width: 768px) {
+    max-width: 38rem;
+    margin: ${({ $mobileAlign }) => getMobileLeadMargin($mobileAlign)};
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
 `;
 
 export const BannerAction = styled.a`
@@ -255,7 +301,7 @@ export const BannerFeatureText = styled.p`
 
   @media (max-width: 900px) {
     margin-top: 0.45rem;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     line-height: 1.5;
   }
 `;

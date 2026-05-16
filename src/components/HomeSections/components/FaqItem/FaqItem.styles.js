@@ -26,7 +26,7 @@ export const FaqItemShell = styled.details`
     margin: 0;
     padding: 0 1.1rem 1.15rem;
     color: #666666;
-    font-size: 0.92rem;
+    font-size: 0.875rem;
     line-height: 1.7;
   }
 

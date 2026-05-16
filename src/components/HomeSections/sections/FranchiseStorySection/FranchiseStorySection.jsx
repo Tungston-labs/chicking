@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import SharedBanner from "../../../SharedBanner/SharedBanner.jsx";
 import {
@@ -7,6 +6,7 @@ import {
   DotButton,
   SidePreview,
   StoryCard,
+  StoryCardShell,
   StoryCardCopy,
   StoryCardMeta,
   StoryFlag,
@@ -16,61 +16,32 @@ import {
   StoryStage,
   StoryText,
 } from "./FranchiseStorySection.styles.js";
-
 import { stories } from "../../data/homeSectionsData.js";
-
-const getStoryIndex = (index) => {
-  if (index < 0) {
-    return stories.length - 1;
-  }
-
-  if (index >= stories.length) {
-    return 0;
-  }
-
-  return index;
-};
+import FranchiseStorySectionContent from "./FranchiseStorySection.content.jsx";
+import useFranchiseStorySlider from "./useFranchiseStorySlider.js";
 
 const FranchiseStorySection = () => {
-  const [activeStory, setActiveStory] = useState(0);
-  const [slideDirection, setSlideDirection] = useState("next");
-  const story = stories[activeStory];
-  const previousStory = stories[getStoryIndex(activeStory - 1)];
-  const nextStory = stories[getStoryIndex(activeStory + 1)];
-
-  const goToPreviousStory = () => {
-    setSlideDirection("previous");
-    setActiveStory((current) => getStoryIndex(current - 1));
-  };
-
-  const goToNextStory = () => {
-    setSlideDirection("next");
-    setActiveStory((current) => getStoryIndex(current + 1));
-  };
-
-  const goToStory = (index) => {
-    if (index === activeStory) {
-      return;
-    }
-
-    setSlideDirection(index > activeStory ? "next" : "previous");
-    setActiveStory(index);
-  };
+  const {
+    activeStory,
+    nextStory,
+    previousStory,
+    slideDirection,
+    story,
+    goToNextStory,
+    goToPreviousStory,
+    goToStory,
+  } = useFranchiseStorySlider(stories);
 
   return (
     <SharedBanner
       background="#891B1C"
-      description={
-        <>
-          Starting with one outlet, this franchise partner expanded into
-          multiple locations through strong brand <br />
-          support, operational excellence, and high customer demand.
-        </>
-      }
+      description={<FranchiseStorySectionContent />}
       edgeColor="#ffffff"
       title={
         <>
-          Franchise <strong>Success</strong> Story
+          <span>
+            Franchise <strong>Success</strong> Story
+          </span>
         </>
       }
     >
@@ -112,37 +83,39 @@ const FranchiseStorySection = () => {
         </SidePreview>
 
         <StoryStage key={story.image} $direction={slideDirection}>
-          <StoryCard>
+          <StoryCardShell>
             <CarouselArrow
               type="button"
-              $placement="card"
+              $placement="stage"
               $position="left"
               aria-label="Show previous success story"
               onClick={goToPreviousStory}
             >
               <FiArrowLeft aria-hidden="true" />
             </CarouselArrow>
-            <StoryCardCopy>
-              <StoryFlag />
-              <StoryText>{story.text}</StoryText>
-              <StoryCardMeta>
-                <strong>{story.author}</strong>
-                <span>{story.location}</span>
-              </StoryCardMeta>
-            </StoryCardCopy>
-            <StoryImagePanel>
-              <StoryImage src={story.image} alt="" />
-            </StoryImagePanel>
+            <StoryCard>
+              <StoryCardCopy $direction={slideDirection}>
+                <StoryFlag />
+                <StoryText>{story.text}</StoryText>
+                <StoryCardMeta>
+                  <strong>{story.author}</strong>
+                  <span>{story.location}</span>
+                </StoryCardMeta>
+              </StoryCardCopy>
+              <StoryImagePanel $direction={slideDirection}>
+                <StoryImage src={story.image} alt="" />
+              </StoryImagePanel>
+            </StoryCard>
             <CarouselArrow
               type="button"
-              $placement="card"
+              $placement="stage"
               $position="right"
               aria-label="Show next success story"
               onClick={goToNextStory}
             >
               <FiArrowRight aria-hidden="true" />
             </CarouselArrow>
-          </StoryCard>
+          </StoryCardShell>
         </StoryStage>
 
         <CarouselDots aria-label="Select success story">

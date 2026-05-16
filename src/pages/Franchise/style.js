@@ -32,11 +32,11 @@ export const PageWrapper = styled.div`
 export const HeroSection = styled.div`
   max-width: 1740px;
   margin: auto;
-  padding: 70px 40px 0;
+  padding: 70px 40px 80px;
   position: relative;
 
-  @media (max-width: 767px) {
-    padding: 40px 16px 0;
+  @media (max-width: 590px) {
+    padding: 40px 16px 60px;
   }
 `;
 
@@ -66,11 +66,16 @@ export const SmallTitle = styled.p`
 font-weight: 400;
 
 @media (max-width: 1023px) {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+  }
+  @media (max-width:992px) {
+       font-size: 1.2rem;
+    text-align: left;
   }
   @media (max-width: 570px) {
     font-size: 1.2rem;
     text-align: left;
+      margin-bottom: 10px;
   }
 `;
 
@@ -87,21 +92,24 @@ export const MainTitle = styled.h1`
   animation: ${jumpAnimation} 0.8s ease;
 
    @media (max-width: 1023px) {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     /* min-height: 60px; */
   }
-    @media (max-width: 800px) {
+    @media (max-width: 990px) {
     font-size: 30px;
     min-height: 0px;
   }
   @media (max-width: 767px) {
-    font-size: 38px;
+    font-size: 2rem;
     min-height: 0px;
+       text-align: left;
   }
 
    @media (max-width: 570px) {
     font-size: 2rem;
     text-align: left;
+    margin-bottom: 10px;
+    margin-top: 15px;
   }
 `;
 
@@ -116,17 +124,18 @@ letter-spacing: 5%;
 text-transform: capitalize;
 
  @media (max-width: 1023px) {
-    font-size: 1.5rem;
+    font-size: 1rem;
     min-height: 60px;
   }
-  @media (max-width: 800px) {
-    font-size: 1.2rem;
+  @media (max-width: 992px) {
+    font-size: 1rem;
     min-height: 60px;
+       text-align: left;
   }
    @media (max-width: 570px) {
     font-size: 1rem;
     text-align: left;
-       min-height: 60px;
+    min-height: 60px;
   }
 `;
 
@@ -153,19 +162,21 @@ export const FormCard = styled.div`
   z-index: 10;
 
 
-  @media (max-width: 850px) {
+  @media (max-width: 992px) {
     padding: 36px 32px 50px;
-      /* margin-top: 0.2px; */
+   margin-top: -50px;
   }
 
   @media (max-width: 767px) {
     padding: 28px 20px 40px;
-    border-radius: 24px 24px 0 0;
-    margin-top: 10px;
+    border-radius:30px;
+     margin-top: 10px;
   }
 
-  @media (max-width: 480px) {
-    padding: 24px 16px 36px;
+  @media (max-width: 570px) {
+    padding: 30px 16px 20px 10px;
+    border-radius: 30px;
+     margin-top: 10px;
   }
 `;
 
@@ -187,8 +198,8 @@ text-transform: capitalize;
     font-size: 28px;
   }
 
-  @media (max-width: 480px) {
-    font-size: 24px;
+  @media (max-width: 570px) {
+    font-size: 1.5rem;
   }
 `;
 
@@ -202,6 +213,11 @@ line-height: 170%;
 letter-spacing: 5%;
 text-transform: capitalize;
 
+  @media (max-width: 570px) {
+    font-size: 1rem;
+    letter-spacing: 5%;
+   line-height: 1.5;
+  }
 `;
 
 export const SectionTitle = styled.h4`
@@ -220,6 +236,7 @@ export const LeftSection = styled.div`
 
   @media (max-width: 1024px) {
     width: 100%;
+        padding: 0px 16px 50px 10px;
   }
 `;
 

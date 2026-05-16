@@ -1,0 +1,263 @@
+import styled from "styled-components";
+
+export const Wrapper = styled.section`
+  width: 100%;
+  padding: 60px 6rem;
+
+  @media (max-width: 1200px) {
+    padding: 0px 4rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+  }
+
+  @media (max-width: 570px) {
+    padding: 10px 20px 80px;
+  }
+`;
+
+export const Container = styled.div`
+  display: grid;
+  grid-template-columns: 254px 1fr 254px;
+  align-items: center;
+  gap: 40px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2,1fr);
+    gap: 30px;
+  }
+
+
+    @media (max-width: 570px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const SideCard = styled.div`
+  width:100%;
+  max-width:254px;
+  background:white;
+  overflow:hidden;
+  margin:auto;
+  box-shadow:0px 4px 20px rgba(0,0,0,.08);
+    display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @media(max-width:768px){
+    max-width:80%;
+  }
+
+  &:nth-child(1){
+    @media(max-width:992px){
+      order:2;
+    }
+  }
+
+  &:nth-child(3){
+    @media(max-width:768px){
+      order:3;
+    }
+  }
+`;
+
+export const CardTop = styled.div`
+  background: #B4172B;
+  color: white;
+  padding: 25px 20px;
+  text-align: center;
+
+  @media(max-width:570px){
+    padding:20px 15px;
+  }
+`;
+
+export const Country = styled.h3`
+  margin-bottom:10px;
+
+  font-size:18px;
+  font-weight:600;
+  line-height:24px;
+
+  @media(max-width:480px){
+    font-size:16px;
+    line-height:22px;
+  }
+`;
+
+export const Package = styled.p`
+  font-size:12px;
+  font-weight:600;
+  line-height:20px;
+`;
+
+export const Button = styled.button`
+  background:#F39200;
+  border:none;
+  padding:12px 25px;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:15px;
+
+  font-size:14px;
+  font-weight:500;
+
+  @media(max-width:480px){
+    padding:10px 20px;
+    font-size:13px;
+  }
+`;
+
+export const CardImage = styled.img`
+  width:100%;
+  flex:1;
+  min-height:250px;
+  object-fit:cover;
+  display:block;
+
+  @media(max-width:480px){
+    min-height:220px;
+  }
+`;
+
+export const CenterContent = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:30px;
+
+ @media(max-width:1440px){
+   gap:0px
+  }
+  @media(max-width:1200px){
+    grid-column:1/-1;
+    order:-1;
+    margin-bottom:20px;
+  }
+
+  @media(max-width:570px){
+    grid-column:auto;
+    order:1;
+    width:100%;
+    margin-bottom:30px;
+    gap:15px;
+  }
+`;
+
+export const ContentBox = styled.div`
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  width:100%;
+`;
+
+export const BreadTop = styled.img`
+  width:290px;
+  max-width:100%;
+  display:block;
+
+      @media(max-width:1440px){
+    width:220px;
+  }
+    @media(max-width:1200px){
+    width:220px;
+  }
+  @media(max-width:768px){
+    width:220px;
+  }
+
+  @media(max-width:570px){
+    width:150px;
+  }
+`;
+
+export const BreadBottom = styled.img`
+  width:290px;
+  max-width:100%;
+  display:block;
+
+      @media(max-width:1440px){
+    width:220px;
+  }
+    @media(max-width:1200px){
+    width:220px;
+  }
+  @media(max-width:768px){
+    width:220px;
+  }
+
+  @media(max-width:570px){
+    width:150px;
+  }
+`;
+
+export const Curly = styled.img`
+  opacity:.5;
+
+  
+    @media(max-width:1200px){
+    width:50px;
+  }
+  @media(max-width:768px){
+    display:none;
+  }
+`;
+
+export const Heading = styled.h2`
+  margin-bottom:15px;
+  font-size:32px;
+  line-height:48px;
+  font-weight:400;
+
+  span{
+    font-weight:700;
+  }
+   @media(max-width:1440px){
+    font-size:1.8rem;
+    
+  }
+  @media(max-width:992px){
+    font-size:28px;
+    line-height:40px;
+  }
+
+  @media(max-width:768px){
+    font-size:24px;
+    line-height:34px;
+  }
+
+  @media(max-width:570px){
+    font-size:1.5rem;
+    line-height:20px;
+  }
+`;
+
+export const Description = styled.p`
+  max-width:500px;
+  margin:auto;
+
+  font-size:16px;
+  line-height:30px;
+  font-weight:400;
+  color:#444;
+
+   @media(max-width:1440px){
+    font-size:0.9rem;
+    line-height:25px;
+      max-width:400px;
+  }
+
+  @media(max-width:768px){
+    font-size:14px;
+    line-height:26px;
+  }
+
+  @media(max-width:570px){
+    font-size:1rem;
+    line-height:24px;
+      max-width:300px;
+  }
+`;

@@ -104,12 +104,12 @@ export const Title = styled.h3`
 
 export const Text = styled.p`
   margin: 0.75rem 0 0;
-  color: #555555;
+  color: #000000;
   font-size: 0.84rem;
   line-height: 1.65;
 
   @media (min-width: 600px) and (max-width: 1000px) {
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     line-height: 1.55;
   }
 `;

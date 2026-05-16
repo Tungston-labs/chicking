@@ -5,19 +5,19 @@ export const Footer = styled.footer`
   background: #000;
   color: #ffffff;
   overflow: hidden;
+`;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -0.15rem;
-    z-index: 0;
-    width: calc(100% + 0.3rem);
-    height: clamp(2rem, 5.6vw, 3.2rem);
-    background: url("/images/footerblack.png") center top / 100% 100%
-      no-repeat;
-    pointer-events: none;
-  }
+export const FooterEdge = styled.img`
+  position: absolute;
+  top: 0;
+  left: -0.15rem;
+  z-index: 0;
+  width: calc(100% + 0.3rem);
+  height: clamp(2rem, 5.6vw, 3.2rem);
+  display: block;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
 `;
 
 export const FooterTop = styled.div`
@@ -99,7 +99,7 @@ export const FooterContactText = styled.p`
   gap: 0.32rem;
   margin: 0.55rem 0 0;
   color: rgba(255, 255, 255, 0.88);
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   line-height: 1.45;
 
   @media (min-width: 761px) and (max-width: 1024px) {
@@ -139,7 +139,7 @@ export const FooterNavHeading = styled.h2`
   display: none;
   margin: 0;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 1.2;
   font-weight: 800;
   text-transform: uppercase;
@@ -169,8 +169,8 @@ export const FooterNav = styled.nav`
 `;
 
 export const FooterNavLink = styled.a`
-  color: ${({ $active }) => ($active ? "#a11f24" : "#ffffff")};
-  font-size: 0.92rem;
+  color: ${({ $active }) => ($active ? "#891b1c" : "#ffffff")};
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1;
   text-decoration: none;
@@ -182,7 +182,7 @@ export const FooterNavLink = styled.a`
   }
 
   @media (min-width: 761px) and (max-width: 1024px) {
-    font-size: 0.88rem;
+    font-size: 0.75rem;
   }
 `;
 
@@ -264,8 +264,9 @@ export const FooterBottomInner = styled.div`
 
   @media (max-width: 760px) {
     padding: 1.2rem 1rem 1.5rem;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
     gap: 1rem;
   }
 `;
@@ -273,7 +274,7 @@ export const FooterBottomInner = styled.div`
 export const FooterCopyright = styled.p`
   margin: 0;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   text-align: center;
 
@@ -283,7 +284,8 @@ export const FooterCopyright = styled.p`
   }
 
   @media (max-width: 760px) {
-    text-align: right;
+    text-align: left;
+    font-size: 0.75rem;
   }
 
   a {
