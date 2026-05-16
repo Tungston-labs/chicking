@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import FranchiseBanner from "../../components/TopBanner";
-import franchiseImg from "../../../public/images/franchise.svg";
+import React, { useEffect, useState } from "react";
+import franchiseImg from "../../../public/images/management/topimage.svg";
 import CompetitiveAdvantage from "../../components/Proposition/CompetitiveAdvantage/CompetitiveAdvantage";
 import PageLayout from "../../components/Layout/PageLayout";
 import MajorMarkets from "../../components/Proposition/MajorMarkets/MajorMarkets";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter";
+import TopBanner from "../../components/TopBanner";
 
 const Propositions = () => {
     const titles = [
@@ -24,7 +24,7 @@ const Propositions = () => {
     return (
         <>
         <PageLayout/>
-        <FranchiseBanner
+        <TopBanner
             key={titleIndex}
             title={titles[titleIndex]}
             description={

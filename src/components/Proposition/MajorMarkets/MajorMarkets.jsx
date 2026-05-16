@@ -16,12 +16,12 @@ import {
   ContentBox,
 } from "./style";
 
-import usaImg from "../../../../public/images/Majorman.svg";
-import ukImg from "../../../../public/images/Majorflag.svg";
-import breadTop from "../../../../public/images/breadtop.svg";
-import breadBottom from "../../../../public/images/breadbottom.svg";
-import curly from "../../../../public/images/curly.svg";
-import curlyright from "../../../../public/images/curlyright.svg";
+import usaImg from "../../../../public/images//proposition/Majorman.svg";
+import ukImg from "../../../../public/images/proposition/Majorflag.svg";
+import breadTop from "../../../../public/images/proposition/breadtop.svg";
+import breadBottom from "../../../../public/images/proposition/breadbottom.svg";
+import curly from "../../../../public/images/proposition/curly.svg";
+import curlyright from "../../../../public/images/proposition/curlyright.svg";
 const MajorMarkets = () => {
   return (
     <Wrapper>
