@@ -29,7 +29,7 @@ const FranchiseForm = () => {
     formData,
     handleChange,
     handleSubmit,
-    errors
+    errors,
   } = useFranchiseForm();
 
   return (
@@ -41,21 +41,16 @@ const FranchiseForm = () => {
             <div>
               <SmallTitle>Join Our Family &</SmallTitle>
 
-              <MainTitle key={titleIndex}>
-                {titles[titleIndex]}
-              </MainTitle>
+              <MainTitle key={titleIndex}>{titles[titleIndex]}</MainTitle>
 
               <Description>
                 Complete this form to begin your journey with Chicking
-                Franchise. Our team will review your inquiry and match
-                you with the right franchise opportunity.
+                Franchise. Our team will review your inquiry and match you with
+                the right franchise opportunity.
               </Description>
             </div>
 
-            <HeroImage
-              src={franchiseImg}
-              alt="Franchise"
-            />
+            <HeroImage src={franchiseImg} alt="Franchise" />
           </HeroContent>
 
           <FranchiseFormCard
@@ -68,11 +63,7 @@ const FranchiseForm = () => {
           />
         </HeroSection>
 
-        <TornBottom
-          src={tornEdge}
-          alt=""
-          aria-hidden
-        />
+        <TornBottom src={tornEdge} alt="" aria-hidden />
         <PartnerCta />
         <SiteFooter />
       </PageWrapper>

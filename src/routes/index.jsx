@@ -3,20 +3,25 @@ import { Home } from "../pages/Home/index.js";
 import BMI from "../pages/BMI/index.jsx";
 import FranchiseForm from "../pages/Franchise/index.jsx";
 import Propositions from "../pages/Proposition/index.jsx";
-
+import AboutUs from "../pages/AboutUs/index.jsx";
 
 const pageRoutes = [
   {
     path: "/",
     Component: Home,
   },
-   {
+  {
     path: "/franchiseform",
-    Component:FranchiseForm ,
+    Component: FranchiseForm,
   },
-   {
+  {
     path: "/Unique-Propositions",
-    Component:Propositions ,
+    Component: Propositions,
+  },
+
+  {
+    path: "/about-us",
+    Component: AboutUs,
   },
   {
     path: "/bmi",

@@ -13,11 +13,7 @@ import {
 
 import tornGraphic from "../../../public/images/franchise/thinbottom.png";
 
-const FranchiseBanner = ({
-  title,
-  description,
-  image,
-}) => {
+const FranchiseBanner = ({ title, description, image }) => {
   return (
     <BannerWrapper>
       <BannerContainer>
@@ -32,7 +28,6 @@ const FranchiseBanner = ({
         </RightSection>
       </BannerContainer>
 
-      {/* Torn Bottom Graphic */}
       <BottomGraphic src={tornGraphic} alt="torn-graphic" />
     </BannerWrapper>
   );
