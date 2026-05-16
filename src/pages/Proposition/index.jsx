@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FranchiseBanner from "../../components/TopBanner";
 import franchiseImg from "../../../public/images/franchise.svg";
 import CompetitiveAdvantage from "../../components/Proposition/CompetitiveAdvantage/CompetitiveAdvantage";

@@ -1,6 +1,6 @@
-import SectionHeader from "../HomeSections/components/SectionHeader/index.jsx";
-import { PageSection } from "../Layout/PageLayout.jsx";
-import { bmiFoods } from "./data/bmiData.js";
+import SectionHeader from "../../HomeSections/components/SectionHeader/index.jsx";
+import { PageSection } from "../../Layout/PageLayout.jsx";
+import { bmiFoods } from "../data/bmiData.js";
 import {
   FoodCard,
   FoodCopy,

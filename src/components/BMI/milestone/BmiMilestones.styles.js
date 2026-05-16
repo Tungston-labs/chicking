@@ -142,13 +142,20 @@ export const TimelineScrollArea = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 0.85rem;
-
-  scrollbar-width: none;
-
-  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(137, 27, 28, 0.32) transparent;
 
   &::-webkit-scrollbar {
-    display: none;
+    width: 0.32rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 999rem;
+    background: rgba(137, 27, 28, 0.32);
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
@@ -160,6 +167,7 @@ export const TimelineScrollArea = styled.div`
     padding-right: 0.55rem;
   }
 `;
+
 export const TimelineGroup = styled.article`
   --timeline-group-indent: 1rem;
 
@@ -208,7 +216,7 @@ export const TimelineYear = styled.h3`
   overflow-wrap: anywhere;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0%.875rem;
+    font-size: 0.875rem;
   }
 
   @media (max-width: 767px) {
