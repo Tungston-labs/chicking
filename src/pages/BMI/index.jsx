@@ -22,7 +22,7 @@ const BMI = () => (
       image={bmiBanner.image}
     />
     <BmiMilestones />
-    <BmiCommitment />
+    <BmiCommit            ment />
     <BmiFoodShowcase />
     <PartnerCta
       action={{
