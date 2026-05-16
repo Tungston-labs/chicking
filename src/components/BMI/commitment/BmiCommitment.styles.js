@@ -11,11 +11,11 @@ export const CommitmentSection = styled.section`
     content: "";
     position: absolute;
     top: 50%;
-    right: 1.4rem;
-    width: min(26rem, 34vw);
-    height: min(26rem, 34vw);
+    right: 0.4rem;
+    width: min(46rem, 44vw);
+    height: min(46rem, 34vw);
     background: url("/images/bmi/darkbginner.svg") center/contain no-repeat;
-    opacity: 0.32;
+    opacity: 2.32;
     transform: translateY(-50%);
     pointer-events: none;
     z-index: 1;
@@ -50,8 +50,8 @@ export const CommitmentCards = styled.div`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.75rem, 3vw, 3rem);
   align-items: start;
+  margin-left: 8%;
   padding: 0 clamp(0.2rem, 1.4vw, 0.9rem);
-      margin-left: 8%;
 
   @media (min-width: 768px) and (max-width: 1024px) {
     gap: 1.3rem;
@@ -61,9 +61,8 @@ export const CommitmentCards = styled.div`
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 2rem;
+    margin-left: 0;
     padding: 0;
-          margin-left: 0;
-
   }
 `;
 
@@ -137,18 +136,18 @@ export const CommitmentText = styled.p`
 
 export const CommitmentHand = styled.img`
   position: absolute;
-  top: 2rem;
   left: 2.6rem;
-  width: min(7rem, 9vw);
-  opacity: 0.28;
+  bottom: 6rem;
+  width: min(15rem, 22vw);
+  opacity: 0.68;
   pointer-events: none;
   z-index: 2;
 
   @media (max-width: 1024px) {
     top: 1.7rem;
     left: 1.5rem;
-    width: 4.6rem;
-    opacity: 0.2;
+    width: 8.6rem;
+    opacity: 0.62;
   }
 
   @media (max-width: 900px) {
@@ -160,8 +159,8 @@ export const CommitmentHand = styled.img`
 
   @media (max-width: 560px) {
     top: 1.1rem;
-    left: 0.85rem;
-    width: 3rem;
-    opacity: 0.16;
+    left: 10.85rem;
+    width: 13rem;
+    opacity: 0.56;
   }
 `;

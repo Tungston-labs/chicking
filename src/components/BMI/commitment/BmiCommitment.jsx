@@ -1,6 +1,6 @@
-import SharedBanner from "../SharedBanner/index.jsx";
-import bmiImages from "../../assets/images/bmiImages.js";
-import { bmiCommitments } from "./data/bmiData.js";
+import SharedBanner from "../../SharedBanner/index.jsx";
+import bmiImages from "../../../assets/images/bmiImages.js";
+import { bmiCommitments } from "../data/bmiData.js";
 import {
   CommitmentBannerContent,
   CommitmentCard,

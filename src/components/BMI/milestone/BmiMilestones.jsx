@@ -1,9 +1,9 @@
-import { PageSection } from "../Layout/PageLayout.jsx";
-import bmiImages from "../../assets/images/bmiImages.js";
-import { bmiMilestones } from "./data/bmiData.js";
 import { PiArrowFatLinesRightFill } from "react-icons/pi";
-import useActiveTimelineMilestone from "./useActiveTimelineMilestone.js";
 
+import bmiImages from "../../../assets/images/bmiImages.js";
+import { PageSection } from "../../Layout/PageLayout.jsx";
+import { bmiMilestones } from "../data/bmiData.js";
+import useActiveTimelineMilestone from "./useActiveTimelineMilestone.js";
 import {
   BrandStamp,
   MilestonesGrid,
@@ -16,13 +16,13 @@ import {
   Timeline,
   TimelineDescription,
   TimelineGroup,
-  TimelineItemIcon,
   TimelineItem,
+  TimelineItemIcon,
   TimelineList,
   TimelineScrollArea,
+  TimelineYear,
   TimelineYearHeader,
   TimelineYearIcon,
-  TimelineYear,
 } from "./BmiMilestones.styles.js";
 
 const BmiMilestones = () => {
@@ -63,12 +63,8 @@ const BmiMilestones = () => {
           <Timeline>
             <TimelineScrollArea ref={timelineScrollAreaRef}>
               {bmiMilestones.map((milestone, index) => (
-                <TimelineGroup
-                  key={`${milestone.year}-${index}`}
-                >
-                  <TimelineYearHeader
-                    ref={setTimelineYearHeaderRef(index)}
-                  >
+                <TimelineGroup key={`${milestone.year}-${index}`}>
+                  <TimelineYearHeader ref={setTimelineYearHeaderRef(index)}>
                     <TimelineYearIcon aria-hidden="true">
                       <PiArrowFatLinesRightFill />
                     </TimelineYearIcon>

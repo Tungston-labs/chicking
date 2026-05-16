@@ -54,14 +54,29 @@ export const FoodScroller = styled.div`
   grid-auto-columns: minmax(31rem, 33.5rem);
   gap: 1.4rem;
   overflow-x: auto;
-  margin-right:2rem;
+  margin-right: 2rem;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scroll-padding-inline: 0.1rem;
   padding-bottom: 0.7rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(137, 27, 28, 0.34) transparent;
 
   & > * {
     scroll-snap-align: start;
+  }
+
+  &::-webkit-scrollbar {
+    height: 0.34rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 999rem;
+    background: rgba(137, 27, 28, 0.34);
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
