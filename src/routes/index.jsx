@@ -4,6 +4,7 @@ import BMI from "../pages/BMI/index.jsx";
 import FranchiseForm from "../pages/Franchise/index.jsx";
 import GlobalPresence from "../pages/GlobalPresence/index.jsx";
 import Propositions from "../pages/Proposition/index.jsx";
+import AboutUs from "../pages/AboutUs/index.jsx";
 import LeadershipSection from "../pages/Management/index.jsx";
 import FaqSection from "../pages/FAQ/index.jsx";
 import BlogSections from '../pages/Blog/BlogSection'
@@ -13,13 +14,18 @@ const pageRoutes = [
     path: "/",
     Component: Home,
   },
-   {
+  {
     path: "/franchiseform",
-    Component:FranchiseForm ,
+    Component: FranchiseForm,
   },
-   {
+  {
     path: "/Unique-Propositions",
-    Component:Propositions ,
+    Component: Propositions,
+  },
+
+  {
+    path: "/about-us",
+    Component: AboutUs,
   },
   {
     path: "/bmi",

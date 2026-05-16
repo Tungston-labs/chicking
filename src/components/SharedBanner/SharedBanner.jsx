@@ -47,7 +47,9 @@ const renderEdge = ({
   forceEdgeImages,
   position,
 }) => {
-  if (shouldUseRasterEdge({ background, edgeColor, edgeImage, forceEdgeImages })) {
+  if (
+    shouldUseRasterEdge({ background, edgeColor, edgeImage, forceEdgeImages })
+  ) {
     return (
       <PaintEdge
         aria-hidden="true"
@@ -170,15 +172,14 @@ const SharedBanner = ({
       $reverse={reverse}
       $textColor={textColor}
     >
-      {hasEdges && (
+      {hasEdges &&
         renderEdge({
           background,
           edgeColor: resolvedTopEdgeColor,
           edgeImage: topEdgeImage,
           forceEdgeImages,
           position: "top",
-        })
-      )}
+        })}
       <BannerContent
         $compact={compact}
         $contentWidth={contentWidth}
@@ -219,15 +220,14 @@ const SharedBanner = ({
         )}
         {children && <BannerChildren>{children}</BannerChildren>}
       </BannerContent>
-      {hasEdges && (
+      {hasEdges &&
         renderEdge({
           background,
           edgeColor: resolvedBottomEdgeColor,
           edgeImage: bottomEdgeImage,
           forceEdgeImages,
           position: "bottom",
-        })
-      )}
+        })}
     </BannerShell>
   );
 };

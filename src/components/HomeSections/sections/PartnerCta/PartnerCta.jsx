@@ -58,11 +58,7 @@ const PartnerCta = ({
           <PartnerCtaDecorImage $variant="arrow" src={darkArrowImage} alt="" />
         )}
         {smileyImage && (
-          <PartnerCtaDecorImage
-            $variant="smiley"
-            src={smileyImage}
-            alt=""
-          />
+          <PartnerCtaDecorImage $variant="smiley" src={smileyImage} alt="" />
         )}
       </PartnerCtaArtwork>
     )}
