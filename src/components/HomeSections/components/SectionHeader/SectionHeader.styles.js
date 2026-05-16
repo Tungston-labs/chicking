@@ -24,9 +24,10 @@ export const Eyebrow = styled.p`
 export const Title = styled.h2`
   margin: 0;
   color: inherit;
-  font-size: clamp(1.85rem, 3vw, 2.65rem);
+  font-size: clamp(1.85rem, 2.5vw, 2.25rem);
   line-height: 1.2;
   font-weight: 500;
+  
 
   strong {
     font-weight: 700;

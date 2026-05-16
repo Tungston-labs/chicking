@@ -1,14 +1,12 @@
-import SectionHeader from "../HomeSections/components/SectionHeader/SectionHeader.jsx";
+import SharedBanner from "../SharedBanner/index.jsx";
 import bmiImages from "../../assets/images/bmiImages.js";
 import { bmiCommitments } from "./data/bmiData.js";
 import {
+  CommitmentBannerContent,
   CommitmentCard,
   CommitmentCards,
-  CommitmentEdge,
   CommitmentHand,
-  CommitmentHeader,
   CommitmentIconBox,
-  CommitmentInner,
   CommitmentSection,
   CommitmentText,
   CommitmentTitle,
@@ -16,43 +14,37 @@ import {
 
 const BmiCommitment = () => (
   <CommitmentSection>
-    <CommitmentEdge
-      src={bmiImages.edges.darkTop}
-      alt=""
-      aria-hidden="true"
-      $position="top"
-    />
+    <SharedBanner
+      background="transparent"
+      bottomEdgeImage={bmiImages.edges.darkBottom}
+      edgeColor="#ffffff"
+      forceEdgeImages
+      headerAlign="center"
+      headerAlignMobile="left"
+      headerAlignTablet="left"
+      headerWidth="52rem"
+      leadWidth="42rem"
+      textColor="#ffffff"
+      title="Commitment To Endurance"
+      description="Our comprehensive support systems are designed to ensure your franchise success through three core pillars built to scale efficiency and profitability."
+      topEdgeImage={bmiImages.edges.darkTop}
+    >
+      <CommitmentBannerContent>
+        <CommitmentCards>
+          {bmiCommitments.map((item) => (
+            <CommitmentCard key={item.title}>
+              <CommitmentIconBox>
+                <img src={bmiImages.icon} alt="" aria-hidden="true" />
+              </CommitmentIconBox>
+              <CommitmentTitle>{item.title}</CommitmentTitle>
+              <CommitmentText>{item.text}</CommitmentText>
+            </CommitmentCard>
+          ))}
+        </CommitmentCards>
 
-    <CommitmentInner>
-      <CommitmentHeader>
-        <SectionHeader
-          title="Commitment To Endurance"
-          description="Our comprehensive support systems are designed to ensure your franchise success through three core pillars built to scale efficiency and profitability."
-          light
-        />
-      </CommitmentHeader>
-
-      <CommitmentCards>
-        {bmiCommitments.map((item) => (
-          <CommitmentCard key={item.title}>
-            <CommitmentIconBox>
-              <img src={bmiImages.icon} alt="" aria-hidden="true" />
-            </CommitmentIconBox>
-            <CommitmentTitle>{item.title}</CommitmentTitle>
-            <CommitmentText>{item.text}</CommitmentText>
-          </CommitmentCard>
-        ))}
-      </CommitmentCards>
-
-      <CommitmentHand src={bmiImages.hand} alt="" aria-hidden="true" />
-    </CommitmentInner>
-
-    <CommitmentEdge
-      src={bmiImages.edges.darkBottom}
-      alt=""
-      aria-hidden="true"
-      $position="bottom"
-    />
+        <CommitmentHand src={bmiImages.hand} alt="" aria-hidden="true" />
+      </CommitmentBannerContent>
+    </SharedBanner>
   </CommitmentSection>
 );
 

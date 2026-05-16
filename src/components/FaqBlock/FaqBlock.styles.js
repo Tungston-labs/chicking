@@ -172,6 +172,6 @@ export const FaqAnswer = styled.div`
   background: #f7f1e4;
   padding: 1.8rem 1.5rem;
   color: #4e4e4e;
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   line-height: 1.8;
 `;

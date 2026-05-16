@@ -2,8 +2,8 @@ import styled, { keyframes } from "styled-components";
 
 const slideFromRight = keyframes`
   from {
-    opacity: 0.68;
-    transform: translateX(2.6rem) scale(0.985);
+    opacity: 0;
+    transform: translateX(3rem) scale(0.975);
   }
 
   to {
@@ -14,8 +14,8 @@ const slideFromRight = keyframes`
 
 const slideFromLeft = keyframes`
   from {
-    opacity: 0.68;
-    transform: translateX(-2.6rem) scale(0.985);
+    opacity: 0;
+    transform: translateX(-3rem) scale(0.975);
   }
 
   to {
@@ -27,7 +27,7 @@ const slideFromLeft = keyframes`
 const previewFromRight = keyframes`
   from {
     opacity: 0;
-    transform: translateX(2rem);
+    transform: translateX(2.4rem);
   }
 
   to {
@@ -39,12 +39,60 @@ const previewFromRight = keyframes`
 const previewFromLeft = keyframes`
   from {
     opacity: 0;
-    transform: translateX(-2rem);
+    transform: translateX(-2.4rem);
   }
 
   to {
     opacity: 0.72;
     transform: translateX(0);
+  }
+`;
+
+const copyFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(2.1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const copyFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-2.1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const imageFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(2.5rem) scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+`;
+
+const imageFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-2.5rem) scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
   }
 `;
 
@@ -66,20 +114,25 @@ export const StorySlider = styled.div`
 export const StoryStage = styled.div`
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
   width: clamp(42rem, 63.5vw, 52rem);
   margin: 0 auto;
   animation: ${({ $direction }) =>
       $direction === "previous" ? slideFromLeft : slideFromRight}
-    680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    860ms cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: opacity, transform;
 
   @media (max-width: 1023px) {
     width: min(100%, 44rem);
+    padding: 0 1.15rem;
   }
 `;
 
-export const StoryCard = styled.article`
+export const StoryCardShell = styled.div`
   position: relative;
+`;
+
+export const StoryCard = styled.article`
   display: grid;
   grid-template-columns: 1fr 0.92fr;
   min-height: 25.75rem;
@@ -93,15 +146,29 @@ export const StoryCard = styled.article`
     min-height: 18.5rem;
     border-radius: 1rem;
   }
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
 `;
 
 export const StoryCardCopy = styled.div`
   display: flex;
   flex-direction: column;
   padding: clamp(2.2rem, 4.2vw, 3.5rem) clamp(1.8rem, 4vw, 3rem);
+  animation: ${({ $direction }) =>
+      $direction === "previous" ? copyFromLeft : copyFromRight}
+    820ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 90ms;
+  will-change: opacity, transform;
 
   @media (max-width: 1023px) {
-    padding: 1.35rem 1rem 1.15rem 3.25rem;
+    padding: 1.35rem 1rem 1.15rem 1rem;
+  }
+
+  @media (max-width: 767px) {
+    padding: 1.4rem 1.1rem 1.3rem;
   }
 `;
 
@@ -143,8 +210,8 @@ export const StoryText = styled.p`
   line-height: 1.65;
 
   @media (max-width: 1023px) {
-    font-size: 0.82rem;
-    line-height: 1.45;
+    font-size: 0.875rem;
+    line-height: 1.55;
   }
 `;
 
@@ -161,7 +228,7 @@ export const StoryCardMeta = styled.p`
   }
 
   strong {
-    font-size: 0.82rem;
+    font-size: 0.875rem;
     font-weight: 800;
   }
 
@@ -178,6 +245,14 @@ export const StoryCardMeta = styled.p`
 export const StoryImagePanel = styled.div`
   min-height: 100%;
   overflow: hidden;
+  animation: ${({ $direction }) =>
+      $direction === "previous" ? imageFromLeft : imageFromRight}
+    860ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const StoryImage = styled.img`
@@ -205,7 +280,7 @@ export const SidePreview = styled.article`
   opacity: 0.72;
   animation: ${({ $direction }) =>
       $direction === "previous" ? previewFromLeft : previewFromRight}
-    680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    820ms cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: opacity, transform;
 
   ${({ $position }) =>
@@ -230,7 +305,7 @@ export const SidePreview = styled.article`
   ${StoryText} {
     max-height: 8.25rem;
     overflow: hidden;
-    font-size: 0.82rem;
+    font-size: 0.875rem;
     line-height: 1.55;
   }
 
@@ -276,7 +351,7 @@ export const CarouselArrow = styled.button`
     transform 0.28s ease;
 
   ${({ $placement, $position }) =>
-    $placement === "card"
+    $placement === "stage"
       ? $position === "left"
         ? `
           left: 0.9rem;
@@ -319,35 +394,35 @@ export const CarouselArrow = styled.button`
 
   @media (max-width: 1023px) {
     ${({ $placement }) =>
-      $placement === "card"
+      $placement === "stage"
         ? `
           display: inline-flex;
-          width: 2rem;
-          height: 2rem;
+          width: 2.2rem;
+          height: 2.2rem;
         `
         : `
           display: none;
         `}
   }
 
-  @media (min-width: 1023px) {
+  @media (min-width: 1024px) {
     ${({ $placement }) =>
-      $placement === "card"
+      $placement === "stage"
         ? `
           display: none;
         `
         : ""}
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     ${({ $placement, $position }) =>
-      $placement === "card"
+      $placement === "stage"
         ? $position === "left"
           ? `
-            left: 0.4rem;
+            left: -1.1rem;
           `
           : `
-            right: 0.4rem;
+            right: -1.1rem;
           `
         : ""}
 
