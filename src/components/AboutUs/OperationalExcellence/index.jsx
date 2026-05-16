@@ -16,41 +16,52 @@ import {
 
 import { excellenceData } from "./data";
 
-import FranchiseImage from "../../../../public/images/franchise-image.png";
+import SharedBanner from "../../SharedBanner";
+
+import sharedBannerImages from "../../../assets/images/sharedBannerImages";
+
+const FranchiseImage = "../../../../public/images/franchise-image.png";
+
+const BEIGE_TOP = sharedBannerImages.edges.beigeTop;
 
 const OperationalExcellence = () => {
   return (
-    <Section>
-      <Container>
+    <SharedBanner
+      topEdgeImage={BEIGE_TOP}
+      bottomEdgeImage={sharedBannerImages.edges.beigeBottom}
+      forceEdgeImages={true}
+      background="#eaddcd"
+    >
+      <Section>
+        <Container>
+          <LeftContent>
+            <Heading>
+              Operational <span>Excellence</span>
+            </Heading>
 
-        
-        <LeftContent>
-          <Heading>
-            Operational <span>Excellence</span>
-          </Heading>
+            <CardWrapper>
+              {excellenceData.map((item) => (
+                <Card key={item.id}>
+                  <img src={item.icon} alt={item.highlight} />
 
-          <CardWrapper>
-            {excellenceData.map((item) => (
-              <Card key={item.id}>
-                <img src={item.icon} alt={item.highlight} />
+                  <Content>
+                    <Title>
+                      {item.title} <span>{item.highlight}</span>
+                    </Title>
 
-                <Content>
-                  <Title>
-                    {item.title} <span>{item.highlight}</span>
-                  </Title>
+                    <Description>{item.description}</Description>
+                  </Content>
+                </Card>
+              ))}
+            </CardWrapper>
+          </LeftContent>
 
-                  <Description>{item.description}</Description>
-                </Content>
-              </Card>
-            ))}
-          </CardWrapper>
-        </LeftContent>
-
-        <RightContent>
-          <MainImage src={FranchiseImage} alt="Operational Excellence" />
-        </RightContent>
-      </Container>
-    </Section>
+          <RightContent>
+            <MainImage src={FranchiseImage} alt="Operational Excellence" />
+          </RightContent>
+        </Container>
+      </Section>
+    </SharedBanner>
   );
 };
 

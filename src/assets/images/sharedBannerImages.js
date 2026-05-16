@@ -3,8 +3,8 @@ export const sharedBannerImages = {
     top: "/images/sharedbanner/bottom.png",
     bottom: "/images/sharedbanner/top.png",
     footerBlack: "/images/sharedbanner/footerblack.png",
-    beigeTop: "/images/sharedbanner/beige/beigetop.png",
-    beigeBottom: "/images/sharedbanner/beige/beigebottom.png",
+    beigeTop: "/images/sharedbanner/beigetop.png",
+    beigeBottom: "/images/sharedbanner/beigebottom.png",
   },
   intro: {
     background: "/images/sharedbanner/mapbackground.svg",
