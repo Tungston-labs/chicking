@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FormCard,
   FormTitle,
@@ -26,7 +25,7 @@ import {
   FileName,
 } from "../../pages/Franchise/style";
 import { FiUploadCloud } from "react-icons/fi";
-import headerImg from "../../../public/images/map.svg";
+import headerImg from "../../../public/images/franchise/map.svg";
 
 const FranchiseFormCard = ({
   selected,

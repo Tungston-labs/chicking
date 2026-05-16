@@ -1,4 +1,3 @@
-import React from "react";
 import {
   PageWrapper,
   HeroSection,
@@ -10,7 +9,7 @@ import {
   TornBottom,
 } from "./style";
 
-import franchiseImg from "../../../public/images/franchise.svg";
+import franchiseImg from "../../../public/images/franchise/franchise.svg";
 import tornEdge from "../../../public/images/franchise/bottom.png";
 import FranchiseFormCard from "../../components/FranchiseFormCard/FranchiseFormCard";
 import PartnerCta from "../../components/HomeSections/sections/PartnerCta";

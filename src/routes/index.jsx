@@ -2,8 +2,12 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "../pages/Home/index.js";
 import BMI from "../pages/BMI/index.jsx";
 import FranchiseForm from "../pages/Franchise/index.jsx";
+import GlobalPresence from "../pages/GlobalPresence/index.jsx";
 import Propositions from "../pages/Proposition/index.jsx";
 import AboutUs from "../pages/AboutUs/index.jsx";
+import LeadershipSection from "../pages/Management/index.jsx";
+import FaqSection from "../pages/FAQ/index.jsx";
+import BlogSections from '../pages/Blog/BlogSection'
 
 const pageRoutes = [
   {
@@ -26,6 +30,22 @@ const pageRoutes = [
   {
     path: "/bmi",
     Component: BMI,
+  },
+  {
+    path: "/global-presence",
+    Component: GlobalPresence,
+  },
+   {
+    path: "/management",
+    Component: LeadershipSection,
+  },
+   {
+    path: "/faq",
+    Component: FaqSection,
+  },
+  {
+    path: "/blog",
+    Component: BlogSections,
   },
 ];
 

@@ -1,4 +1,3 @@
-// FranchiseBanner.jsx
 import React from "react";
 import {
   BannerWrapper,
@@ -13,7 +12,11 @@ import {
 
 import tornGraphic from "../../../public/images/franchise/thinbottom.png";
 
-const FranchiseBanner = ({ title, description, image }) => {
+const TopBanner = ({
+  title,
+  description,
+  image,
+}) => {
   return (
     <BannerWrapper>
       <BannerContainer>
@@ -33,4 +36,4 @@ const FranchiseBanner = ({ title, description, image }) => {
   );
 };
 
-export default FranchiseBanner;
+export default TopBanner;
