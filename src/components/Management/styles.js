@@ -6,8 +6,11 @@ export const Wrapper = styled.section`
   overflow:hidden;
   padding:60px;
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    padding:40px 20px 50px;
+};
   @media(max-width:768px){
-    padding:80px 20px 50px;
+    padding:40px 20px 50px;
   }
 `;
 
@@ -36,8 +39,12 @@ text-align: center;
 text-transform: capitalize;
 
 
-  @media(max-width:768px){
-      font-size:28px;
+@media (min-width: 768px) and (max-width: 1024px) {
+   text-align: left;
+  }
+   @media(max-width:767px){
+    text-align: left;
+    font-size: 24px;
   }
 `;
 
@@ -54,9 +61,13 @@ text-align: center;
 text-transform: capitalize;
 
 
-  @media(max-width:768px){
-      margin-bottom:50px;
-      font-size:13px;
+@media (min-width: 768px) and (max-width: 1024px) {
+   text-align: left;
+    margin:0px 0px 50px;
+  }
+    @media(max-width:767px){
+    text-align: left;
+    font-size: 1rem;
   }
 `;
 
@@ -66,7 +77,9 @@ export const CardContainer=styled.div`
  justify-content: center;
  gap:80px;
 
- @media(max-width:992px){
+
+
+ @media(max-width:1024px){
    grid-template-columns:1fr;
    gap:40px;
  }
@@ -80,21 +93,24 @@ export const Card=styled.div`
  }
 `;
 
-export const IconWrap=styled.div`
- margin-bottom:10px;
+export const IconWrap = styled.div`
+  display: flex;
+  margin-bottom: 10px;
 
- svg{
-   color:white;
-   width: 48px;
-   height: 48px;
- }
+  svg {
+    color: white;
+    width: 48px;
+    height: 48px;
+  }
 
- @media(max-width:992px){
-    display:flex;
-    justify-content:center;
- }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 767px) {
+    justify-content: flex-start;
+  }
 `;
-
 export const CardTitle=styled.div`
 font-weight: 600;
 font-style: SemiBold;
@@ -103,6 +119,15 @@ line-height: 48px;
 letter-spacing: 0%;
 text-transform: capitalize;
 
+
+@media (min-width: 768px) and (max-width: 1024px) {
+   text-align: left;
+  }
+  @media(max-width:767px){
+    text-align: left;
+    font-size: 1rem;
+  }
+
 `;
 
 export const CardDescription=styled.div`
@@ -110,5 +135,14 @@ font-style: Regular;
 font-size: 14px;
 line-height: 32px;
 letter-spacing: 1%;
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+   text-align: left;
+  }
+  @media(max-width:767px){
+    text-align: left;
+    font-size: 1rem;
+  }
 
 `;

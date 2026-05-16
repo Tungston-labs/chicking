@@ -6,6 +6,14 @@ export const Section = styled.section`
   width: 100%;
   padding: 60px 6rem;
   overflow: hidden;
+
+    @media (max-width: 1024px) {
+     padding:20px  20px;
+  }
+  
+    @media (max-width: 570px) {
+     padding: 20px;
+  }
 `;
 
 export const Container = styled.div`
@@ -36,44 +44,48 @@ export const GridContainer = styled.div`
     "text1 founder main main main"
     "ceo exec main main main"
     "text2 opsDir dir opsMgr globalOps";
+
   grid-template-columns: repeat(5, 1fr);
   gap: 8px;
   align-items: center;
   position: relative;
   z-index: 2;
 
-  @media (max-width: 1200px) {
+  /* Tablet Layout */
+  @media (min-width: 768px) and (max-width: 1024px) {
     grid-template-areas:
-      "text1 text1 founder founder"
-      "main main main main"
-      "ceo ceo exec exec"
-      "opsDir opsDir dir dir"
-      "opsMgr opsMgr globalOps globalOps"
-      "text2 text2 text2 text2";
-    grid-template-columns: repeat(4, 1fr);
+      "main main main main main main"
+      "text1 text1 founder founder . ."
+      ". ceo ceo exec exec ."
+      "dir dir opsMgr opsMgr globalOps globalOps"
+      ". . opsDir opsDir text2 text2";
+
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    justify-items: center;
   }
 
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
+  /* Mobile */
+  @media (max-width: 767px) {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
   }
 `;
 
 export const MemberCard = styled.div`
-  grid-area: ${({ gridArea }) => gridArea || "auto"};
-  text-align: center;
-  width: 100%;
-  max-width: ${({ isSmall }) =>
+  grid-area:${({ gridArea }) => gridArea || "auto"};
+  text-align:center;
+  width:100%;
+  max-width:${({ isSmall }) =>
     isSmall ? "170px" : "200px"};
-  margin: 0 auto;
 `;
 
 export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  border-radius: 14px;
+  border-radius: 10px;
   overflow: hidden;
   margin-bottom: 8px;
 `;
@@ -133,40 +145,42 @@ export const ArrowButton = styled.div`
 `;
 
 export const MemberImage = styled.img`
-  width: 100%;
-    height: ${({ isSmall }) =>
+  width:100%;
+  height:${({ isSmall }) =>
     isSmall ? "180px" : "200px"};
-  object-fit: cover;
-  border-radius: 14px;
+  object-fit:cover;
 
-  @media (max-width: 768px) {
-       height: ${({ isSmall }) =>
-      isSmall ? "150px" : "200px"};
-  }
-  @media (max-width: 480px) {
-      height: ${({ isSmall }) =>
-      isSmall ? "130px" : "160px"};
-  }
+  
 `;
 
 export const MemberRole = styled.div`
-  font-size: 13px;
+  font-size: ${({ isSmall }) => (isSmall ? "12px" : "13px")};
   color: #333;
   font-weight: 500;
-  /* margin-top: 16px; */
   margin-bottom: 4px;
-`;
 
+  @media (max-width: 768px) {
+    font-size: ${({ isSmall }) => (isSmall ? "11px" : "12px")};
+  }
+
+  @media (max-width: 570px) {
+    font-size: ${({ isSmall }) => (isSmall ? "14px" : "15px")};
+  }
+`;
 export const MemberName = styled.div`
-  font-size: 16px;
+  font-size: ${({ isSmall }) => (isSmall ? "14px" : "16px")};
   font-weight: 700;
   color: ${({ isRed }) => (isRed ? "#8d2f23" : "#111")};
   line-height: 1.3;
   text-transform: uppercase;
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 
   @media (max-width: 768px) {
-    font-size: 15px;
+    font-size: ${({ isSmall }) => (isSmall ? "13px" : "15px")};
+  }
+
+  @media (max-width: 570px) {
+    font-size: ${({ isSmall }) => (isSmall ? "14px" : "20px")};
   }
 `;
 
@@ -194,6 +208,10 @@ font-style: SemiBold;
 line-height: 110.00000000000001%;
 letter-spacing: 2%;
 
+  @media (max-width: 1024px) {
+  text-align: left;
+  }
+
 `;
 
 export const Heading = styled.div`
@@ -209,14 +227,10 @@ text-transform: capitalize;
     font-weight: 700;
   }
 
-  @media (max-width: 992px) {
-    font-size: 34px;
-  }
-  @media (max-width: 768px) {
-    font-size: 28px;
-  }
-  @media (max-width: 480px) {
+
+  @media (max-width: 1024px) {
     font-size: 24px;
+    text-align: left;
   }
 `;
 
@@ -231,7 +245,12 @@ text-transform: capitalize;
 
 
   @media (max-width: 1200px) {
-    max-width: 100%;
+    text-align: left;
+  font-size: 1rem;
+  }
+    @media (max-width: 570px) {
+  text-align: left;
+  font-size: 1rem;
   }
 `;
 
@@ -242,7 +261,7 @@ const BaseText = styled.p`
   max-width: 220px;
   margin: 0 auto;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 767px) {
     max-width: 100%;
     margin-bottom: 30px;
     text-align: center;
@@ -260,9 +279,12 @@ letter-spacing: 5%;
 text-transform: capitalize;
 
   
-  @media (max-width: 1200px) {
+  @media (max-width: 767px) {
     text-align: center;
     padding-right: 0;
+  }
+  @media (max-width: 570px) {
+   display: none;
   }
 `;
 
@@ -277,8 +299,11 @@ text-align: right;
 text-transform: capitalize;
 
 
-  @media (max-width: 1200px) {
+  @media (max-width: 767px) {
     text-align: center;
     padding-right: 0;
+  }
+    @media (max-width: 570px) {
+   display: none;
   }
 `;

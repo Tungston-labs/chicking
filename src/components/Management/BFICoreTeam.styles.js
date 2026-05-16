@@ -30,6 +30,11 @@ text-transform: capitalize;
 @media(max-width:768px){
 font-size:30px;
 }
+  
+  @media(max-width:570px){
+text-align:left;
+font-size:24px ;
+}
 `;
 
 export const Description=styled.p`
@@ -46,6 +51,10 @@ line-height: 30px;
 letter-spacing: 5%;
 text-align: center;
 
+  @media(max-width:570px){
+text-align:left;
+font-size:1rem ;
+}
 `;
 
 export const MainSection=styled.div`
@@ -54,8 +63,10 @@ justify-content:space-between;
 align-items:center;
 gap:60px;
 
-@media(max-width:992px){
-flex-direction:column;
+
+  @media(max-width:767px){
+    gap: 20px;
+    flex-direction:column;
 }
 `;
 
@@ -73,6 +84,10 @@ box-shadow:0 8px 32px 0 rgba(0, 0, 0, 0.05);
 
 @media(max-width:992px){
 width:100%;
+}
+
+  @media(max-width:767px){
+border-radius: 10px;
 }
 `;
 
@@ -93,6 +108,11 @@ line-height: 24px;
 letter-spacing: 0%;
 text-transform: capitalize;
 
+
+  @media(max-width:767px){
+font-size:1.2rem ;
+margin-bottom: 10px;
+}
 `;
 
 export const CardName=styled.div`
@@ -104,6 +124,11 @@ font-size: 16px;
 line-height: 24px;
 letter-spacing: 0%;
 
+  @media(max-width:570px){
+font-size:1rem ;
+margin-bottom: 1px;
+}
+
 `;
 
 export const CardRole=styled.div`
@@ -114,12 +139,20 @@ font-size: 14px;
 line-height: 24px;
 letter-spacing: 0%;
 
+  @media(max-width:570px){
+font-size:1rem ;
+}
+
 `;
 
 export const CenterLogo=styled.div`
 display:flex;
 align-items:center;
 justify-content:center;
+
+  @media(max-width:1024px){
+display: none;
+}
 `;
 
 export const LogoCircle=styled.div`

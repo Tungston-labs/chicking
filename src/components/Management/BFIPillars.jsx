@@ -38,7 +38,7 @@ const BFIPillars = () => {
 
                 setFade(true);
 
-            }, 300);
+            }, 700);
 
         }, 3000);
 
@@ -75,12 +75,12 @@ const BFIPillars = () => {
 
                             <SupportItem key={index}>
 
-                           <IconWrap>
-   <img
-      src={awardIcon}
-      alt="award"
-   />
-</IconWrap>
+                                <IconWrap>
+                                    <img
+                                        src={awardIcon}
+                                        alt="award"
+                                    />
+                                </IconWrap>
 
                                 <ItemContent>
                                     <ItemTitle>

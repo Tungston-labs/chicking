@@ -4,7 +4,8 @@ import BMI from "../pages/BMI/index.jsx";
 import FranchiseForm from "../pages/Franchise/index.jsx";
 import Propositions from "../pages/Proposition/index.jsx";
 import LeadershipSection from "../pages/Management/index.jsx";
-
+import FaqSection from "../pages/FAQ/index.jsx";
+import BlogSections from '../pages/Blog/BlogSection'
 
 const pageRoutes = [
   {
@@ -26,6 +27,14 @@ const pageRoutes = [
    {
     path: "/management",
     Component: LeadershipSection,
+  },
+   {
+    path: "/faq",
+    Component: FaqSection,
+  },
+  {
+    path: "/blog",
+    Component: BlogSections,
   },
 ];
 

@@ -29,13 +29,16 @@ const LeadershipCard = ({
         </Overlay>
       </ImageContainer>
 
-      <MemberRole>
-        {role}
-      </MemberRole>
+   <MemberRole isSmall={isSmall}>
+  {role}
+</MemberRole>
 
-      <MemberName isRed={isRed}>
-        {name}
-      </MemberName>
+<MemberName
+  isRed={isRed}
+  isSmall={isSmall}
+>
+  {name}
+</MemberName>
     </MemberCard>
   );
 };
