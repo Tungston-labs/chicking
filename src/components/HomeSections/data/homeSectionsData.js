@@ -173,6 +173,10 @@ export const navItems = [
     name: "Blog",
     path: "/blog",
   },
+  {
+    name: "Blog",
+    path: "/blog",
+  },
 ];
 export const homeBanners = [
   {

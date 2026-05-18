@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import franchiseImg from "../../../public/images/management/topimage.svg";
+import franchiseImg from "../../../public/images/proposition/logo.svg";
 import CompetitiveAdvantage from "../../components/Proposition/CompetitiveAdvantage/CompetitiveAdvantage";
 import PageLayout from "../../components/Layout/PageLayout";
 import MajorMarkets from "../../components/Proposition/MajorMarkets/MajorMarkets";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter";
 import TopBanner from "../../components/TopBanner";
-
+import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
+import { useNavigate } from "react-router-dom";
 const Propositions = () => {
+      const navigate = useNavigate();
     const titles = [
         "Partner With A Global Franchise Leader",
         "Turn Ambition Into International Success",
@@ -38,7 +40,7 @@ const Propositions = () => {
         />
         <CompetitiveAdvantage/>
         <MajorMarkets/>
-            <SiteFooter />
+            <SiteFooter topEdgeImage={sharedBannerImages.edges.footerBlack}/>
         </>
     );
 };

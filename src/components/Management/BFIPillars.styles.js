@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Wrapper=styled.section`
 padding:80px 6rem;
-background:#f4f4f4;
 
 @media(max-width:1025px){
 padding:20px 20px;
@@ -10,7 +9,7 @@ padding:20px 20px;
 `;
 
 export const Container=styled.div`
-max-width:1300px;
+/* max-width:1300px; */
 margin:auto;
 `;
 

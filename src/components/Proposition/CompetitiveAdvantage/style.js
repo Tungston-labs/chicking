@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
   width: 100%;
-  padding: 90px 6rem;
+  padding: 20px 6rem;
 
   @media (max-width:1200px){
     padding: 30px 4rem;

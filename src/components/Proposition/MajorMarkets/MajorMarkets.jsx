@@ -15,14 +15,16 @@ import {
   Curly,
   ContentBox,
 } from "./style";
-
 import usaImg from "../../../../public/images//proposition/Majorman.svg";
 import ukImg from "../../../../public/images/proposition/Majorflag.svg";
 import breadTop from "../../../../public/images/proposition/breadtop.svg";
 import breadBottom from "../../../../public/images/proposition/breadbottom.svg";
 import curly from "../../../../public/images/proposition/curly.svg";
 import curlyright from "../../../../public/images/proposition/curlyright.svg";
+import { useNavigate } from "react-router-dom";
+
 const MajorMarkets = () => {
+    const navigate = useNavigate();
   return (
     <Wrapper>
       <Container>
@@ -30,7 +32,9 @@ const MajorMarkets = () => {
           <CardTop>
             <Country>United States Of America</Country>
             <Package>Franchise Package</Package>
-            <Button>View Package</Button>
+            <Button onClick={() => navigate("/us-package")}>
+      View Package
+    </Button>
           </CardTop>
 
           <CardImage src={usaImg} alt="USA" />
@@ -62,7 +66,9 @@ const MajorMarkets = () => {
           <CardTop>
             <Country>United Kingdom</Country>
             <Package>Franchise Package</Package>
-            <Button>View Package</Button>
+        <Button onClick={() => navigate("/uk-package")}>
+      View Package
+    </Button>
           </CardTop>
 
           <CardImage src={ukImg} alt="UK" />

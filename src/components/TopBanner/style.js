@@ -73,11 +73,11 @@ export const Heading = styled.h1`
   margin-bottom: -10px;
 
   @media (max-width: 1200px) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   @media (max-width: 992px) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   @media (max-width: 767px) {
@@ -125,7 +125,7 @@ export const RightSection = styled.div`
 
 export const BannerImage = styled.img`
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   object-fit: contain;
 
   @media (max-width: 1200px) {
