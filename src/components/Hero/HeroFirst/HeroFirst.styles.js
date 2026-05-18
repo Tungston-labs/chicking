@@ -223,13 +223,16 @@ export const ImageWrapper = styled.div`
     }
 
     .rightCenter {
-      right: -180px;
+      right: -140px;
     }
 
     &.state-1 {
       .rightTop {
-        transform: translate(120px, 100px);
+        transform: translate(80px, 10px);
       }
+      .rightCenter {
+      transform: translate(-40px, -10%);
+    }
       .star {
         transform: translate(-30px, -60%);
       }
