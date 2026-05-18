@@ -315,7 +315,7 @@ export const PopupDetail = styled.p`
 `;
 
 export const PopupInlineLink = styled(RouterLink)`
-  color: #d92921;
+  color: #891b1c;
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
