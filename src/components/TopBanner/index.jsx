@@ -31,7 +31,6 @@ const TopBanner = ({
         </RightSection>
       </BannerContainer>
 
-      {/* Torn Bottom Graphic */}
       <BottomGraphic src={tornGraphic} alt="torn-graphic" />
     </BannerWrapper>
   );
