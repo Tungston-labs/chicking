@@ -2,27 +2,18 @@ import styled from "styled-components";
 
 export const BlogGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(2rem, 7vw, 4rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 4vw, 2rem);
 
+  /* Tablet */
   @media (min-width: 600px) and (max-width: 1000px) {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: stretch;
-    gap: 1rem;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
-    padding-bottom: 0.4rem;
-    scrollbar-width: thin;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
   }
 
-  @media (max-width: 900px) {
+  /* Mobile */
+  @media (max-width: 599px) {
     grid-template-columns: 1fr;
     gap: 1rem;
-  }
-
-  @media (max-width: 599px) {
-    display: grid;
   }
 `;
