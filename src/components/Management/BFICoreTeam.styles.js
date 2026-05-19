@@ -53,7 +53,7 @@ text-align: center;
 
   @media(max-width:570px){
 text-align:left;
-font-size:1rem ;
+font-size:0.9rem ;
 }
 `;
 

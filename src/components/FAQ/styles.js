@@ -1,9 +1,16 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding:80px 20px;
-  max-width:1000px;
+  padding:80px 6rem;
+  /* max-width:1500px; */
   margin:auto;
+
+    @media (max-width: 1024px) {
+     padding: 20px;}
+
+    @media (max-width: 570px) {
+     padding: 20px;
+    }
 `;
 
 export const Title = styled.h2`
@@ -23,7 +30,8 @@ text-transform: capitalize;
   }
 
   @media (max-width: 768px) {
-    font-size: 30px;
+    font-size: 24px;
+    text-align: left;
   }
 `;
 
@@ -39,6 +47,10 @@ line-height: 175%;
 letter-spacing: 5%;
 text-transform: capitalize;
 
+ @media (max-width: 768px) {
+    font-size: 0.9rem;
+    text-align: left;
+  }
 `;
 
 export const Accordion = styled.div`
@@ -76,11 +88,23 @@ vertical-align: middle;
 export const Answer = styled.div`
   background:#FBF7E8;
   padding:40px 70px;
-/* font-weight: 500; */
+
 font-style: Medium;
 font-size: 1rem;
 line-height: 28px;
 letter-spacing: 0px;
 vertical-align: middle;
+
+
+
+
+    @media (max-width: 1024px) {
+     padding: 20px;
+     font-size:1rem;
+    }
+ @media (max-width: 570px) {
+     padding: 20px;
+     font-size:0.9rem;
+    }
 
 `;

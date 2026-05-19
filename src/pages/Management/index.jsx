@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from "react";
-
 import {
   Section,
   Container,
@@ -10,9 +9,7 @@ import {
   Heading,
   Description,
   GridContainer,
-  CurveShape,
 } from "./styles";
-
 import PageLayout from "../../components/Layout/PageLayout";
 import TopBanner from "../../components/TopBanner";
 import LeadershipCard from "../../components/Management/LeadershipCard";
@@ -21,6 +18,10 @@ import franchiseImg from "../../../public/images/management/topimage.svg";
 import LeadershipEffect from "../../components/Management/LeadershipEffect";
 import BFICoreTeam from "../../components/Management/BFICoreTeam";
 import BFIPillars from "../../components/Management/BFIPillars";
+import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
+import SiteFooter from "../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx";
+import LeadershipModal from "../../components/Management/modal/LeadershipModal.jsx";
+
 const sectionContent = {
   tag: "Chicking Leadership Team",
 
@@ -41,12 +42,8 @@ const sectionContent = {
 };
 
 const LeadershipSection = () => {
-      const titles = [
-          "Partner With A Global Franchise Leader",
-          "Turn Ambition Into International Success",
-          " Scale Your Business With a Proven Global Model",
-          "Expanding Opportunities Delivering Global Success",
-      ];
+   const [selectedMember, setSelectedMember] = useState(null);
+      const titles = [ "highly qualified & experienced individuals"];
       const [titleIndex, setTitleIndex] = useState(0);
       useEffect(() => {
           const interval = setInterval(() => {
@@ -57,6 +54,12 @@ const LeadershipSection = () => {
       }, [titles.length]);
   return (
     <>
+        {selectedMember && (
+        <LeadershipModal
+          member={selectedMember}
+          onClose={() => setSelectedMember(null)}
+        />
+      )}
       <PageLayout />
 
   <TopBanner
@@ -64,9 +67,9 @@ const LeadershipSection = () => {
             title={titles[titleIndex]}
             description={
                 <>
-                    Yet with careful planning, focus, a solid Chicking network, and the right
+        In order to support the Chicking franchise system along every step of the way, 
                     <br />
-                    training and support, you can position your business for growth and success.
+           a dedicated team is comprised of highly qualified and experienced individuals.
                 </>
             }
             image={franchiseImg}
@@ -107,15 +110,21 @@ const LeadershipSection = () => {
               <LeadershipCard
                 key={member.id}
                 {...member}
+                onClick={() =>setSelectedMember(member)}
               />
             ))}
 
           </GridContainer>
         </Container>
       </Section>
+
+  
+
       <LeadershipEffect/>
       <BFICoreTeam/>
       <BFIPillars/>
+      
+            <SiteFooter topEdgeImage={sharedBannerImages.edges.footerBlack}/>
     </>
   );
 };

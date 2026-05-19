@@ -17,7 +17,16 @@ export const leadershipMembers = [
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
     role: "Founder & Chairman",
     name: "MR. A K MANSOOR",
-  },
+     description: [
+  "Chicking® started with a vision of Founder & Chairman Mr. A. K. Mansoor, who identified the need for a fully Halal compliant QSR that serves great tasting food in an inviting environment.",
+
+  "Created in 2000 through a vision of founder & managing director Mr. A. K. Mansoor and established in Dubai, Chicking® is a leading quick service restaurant (QSR) company with business across the Middle East and Asia.",
+
+  "The brand is distinctly known for its longstanding tradition of product innovation and commitment to high quality, Halal compliant, freshly prepared food infused with exciting flavors.",
+
+  "The brand has grown into a 230+ strong chain and today serves more than 20,00,000 customers."
+]
+ },
   {
     id: 2,
     gridArea: "ceo",

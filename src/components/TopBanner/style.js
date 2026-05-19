@@ -39,7 +39,7 @@ export const BannerContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  padding: 10px 30px 50px ;
+  padding: 40px 30px 40px ;
 
   @media (max-width: 1100px) {
     padding: 30px 40px 25px;
@@ -73,11 +73,11 @@ export const Heading = styled.h1`
   margin-bottom: -10px;
 
   @media (max-width: 1200px) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   @media (max-width: 992px) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   @media (max-width: 767px) {
@@ -107,7 +107,7 @@ export const Description = styled.p`
   }
 
   @media (max-width: 480px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.7;
   }
 `;
@@ -125,7 +125,7 @@ export const RightSection = styled.div`
 
 export const BannerImage = styled.img`
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   object-fit: contain;
 
   @media (max-width: 1200px) {

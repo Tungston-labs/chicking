@@ -8,6 +8,9 @@ import AboutUs from "../pages/AboutUs/index.jsx";
 import LeadershipSection from "../pages/Management/index.jsx";
 import FaqSection from "../pages/FAQ/index.jsx";
 import BlogSections from '../pages/Blog/BlogSection'
+import Ukpackage from "../pages/Proposition/UkPackage/Ukpackage.jsx";
+import Uspackage from "../pages/Proposition/UsPackage/Uspackage.jsx";
+import NewsArticle from "../pages/Blog/NewsArticle/NewsArticle.jsx";
 
 const pageRoutes = [
   {
@@ -46,6 +49,18 @@ const pageRoutes = [
   {
     path: "/blog",
     Component: BlogSections,
+  },
+  {
+    path: "/uk-package",
+    Component: Ukpackage,
+  },
+  {
+    path: "/us-package",
+    Component: Uspackage,
+  },
+  {
+    path: "/news-article",
+    Component: NewsArticle,
   },
 ];
 

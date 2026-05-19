@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
   width: 100%;
-  padding: 90px 6rem;
+  padding: 60px 6rem;
 
   @media (max-width:1200px){
-    padding: 30px 4rem;
+    padding: 60px 4rem;
   }
 
   @media (max-width:992px){
@@ -23,7 +23,7 @@ export const Wrapper = styled.section`
 
 export const HeaderSection = styled.div`
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   width: fit-content;
 
    @media (max-width:1200px){
@@ -207,7 +207,7 @@ export const CardText = styled.div`
   }
 
   @media(max-width:570px){
-    font-size:1rem;
+    font-size:0.9rem;
     line-height:1.7;
   }
 `;

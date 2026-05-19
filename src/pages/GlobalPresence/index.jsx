@@ -7,13 +7,14 @@ import FutureFrontiers from "../../components/GlobalPresence/frontiers/index.jsx
 import { renderGlobalPresenceBannerTitle } from "../../components/GlobalPresence/globalPresence.helpers.jsx";
 import GlobalPresenceMap from "../../components/GlobalPresence/map/index.jsx";
 import { globalPresenceBanner } from "../../components/GlobalPresence/data/globalPresenceData.js";
+import franchiseImg from "../../../public/images/management/topimage.svg";
 
 const GlobalPresence = () => (
   <PageLayout>
     <TopBanner
       title={renderGlobalPresenceBannerTitle(globalPresenceBanner.titleLines)}
       description={globalPresenceBanner.description}
-      image={globalPresenceBanner.image}
+      image={franchiseImg}
     />
 
     <GlobalPresenceMap />

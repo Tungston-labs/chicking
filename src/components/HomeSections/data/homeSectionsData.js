@@ -184,6 +184,7 @@ export const navItems = [
     name: "Blog",
     path: "/blog",
   },
+ 
 ];
 export const homeBanners = [
   {
