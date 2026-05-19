@@ -36,17 +36,17 @@ export const blogPosts = [
       "🚀 Grow with a Global Brand – Chicking Franchise Opportunity in the UK 🇬🇧",
     url: "https://www.chickingprofile.com/blog",
   },
-    {
-    author: "Chicking Marketing",
-    date: "Nov 29, 2025",
-    excerpt:
-      "When it comes to building a successful business in the Quick Service Restaurant (QSR) sector, few names...",
-    image: homeImages.content.blog.third,
-    readTime: "2 min Read",
-    title:
-      "🚀 Grow with a Global Brand – Chicking Franchise Opportunity in the UK 🇬🇧",
-    url: "https://www.chickingprofile.com/blog",
-  },
+{
+  author: "Chicking Marketing",
+  date: "Dec 12, 2025",
+  excerpt:
+    "Discover how Chicking continues to expand globally with innovative dining experiences, stronger franchise partnerships, and customer-first strategies.",
+  image: homeImages.content.blog.third,
+  readTime: "3 min Read",
+  title:
+    "Chicking Expands Global Presence with New Franchise Opportunities",
+  url: "https://www.chickingprofile.com/blog",
+}
 ];
 
 export const faqs = [

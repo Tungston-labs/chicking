@@ -10,7 +10,7 @@ import SiteFooter from "./sections/SiteFooter/index.jsx";
 const HomeSections = () => {
   return (
     <>
-      <BlogSection posts={blogPosts.slice(0, 3)} />
+      <BlogSection posts={blogPosts.slice(0, 4)} />
       <FranchiseStorySection />
       <FaqSection />
       <ReasonsSection />

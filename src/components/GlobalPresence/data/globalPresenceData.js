@@ -1,7 +1,7 @@
 export const globalPresenceBanner = {
   description:
     "Discover featured Chicking markets across operational territories and high-potential franchise destinations. Select a region, inspect live map pins, and move directly into a franchise inquiry for the market you want to explore.",
-  image: "/images/map.svg",
+  image: "/images/globalpresence/global.svg",
   titleLines: ["Serving Global Markets", "Across Multiple Continents"],
 };
 

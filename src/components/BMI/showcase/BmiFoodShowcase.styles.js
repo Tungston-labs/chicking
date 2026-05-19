@@ -51,7 +51,7 @@ export const FoodScrollerViewport = styled.div`
 export const FoodScroller = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(31rem, 33.5rem);
+  grid-auto-columns: minmax(38rem, 33.5rem);
   gap: 1.4rem;
   overflow-x: auto;
   margin-right: 2rem;
