@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TopBanner from '../../components/TopBanner'
-import faqImg from "../../../public/images/faq/faq.svg";
+import faqImg from "../../../public/images/faq/faq1.svg";
 import FAQ from '../../components/FAQ/FAQ';
 import PageLayout from '../../components/Layout/PageLayout';
 import PartnerCta from '../../components/HomeSections/sections/PartnerCta';

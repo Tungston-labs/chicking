@@ -48,7 +48,7 @@ letter-spacing: 5%;
 text-transform: capitalize;
 
  @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-align: left;
   }
 `;
@@ -96,10 +96,15 @@ letter-spacing: 0px;
 vertical-align: middle;
 
 
+
+
     @media (max-width: 1024px) {
      padding: 20px;
      font-size:1rem;
     }
-
+ @media (max-width: 570px) {
+     padding: 20px;
+     font-size:0.9rem;
+    }
 
 `;

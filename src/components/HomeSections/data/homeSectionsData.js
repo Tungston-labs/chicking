@@ -36,6 +36,17 @@ export const blogPosts = [
       "🚀 Grow with a Global Brand – Chicking Franchise Opportunity in the UK 🇬🇧",
     url: "https://www.chickingprofile.com/blog",
   },
+    {
+    author: "Chicking Marketing",
+    date: "Nov 29, 2025",
+    excerpt:
+      "When it comes to building a successful business in the Quick Service Restaurant (QSR) sector, few names...",
+    image: homeImages.content.blog.third,
+    readTime: "2 min Read",
+    title:
+      "🚀 Grow with a Global Brand – Chicking Franchise Opportunity in the UK 🇬🇧",
+    url: "https://www.chickingprofile.com/blog",
+  },
 ];
 
 export const faqs = [
@@ -173,10 +184,7 @@ export const navItems = [
     name: "Blog",
     path: "/blog",
   },
-  {
-    name: "Blog",
-    path: "/blog",
-  },
+ 
 ];
 export const homeBanners = [
   {

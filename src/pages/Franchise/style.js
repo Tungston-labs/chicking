@@ -45,7 +45,7 @@ export const HeroContent = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   gap: 40px;
-  min-height: 360px;
+  min-height: 300px;
 
   @media (max-width: 1023px) {
   min-height: 260px;
@@ -128,19 +128,19 @@ text-transform: capitalize;
     min-height: 60px;
   }
   @media (max-width: 992px) {
-    font-size: 1rem;
-    min-height: 60px;
+    font-size: 0.9rem;
+    /* min-height: 60px;/ */
        text-align: left;
   }
    @media (max-width: 570px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-align: left;
     min-height: 60px;
   }
 `;
 
 export const HeroImage = styled.img`
-  width: 500px;
+  width: 400px;
   object-fit: contain;
   margin-top: -25px;
 
@@ -157,7 +157,7 @@ export const FormCard = styled.div`
   background: #ffffff;
   border-radius: 28px;
   padding: 4px 70px 58px;
-  margin-top: -70px;
+  margin-top: -60px;
   position: relative;
   z-index: 10;
 

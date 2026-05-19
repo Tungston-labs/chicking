@@ -14,27 +14,27 @@ const faqData = [
     {
         question: "What is Chicking?",
         answer:
-            "Chicking is an international halal compliant quick service restaurant (QSR) brand originated from Dubai and specializing in fried chicken and fast-food offerings. It has a strong globally accepted menu range and operates across 46 countries.",
+            "Chicking is an international halal compliantquick service restaurant (QSR) brand originated from Dubai and specializing in fried chicken and fast-food offerings. It has a strong unique globally accepted menu range and operates across 46 countries with 488 stores through a structured franchise model focused on consistency and quality..",
     },
     {
         question: "What is the estimated investment?",
-        answer: "Investment varies based on location and store model."
+        answer: "The investment depends on location andformat and includes interiors, kitchen equipment, licenses, and pre-opening expenses. Amount required to Setup – USD 60,000 approx. mount required to buy Kitchen Equipment’s–USD 55,000 approx. Initial Working Capital Required foroperations – USD 30,000"
     },
     {
         question: "Is there a franchise fee?",
-        answer: "Yes, franchise fees apply depending on market."
+        answer: "Yes, A one-time franchise fee is applicable. Franchise Fee – USD 30,000 {Unit Franchise} Franchise Term – 5 Years Master Franchise - Fee, Royalty, Sharing Terms etc. will be provided in a direct meeting with BFI Team"
     },
     {
         question: "Is there a royalty fee?",
-        answer: "Yes, royalty fees are part of the agreement."
+        answer: "Yes. A monthly royalty fee applies. Royalty – 6% on Monthly Sales"
     },
     {
         question: "Is there a marketing contribution?",
-        answer: "Marketing contributions may apply."
+        answer: "Subject to the Location and Franchise Agreement"
     },
     {
         question: "Who selects the site?",
-        answer: "Site selection is done jointly."
+        answer: "The franchisee proposes the site, subject to Chicking approval."
     }
 ];
 

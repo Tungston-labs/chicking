@@ -27,11 +27,13 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-family: Josefin Sans;
-  font-weight:500;
-  font-size:32px;
-  line-height:1.4;
-  margin-bottom:30px;
+  font-family: "Josefin Sans", sans-serif;
+font-weight: 500;
+font-style: Medium;
+font-size: 32px;
+line-height: 34px;
+letter-spacing: 0%;
+
 
   @media (max-width:1024px){
     font-size:30px;
@@ -87,8 +89,14 @@ object-fit:cover;
 export const AuthorInfo = styled.div``;
 
 export const Name = styled.h4`
-font-size:20px;
 margin:0;
+font-family: "Josefin Sans", sans-serif;
+font-weight: 400;
+font-style: Regular;
+font-size: 18px;
+line-height: 24px;
+letter-spacing: 0%;
+
 
 @media(max-width:570px){
 font-size:18px;
@@ -97,13 +105,24 @@ font-size:18px;
 
 export const Role = styled.p`
 margin:0;
-color:#777;
-font-size:14px;
+color:#757575;
+font-family: "Josefin Sans", sans-serif;
+font-weight: 400;
+font-style: Regular;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0%;
+
 `;
 
 export const Date = styled.div`
-color:#777;
-font-size:16px;
+color:#757575;
+font-weight: 400;
+font-style: Regular;
+font-size: 14px;
+line-height: 24px;
+letter-spacing: 0%;
+font-family: "Josefin Sans", sans-serif;
 
 @media(max-width:570px){
 font-size:14px;
@@ -119,7 +138,6 @@ export const BannerImage = styled.img`
 width:100%;
 height:auto;
 display:block;
-border-radius:10px;
 `;
 
 export const PlayButton = styled.img`
@@ -140,12 +158,14 @@ width:50px;
 
 export const QuoteBox = styled.div`
 border-left:4px solid #ddd;
-padding-left:20px;
-margin-bottom:30px;
-color:#666;
-line-height:1.8;
-font-size:15px;
+padding-left:10px;
 word-break:break-word;
+font-weight: 300;
+font-style: Light;
+font-size: 15px;
+line-height: 24px;
+letter-spacing: 0%;
+font-family: "Josefin Sans", sans-serif;
 
 @media(max-width:570px){
 font-size:14px;
@@ -154,9 +174,12 @@ padding-left:15px;
 `;
 
 export const Content = styled.p`
-font-size:18px;
-line-height:2;
-color:#444;
+font-family: "Josefin Sans", sans-serif;
+font-weight: 300;
+font-style: Light;
+font-size: 15px;
+line-height: 24px;
+letter-spacing: 0%;
 
 @media(max-width:768px){
 font-size:16px;

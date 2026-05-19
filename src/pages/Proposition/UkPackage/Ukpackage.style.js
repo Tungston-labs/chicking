@@ -14,7 +14,7 @@ export const BrochureImage = styled.img`
   height: auto;
   display: block;
   border-radius: 12px;
-
+  
   @media (max-width: 768px) {
     max-width: 100%;
   }

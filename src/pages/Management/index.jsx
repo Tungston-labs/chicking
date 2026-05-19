@@ -20,6 +20,7 @@ import BFICoreTeam from "../../components/Management/BFICoreTeam";
 import BFIPillars from "../../components/Management/BFIPillars";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx";
+import LeadershipModal from "../../components/Management/modal/LeadershipModal.jsx";
 
 const sectionContent = {
   tag: "Chicking Leadership Team",
@@ -41,9 +42,8 @@ const sectionContent = {
 };
 
 const LeadershipSection = () => {
-      const titles = [
-     "highly qualified & experienced individuals"
-      ];
+   const [selectedMember, setSelectedMember] = useState(null);
+      const titles = [ "highly qualified & experienced individuals"];
       const [titleIndex, setTitleIndex] = useState(0);
       useEffect(() => {
           const interval = setInterval(() => {
@@ -54,6 +54,12 @@ const LeadershipSection = () => {
       }, [titles.length]);
   return (
     <>
+        {selectedMember && (
+        <LeadershipModal
+          member={selectedMember}
+          onClose={() => setSelectedMember(null)}
+        />
+      )}
       <PageLayout />
 
   <TopBanner
@@ -61,7 +67,7 @@ const LeadershipSection = () => {
             title={titles[titleIndex]}
             description={
                 <>
-           In order to support the Chicking franchise system along every step of the way, 
+        In order to support the Chicking franchise system along every step of the way, 
                     <br />
            a dedicated team is comprised of highly qualified and experienced individuals.
                 </>
@@ -104,12 +110,16 @@ const LeadershipSection = () => {
               <LeadershipCard
                 key={member.id}
                 {...member}
+                onClick={() =>setSelectedMember(member)}
               />
             ))}
 
           </GridContainer>
         </Container>
       </Section>
+
+  
+
       <LeadershipEffect/>
       <BFICoreTeam/>
       <BFIPillars/>

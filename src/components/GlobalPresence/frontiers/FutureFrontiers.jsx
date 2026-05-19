@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FiArrowRight, FiMapPin } from "react-icons/fi";
-
 import bmiImages from "../../../assets/images/bmiImages.js";
 import SharedBanner from "../../SharedBanner/index.jsx";
 import {

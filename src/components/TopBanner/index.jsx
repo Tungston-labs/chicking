@@ -9,8 +9,7 @@ import {
   BannerImage,
   BottomGraphic,
 } from "./style";
-
-import tornGraphic from "../../../public/images/franchise/thinbottom.png";
+import tornGraphic from "../../../public/images/franchise/bottomthin.png";
 
 const TopBanner = ({
   title,
@@ -22,12 +21,10 @@ const TopBanner = ({
       <BannerContainer>
         <LeftSection>
           <Heading>{title}</Heading>
-
           <Description>{description}</Description>
         </LeftSection>
-
         <RightSection>
-          <BannerImage src={image} alt="banner" />
+          <BannerImage src={image} alt="banner"  loading="eager" />
         </RightSection>
       </BannerContainer>
 

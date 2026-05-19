@@ -57,7 +57,7 @@ font-size:1rem;
 margin-bottom:20px;
 }
 @media(max-width:570px){
-font-size:1rem;
+font-size:0.9rem;
 }
 `;
 
