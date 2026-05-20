@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink as RouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   HeroButton,
   HeroFirstContainer,
@@ -25,6 +25,7 @@ const images = [
 
 const HeroFirst = () => {
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,7 +49,7 @@ const HeroFirst = () => {
         restaurant chain, and capitalize on a proven business model.
       </HeroSubtitle>
 
-      <HeroButton as={RouterLink} to="/franchiseform">
+      <HeroButton onClick={() => navigate("/franchiseform")} type="button">
         Franchise With Us <CiLocationArrow1 aria-hidden="true" />
       </HeroButton>
 

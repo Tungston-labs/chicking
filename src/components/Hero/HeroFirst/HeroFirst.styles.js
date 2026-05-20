@@ -65,11 +65,14 @@ export const HeroSubtitle = styled.p`
   }
 `;
 
-export const HeroButton = styled.a`
+export const HeroButton = styled.button`
   margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
+  border: 0;
   border-radius: 0.25rem;
   background: #891b1c;
+  position: relative;
+  z-index: 4;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -84,6 +87,10 @@ export const HeroButton = styled.a`
   transition:
     background 160ms ease,
     transform 160ms ease;
+
+  &:hover {
+    background: #751012;
+  }
 
   svg {
     display: block;

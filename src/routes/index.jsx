@@ -9,6 +9,9 @@ import LeadershipSection from "../pages/Management/index.jsx";
 import FaqSection from "../pages/FAQ/index.jsx";
 import BlogSections from '../pages/Blog/BlogSection'
 import Login from "../pages/Login/index.jsx";
+import ForgotPassword from "../pages/Login/ForgotPassword.jsx";
+import VerifyCode from "../pages/Login/VerifyCode.jsx";
+import SetPassword from "../pages/Login/SetPassword.jsx";
 import ProtectedRoute from "../components/ProtectedRoute.jsx";
 
 const pageRoutes = [
@@ -52,6 +55,18 @@ const pageRoutes = [
   {
     path: "/admin-login",
     Component: Login,
+  },
+  {
+    path: "/admin-login/forgot-password",
+    Component: ForgotPassword,
+  },
+  {
+    path: "/admin-login/verify-code",
+    Component: VerifyCode,
+  },
+  {
+    path: "/admin-login/set-password",
+    Component: SetPassword,
   },
   // Example protected route usage (replace ExampleAdminPage with real component when ready)
   // {

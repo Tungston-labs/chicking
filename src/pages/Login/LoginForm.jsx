@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { FiLock, FiMail } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import {
-  Button,
   ErrorText,
   Fields,
-  ForgotPassword,
-  Form,
+  FormCard,
   HeadingGroup,
   Input,
   InputIcon,
   InputWrap,
+  PrimaryButton,
   Subtitle,
+  TextButton,
   Title,
 } from "./style";
 
@@ -52,7 +53,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <FormCard onSubmit={handleSubmit}>
       <HeadingGroup>
         <Title>Hello Admin!</Title>
         <Subtitle>Welcome Back</Subtitle>
@@ -65,6 +66,8 @@ const LoginForm = () => {
               <Icon />
             </InputIcon>
             <Input
+              $hasIcon
+              $rounded
               autoComplete={autoComplete}
               name={name}
               onChange={handleChange}
@@ -77,9 +80,11 @@ const LoginForm = () => {
       </Fields>
 
       {error ? <ErrorText>{error}</ErrorText> : null}
-      <Button type="submit">Login</Button>
-      <ForgotPassword type="button">Forgot Password?.</ForgotPassword>
-    </Form>
+      <PrimaryButton type="submit">Login</PrimaryButton>
+      <TextButton as={Link} to="/admin-login/forgot-password">
+        Forgot Password?
+      </TextButton>
+    </FormCard>
   );
 };
 

@@ -6,6 +6,7 @@ import fries1 from '/public/images/login/login2.svg';
 import fries2 from '/public/images/login/login3.svg';
 import chicken from '/public/images/login/login4.svg';
 import dottedcircle from '/public/images/login/dottedcircle.svg';
+import forgot from '/public/images/login/forgot.svg';
 
 const loginImages = {
   logincircle,
@@ -15,6 +16,7 @@ const loginImages = {
   fries2,
   chicken,
   dottedcircle,
+  forgot,
 };
 
 export default loginImages;

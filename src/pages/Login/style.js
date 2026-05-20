@@ -1,4 +1,12 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
+
+const authRed = "#891b1c";
+const authRedHover = "#751012";
+const authBorder = "#d6d6d6";
+const authText = "#000000";
+const authMuted = "#6c6c6c";
+const authOrange = "#ec6632";
 
 const foodPositions = {
   burger: css`
@@ -27,7 +35,7 @@ const foodPositions = {
   `,
 };
 
-export const LoginContainer = styled.section`
+export const AuthPage = styled.section`
   min-height: 100vh;
   display: flex;
   background: #ffffff;
@@ -37,52 +45,35 @@ export const LoginContainer = styled.section`
   }
 `;
 
-export const LeftPanel = styled.div`
-  position: relative;
-  flex: 0 0 58%;
+export const AuthLeftPanel = styled.div`
+  flex: 0 0 55%;
   display: flex;
+  align-items: center;
   justify-content: center;
   padding: 2rem 1.5rem;
-  overflow: hidden;
-  background: #891B1C;
-
-  &::before,
-  &::after {
-    position: absolute;
-    border-radius: 50%;
-    content: "";
-    pointer-events: none;
-  }
-
-  &::before {
-    left: -10rem;
-    bottom: -9rem;
-    width: 18rem;
-    height: 18rem;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 72%);
-  }
-
-  &::after {
-    left: -4rem;
-    bottom: -4rem;
-    width: 10rem;
-    height: 10rem;
-    border: 1.1rem solid rgba(255, 255, 255, 0.06);
-  }
+  background: ${authRed};
 
   @media (max-width: 47.9375rem) {
-    min-height: 28rem;
+    min-height: 22rem;
+    padding: 1.5rem 1rem;
   }
+`;
 
-  @media (max-width: 36rem) {
-    min-height: 23rem;
-    padding-inline: 1rem;
+export const AuthRightPanel = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  background: #ffffff;
+
+  @media (max-width: 47.9375rem) {
+    padding: 2rem 1rem 2.5rem;
   }
 `;
 
 export const LeftPanelInner = styled.div`
   position: relative;
-  z-index: 1;
   width: min(100%, 28rem);
   min-height: 40rem;
   display: flex;
@@ -98,13 +89,8 @@ export const LeftPanelInner = styled.div`
   }
 
   @media (max-width: 47.9375rem) {
-    min-height: 24rem;
-    gap: 2.8rem;
-  }
-
-  @media (max-width: 36rem) {
-    min-height: 21rem;
-    gap: 2rem;
+    min-height: 18rem;
+    gap: 2.4rem;
   }
 `;
 
@@ -164,7 +150,7 @@ export const CenterBadge = styled.div`
     position: absolute;
     width: 2.4rem;
     height: 0.8rem;
-    border-top: 0.18rem solid #ec6632;
+    border-top: 0.18rem solid ${authOrange};
     border-radius: 50%;
     content: "";
   }
@@ -309,54 +295,78 @@ export const FoodItem = styled.img`
   }
 `;
 
-export const RightPanel = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1.5rem;
-  background: #ffffff;
+export const LockArtwork = styled.img`
+  width: min(100%, 35rem);
+  height: auto;
+  object-fit: contain;
 
   @media (max-width: 47.9375rem) {
-    padding-block: 2.5rem 3rem;
+    width: min(100%, 15rem);
   }
 `;
 
-export const Form = styled.form`
-  width: min(100%, 18rem);
+export const FormCard = styled.form`
+  width: min(100%, ${({ $maxWidth = "18rem" }) => $maxWidth});
   display: flex;
   flex-direction: column;
   align-items: stretch;
 `;
 
+export const BackLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  color: ${authText};
+  font-size: 0.875rem;
+  text-decoration: none;
+
+  &:hover {
+    color: ${authRed};
+  }
+`;
+
 export const HeadingGroup = styled.div`
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.25rem;
 `;
 
 export const Title = styled.h1`
   margin: 0;
-  color: #252525;
+  color: ${authText};
   font-size: 1.75rem;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.15;
 `;
 
 export const Subtitle = styled.p`
-  margin: 0.35rem 0 0;
-  color: #000;
+  margin: 0.45rem 0 0;
+  color: ${authMuted};
   font-size: 0.875rem;
-  font-weight: 400;
+  line-height: 1.5;
 `;
 
 export const Fields = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.75rem;
+`;
+
+export const Field = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+`;
+
+export const FieldLabel = styled.label`
+  color: ${authMuted};
+  font-size: 0.875rem;
+  font-weight: 500;
 `;
 
 export const InputWrap = styled.label`
   position: relative;
   display: block;
+  gap: 0.4rem;
 `;
 
 export const InputIcon = styled.span`
@@ -365,20 +375,38 @@ export const InputIcon = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #c5c5c5;
+  color: #b3b3b3;
   font-size: 0.85rem;
   transform: translateY(-50%);
   pointer-events: none;
 `;
 
+export const InputAction = styled.button`
+  position: absolute;
+  inset: 50% 0.75rem auto auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #7e7e7e;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transform: translateY(-50%);
+`;
+
 export const Input = styled.input`
   width: 100%;
-  height: 2.35rem;
-  padding: 0.65rem 0.95rem 0.65rem 2.35rem;
-  border: 0.0625rem solid #ececec;
-  border-radius: 999rem;
+  height: 2.5rem;
+  padding-top: 0.65rem;
+  padding-right: ${({ $hasAction }) => ($hasAction ? "2.45rem" : "0.95rem")};
+  padding-bottom: 0.65rem;
+  padding-left: ${({ $hasIcon }) => ($hasIcon ? "2.35rem" : "0.95rem")};
+  border: 0.0625rem solid ${authBorder};
+  border-radius: ${({ $rounded = false }) => ($rounded ? "999rem" : "0.2rem")};
   background: #ffffff;
-  color: #333333;
+  color: ${authText};
   font-size: 0.8rem;
   font-weight: 400;
   outline: none;
@@ -387,28 +415,34 @@ export const Input = styled.input`
     box-shadow 0.2s ease;
 
   &::placeholder {
-    color: #b7b7b7;
+    color: #a4a4a4;
   }
 
   &:focus {
-    border-color: rgba(181, 21, 43, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(181, 21, 43, 0.08);
+    border-color: rgba(137, 27, 28, 0.45);
+    box-shadow: 0 0 0 0.16rem rgba(137, 27, 28, 0.08);
   }
 `;
 
-export const ErrorText = styled.p`
+export const HelperText = styled.p`
   margin: 0.2rem 0 0;
+  color: ${authMuted};
+  font-size: 0.75rem;
+`;
+
+export const ErrorText = styled.p`
+  margin: 0.3rem 0 0;
   color: #d9394c;
   font-size: 0.75rem;
 `;
 
-export const Button = styled.button`
+export const PrimaryButton = styled.button`
   margin-top: 1rem;
   width: 100%;
-  height: 2.4rem;
+  height: 2.5rem;
   border: 0;
   border-radius: 0.2rem;
-  background: #891B1C;
+  background: ${authRed};
   color: #ffffff;
   font-size: 0.875rem;
   font-weight: 600;
@@ -418,7 +452,7 @@ export const Button = styled.button`
     transform 0.2s ease;
 
   &:hover {
-    background: #9f1126;
+    background: ${authRedHover};
   }
 
   &:active {
@@ -426,17 +460,34 @@ export const Button = styled.button`
   }
 `;
 
-export const ForgotPassword = styled.button`
+export const TextButton = styled.button`
   margin-top: 0.7rem;
   padding: 0;
   border: 0;
   background: transparent;
-  color: #000;
+  color: ${authText};
   font-size: 0.875rem;
   font-weight: 400;
+  text-align: center;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
-    color: #5f5f5f;
+    color: ${authRed};
+  }
+`;
+
+export const InlineText = styled.p`
+  margin: 0.4rem 0 0;
+  color: ${authMuted};
+  font-size: 0.75rem;
+`;
+
+export const InlineLink = styled(Link)`
+  color: ${authOrange};
+  text-decoration: none;
+
+  &:hover {
+    color: ${authRed};
   }
 `;
