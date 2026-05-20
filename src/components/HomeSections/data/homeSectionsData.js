@@ -38,13 +38,13 @@ export const blogPosts = [
   },
 {
   author: "Chicking Marketing",
-  date: "Dec 12, 2025",
+  date: "Jan 25, 2025",
   excerpt:
-    "Discover how Chicking continues to expand globally with innovative dining experiences, stronger franchise partnerships, and customer-first strategies.",
-  image: homeImages.content.blog.third,
-  readTime: "3 min Read",
+    "Dubai, UAE – Chicking, a homegrown Quick Service Restaurant (QSR) brand from the UAE....",
+  image: homeImages.content.blog.fourth,
+  readTime: "2 min Read",
   title:
-    "Chicking Expands Global Presence with New Franchise Opportunities",
+    "Chicking Celebrates Grand Opening of Its 21st Store in the UAE",
   url: "https://www.chickingprofile.com/blog",
 }
 ];
