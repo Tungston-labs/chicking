@@ -8,6 +8,11 @@ import AboutUs from "../pages/AboutUs/index.jsx";
 import LeadershipSection from "../pages/Management/index.jsx";
 import FaqSection from "../pages/FAQ/index.jsx";
 import BlogSections from '../pages/Blog/BlogSection'
+import Login from "../pages/Login/index.jsx";
+import ForgotPassword from "../pages/Login/ForgotPassword.jsx";
+import VerifyCode from "../pages/Login/VerifyCode.jsx";
+import SetPassword from "../pages/Login/SetPassword.jsx";
+// import ProtectedRoute from "../components/ProtectedRoute.jsx";
 import Ukpackage from "../pages/Proposition/UkPackage/Ukpackage.jsx";
 import Uspackage from "../pages/Proposition/UsPackage/Uspackage.jsx";
 import NewsArticle from "../pages/Blog/NewsArticle/NewsArticle.jsx";
@@ -50,6 +55,30 @@ const pageRoutes = [
     path: "/blog",
     Component: BlogSections,
   },
+  {
+    path: "/admin-login",
+    Component: Login,
+  },
+  {
+    path: "/admin-login/forgot-password",
+    Component: ForgotPassword,
+  },
+  {
+    path: "/admin-login/verify-code",
+    Component: VerifyCode,
+  },
+  {
+    path: "/admin-login/set-password",
+    Component: SetPassword,
+  },
+  // {
+  //   path: "/admin",
+  //   Component: () => (
+  //     <ProtectedRoute>
+  //       <ExampleAdminPage />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   {
     path: "/uk-package",
     Component: Ukpackage,
