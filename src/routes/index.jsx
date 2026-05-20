@@ -8,6 +8,8 @@ import AboutUs from "../pages/AboutUs/index.jsx";
 import LeadershipSection from "../pages/Management/index.jsx";
 import FaqSection from "../pages/FAQ/index.jsx";
 import BlogSections from '../pages/Blog/BlogSection'
+import Login from "../pages/Login/index.jsx";
+import ProtectedRoute from "../components/ProtectedRoute.jsx";
 
 const pageRoutes = [
   {
@@ -47,6 +49,19 @@ const pageRoutes = [
     path: "/blog",
     Component: BlogSections,
   },
+  {
+    path: "/admin-login",
+    Component: Login,
+  },
+  // Example protected route usage (replace ExampleAdminPage with real component when ready)
+  // {
+  //   path: "/admin",
+  //   Component: () => (
+  //     <ProtectedRoute>
+  //       <ExampleAdminPage />
+  //     </ProtectedRoute>
+  //   ),
+  // },
 ];
 
 const AppRoutes = () => (
