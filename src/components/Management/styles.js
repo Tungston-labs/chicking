@@ -67,8 +67,8 @@ text-transform: capitalize;
   }
     @media(max-width:767px){
     text-align: left;
-    font-size: 1rem;
-  }
+    font-size: 0.9rem;
+    }
 `;
 
 export const CardContainer=styled.div`
@@ -142,7 +142,7 @@ letter-spacing: 1%;
   }
   @media(max-width:767px){
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
 `;

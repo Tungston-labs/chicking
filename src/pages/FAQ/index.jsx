@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import TopBanner from '../../components/TopBanner'
-import franchiseImg from "../../../public/images/management/topimage.svg";
+import faqImg from "../../../public/images/faq/faq1.svg";
 import FAQ from '../../components/FAQ/FAQ';
 import PageLayout from '../../components/Layout/PageLayout';
+import PartnerCta from '../../components/HomeSections/sections/PartnerCta';
+import SiteFooter from '../../components/HomeSections/sections/SiteFooter';
+import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 function index() {
     const titles = [
-        "Partner With A Global Franchise Leader",
-        "Turn Ambition Into International Success",
-        " Scale Your Business With a Proven Global Model",
-        "Expanding Opportunities Delivering Global Success",
+        "Frequently Asked Questions?",
+        "Let’s Clear Things Up",
+        " Ask Us Anything",
+        "Everything You Need to Know",
     ];
     const [titleIndex, setTitleIndex] = useState(0);
     useEffect(() => {
@@ -20,7 +23,7 @@ function index() {
     }, [titles.length]);
     return (
         <>
-        <PageLayout/>
+            <PageLayout />
             <TopBanner
                 key={titleIndex}
                 title={titles[titleIndex]}
@@ -31,9 +34,31 @@ function index() {
                         training and support, you can position your business for growth and success.
                     </>
                 }
-                image={franchiseImg}
+                image={faqImg}
             />
             <FAQ />
+            <PartnerCta
+                action={{
+                    to: "/franchiseform",
+                    label: "Franchise Inquiry",
+                }}
+                actionBackground="#ffffff"
+                actionTextColor="#891B1C"
+                background="#891B1C"
+                bottomEdgeImage={sharedBannerImages.edges.top}
+                description="BFI doesn't just provide a brand name. We deliver a complete Chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
+                textColor="#ffffff"
+                title={
+                    <>
+                        Partner With Chicking <strong>- Where Proven</strong>
+                        <br />
+                        <strong>Success Meets Global Opportunity</strong>,
+
+                    </>
+                }
+                topEdgeImage={sharedBannerImages.edges.top}
+            />
+            <SiteFooter topEdgeImage={null} />
         </>
     )
 }

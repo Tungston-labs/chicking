@@ -17,9 +17,10 @@ const LeadershipCard = ({
   gridArea,
   isRed,
   isSmall,
+  onClick
 }) => {
   return (
-    <MemberCard gridArea={gridArea} isSmall={isSmall}>
+    <MemberCard gridArea={gridArea} isSmall={isSmall} onClick={onClick}>
       <ImageContainer isSmall={isSmall}>
         <MemberImage src={image} alt={name} isSmall={isSmall}/>
         <Overlay>

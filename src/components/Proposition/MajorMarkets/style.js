@@ -191,6 +191,7 @@ export const BreadBottom = styled.img`
 
   @media(max-width:570px){
     width:150px;
+    margin-top: 10px;
   }
 `;
 
@@ -256,7 +257,7 @@ export const Description = styled.p`
   }
 
   @media(max-width:570px){
-    font-size:1rem;
+    font-size:0.9rem;
     line-height:24px;
       max-width:300px;
   }

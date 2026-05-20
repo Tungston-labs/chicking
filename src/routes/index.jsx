@@ -12,7 +12,10 @@ import Login from "../pages/Login/index.jsx";
 import ForgotPassword from "../pages/Login/ForgotPassword.jsx";
 import VerifyCode from "../pages/Login/VerifyCode.jsx";
 import SetPassword from "../pages/Login/SetPassword.jsx";
-import ProtectedRoute from "../components/ProtectedRoute.jsx";
+// import ProtectedRoute from "../components/ProtectedRoute.jsx";
+import Ukpackage from "../pages/Proposition/UkPackage/Ukpackage.jsx";
+import Uspackage from "../pages/Proposition/UsPackage/Uspackage.jsx";
+import NewsArticle from "../pages/Blog/NewsArticle/NewsArticle.jsx";
 
 const pageRoutes = [
   {
@@ -68,7 +71,6 @@ const pageRoutes = [
     path: "/admin-login/set-password",
     Component: SetPassword,
   },
-  // Example protected route usage (replace ExampleAdminPage with real component when ready)
   // {
   //   path: "/admin",
   //   Component: () => (
@@ -77,6 +79,18 @@ const pageRoutes = [
   //     </ProtectedRoute>
   //   ),
   // },
+  {
+    path: "/uk-package",
+    Component: Ukpackage,
+  },
+  {
+    path: "/us-package",
+    Component: Uspackage,
+  },
+  {
+    path: "/news-article",
+    Component: NewsArticle,
+  },
 ];
 
 const AppRoutes = () => (
