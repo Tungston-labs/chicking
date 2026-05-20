@@ -41,7 +41,7 @@ export const AuthPage = styled.section`
   background: #ffffff;
 
   @media (max-width: 47.9375rem) {
-    flex-direction: column;
+    display: block;
   }
 `;
 
@@ -53,9 +53,13 @@ export const AuthLeftPanel = styled.div`
   padding: 2rem 1.5rem;
   background: ${authRed};
 
+  @media (min-width: 64rem) {
+    flex-basis: 58%;
+    padding: 2.5rem 2rem;
+  }
+
   @media (max-width: 47.9375rem) {
-    min-height: 22rem;
-    padding: 1.5rem 1rem;
+    display: none;
   }
 `;
 
@@ -68,7 +72,9 @@ export const AuthRightPanel = styled.div`
   background: #ffffff;
 
   @media (max-width: 47.9375rem) {
-    padding: 2rem 1rem 2.5rem;
+    min-height: 100vh;
+    width: 100%;
+    padding: 1.5rem 1rem;
   }
 `;
 
@@ -81,6 +87,12 @@ export const LeftPanelInner = styled.div`
   align-items: center;
   justify-content: center;
   gap: 4.7rem;
+
+  @media (min-width: 64rem) {
+    width: min(100%, 31rem);
+    min-height: 44rem;
+    gap: 5.4rem;
+  }
 
   @media (max-width: 63.9375rem) {
     width: min(100%, 25rem);
@@ -99,6 +111,10 @@ export const TopLogo = styled.img`
   height: auto;
   object-fit: contain;
 
+  @media (min-width: 64rem) {
+    width: 9.2rem;
+  }
+
   @media (max-width: 63.9375rem) {
     width: 7.4rem;
   }
@@ -112,6 +128,10 @@ export const Orbit = styled.div`
   position: relative;
   width: 24rem;
   aspect-ratio: 1;
+
+  @media (min-width: 64rem) {
+    width: 27rem;
+  }
 
   @media (max-width: 63.9375rem) {
     width: 20rem;
@@ -144,6 +164,11 @@ export const CenterBadge = styled.div`
   transform: translate(-50%, -50%);
   background: radial-gradient(circle at 35% 35%, #c92138 50%, #b4172b 78%, #a91126 100%);
   box-shadow: 0 1rem 2rem rgba(117, 10, 27, 0.18);
+
+  @media (min-width: 64rem) {
+    width: 10.15rem;
+    height: 10.15rem;
+  }
 
   &::before,
   &::after {
@@ -189,6 +214,10 @@ export const CenterLogo = styled.img`
   height: auto;
   object-fit: contain;
 
+  @media (min-width: 64rem) {
+    width: 8.35rem;
+  }
+
   @media (max-width: 63.9375rem) {
     width: 6.75rem;
   }
@@ -203,6 +232,36 @@ export const FoodItem = styled.img`
   height: auto;
   object-fit: contain;
   ${({ $variant }) => foodPositions[$variant] || ""}
+
+  @media (min-width: 64rem) {
+    ${({ $variant }) =>
+      $variant === "burger" &&
+      css`
+        left: -5.7rem;
+        width: 12.2rem;
+      `}
+
+    ${({ $variant }) =>
+      $variant === "fries1" &&
+      css`
+        top: -5.7rem;
+        width: 13.6rem;
+      `}
+
+    ${({ $variant }) =>
+      $variant === "fries2" &&
+      css`
+        right: -4.2rem;
+        width: 10.7rem;
+      `}
+
+    ${({ $variant }) =>
+      $variant === "chicken" &&
+      css`
+        bottom: -5.4rem;
+        width: 13rem;
+      `}
+  }
 
   @media (max-width: 63.9375rem) {
     ${({ $variant }) =>
@@ -404,7 +463,7 @@ export const Input = styled.input`
   padding-bottom: 0.65rem;
   padding-left: ${({ $hasIcon }) => ($hasIcon ? "2.35rem" : "0.95rem")};
   border: 0.0625rem solid ${authBorder};
-  border-radius: ${({ $rounded = false }) => ($rounded ? "999rem" : "0.2rem")};
+  border-radius: ${({ $rounded = false }) => ($rounded ? "0.2rem" : "0.2rem")};
   background: #ffffff;
   color: ${authText};
   font-size: 0.8rem;
