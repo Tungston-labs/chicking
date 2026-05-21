@@ -12,6 +12,10 @@ import Login from "../pages/Login/index.jsx";
 import ForgotPassword from "../pages/Login/ForgotPassword.jsx";
 import VerifyCode from "../pages/Login/VerifyCode.jsx";
 import SetPassword from "../pages/Login/SetPassword.jsx";
+import BlogDashboard from "../pages/AdminBlog/BlogDashboard.jsx";
+import CreateBlogPost from "../pages/AdminBlog/CreateBlogPost.jsx";
+import EditBlogPost from "../pages/AdminBlog/EditBlogPost.jsx";
+import ViewBlogPost from "../pages/AdminBlog/ViewBlogPost.jsx";
 // import ProtectedRoute from "../components/ProtectedRoute.jsx";
 import Ukpackage from "../pages/Proposition/UkPackage/Ukpackage.jsx";
 import Uspackage from "../pages/Proposition/UsPackage/Uspackage.jsx";
@@ -70,6 +74,22 @@ const pageRoutes = [
   {
     path: "/admin-login/set-password",
     Component: SetPassword,
+  },
+  {
+    path: "/admin/blogs",
+    Component: BlogDashboard,
+  },
+  {
+    path: "/admin/blogs/new",
+    Component: CreateBlogPost,
+  },
+  {
+    path: "/admin/blogs/:blogId/edit",
+    Component: EditBlogPost,
+  },
+  {
+    path: "/admin/blogs/:blogId",
+    Component: ViewBlogPost,
   },
   // {
   //   path: "/admin",

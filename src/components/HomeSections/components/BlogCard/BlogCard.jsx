@@ -13,7 +13,7 @@ import {
   Title,
 } from "./BlogCard.styles.js";
 
-const BlogCard = ({ author, date, excerpt, image, isVideo, readTime, title, url }) => (
+const BlogCard = ({ author, comments = 10, date, excerpt, image, isVideo, readTime, title, url, views = 135 }) => (
   <Card>
     <MediaLink href={url || "#"} target={url ? "_blank" : undefined} rel="noreferrer">
       <img src={image} alt="" />
@@ -34,8 +34,8 @@ const BlogCard = ({ author, date, excerpt, image, isVideo, readTime, title, url 
       <Title>{title}</Title>
       <Text>{excerpt}</Text>
       <Stats>
-        <span><FaEye aria-hidden="true" /> 135</span>
-        <span><FaComment aria-hidden="true" /> 10</span>
+        <span><FaEye aria-hidden="true" /> {views}</span>
+        <span><FaComment aria-hidden="true" /> {comments}</span>
         <span><FaHeart aria-hidden="true" /></span>
       </Stats>
     </Body>
