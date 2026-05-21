@@ -1,13 +1,15 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate, useLocation } from "react-router-dom";
+import { selectIsAuthenticated } from "../store/auth/authSlice.js";
 
 const ProtectedRoute = ({ children }) => {
-  // Placeholder: Replace with real auth logic
-  const isAuthenticated = false; // Set to true after login
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const location = useLocation();
 
   if (!isAuthenticated) {
-    return <Navigate to="/admin-login" replace />;
+    return <Navigate replace state={{ from: location }} to="/admin-login" />;
   }
+
   return children;
 };
 

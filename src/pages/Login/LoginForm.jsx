@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FiLock, FiMail } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { clearLoginFeedback, loginAdmin, selectAuthState } from "../../store/auth/authSlice.js";
 import {
   ErrorText,
   Fields,
@@ -10,6 +12,7 @@ import {
   InputIcon,
   InputWrap,
   PrimaryButton,
+  SuccessText,
   Subtitle,
   TextButton,
   Title,
@@ -19,7 +22,7 @@ const fields = [
   {
     autoComplete: "username",
     Icon: FiMail,
-    name: "username",
+    name: "email",
     placeholder: "Email Address",
     type: "email",
   },
@@ -33,23 +36,47 @@ const fields = [
 ];
 
 const LoginForm = () => {
-  const [form, setForm] = useState({ password: "", username: "" });
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { loginError, loginStatus } = useSelector(selectAuthState);
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const successMessage = location.state?.message || "";
 
   const handleChange = ({ target: { name, value } }) => {
     setForm((current) => ({ ...current, [name]: value }));
     setError("");
+
+    if (loginError) {
+      dispatch(clearLoginFeedback());
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!form.username || !form.password) {
+    if (!form.email || !form.password) {
       setError("Please enter both fields.");
       return;
     }
 
     setError("");
+
+    try {
+      await dispatch(
+        loginAdmin({
+          email: form.email.trim(),
+          password: form.password,
+        })
+      ).unwrap();
+
+      navigate(location.state?.from?.pathname || "/admin/blogs", {
+        replace: true,
+      });
+    } catch {
+      // Server-side error is handled by Redux state.
+    }
   };
 
   return (
@@ -79,8 +106,11 @@ const LoginForm = () => {
         ))}
       </Fields>
 
-      {error ? <ErrorText>{error}</ErrorText> : null}
-      <PrimaryButton type="submit">Login</PrimaryButton>
+      {successMessage ? <SuccessText>{successMessage}</SuccessText> : null}
+      {error || loginError ? <ErrorText>{error || loginError}</ErrorText> : null}
+      <PrimaryButton disabled={loginStatus === "loading"} type="submit">
+        {loginStatus === "loading" ? "Logging in..." : "Login"}
+      </PrimaryButton>
       <TextButton as={Link} to="/admin-login/forgot-password">
         Forgot Password?
       </TextButton>

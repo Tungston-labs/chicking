@@ -495,6 +495,12 @@ export const ErrorText = styled.p`
   font-size: 0.75rem;
 `;
 
+export const SuccessText = styled.p`
+  margin: 0.3rem 0 0;
+  color: #218a4d;
+  font-size: 0.75rem;
+`;
+
 export const PrimaryButton = styled.button`
   margin-top: 1rem;
   width: 100%;
@@ -516,6 +522,12 @@ export const PrimaryButton = styled.button`
 
   &:active {
     transform: translateY(0.0625rem);
+  }
+
+  &:disabled {
+    background: #b77172;
+    cursor: not-allowed;
+    transform: none;
   }
 `;
 

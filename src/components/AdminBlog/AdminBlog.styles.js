@@ -183,6 +183,12 @@ export const UserMeta = styled.div`
   }
 `;
 
+export const UserActions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+`;
+
 export const UserAvatar = styled.div`
   width: 2rem;
   height: 2rem;
@@ -208,6 +214,20 @@ export const UserText = styled.div`
     color: #8d8d8d;
     font-size: 0.62rem;
   }
+`;
+
+export const HeaderActionButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #891b1c;
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
 `;
 
 export const Content = styled.main`
