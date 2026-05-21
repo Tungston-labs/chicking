@@ -362,14 +362,14 @@ export const TableWrap = styled.div`
   border: 0.125rem solid #2f98f3;
   border-radius: 0.45rem;
 
-  @media (max-width: 48rem) {
+  @media (max-width: 63.9375rem) {
     display: none;
   }
 `;
 
 export const Table = styled.table`
   width: 100%;
-  min-width: 62rem;
+  min-width: 60rem;
   border-collapse: collapse;
 
   th,
@@ -470,19 +470,20 @@ export const StatusPill = styled.span`
 
 export const ActionGroup = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
+  flex-wrap: ${({ $nowrap }) => ($nowrap ? "nowrap" : "wrap")};
+  gap: ${({ $compact }) => ($compact ? "0.32rem" : "0.45rem")};
 `;
 
 export const IconButton = styled.button`
-  width: 2rem;
-  height: 2rem;
+  width: ${({ $compact }) => ($compact ? "1.85rem" : "2rem")};
+  height: ${({ $compact }) => ($compact ? "1.85rem" : "2rem")};
   display: inline-grid;
   place-items: center;
   border: 0.0625rem solid #ececec;
   border-radius: 50%;
   background: #ffffff;
   color: ${({ $variant }) => ($variant === "danger" ? "#ff7d5b" : "#626262")};
+  font-size: ${({ $compact }) => ($compact ? "0.82rem" : "0.9rem")};
   cursor: pointer;
   text-decoration: none;
 `;
@@ -508,7 +509,7 @@ export const PageChip = styled.button`
 export const MobilePostList = styled.div`
   display: none;
 
-  @media (max-width: 48rem) {
+  @media (max-width: 63.9375rem) {
     display: grid;
     gap: 0.85rem;
   }
@@ -679,6 +680,22 @@ export const Actions = styled.div`
 
   @media (max-width: 36rem) {
     flex-direction: column;
+  }
+`;
+
+export const DesktopEditorActions = styled(Actions)`
+  @media (max-width: 63.9375rem) {
+    display: none;
+  }
+`;
+
+export const MobileEditorActions = styled(Actions)`
+  display: none;
+
+  @media (max-width: 63.9375rem) {
+    display: flex;
+    grid-column: 1 / -1;
+    margin-top: 0;
   }
 `;
 

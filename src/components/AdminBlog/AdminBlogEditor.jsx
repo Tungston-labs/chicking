@@ -11,9 +11,9 @@ import {
 } from "react-icons/fi";
 import { getEditorInitialValues } from "./adminBlogStore.js";
 import {
-  Actions,
   AddTagButton,
   CardHeading,
+  DesktopEditorActions,
   EditorArea,
   EditorCard,
   EditorGrid,
@@ -22,6 +22,7 @@ import {
   Field,
   Input,
   Label,
+  MobileEditorActions,
   PrimaryButton,
   SecondaryButton,
   Select,
@@ -83,6 +84,20 @@ const AdminBlogEditor = ({
     }, status);
   };
 
+  const actionButtons = (
+    <>
+      <SecondaryButton onClick={onCancel} type="button">
+        Cancel
+      </SecondaryButton>
+      <SecondaryButton onClick={() => handleSubmit("Draft")} type="button">
+        Save Draft
+      </SecondaryButton>
+      <PrimaryButton onClick={() => handleSubmit("Published")} type="button">
+        {mode === "edit" ? "Update Post" : "Publish Post"} <FiSend />
+      </PrimaryButton>
+    </>
+  );
+
   return (
     <EditorGrid>
       <EditorCard>
@@ -117,17 +132,7 @@ const AdminBlogEditor = ({
             <EditorArea onChange={handleFieldChange("content")} value={formValues.content} />
           </EditorSurface>
         </Field>
-        <Actions>
-          <SecondaryButton onClick={onCancel} type="button">
-            Cancel
-          </SecondaryButton>
-          <SecondaryButton onClick={() => handleSubmit("Draft")} type="button">
-            Save Draft
-          </SecondaryButton>
-          <PrimaryButton onClick={() => handleSubmit("Published")} type="button">
-            {mode === "edit" ? "Update Post" : "Publish Post"} <FiSend />
-          </PrimaryButton>
-        </Actions>
+        <DesktopEditorActions>{actionButtons}</DesktopEditorActions>
       </EditorCard>
 
       <SettingsCard>
@@ -191,6 +196,7 @@ const AdminBlogEditor = ({
           </UploadBox>
         </Field>
       </SettingsCard>
+      <MobileEditorActions>{actionButtons}</MobileEditorActions>
     </EditorGrid>
   );
 };

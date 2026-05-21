@@ -141,14 +141,20 @@ const AdminBlogTable = ({
                     <StatusPill $status={post.status}>{post.status}</StatusPill>
                   </td>
                   <td>
-                    <ActionGroup>
-                      <IconButton as={Link} title="View blog" to={`/admin/blogs/${post.id}`}>
+                    <ActionGroup $compact $nowrap>
+                      <IconButton $compact as={Link} title="View blog" to={`/admin/blogs/${post.id}`}>
                         <FiEye />
                       </IconButton>
-                      <IconButton as={Link} title="Edit blog" to={`/admin/blogs/${post.id}/edit`}>
+                      <IconButton $compact as={Link} title="Edit blog" to={`/admin/blogs/${post.id}/edit`}>
                         <FiEdit2 />
                       </IconButton>
-                      <IconButton $variant="danger" onClick={() => onDelete(post.id)} title="Move to trash" type="button">
+                      <IconButton
+                        $compact
+                        $variant="danger"
+                        onClick={() => onDelete(post.id)}
+                        title="Move to trash"
+                        type="button"
+                      >
                         <FiTrash2 />
                       </IconButton>
                     </ActionGroup>
