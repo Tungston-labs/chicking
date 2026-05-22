@@ -4,6 +4,8 @@ import {
   deleteBlogPost,
   fetchBlogById,
   fetchBlogsList,
+  fetchPublicBlogById,
+  fetchPublicBlogsList,
   updateBlogPost,
 } from "./blogThunks.js";
 import {
@@ -16,6 +18,12 @@ import {
   selectCurrentBlogError,
   selectCurrentBlogStatus,
   selectHomeBlogPosts,
+  selectPublicBlogListError,
+  selectPublicBlogListStatus,
+  selectPublicBlogs,
+  selectPublicCurrentBlog,
+  selectPublicCurrentBlogError,
+  selectPublicCurrentBlogStatus,
   selectPublishedBlogs,
 } from "./blogSelectors.js";
 
@@ -30,6 +38,12 @@ const initialState = {
   items: [],
   listError: "",
   listStatus: "idle",
+  publicCurrentBlog: null,
+  publicCurrentBlogError: "",
+  publicCurrentBlogStatus: "idle",
+  publicItems: [],
+  publicListError: "",
+  publicListStatus: "idle",
   updateError: "",
   updateStatus: "idle",
 };
@@ -53,6 +67,11 @@ const blogSlice = createSlice({
       state.currentBlogError = "";
       state.currentBlogStatus = "idle";
     },
+    clearPublicCurrentBlog: (state) => {
+      state.publicCurrentBlog = null;
+      state.publicCurrentBlogError = "";
+      state.publicCurrentBlogStatus = "idle";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -69,6 +88,19 @@ const blogSlice = createSlice({
         state.listError = action.payload || "Unable to load blogs.";
         state.listStatus = "failed";
       })
+      .addCase(fetchPublicBlogsList.pending, (state) => {
+        state.publicListError = "";
+        state.publicListStatus = "loading";
+      })
+      .addCase(fetchPublicBlogsList.fulfilled, (state, action) => {
+        state.publicItems = action.payload;
+        state.publicListStatus = "succeeded";
+      })
+      .addCase(fetchPublicBlogsList.rejected, (state, action) => {
+        state.publicItems = [];
+        state.publicListError = action.payload || "Unable to load published blogs.";
+        state.publicListStatus = "failed";
+      })
       .addCase(fetchBlogById.pending, (state) => {
         state.currentBlogError = "";
         state.currentBlogStatus = "loading";
@@ -84,6 +116,24 @@ const blogSlice = createSlice({
         state.currentBlog = null;
         state.currentBlogError = action.payload || "Unable to load this blog.";
         state.currentBlogStatus = "failed";
+      })
+      .addCase(fetchPublicBlogById.pending, (state) => {
+        state.publicCurrentBlogError = "";
+        state.publicCurrentBlogStatus = "loading";
+      })
+      .addCase(fetchPublicBlogById.fulfilled, (state, action) => {
+        state.publicCurrentBlog = action.payload;
+        state.publicCurrentBlogStatus = "succeeded";
+
+        const existingBlog = state.publicItems.find((blog) => blog.id === action.payload.id);
+        state.publicItems = existingBlog
+          ? replaceBlog(state.publicItems, action.payload)
+          : [action.payload, ...state.publicItems];
+      })
+      .addCase(fetchPublicBlogById.rejected, (state, action) => {
+        state.publicCurrentBlog = null;
+        state.publicCurrentBlogError = action.payload || "Unable to load this article.";
+        state.publicCurrentBlogStatus = "failed";
       })
       .addCase(createBlogPost.pending, (state) => {
         state.createError = "";
@@ -133,13 +183,15 @@ const blogSlice = createSlice({
   },
 });
 
-export const { clearBlogMutationState, clearCurrentBlog } = blogSlice.actions;
+export const { clearBlogMutationState, clearCurrentBlog, clearPublicCurrentBlog } = blogSlice.actions;
 
 export {
   createBlogPost,
   deleteBlogPost,
   fetchBlogById,
   fetchBlogsList,
+  fetchPublicBlogById,
+  fetchPublicBlogsList,
   selectAdminBlogs,
   selectBlogListError,
   selectBlogListStatus,
@@ -149,6 +201,12 @@ export {
   selectCurrentBlogError,
   selectCurrentBlogStatus,
   selectHomeBlogPosts,
+  selectPublicBlogListError,
+  selectPublicBlogListStatus,
+  selectPublicBlogs,
+  selectPublicCurrentBlog,
+  selectPublicCurrentBlogError,
+  selectPublicCurrentBlogStatus,
   selectPublishedBlogs,
   updateBlogPost,
 };

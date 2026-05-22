@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.section`
   padding: 40px 6rem;
@@ -24,6 +25,18 @@ export const Container = styled.div`
   max-width:920px;
   margin:auto;
   }
+`;
+
+export const BackLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.4rem;
+  color: #891b1c;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
 `;
 
 export const Title = styled.h1`
@@ -136,8 +149,10 @@ margin-bottom:40px;
 
 export const BannerImage = styled.img`
 width:100%;
-height:auto;
+aspect-ratio:16 / 9;
+object-fit:contain;
 display:block;
+background:#f7f2eb;
 `;
 
 export const PlayButton = styled.img`
@@ -173,13 +188,41 @@ padding-left:15px;
 }
 `;
 
-export const Content = styled.p`
+export const Content = styled.div`
 font-family: "Josefin Sans", sans-serif;
 font-weight: 300;
 font-style: Light;
 font-size: 15px;
 line-height: 24px;
 letter-spacing: 0%;
+
+  p {
+    margin: 0 0 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 1rem 1.25rem;
+    padding: 0;
+  }
+
+  img,
+  video {
+    width: 100%;
+    max-height: 34rem;
+    display: block;
+    object-fit: contain;
+    background: #f7f2eb;
+    margin: 1rem 0;
+  }
+
+  a {
+    color: #891b1c;
+  }
 
 @media(max-width:768px){
 font-size:16px;

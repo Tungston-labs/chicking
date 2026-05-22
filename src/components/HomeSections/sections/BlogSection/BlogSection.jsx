@@ -29,7 +29,7 @@ const BlogSection = ({
     />
     <BlogGrid>
       {posts.map((post) => (
-        <BlogCard key={post.title} {...post} />
+        <BlogCard key={post.id || post.title} {...post} />
       ))}
     </BlogGrid>
   </SharedBanner>

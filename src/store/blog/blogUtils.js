@@ -108,6 +108,50 @@ export const toInputDate = (value) => {
   return `${year}-${monthValue}-${day}`;
 };
 
+const escapeHtml = (value = "") =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+
+const hasHtmlTags = (value = "") => /<\/?[a-z][\s\S]*>/i.test(value);
+
+const htmlToPlainText = (value = "") =>
+  value
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|div|li|h[1-6]|blockquote)>/gi, "\n")
+    .replace(/<li>/gi, "• ")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&#39;/gi, "'")
+    .replace(/&quot;/gi, '"');
+
+const toContentHtml = (content) => {
+  if (typeof content !== "string") {
+    return "";
+  }
+
+  if (hasHtmlTags(content)) {
+    return content;
+  }
+
+  const paragraphs = content
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
+  if (!paragraphs.length) {
+    return "";
+  }
+
+  return paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("");
+};
+
 const splitContent = (content) => {
   if (Array.isArray(content)) {
     return content.filter(Boolean);
@@ -117,7 +161,9 @@ const splitContent = (content) => {
     return [];
   }
 
-  return content
+  const normalizedContent = hasHtmlTags(content) ? htmlToPlainText(content) : content;
+
+  return normalizedContent
     .split(/\n{2,}/)
     .map((paragraph) => paragraph.trim())
     .filter(Boolean);
@@ -138,6 +184,7 @@ export const normalizeBlog = (blog) => {
     return null;
   }
 
+  const contentHtml = toContentHtml(blog.content);
   const contentBlocks = splitContent(blog.content);
   const publishDateValue = toInputDate(blog.publishedAt) || toInputDate(blog.date);
 
@@ -147,7 +194,8 @@ export const normalizeBlog = (blog) => {
     commentThread: Array.isArray(blog.commentThread) ? blog.commentThread : [],
     comments: Number(blog.comments || 0),
     content: contentBlocks,
-    contentText: joinContent(blog.content),
+    contentHtml,
+    contentText: joinContent(htmlToPlainText(contentHtml || blog.content || "")),
     date: blog.date || formatDateLabel(publishDateValue),
     featuredVideo: blog.isVideo ? blog.url || "" : "",
     image: blog.image || fallbackImage,
@@ -199,7 +247,7 @@ export const buildBlogRequestPayload = ({ existingBlog, formValues, status }) =>
   content: formValues.content.trim(),
   excerpt: formValues.excerpt.trim(),
   id: existingBlog?.id || createClientBlogId(formValues.title),
-  image: existingBlog?.image || fallbackImage,
+  image: formValues.imageRemoved ? null : formValues.image || existingBlog?.image || fallbackImage,
   isVideo: Boolean(formValues.featuredVideo.trim()),
   publishedAt: resolvePublishedAt({
     existingBlog,
@@ -216,9 +264,11 @@ export const buildBlogRequestPayload = ({ existingBlog, formValues, status }) =>
 export const getEditorInitialValues = (post) => ({
   author: post?.author || "Admin",
   category: post?.category || "New Store Openings",
-  content: post?.contentText || "",
+  content: post?.contentHtml || post?.contentText || "",
   excerpt: post?.excerpt || "",
   featuredVideo: post?.featuredVideo || "",
+  image: post?.image || "",
+  imageRemoved: false,
   publishDate: post?.publishDateValue || "",
   readTime: post?.readTime || "2 min Read",
   tags: post?.tags || [],

@@ -7,21 +7,17 @@ import BlogSection from "../../components/HomeSections/sections/BlogSection";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx";
-import { selectIsAuthenticated } from "../../store/auth/authSlice.js";
-import { fetchBlogsList, selectPublishedBlogs } from "../../store/blog/blogSlice.js";
+import { fetchPublicBlogsList, selectPublishedBlogs } from "../../store/blog/blogSlice.js";
 
 function BlogSections() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(selectIsAuthenticated);
   const posts = useSelector(selectPublishedBlogs);
   const titles = ["Insights, Ideas & Stories from Chicking"];
   const [titleIndex, setTitleIndex] = useState(0);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(fetchBlogsList());
-    }
-  }, [dispatch, isAuthenticated]);
+    dispatch(fetchPublicBlogsList());
+  }, [dispatch]);
 
   useEffect(() => {
     const interval = setInterval(() => {

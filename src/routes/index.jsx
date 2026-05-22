@@ -113,7 +113,7 @@ const pageRoutes = [
   },
   {
     element: <NewsArticle />,
-    path: "/news-article",
+    path: "/new-articles/:blogId",
   },
 ];
 

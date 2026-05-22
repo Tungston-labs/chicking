@@ -104,9 +104,7 @@ const ViewBlogPost = () => {
               <ContentArticle>
                 <h2>{post.title}</h2>
                 <HeroImage alt={post.title} src={post.image} />
-                {post.content.map((paragraph, index) => (
-                  <p key={`${post.id}-paragraph-${index}`}>{paragraph}</p>
-                ))}
+                <div dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
               </ContentArticle>
 
               <ActionGroup style={{ justifyContent: "space-between", marginTop: "1rem" }}>

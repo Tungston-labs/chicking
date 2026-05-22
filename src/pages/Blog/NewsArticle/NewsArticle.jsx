@@ -1,60 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { FiArrowLeft, FiExternalLink } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import {
-  Wrapper,
-  Container,
-  Title,
-  MetaRow,
+  AuthorInfo,
   AuthorWrap,
   Avatar,
-  AuthorInfo,
-  Name,
-  Role,
-  Date,
-  BannerWrap,
+  BackLink,
   BannerImage,
-  QuoteBox,
+  BannerWrap,
+  Container,
   Content,
+  Date,
+  MetaRow,
+  Name,
+  QuoteBox,
+  Role,
+  Title,
+  Wrapper,
 } from "./NewsArticle.styles";
-
 import franchiseImg from "../../../../public/images/blog/blog1.svg";
-import profileImg from "../../../../public/images/blog/profile.svg";
-import bannerImg from "../../../../public/images/blog/banner.svg";
-
 import PageLayout from "../../../components/Layout/PageLayout";
 import TopBanner from "../../../components/TopBanner";
+import {
+  clearPublicCurrentBlog,
+  fetchPublicBlogById,
+  selectPublicCurrentBlog,
+  selectPublicCurrentBlogError,
+  selectPublicCurrentBlogStatus,
+} from "../../../store/blog/blogSlice.js";
 
 function NewsArticle() {
+  const dispatch = useDispatch();
+  const { blogId } = useParams();
+  const post = useSelector(selectPublicCurrentBlog);
+  const articleStatus = useSelector(selectPublicCurrentBlogStatus);
+  const articleError = useSelector(selectPublicCurrentBlogError);
   const titles = ["Insights, Ideas & Stories from Chicking"];
-
   const [titleIndex, setTitleIndex] = useState(0);
 
-  const [articleData] = useState({
-    title:
-      "With 21-Store Acquisition and New Flagship, Grace Food Courts Cements Chicking’s Pivot to South India",
+  useEffect(() => {
+    dispatch(fetchPublicBlogById(blogId));
 
-    read_time: "4",
-
-    author: "Trzech Nova",
-
-    role: "Author",
-
-    author_image: profileImg,
-
-    date: "Nov 29, 2025",
-
-    banner_image: bannerImg,
-
-    courtesy_link:
-      "https://expressnews.asia/2026/01/with-21-store-acquisition",
-
-    content: `
-Grace Food Courts Pvt. Ltd. (GFCPL) has made a decisive move in Chennai’s competitive Quick Service Restaurant (QSR) market with the launch of its new flagship Chicking outlet at Shanti Colony, Anna Nagar, signaling a strategic shift toward consolidation-led growth in South India.
-
-The opening marks GFCPL’s first major initiative since acquiring Master Franchise rights for the Dubai-based QSR brand across India, excluding Kerala. As part of this strategy, the company has also taken over operational control of 21 existing Chicking outlets, bringing a previously fragmented store network under a unified management and operating framework.
-
-The inauguration was officiated by Chicking Founder and Chairman, Mr. Mansoor A.K., in the presence of Anna Nagar MLA, Mr. M.K. Mohan. The event highlighted India’s growing importance to the brand, which now counts the country as its largest global market. Of Chicking’s more than 450 outlets across 45 countries, over 125 are located in India.
-`,
-  });
+    return () => {
+      dispatch(clearPublicCurrentBlog());
+    };
+  }, [blogId, dispatch]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -62,7 +53,7 @@ The inauguration was officiated by Chicking Founder and Chairman, Mr. Mansoor A.
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [titles.length]);
 
   return (
     <>
@@ -73,8 +64,7 @@ The inauguration was officiated by Chicking Founder and Chairman, Mr. Mansoor A.
         title={titles[titleIndex]}
         description={
           <>
-            Stay updated with the latest news, industry insights,
-            franchise
+            Stay updated with the latest news, industry insights, franchise
             <br />
             updates, and behind-the-scenes stories.
           </>
@@ -84,37 +74,55 @@ The inauguration was officiated by Chicking Founder and Chairman, Mr. Mansoor A.
 
       <Wrapper>
         <Container>
-          <Title>{articleData.title}</Title>
+          <BackLink to="/blog">
+            <FiArrowLeft /> Back to Blog
+          </BackLink>
 
-          <MetaRow>
-            <div>
-              <p>{articleData.read_time} Mins Read</p>
+          {articleStatus === "loading" ? (
+            <Title>Loading article...</Title>
+          ) : post ? (
+            <>
+              <Title>{post.title}</Title>
 
-              <AuthorWrap>
-                <Avatar src={articleData.author_image} />
+              <MetaRow>
+                <div>
+                  <p>{post.readTime}</p>
 
-                <AuthorInfo>
-                  <Name>{articleData.author}</Name>
+                  <AuthorWrap>
+                    <Avatar src="/images/logo.svg" />
 
-                  <Role>{articleData.role}</Role>
-                </AuthorInfo>
-              </AuthorWrap>
-            </div>
+                    <AuthorInfo>
+                      <Name>{post.author}</Name>
 
-            <Date>{articleData.date}</Date>
-          </MetaRow>
+                      <Role>{post.authorRole}</Role>
+                    </AuthorInfo>
+                  </AuthorWrap>
+                </div>
 
-          <BannerWrap>
-            <BannerImage src={articleData.banner_image} />
-          </BannerWrap>
+                <Date>{post.date}</Date>
+              </MetaRow>
 
-          <QuoteBox>
-            Courtesy: {articleData.courtesy_link}
-          </QuoteBox>
+              <BannerWrap>
+                <BannerImage src={post.image} />
+              </BannerWrap>
 
-          <Content style={{ whiteSpace: "pre-line" }}>
-            {articleData.content}
-          </Content>
+              {post.url ? (
+                <QuoteBox>
+                  Source:{" "}
+                  <a href={post.url} rel="noreferrer" target="_blank">
+                    Open linked media <FiExternalLink style={{ verticalAlign: "middle" }} />
+                  </a>
+                </QuoteBox>
+              ) : null}
+
+              <Content dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
+            </>
+          ) : (
+            <>
+              <Title>Article not found</Title>
+              <QuoteBox>{articleError || "The article you requested is unavailable right now."}</QuoteBox>
+            </>
+          )}
         </Container>
       </Wrapper>
     </>

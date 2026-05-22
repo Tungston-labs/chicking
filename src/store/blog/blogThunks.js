@@ -27,6 +27,18 @@ export const fetchBlogsList = createAsyncThunk(
   }
 );
 
+export const fetchPublicBlogsList = createAsyncThunk(
+  "blogs/fetchPublicBlogsList",
+  async ({ category } = {}, { rejectWithValue }) => {
+    try {
+      const response = await blogsApi.listPublicBlogs({ category });
+      return normalizeBlogList(response);
+    } catch (error) {
+      return rejectWithValue(getErrorMessage(error, "Unable to load published blogs right now."));
+    }
+  }
+);
+
 export const fetchBlogById = createAsyncThunk(
   "blogs/fetchBlogById",
   async (blogId, { rejectWithValue }) => {
@@ -35,6 +47,18 @@ export const fetchBlogById = createAsyncThunk(
       return unwrapBlogPayload(response);
     } catch (error) {
       return rejectWithValue(getErrorMessage(error, "Unable to load this blog right now."));
+    }
+  }
+);
+
+export const fetchPublicBlogById = createAsyncThunk(
+  "blogs/fetchPublicBlogById",
+  async (blogId, { rejectWithValue }) => {
+    try {
+      const response = await blogsApi.getPublicBlog(blogId);
+      return unwrapBlogPayload(response);
+    } catch (error) {
+      return rejectWithValue(getErrorMessage(error, "Unable to load this article right now."));
     }
   }
 );

@@ -665,6 +665,7 @@ export const EditorSurface = styled.div`
 export const EditorToolbar = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem;
   padding: 0.7rem;
   border-bottom: 0.0625rem solid #ececec;
@@ -672,24 +673,90 @@ export const EditorToolbar = styled.div`
 `;
 
 export const Tool = styled.button`
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
+  border-radius: 0.25rem;
   background: transparent;
   color: #575757;
   font-size: 0.85rem;
   cursor: pointer;
+
+  &:hover {
+    background: rgba(137, 27, 28, 0.08);
+    color: #891b1c;
+  }
 `;
 
-export const EditorArea = styled.textarea`
+export const ToolSelect = styled.select`
+  min-width: 4.5rem;
+  height: 2rem;
+  padding: 0 0.45rem;
+  border: 0.0625rem solid #ececec;
+  border-radius: 0.25rem;
+  background: #ffffff;
+  color: #575757;
+  font-size: 0.8rem;
+  outline: none;
+`;
+
+export const ToolColorInput = styled.input`
+  width: 2rem;
+  height: 2rem;
+  padding: 0.15rem;
+  border: 0.0625rem solid #ececec;
+  border-radius: 0.25rem;
+  background: #ffffff;
+  cursor: pointer;
+`;
+
+export const EditorArea = styled.div`
   width: 100%;
   min-height: 20rem;
   padding: 1rem;
   border: 0;
-  resize: vertical;
   background: rgba(245, 243, 243, 0.4);
   color: #2a2a2a;
   font-size: 0.82rem;
   line-height: 1.7;
   outline: none;
+  overflow: auto;
+
+  &[contenteditable="true"]:empty::before {
+    content: attr(data-placeholder);
+    color: #7a7a7a;
+    font-style: italic;
+  }
+
+  p {
+    margin: 0 0 0.8rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 0.8rem 1.2rem;
+    padding: 0;
+  }
+
+  a {
+    color: #891b1c;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    display: block;
+    margin: 0.8rem 0;
+    border-radius: 0.35rem;
+  }
 `;
 
 export const Actions = styled.div`
@@ -812,6 +879,37 @@ export const UploadBox = styled.div`
   text-align: center;
   font-size: 0.72rem;
   line-height: 1.5;
+  cursor: pointer;
+`;
+
+export const UploadPreview = styled.img`
+  width: 100%;
+  max-height: 12rem;
+  display: block;
+  object-fit: contain;
+  border-radius: 0.25rem;
+  background: #f7f2eb;
+`;
+
+export const UploadActions = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.6rem;
+`;
+
+export const UploadActionButton = styled.button`
+  min-width: 5.5rem;
+  height: 2.1rem;
+  padding: 0 0.8rem;
+  border: 0.0625rem solid #d8d8d8;
+  border-radius: 0.25rem;
+  background: #ffffff;
+  color: #2a2a2a;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
 `;
 
 export const Divider = styled.hr`
@@ -871,10 +969,11 @@ export const MetaText = styled.div`
 
 export const HeroImage = styled.img`
   width: 100%;
-  height: clamp(14rem, 32vw, 22rem);
-  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
+  background: #f7f2eb;
 `;
 
 export const ContentArticle = styled.article`
