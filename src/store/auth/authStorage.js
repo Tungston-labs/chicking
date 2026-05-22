@@ -1,7 +1,22 @@
 export const AUTH_SESSION_STORAGE_KEY = "chicking-admin-auth-session-v1";
 export const AUTH_RECOVERY_STORAGE_KEY = "chicking-admin-password-recovery-v1";
+export const AUTH_SESSION_EVENT = "chicking-admin-auth-session-change";
 
 const canUseStorage = () => typeof window !== "undefined" && window.localStorage;
+
+const emitSessionEvent = (session) => {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  queueMicrotask(() => {
+    window.dispatchEvent(
+      new CustomEvent(AUTH_SESSION_EVENT, {
+        detail: session || null,
+      })
+    );
+  });
+};
 
 const readStorageValue = (storageKey) => {
   if (!canUseStorage()) {
@@ -36,6 +51,7 @@ export const clearStoredAuthSession = () => {
   }
 
   window.localStorage.removeItem(AUTH_SESSION_STORAGE_KEY);
+  emitSessionEvent(null);
 };
 
 export const clearStoredRecoveryState = () => {
@@ -46,34 +62,14 @@ export const clearStoredRecoveryState = () => {
   window.localStorage.removeItem(AUTH_RECOVERY_STORAGE_KEY);
 };
 
-export const loadStoredAuthSession = () => {
-  const storedSession = readStorageValue(AUTH_SESSION_STORAGE_KEY);
-
-  if (!storedSession) {
-    return null;
-  }
-
-  if (storedSession.expiresAt && storedSession.expiresAt <= Date.now()) {
-    clearStoredAuthSession();
-    return null;
-  }
-
-  return storedSession;
-};
+export const loadStoredAuthSession = () => readStorageValue(AUTH_SESSION_STORAGE_KEY);
 
 export const persistAuthSession = (session) => {
   writeStorageValue(AUTH_SESSION_STORAGE_KEY, session);
+  emitSessionEvent(session);
 };
 
-export const loadStoredRecoveryState = () => {
-  const storedRecoveryState = readStorageValue(AUTH_RECOVERY_STORAGE_KEY);
-
-  if (!storedRecoveryState) {
-    return null;
-  }
-
-  return storedRecoveryState;
-};
+export const loadStoredRecoveryState = () => readStorageValue(AUTH_RECOVERY_STORAGE_KEY);
 
 export const persistRecoveryState = (recoveryState) => {
   writeStorageValue(AUTH_RECOVERY_STORAGE_KEY, recoveryState);

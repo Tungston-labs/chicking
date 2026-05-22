@@ -15,7 +15,6 @@ import {
   FieldLabel,
   Fields,
   FormCard,
-  HelperText,
   HeadingGroup,
   InlineLink,
   InlineText,
@@ -30,13 +29,7 @@ import {
 const VerifyCode = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {
-    debugOtp,
-    forgotPasswordEmail,
-    otpExpiresInMinutes,
-    verifyOtpError,
-    verifyOtpStatus,
-  } = useSelector(selectAuthState);
+  const { forgotPasswordEmail, verifyOtpError, verifyOtpStatus } = useSelector(selectAuthState);
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [showCode, setShowCode] = useState(false);
@@ -82,7 +75,7 @@ const VerifyCode = () => {
         <HeadingGroup>
           <Title>Verify code</Title>
           <Subtitle>
-            An authentication code has been sent to {forgotPasswordEmail || "your email"}.
+            Enter the OTP sent to {forgotPasswordEmail || "your email"} to continue resetting your password.
           </Subtitle>
         </HeadingGroup>
 
@@ -117,12 +110,6 @@ const VerifyCode = () => {
           </Field>
         </Fields>
 
-        {debugOtp ? (
-          <HelperText>
-            For local testing, use OTP <strong>{debugOtp}</strong>
-            {otpExpiresInMinutes ? ` within ${otpExpiresInMinutes} minutes.` : "."}
-          </HelperText>
-        ) : null}
         {error || verifyOtpError ? <ErrorText>{error || verifyOtpError}</ErrorText> : null}
         <InlineText>
           Didn&apos;t receive a code? <InlineLink to="/admin-login/forgot-password">Resend</InlineLink>

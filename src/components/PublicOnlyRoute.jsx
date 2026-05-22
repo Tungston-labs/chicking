@@ -1,9 +1,14 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { selectIsAuthenticated } from "../store/auth/authSlice.js";
+import { selectAuthBootstrapStatus, selectIsAuthenticated } from "../store/auth/authSlice.js";
 
 const PublicOnlyRoute = ({ children }) => {
+  const authBootstrapStatus = useSelector(selectAuthBootstrapStatus);
   const isAuthenticated = useSelector(selectIsAuthenticated);
+
+  if (authBootstrapStatus === "loading") {
+    return null;
+  }
 
   if (isAuthenticated) {
     return <Navigate replace to="/admin/blogs" />;

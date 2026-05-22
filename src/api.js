@@ -1,28 +1,48 @@
-import { AUTH_SESSION_STORAGE_KEY } from "./store/auth/authStorage.js";
+import {
+  clearStoredAuthSession,
+  loadStoredAuthSession,
+  persistAuthSession,
+} from "./store/auth/authStorage.js";
 
 const DEFAULT_API_BASE_URL = "http://127.0.0.1:8000";
+const ACCESS_TOKEN_REFRESH_BUFFER_MS = 15 * 1000;
 
 export const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || DEFAULT_API_BASE_URL).replace(/\/+$/, "");
 
-const getStoredAccessToken = () => {
-  if (typeof window === "undefined") {
-    return "";
+let refreshPromise = null;
+
+const isObject = (value) => typeof value === "object" && value !== null;
+
+const getNestedValue = (payload, keys) => {
+  for (const key of keys) {
+    if (payload?.[key] !== undefined && payload?.[key] !== null) {
+      return payload[key];
+    }
   }
 
-  const storedSession = window.localStorage.getItem(AUTH_SESSION_STORAGE_KEY);
-
-  if (!storedSession) {
-    return "";
-  }
-
-  try {
-    const parsedSession = JSON.parse(storedSession);
-
-    return parsedSession?.accessToken || "";
-  } catch {
-    return "";
-  }
+  return undefined;
 };
+
+export const normalizeAuthSessionPayload = (payload, previousSession = null) => {
+  const accessToken = getNestedValue(payload, ["accessToken", "access_token"]) || previousSession?.accessToken || "";
+  const refreshToken =
+    getNestedValue(payload, ["refreshToken", "refresh_token"]) || previousSession?.refreshToken || "";
+  const tokenType = getNestedValue(payload, ["tokenType", "token_type"]) || previousSession?.tokenType || "";
+  const expiresIn = Number(getNestedValue(payload, ["expiresIn", "expires_in"]) || previousSession?.expiresIn || 0);
+  const expiresAt = expiresIn ? Date.now() + expiresIn * 1000 : previousSession?.expiresAt || null;
+  const admin = getNestedValue(payload, ["admin", "profile", "user"]) || previousSession?.admin || null;
+
+  return {
+    accessToken,
+    admin,
+    expiresAt,
+    expiresIn,
+    refreshToken,
+    tokenType,
+  };
+};
+
+const getStoredAccessToken = () => loadStoredAuthSession()?.accessToken || "";
 
 const extractApiErrorMessage = (payload) => {
   if (typeof payload === "string" && payload.trim()) {
@@ -64,7 +84,7 @@ const parseApiResponse = async (response) => {
   return payload;
 };
 
-export const apiRequest = async (path, { body, headers, method = "GET", requiresAuth = true } = {}) => {
+const createRequestOptions = ({ accessToken, body, headers, method }) => {
   const requestHeaders = new Headers(headers || {});
   const hasJsonBody = body !== undefined && !(body instanceof FormData);
 
@@ -74,21 +94,120 @@ export const apiRequest = async (path, { body, headers, method = "GET", requires
     requestHeaders.set("Content-Type", "application/json");
   }
 
-  if (requiresAuth) {
-    const accessToken = getStoredAccessToken();
-
-    if (accessToken && !requestHeaders.has("Authorization")) {
-      requestHeaders.set("Authorization", `Bearer ${accessToken}`);
-    }
+  if (accessToken && !requestHeaders.has("Authorization")) {
+    requestHeaders.set("Authorization", `Bearer ${accessToken}`);
   }
 
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  return {
     body: hasJsonBody ? JSON.stringify(body) : body,
     headers: requestHeaders,
     method,
-  });
+  };
+};
 
+const rawApiRequest = async (path, options) => {
+  const response = await fetch(`${API_BASE_URL}${path}`, options);
   return parseApiResponse(response);
+};
+
+const isAccessTokenExpired = (session) =>
+  Boolean(session?.expiresAt && session.expiresAt <= Date.now() + ACCESS_TOKEN_REFRESH_BUFFER_MS);
+
+export const refreshAccessToken = async (refreshTokenOverride) => {
+  if (!refreshPromise) {
+    refreshPromise = (async () => {
+      const currentSession = loadStoredAuthSession();
+      const refreshToken = refreshTokenOverride || currentSession?.refreshToken;
+
+      if (!refreshToken) {
+        clearStoredAuthSession();
+        throw new Error("Your session has expired. Please login again.");
+      }
+
+      try {
+        const payload = await rawApiRequest(
+          "/auth/refresh-token",
+          createRequestOptions({
+            body: { refreshToken },
+            method: "POST",
+          })
+        );
+
+        const nextSession = normalizeAuthSessionPayload(payload, currentSession);
+
+        if (!nextSession.accessToken || !nextSession.refreshToken) {
+          clearStoredAuthSession();
+          throw new Error("Your session has expired. Please login again.");
+        }
+
+        persistAuthSession(nextSession);
+
+        return nextSession;
+      } catch (error) {
+        clearStoredAuthSession();
+        throw error;
+      } finally {
+        refreshPromise = null;
+      }
+    })();
+  }
+
+  return refreshPromise;
+};
+
+const ensureFreshAccessToken = async () => {
+  const currentSession = loadStoredAuthSession();
+
+  if (!currentSession?.accessToken && !currentSession?.refreshToken) {
+    return "";
+  }
+
+  if (!isAccessTokenExpired(currentSession) && currentSession?.accessToken) {
+    return currentSession.accessToken;
+  }
+
+  const refreshedSession = await refreshAccessToken(currentSession?.refreshToken);
+
+  return refreshedSession.accessToken;
+};
+
+export const apiRequest = async (
+  path,
+  { accessToken, body, headers, method = "GET", requiresAuth = true, retryOnUnauthorized = true } = {}
+) => {
+  let resolvedAccessToken = accessToken || "";
+
+  if (requiresAuth && !resolvedAccessToken) {
+    resolvedAccessToken = await ensureFreshAccessToken();
+  }
+
+  try {
+    return await rawApiRequest(
+      path,
+      createRequestOptions({
+        accessToken: requiresAuth ? resolvedAccessToken || getStoredAccessToken() : "",
+        body,
+        headers,
+        method,
+      })
+    );
+  } catch (error) {
+    if (!requiresAuth || !retryOnUnauthorized || error?.status !== 401) {
+      throw error;
+    }
+
+    const refreshedSession = await refreshAccessToken();
+
+    return rawApiRequest(
+      path,
+      createRequestOptions({
+        accessToken: refreshedSession.accessToken,
+        body,
+        headers,
+        method,
+      })
+    );
+  }
 };
 
 export const authApi = {
@@ -98,11 +217,24 @@ export const authApi = {
       method: "POST",
       requiresAuth: false,
     }),
+  getMe: (accessToken) =>
+    apiRequest("/auth/me", {
+      accessToken,
+      method: "GET",
+      requiresAuth: true,
+    }),
   login: (payload) =>
     apiRequest("/auth/login", {
       body: payload,
       method: "POST",
       requiresAuth: false,
+    }),
+  refreshToken: (payload) =>
+    apiRequest("/auth/refresh-token", {
+      body: payload,
+      method: "POST",
+      requiresAuth: false,
+      retryOnUnauthorized: false,
     }),
   resetPassword: (payload) =>
     apiRequest("/auth/reset-password", {
@@ -116,4 +248,19 @@ export const authApi = {
       method: "POST",
       requiresAuth: false,
     }),
+};
+
+export const hasStoredSession = () => {
+  const session = loadStoredAuthSession();
+  return Boolean(session?.accessToken || session?.refreshToken);
+};
+
+export const hasValidStoredSession = () => {
+  const session = loadStoredAuthSession();
+
+  if (!isObject(session)) {
+    return false;
+  }
+
+  return Boolean(session.accessToken || session.refreshToken);
 };

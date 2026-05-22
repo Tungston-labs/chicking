@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { authApi } from "../../api.js";
+import { authApi, hasStoredSession, normalizeAuthSessionPayload, refreshAccessToken } from "../../api.js";
 import {
   clearStoredAuthSession,
   clearStoredRecoveryState,
@@ -15,7 +15,7 @@ const storedRecoveryState = loadStoredRecoveryState();
 const initialState = {
   accessToken: storedSession?.accessToken || "",
   admin: storedSession?.admin || null,
-  debugOtp: storedRecoveryState?.debugOtp || "",
+  authBootstrapStatus: hasStoredSession() ? "loading" : "succeeded",
   expiresAt: storedSession?.expiresAt || null,
   expiresIn: storedSession?.expiresIn || 0,
   forgotPasswordEmail: storedRecoveryState?.email || "",
@@ -23,7 +23,7 @@ const initialState = {
   forgotPasswordStatus: "idle",
   loginError: "",
   loginStatus: "idle",
-  otpExpiresInMinutes: storedRecoveryState?.expiresInMinutes || null,
+  refreshToken: storedSession?.refreshToken || "",
   resetPasswordError: "",
   resetPasswordStatus: "idle",
   resetToken: storedRecoveryState?.resetToken || "",
@@ -35,31 +35,93 @@ const initialState = {
 const getErrorMessage = (error, fallbackMessage) => error?.message || fallbackMessage;
 
 const persistCurrentRecoveryState = (state) => {
-  if (
-    !state.forgotPasswordEmail &&
-    !state.debugOtp &&
-    !state.otpExpiresInMinutes &&
-    !state.resetToken
-  ) {
+  if (!state.forgotPasswordEmail && !state.resetToken) {
     clearStoredRecoveryState();
     return;
   }
 
   persistRecoveryState({
-    debugOtp: state.debugOtp,
     email: state.forgotPasswordEmail,
-    expiresInMinutes: state.otpExpiresInMinutes,
     resetToken: state.resetToken,
   });
 };
+
+const applySessionToState = (state, session) => {
+  state.accessToken = session?.accessToken || "";
+  state.admin = session?.admin || null;
+  state.expiresAt = session?.expiresAt || null;
+  state.expiresIn = session?.expiresIn || 0;
+  state.refreshToken = session?.refreshToken || "";
+  state.tokenType = session?.tokenType || "";
+};
+
+const clearSessionState = (state) => {
+  applySessionToState(state, null);
+};
+
+const hydrateSession = async (payload, previousSession = null) => {
+  const normalizedSession = normalizeAuthSessionPayload(payload, previousSession);
+
+  if (!normalizedSession.accessToken) {
+    throw new Error("Access token was not returned by the server.");
+  }
+
+  if (!normalizedSession.refreshToken) {
+    throw new Error("Refresh token was not returned by the server.");
+  }
+
+  const admin = normalizedSession.admin || (await authApi.getMe(normalizedSession.accessToken));
+
+  return {
+    ...normalizedSession,
+    admin,
+  };
+};
+
+export const initializeAuthSession = createAsyncThunk(
+  "auth/initializeAuthSession",
+  async (_, { rejectWithValue }) => {
+    const currentSession = loadStoredAuthSession();
+
+    if (!currentSession?.accessToken && !currentSession?.refreshToken) {
+      return null;
+    }
+
+    try {
+      let nextSession = currentSession;
+
+      if (!currentSession.accessToken || (currentSession.expiresAt && currentSession.expiresAt <= Date.now())) {
+        nextSession = await refreshAccessToken(currentSession.refreshToken);
+      }
+
+      return await hydrateSession(nextSession, currentSession);
+    } catch (error) {
+      clearStoredAuthSession();
+      return rejectWithValue(getErrorMessage(error, "Your session has expired. Please login again."));
+    }
+  }
+);
 
 export const loginAdmin = createAsyncThunk(
   "auth/loginAdmin",
   async (credentials, { rejectWithValue }) => {
     try {
-      return await authApi.login(credentials);
+      const loginResponse = await authApi.login(credentials);
+      return await hydrateSession(loginResponse);
     } catch (error) {
       return rejectWithValue(getErrorMessage(error, "Unable to login right now."));
+    }
+  }
+);
+
+export const refreshAdminSession = createAsyncThunk(
+  "auth/refreshAdminSession",
+  async (_, { rejectWithValue }) => {
+    try {
+      const refreshedSession = await refreshAccessToken();
+      return await hydrateSession(refreshedSession, loadStoredAuthSession());
+    } catch (error) {
+      return rejectWithValue(getErrorMessage(error, "Your session has expired. Please login again."));
     }
   }
 );
@@ -110,9 +172,7 @@ const authSlice = createSlice({
       state.loginStatus = "idle";
     },
     clearPasswordRecoveryFlow: (state) => {
-      state.debugOtp = "";
       state.forgotPasswordEmail = "";
-      state.otpExpiresInMinutes = null;
       state.resetToken = "";
       state.verifyOtpError = "";
       state.verifyOtpStatus = "idle";
@@ -131,18 +191,13 @@ const authSlice = createSlice({
       state.verifyOtpStatus = "idle";
     },
     logoutAdmin: (state) => {
-      state.accessToken = "";
-      state.admin = null;
-      state.debugOtp = "";
-      state.expiresAt = null;
-      state.expiresIn = 0;
+      clearSessionState(state);
+      state.authBootstrapStatus = "succeeded";
       state.forgotPasswordEmail = "";
       state.forgotPasswordError = "";
       state.forgotPasswordStatus = "idle";
-      state.tokenType = "";
       state.loginError = "";
       state.loginStatus = "idle";
-      state.otpExpiresInMinutes = null;
       state.resetPasswordError = "";
       state.resetPasswordStatus = "idle";
       state.resetToken = "";
@@ -151,56 +206,63 @@ const authSlice = createSlice({
       clearStoredAuthSession();
       clearStoredRecoveryState();
     },
+    syncStoredSession: (state, action) => {
+      applySessionToState(state, action.payload);
+      state.authBootstrapStatus = "succeeded";
+    },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(initializeAuthSession.pending, (state) => {
+        state.authBootstrapStatus = "loading";
+      })
+      .addCase(initializeAuthSession.fulfilled, (state, action) => {
+        applySessionToState(state, action.payload);
+        state.authBootstrapStatus = "succeeded";
+      })
+      .addCase(initializeAuthSession.rejected, (state) => {
+        clearSessionState(state);
+        state.authBootstrapStatus = "succeeded";
+      })
       .addCase(loginAdmin.pending, (state) => {
         state.loginError = "";
         state.loginStatus = "loading";
       })
       .addCase(loginAdmin.fulfilled, (state, action) => {
-        const { accessToken, admin, expiresIn, tokenType } = action.payload;
-        const expiresAt = expiresIn ? Date.now() + expiresIn * 1000 : null;
-
-        state.accessToken = accessToken;
-        state.admin = admin;
-        state.debugOtp = "";
-        state.expiresAt = expiresAt;
-        state.expiresIn = expiresIn;
+        applySessionToState(state, action.payload);
+        state.authBootstrapStatus = "succeeded";
         state.forgotPasswordEmail = "";
         state.forgotPasswordError = "";
         state.forgotPasswordStatus = "idle";
         state.loginStatus = "succeeded";
-        state.otpExpiresInMinutes = null;
         state.resetPasswordError = "";
         state.resetPasswordStatus = "idle";
         state.resetToken = "";
-        state.tokenType = tokenType;
         state.verifyOtpError = "";
         state.verifyOtpStatus = "idle";
 
-        persistAuthSession({
-          accessToken,
-          admin,
-          expiresAt,
-          expiresIn,
-          tokenType,
-        });
+        persistAuthSession(action.payload);
         clearStoredRecoveryState();
       })
       .addCase(loginAdmin.rejected, (state, action) => {
         state.loginError = action.payload || "Login failed.";
         state.loginStatus = "failed";
       })
+      .addCase(refreshAdminSession.fulfilled, (state, action) => {
+        applySessionToState(state, action.payload);
+        state.authBootstrapStatus = "succeeded";
+      })
+      .addCase(refreshAdminSession.rejected, (state) => {
+        clearSessionState(state);
+        state.authBootstrapStatus = "succeeded";
+      })
       .addCase(requestPasswordReset.pending, (state) => {
         state.forgotPasswordError = "";
         state.forgotPasswordStatus = "loading";
       })
       .addCase(requestPasswordReset.fulfilled, (state, action) => {
-        state.debugOtp = action.payload.debugOtp || "";
         state.forgotPasswordEmail = action.meta.arg.email;
         state.forgotPasswordStatus = "succeeded";
-        state.otpExpiresInMinutes = action.payload.expiresInMinutes || null;
         state.resetPasswordError = "";
         state.resetPasswordStatus = "idle";
         state.resetToken = "";
@@ -217,7 +279,7 @@ const authSlice = createSlice({
         state.verifyOtpStatus = "loading";
       })
       .addCase(verifyPasswordOtp.fulfilled, (state, action) => {
-        state.resetToken = action.payload.resetToken || "";
+        state.resetToken = action.payload.resetToken || action.payload.reset_token || "";
         state.verifyOtpStatus = "succeeded";
         persistCurrentRecoveryState(state);
       })
@@ -230,11 +292,9 @@ const authSlice = createSlice({
         state.resetPasswordStatus = "loading";
       })
       .addCase(submitNewPassword.fulfilled, (state) => {
-        state.debugOtp = "";
         state.forgotPasswordEmail = "";
         state.forgotPasswordError = "";
         state.forgotPasswordStatus = "idle";
-        state.otpExpiresInMinutes = null;
         state.resetPasswordStatus = "succeeded";
         state.resetToken = "";
         state.verifyOtpError = "";
@@ -255,12 +315,14 @@ export const {
   clearResetPasswordFeedback,
   clearVerifyOtpFeedback,
   logoutAdmin,
+  syncStoredSession,
 } = authSlice.actions;
 
 export const selectAuthAdmin = (state) => state.auth.admin;
+export const selectAuthBootstrapStatus = (state) => state.auth.authBootstrapStatus;
 export const selectForgotPasswordEmail = (state) => state.auth.forgotPasswordEmail;
 export const selectIsAuthenticated = (state) =>
-  Boolean(state.auth.accessToken && (!state.auth.expiresAt || state.auth.expiresAt > Date.now()));
+  Boolean(state.auth.accessToken || state.auth.refreshToken);
 export const selectResetToken = (state) => state.auth.resetToken;
 export const selectAuthState = (state) => state.auth;
 
