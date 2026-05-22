@@ -1,102 +1,126 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "../pages/Home/index.js";
+import ProtectedRoute from "../components/ProtectedRoute.jsx";
+import PublicOnlyRoute from "../components/PublicOnlyRoute.jsx";
+import AboutUs from "../pages/AboutUs/index.jsx";
+import BlogSections from "../pages/Blog/BlogSection";
+import NewsArticle from "../pages/Blog/NewsArticle/NewsArticle.jsx";
 import BMI from "../pages/BMI/index.jsx";
 import FranchiseForm from "../pages/Franchise/index.jsx";
 import GlobalPresence from "../pages/GlobalPresence/index.jsx";
-import Propositions from "../pages/Proposition/index.jsx";
-import AboutUs from "../pages/AboutUs/index.jsx";
-import LeadershipSection from "../pages/Management/index.jsx";
+import { Home } from "../pages/Home/index.js";
+import BlogDashboard from "../pages/AdminBlog/BlogDashboard.jsx";
+import CreateBlogPost from "../pages/AdminBlog/CreateBlogPost.jsx";
+import EditBlogPost from "../pages/AdminBlog/EditBlogPost.jsx";
+import ViewBlogPost from "../pages/AdminBlog/ViewBlogPost.jsx";
 import FaqSection from "../pages/FAQ/index.jsx";
-import BlogSections from '../pages/Blog/BlogSection'
-import Login from "../pages/Login/index.jsx";
 import ForgotPassword from "../pages/Login/ForgotPassword.jsx";
-import VerifyCode from "../pages/Login/VerifyCode.jsx";
+import Login from "../pages/Login/index.jsx";
 import SetPassword from "../pages/Login/SetPassword.jsx";
-// import ProtectedRoute from "../components/ProtectedRoute.jsx";
+import VerifyCode from "../pages/Login/VerifyCode.jsx";
+import LeadershipSection from "../pages/Management/index.jsx";
+import Propositions from "../pages/Proposition/index.jsx";
 import Ukpackage from "../pages/Proposition/UkPackage/Ukpackage.jsx";
 import Uspackage from "../pages/Proposition/UsPackage/Uspackage.jsx";
-import NewsArticle from "../pages/Blog/NewsArticle/NewsArticle.jsx";
+
+const withProtectedRoute = (Component) => (
+  <ProtectedRoute>
+    <Component />
+  </ProtectedRoute>
+);
+
+const withPublicOnlyRoute = (Component) => (
+  <PublicOnlyRoute>
+    <Component />
+  </PublicOnlyRoute>
+);
 
 const pageRoutes = [
   {
+    element: <Home />,
     path: "/",
-    Component: Home,
   },
   {
+    element: <FranchiseForm />,
     path: "/franchiseform",
-    Component: FranchiseForm,
   },
   {
+    element: <Propositions />,
     path: "/Unique-Propositions",
-    Component: Propositions,
   },
-
   {
+    element: <AboutUs />,
     path: "/about-us",
-    Component: AboutUs,
   },
   {
+    element: <BMI />,
     path: "/bmi",
-    Component: BMI,
   },
   {
+    element: <GlobalPresence />,
     path: "/global-presence",
-    Component: GlobalPresence,
   },
-   {
+  {
+    element: <LeadershipSection />,
     path: "/management",
-    Component: LeadershipSection,
   },
-   {
+  {
+    element: <FaqSection />,
     path: "/faq",
-    Component: FaqSection,
   },
   {
+    element: <BlogSections />,
     path: "/blog",
-    Component: BlogSections,
   },
   {
+    element: withPublicOnlyRoute(Login),
     path: "/admin-login",
-    Component: Login,
   },
   {
+    element: withPublicOnlyRoute(ForgotPassword),
     path: "/admin-login/forgot-password",
-    Component: ForgotPassword,
   },
   {
+    element: withPublicOnlyRoute(VerifyCode),
     path: "/admin-login/verify-code",
-    Component: VerifyCode,
   },
   {
+    element: withPublicOnlyRoute(SetPassword),
     path: "/admin-login/set-password",
-    Component: SetPassword,
   },
-  // {
-  //   path: "/admin",
-  //   Component: () => (
-  //     <ProtectedRoute>
-  //       <ExampleAdminPage />
-  //     </ProtectedRoute>
-  //   ),
-  // },
   {
+    element: withProtectedRoute(BlogDashboard),
+    path: "/admin/blogs",
+  },
+  {
+    element: withProtectedRoute(CreateBlogPost),
+    path: "/admin/blogs/new",
+  },
+  {
+    element: withProtectedRoute(EditBlogPost),
+    path: "/admin/blogs/:blogId/edit",
+  },
+  {
+    element: withProtectedRoute(ViewBlogPost),
+    path: "/admin/blogs/:blogId",
+  },
+  {
+    element: <Ukpackage />,
     path: "/uk-package",
-    Component: Ukpackage,
   },
   {
+    element: <Uspackage />,
     path: "/us-package",
-    Component: Uspackage,
   },
   {
-    path: "/news-article",
-    Component: NewsArticle,
+    element: <NewsArticle />,
+    path: "/new-articles/:blogId",
   },
 ];
 
 const AppRoutes = () => (
   <Routes>
-    {pageRoutes.map(({ Component, path }) => (
-      <Route key={path} path={path} element={<Component />} />
+    {pageRoutes.map(({ element, path }) => (
+      <Route key={path} element={element} path={path} />
     ))}
   </Routes>
 );

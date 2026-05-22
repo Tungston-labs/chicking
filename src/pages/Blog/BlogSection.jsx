@@ -1,41 +1,50 @@
-import React, { useState, useEffect } from 'react'
-import TopBanner from '../../components/TopBanner'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import TopBanner from "../../components/TopBanner";
 import franchiseImg from "../../../public/images/blog/blog1.svg";
-import PageLayout from '../../components/Layout/PageLayout';
-import BlogSection from '../../components/HomeSections/sections/BlogSection';
+import PageLayout from "../../components/Layout/PageLayout";
+import BlogSection from "../../components/HomeSections/sections/BlogSection";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
-import PartnerCta from '../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx';
-import SiteFooter from '../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx';
+import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
+import SiteFooter from "../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx";
+import { fetchPublicBlogsList, selectPublishedBlogs } from "../../store/blog/blogSlice.js";
+
 function BlogSections() {
-    const titles = [
-       "Insights, Ideas & Stories from Chicking",
-    ];
-    const [titleIndex, setTitleIndex] = useState(0);
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setTitleIndex((prev) => (prev + 1) % titles.length);
-        }, 3000);
+  const dispatch = useDispatch();
+  const posts = useSelector(selectPublishedBlogs);
+  const titles = ["Insights, Ideas & Stories from Chicking"];
+  const [titleIndex, setTitleIndex] = useState(0);
 
-        return () => clearInterval(interval);
-    }, [titles.length]);
-    return (
-        <>
-        <PageLayout/>
-            <TopBanner
-                key={titleIndex}
-                title={titles[titleIndex]}
-                description={
-                    <>
-                     Stay updated with the latest news, industry insights, franchise
-                        <br />
-                   updates, and behind-the-scenes stories.
-                    </>
-                }
-                image={franchiseImg}
-            />
-   <BlogSection/>
+  useEffect(() => {
+    dispatch(fetchPublicBlogsList());
+  }, [dispatch]);
 
- <PartnerCta
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTitleIndex((prev) => (prev + 1) % titles.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [titles.length]);
+
+  return (
+    <>
+      <PageLayout />
+      <TopBanner
+        key={titleIndex}
+        title={titles[titleIndex]}
+        description={
+          <>
+            Stay updated with the latest news, industry insights, franchise
+            <br />
+            updates, and behind-the-scenes stories.
+          </>
+        }
+        image={franchiseImg}
+      />
+      <BlogSection posts={posts} />
+
+      <PartnerCta
       action={{
         to: "/franchiseform",
         label: "Franchise Inquiry",
@@ -56,11 +65,9 @@ function BlogSections() {
       }
       topEdgeImage={sharedBannerImages.edges.top}
     />
-<SiteFooter topEdgeImage={null} />
-
-
-        </>
-    )
+      <SiteFooter topEdgeImage={null} />
+    </>
+  );
 }
 
-export default BlogSections
+export default BlogSections;

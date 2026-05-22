@@ -1,52 +1,122 @@
 import homeImages from "../../../assets/images/homeImages.js";
 import sharedBannerImages from "../../../assets/images/sharedBannerImages.js";
 
+export const blogCategories = [
+  "New Store Openings",
+  "Training & Support",
+  "Menu Innovations",
+  "Franchise Opportunities",
+  "Upcoming Locations",
+];
+
 export const blogPosts = [
   {
-    author: "Chicking Marketing",
-    date: "Nov 29, 2025",
+    author: "Robert Pattinson",
+    authorRole: "Super Admin",
+    category: "New Store Openings",
+    comments: 12,
+    date: "Apr 20, 2026",
     excerpt:
       "Courtesy: https://expressnews.asia/2026/01/with-21-store-acquisition-and-new-flagship-",
+    id: "blog-001",
     image: homeImages.content.blog.first,
     isVideo: true,
+    publishedAt: "Apr 20, 2026 10:30 AM",
     readTime: "2 min Read",
+    status: "Published",
     title:
       "with 21-Store Acquisition and New Flagship, Grace Food Courts Cements....",
     url: "https://www.youtube.com/watch?v=e5_L-d3M0aw",
+    views: 135,
   },
   {
-    author: "Chicking Marketing",
-    date: "Nov 29, 2025",
+    author: "Robert Pattinson",
+    authorRole: "Super Admin",
+    category: "Training & Support",
+    comments: 0,
+    date: "Apr 18, 2026",
     excerpt:
       "November 2024 marked a monumental milestone for Chicking as we proudly opened our very first store",
+    id: "blog-002",
     image: homeImages.content.blog.second,
+    publishedAt: "---",
     readTime: "2 min Read",
+    status: "Draft",
     title:
       "Chicking Makes History with Its First Store in South America: Grand Opening in",
     url: "https://www.chickingprofile.com/blog",
+    views: 98,
   },
   {
-    author: "Chicking Marketing",
-    date: "Nov 29, 2025",
+    author: "Robert Pattinson",
+    authorRole: "Super Admin",
+    category: "Franchise Opportunities",
+    comments: 12,
+    date: "Apr 16, 2026",
     excerpt:
       "When it comes to building a successful business in the Quick Service Restaurant (QSR) sector, few names...",
+    id: "blog-003",
     image: homeImages.content.blog.third,
+    publishedAt: "Apr 16, 2026 10:30 AM",
     readTime: "2 min Read",
+    status: "Published",
     title:
       "🚀 Grow with a Global Brand – Chicking Franchise Opportunity in the UK 🇬🇧",
     url: "https://www.chickingprofile.com/blog",
+    views: 176,
   },
-{
-  author: "Chicking Marketing",
-  date: "Dec 12, 2025",
-  excerpt:
-    "Discover how Chicking continues to expand globally with innovative dining experiences, stronger franchise partnerships, and customer-first strategies.",
-  image: homeImages.content.blog.third,
-  readTime: "3 min Read",
-  title:
-    "Chicking Expands Global Presence with New Franchise Opportunities",
-  url: "https://www.chickingprofile.com/blog",
-}
+  {
+    author: "Robert Pattinson",
+    authorRole: "Super Admin",
+    category: "Menu Innovations",
+    comments: 12,
+    date: "Apr 12, 2026",
+    excerpt:
+      "Dubai, UAE – Chicking, a homegrown Quick Service Restaurant (QSR) brand from the UAE....",
+    id: "blog-004",
+    image: homeImages.content.blog.fourth,
+    publishedAt: "Apr 12, 2026 10:30 AM",
+    readTime: "2 min Read",
+    status: "Published",
+    title:
+      "Chicking Celebrates Grand Opening of Its 21st Store in the UAE",
+    url: "https://www.chickingprofile.com/blog",
+    views: 142,
+  },
+  {
+    author: "Robert Pattinson",
+    authorRole: "Super Admin",
+    category: "Upcoming Locations",
+    comments: 0,
+    date: "Apr 11, 2026",
+    excerpt:
+      "Our next wave of expansion is focused on high-footfall markets with strong franchise demand and local brand momentum.",
+    id: "blog-005",
+    image: homeImages.content.blog.second,
+    publishedAt: "---",
+    readTime: "3 min Read",
+    status: "Trash",
+    title: "Upcoming Chicking Locations to Watch Across Priority Markets",
+    url: "https://www.chickingprofile.com/blog",
+    views: 85,
+  },
+  {
+    author: "Robert Pattinson",
+    authorRole: "Super Admin",
+    category: "New Store Openings",
+    comments: 8,
+    date: "Apr 08, 2026",
+    excerpt:
+      "A behind-the-scenes look at how Chicking activates new territories with launch campaigns, training, and operational readiness.",
+    id: "blog-006",
+    image: homeImages.content.blog.first,
+    publishedAt: "Apr 08, 2026 10:30 AM",
+    readTime: "4 min Read",
+    status: "Published",
+    title: "Inside the Playbook Behind Our Latest Store Opening Success",
+    url: "https://www.chickingprofile.com/blog",
+    views: 121,
+  },
 ];
 
 export const faqs = [

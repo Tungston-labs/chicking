@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiChevronLeft, FiEye, FiEyeOff } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {
+  clearVerifyOtpFeedback,
+  selectAuthState,
+  verifyPasswordOtp,
+} from "../../store/auth/authSlice.js";
 import AuthLayout from "./AuthLayout";
 import {
   BackLink,
@@ -21,12 +27,20 @@ import {
 } from "./style";
 
 const VerifyCode = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [code, setCode] = useState("7789M6X");
+  const { forgotPasswordEmail, verifyOtpError, verifyOtpStatus } = useSelector(selectAuthState);
+  const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [showCode, setShowCode] = useState(false);
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    if (!forgotPasswordEmail) {
+      navigate("/admin-login/forgot-password", { replace: true });
+    }
+  }, [forgotPasswordEmail, navigate]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!code.trim()) {
@@ -35,7 +49,19 @@ const VerifyCode = () => {
     }
 
     setError("");
-    navigate("/admin-login/set-password");
+
+    try {
+      await dispatch(
+        verifyPasswordOtp({
+          email: forgotPasswordEmail,
+          otp: code.trim(),
+        })
+      ).unwrap();
+
+      navigate("/admin-login/set-password", { replace: true });
+    } catch {
+      // Server-side error is handled by Redux state.
+    }
   };
 
   return (
@@ -48,7 +74,9 @@ const VerifyCode = () => {
 
         <HeadingGroup>
           <Title>Verify code</Title>
-          <Subtitle>An authentication code has been sent to your email.</Subtitle>
+          <Subtitle>
+            Enter the OTP sent to {forgotPasswordEmail || "your email"} to continue resetting your password.
+          </Subtitle>
         </HeadingGroup>
 
         <Fields>
@@ -62,8 +90,12 @@ const VerifyCode = () => {
                 onChange={({ target }) => {
                   setCode(target.value);
                   setError("");
+
+                  if (verifyOtpError) {
+                    dispatch(clearVerifyOtpFeedback());
+                  }
                 }}
-                placeholder="7789M6X"
+                placeholder="Enter OTP"
                 type={showCode ? "text" : "password"}
                 value={code}
               />
@@ -78,11 +110,13 @@ const VerifyCode = () => {
           </Field>
         </Fields>
 
-        {error ? <ErrorText>{error}</ErrorText> : null}
+        {error || verifyOtpError ? <ErrorText>{error || verifyOtpError}</ErrorText> : null}
         <InlineText>
           Didn&apos;t receive a code? <InlineLink to="/admin-login/forgot-password">Resend</InlineLink>
         </InlineText>
-        <PrimaryButton type="submit">Verify</PrimaryButton>
+        <PrimaryButton disabled={verifyOtpStatus === "loading"} type="submit">
+          {verifyOtpStatus === "loading" ? "Verifying..." : "Verify"}
+        </PrimaryButton>
       </FormCard>
     </AuthLayout>
   );

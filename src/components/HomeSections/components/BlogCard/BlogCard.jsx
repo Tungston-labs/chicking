@@ -1,10 +1,12 @@
 import { FaComment, FaEye, FaHeart, FaPlay } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import {
   AuthorName,
   AuthorRow,
   Avatar,
   Body,
   Card,
+  ContentPreview,
   MediaLink,
   MetaLine,
   PlayButton,
@@ -13,9 +15,35 @@ import {
   Title,
 } from "./BlogCard.styles.js";
 
-const BlogCard = ({ author, date, excerpt, image, isVideo, readTime, title, url }) => (
+const getContentPreview = (value = "") =>
+  value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const BlogCard = ({
+  author,
+  comments = 10,
+  contentText,
+  date,
+  excerpt,
+  id,
+  image,
+  isVideo,
+  readTime,
+  title,
+  views = 135,
+}) => {
+  const navigate = useNavigate();
+  const contentPreview = getContentPreview(contentText || "");
+  const articlePath = `/new-articles/${id}`;
+
+  return (
   <Card>
-    <MediaLink href={url || "#"} target={url ? "_blank" : undefined} rel="noreferrer">
+    <MediaLink
+      onClick={(event) => event.stopPropagation()}
+      to={articlePath}
+    >
       <img src={image} alt="" />
       {isVideo && (
         <PlayButton>
@@ -23,7 +51,17 @@ const BlogCard = ({ author, date, excerpt, image, isVideo, readTime, title, url 
         </PlayButton>
       )}
     </MediaLink>
-    <Body>
+    <Body
+      onClick={() => navigate(articlePath)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          navigate(articlePath);
+        }
+      }}
+      role="link"
+      tabIndex={0}
+    >
       <AuthorRow>
         <Avatar src="/images/logo.svg" alt="" />
         <div>
@@ -33,13 +71,15 @@ const BlogCard = ({ author, date, excerpt, image, isVideo, readTime, title, url 
       </AuthorRow>
       <Title>{title}</Title>
       <Text>{excerpt}</Text>
+      {contentPreview && contentPreview !== excerpt ? <ContentPreview>{contentPreview}</ContentPreview> : null}
       <Stats>
-        <span><FaEye aria-hidden="true" /> 135</span>
-        <span><FaComment aria-hidden="true" /> 10</span>
+        <span><FaEye aria-hidden="true" /> {views}</span>
+        <span><FaComment aria-hidden="true" /> {comments}</span>
         <span><FaHeart aria-hidden="true" /></span>
       </Stats>
     </Body>
   </Card>
-);
+  );
+};
 
 export default BlogCard;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Card = styled.article`
   min-height: 39.5rem;
@@ -16,7 +17,7 @@ export const Card = styled.article`
   }
 `;
 
-export const MediaLink = styled.a`
+export const MediaLink = styled(Link)`
   position: relative;
   display: block;
   aspect-ratio: 1.23;
@@ -107,11 +108,26 @@ export const Text = styled.p`
   color: #000000;
   font-size: 0.84rem;
   line-height: 1.65;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 
   @media (min-width: 600px) and (max-width: 1000px) {
     font-size: 0.875rem;
     line-height: 1.55;
   }
+`;
+
+export const ContentPreview = styled.p`
+  margin: 0.55rem 0 0;
+  color: #565656;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 `;
 
 export const Stats = styled.div`

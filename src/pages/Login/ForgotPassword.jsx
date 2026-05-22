@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { FiChevronLeft } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {
+  clearForgotPasswordFeedback,
+  requestPasswordReset,
+  selectAuthState,
+} from "../../store/auth/authSlice.js";
 import AuthLayout from "./AuthLayout";
 import {
   BackLink,
@@ -12,16 +18,19 @@ import {
   HeadingGroup,
   Input,
   PrimaryButton,
+  SuccessText,
   Subtitle,
   Title,
 } from "./style";
 
 const ForgotPassword = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { forgotPasswordError, forgotPasswordStatus } = useSelector(selectAuthState);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!email.trim()) {
@@ -30,7 +39,18 @@ const ForgotPassword = () => {
     }
 
     setError("");
-    navigate("/admin-login/verify-code");
+
+    try {
+      await dispatch(
+        requestPasswordReset({
+          email: email.trim(),
+        })
+      ).unwrap();
+
+      navigate("/admin-login/verify-code", { replace: true });
+    } catch {
+      // Server-side error is handled by Redux state.
+    }
   };
 
   return (
@@ -57,6 +77,10 @@ const ForgotPassword = () => {
               onChange={({ target }) => {
                 setEmail(target.value);
                 setError("");
+
+                if (forgotPasswordError) {
+                  dispatch(clearForgotPasswordFeedback());
+                }
               }}
               placeholder="john.doe@gmail.com"
               type="email"
@@ -65,8 +89,13 @@ const ForgotPassword = () => {
           </Field>
         </Fields>
 
-        {error ? <ErrorText>{error}</ErrorText> : null}
-        <PrimaryButton type="submit">Submit</PrimaryButton>
+        {forgotPasswordStatus === "succeeded" ? (
+          <SuccessText>OTP sent successfully. Redirecting you to verification.</SuccessText>
+        ) : null}
+        {error || forgotPasswordError ? <ErrorText>{error || forgotPasswordError}</ErrorText> : null}
+        <PrimaryButton disabled={forgotPasswordStatus === "loading"} type="submit">
+          {forgotPasswordStatus === "loading" ? "Sending OTP..." : "Submit"}
+        </PrimaryButton>
       </FormCard>
     </AuthLayout>
   );

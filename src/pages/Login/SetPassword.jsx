@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {
+  clearResetPasswordFeedback,
+  selectAuthState,
+  submitNewPassword,
+} from "../../store/auth/authSlice.js";
 import AuthLayout from "./AuthLayout";
 import {
   ErrorText,
@@ -18,10 +24,12 @@ import {
 } from "./style";
 
 const SetPassword = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { resetPasswordError, resetPasswordStatus, resetToken } = useSelector(selectAuthState);
   const [form, setForm] = useState({
-    confirmPassword: "7789M8X@e0h&SK_",
-    password: "7789M8X@e0h&SK_",
+    confirmPassword: "",
+    password: "",
   });
   const [showPassword, setShowPassword] = useState({
     confirmPassword: false,
@@ -29,16 +37,26 @@ const SetPassword = () => {
   });
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (!resetToken) {
+      navigate("/admin-login/verify-code", { replace: true });
+    }
+  }, [navigate, resetToken]);
+
   const handleChange = ({ target: { name, value } }) => {
     setForm((current) => ({ ...current, [name]: value }));
     setError("");
+
+    if (resetPasswordError) {
+      dispatch(clearResetPasswordFeedback());
+    }
   };
 
   const toggleVisibility = (name) => {
     setShowPassword((current) => ({ ...current, [name]: !current[name] }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!form.password || !form.confirmPassword) {
@@ -52,7 +70,24 @@ const SetPassword = () => {
     }
 
     setError("");
-    navigate("/admin-login");
+
+    try {
+      await dispatch(
+        submitNewPassword({
+          newPassword: form.password,
+          resetToken,
+        })
+      ).unwrap();
+
+      navigate("/admin-login", {
+        replace: true,
+        state: {
+          message: "Password reset successful. Please login with your new password.",
+        },
+      });
+    } catch {
+      // Server-side error is handled by Redux state.
+    }
   };
 
   return (
@@ -77,7 +112,7 @@ const SetPassword = () => {
                   autoComplete={name === "password" ? "new-password" : "off"}
                   name={name}
                   onChange={handleChange}
-                  placeholder="7789M8X@e0h&SK_"
+                  placeholder="Enter your password"
                   type={showPassword[name] ? "text" : "password"}
                   value={form[name]}
                 />
@@ -93,8 +128,10 @@ const SetPassword = () => {
           ))}
         </Fields>
 
-        {error ? <ErrorText>{error}</ErrorText> : null}
-        <PrimaryButton type="submit">Set password</PrimaryButton>
+        {error || resetPasswordError ? <ErrorText>{error || resetPasswordError}</ErrorText> : null}
+        <PrimaryButton disabled={resetPasswordStatus === "loading"} type="submit">
+          {resetPasswordStatus === "loading" ? "Updating password..." : "Set password"}
+        </PrimaryButton>
       </FormCard>
     </AuthLayout>
   );

@@ -20,6 +20,7 @@ export const homeImages = {
       first: "/images/home/blog1.svg",
       second: "/images/home/blog2.svg",
       third: "/images/home/blog3.svg",
+      fourth:"/images/home/blog4.avif",
     },
     reasons: {
       first: "/images/home/chick.svg",
