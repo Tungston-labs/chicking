@@ -37,6 +37,7 @@ import {
   TableCard,
   Toolbar,
 } from "./AdminBlog.styles.js";
+import { getAvatarInitials } from "../../store/blog/blogUtils.js";
 
 const statusOrder = ["All Posts", "Published", "Draft", "Trash"];
 
@@ -44,7 +45,9 @@ const AdminBlogTable = ({
   activeStatus,
   counts,
   currentPage,
+  error,
   filters,
+  isLoading = false,
   onDelete,
   onFilterChange,
   onPageChange,
@@ -93,10 +96,17 @@ const AdminBlogTable = ({
       </FilterRow>
     </Toolbar>
 
-    {!posts.length ? (
+    {isLoading ? (
       <EmptyState>
-        <EmptyTitle>No blog posts found</EmptyTitle>
-        <EmptyText>Try a different search or filter combination to find the blog you need.</EmptyText>
+        <EmptyTitle>Loading blogs</EmptyTitle>
+        <EmptyText>Fetching the latest blog entries from the admin API.</EmptyText>
+      </EmptyState>
+    ) : !posts.length ? (
+      <EmptyState>
+        <EmptyTitle>{error ? "Unable to load blogs" : "No blog posts found"}</EmptyTitle>
+        <EmptyText>
+          {error || "Try a different search or filter combination to find the blog you need."}
+        </EmptyText>
       </EmptyState>
     ) : (
       <>
@@ -127,7 +137,7 @@ const AdminBlogTable = ({
                   </td>
                   <td>
                     <AuthorCell>
-                      <MiniAvatar>RP</MiniAvatar>
+                      <MiniAvatar>{getAvatarInitials(post.author)}</MiniAvatar>
                       <AuthorCellText>
                         <strong>{post.author}</strong>
                         <span>{post.authorRole}</span>
@@ -176,7 +186,7 @@ const AdminBlogTable = ({
                 <StatusPill $status={post.status}>{post.status}</StatusPill>
               </MobilePostHeader>
               <AuthorCell>
-                <MiniAvatar>RP</MiniAvatar>
+                <MiniAvatar>{getAvatarInitials(post.author)}</MiniAvatar>
                 <AuthorCellText>
                   <strong>{post.author}</strong>
                   <span>{post.authorRole}</span>

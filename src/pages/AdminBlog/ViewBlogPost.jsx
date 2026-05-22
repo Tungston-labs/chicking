@@ -1,33 +1,16 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import {
   FiCalendar,
   FiClock,
   FiEdit2,
-  FiMessageSquare,
-  FiSend,
   FiTag,
-  FiThumbsUp,
   FiX,
 } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import AdminBlogLayout from "../../components/AdminBlog/AdminBlogLayout.jsx";
 import {
-  addCommentToBlogPost,
-  findBlogPost,
-  loadAdminBlogPosts,
-  persistAdminBlogPosts,
-} from "../../components/AdminBlog/adminBlogStore.js";
-import {
   ActionGroup,
-  CommentAuthor,
-  CommentBody,
-  CommentComposer,
-  CommentFooter,
-  CommentHeader,
-  CommentInput,
-  CommentItem,
-  CommentList,
-  CommentPanel,
   ContentArticle,
   DetailsCard,
   DetailsGrid,
@@ -40,34 +23,38 @@ import {
   MetaRow,
   MetaText,
   MiniAvatar,
-  PrimaryButton,
   SecondaryButton,
   SectionHeading,
 } from "../../components/AdminBlog/AdminBlog.styles.js";
+import {
+  clearCurrentBlog,
+  fetchBlogById,
+  selectCurrentBlog,
+  selectCurrentBlogError,
+  selectCurrentBlogStatus,
+} from "../../store/blog/blogSlice.js";
+import { getAvatarInitials } from "../../store/blog/blogUtils.js";
 
 const ViewBlogPost = () => {
+  const dispatch = useDispatch();
   const { blogId } = useParams();
-  const [posts, setPosts] = useState(() => loadAdminBlogPosts());
-  const [commentInput, setCommentInput] = useState("");
-  const post = findBlogPost(posts, blogId) || null;
+  const post = useSelector(selectCurrentBlog);
+  const currentBlogError = useSelector(selectCurrentBlogError);
+  const currentBlogStatus = useSelector(selectCurrentBlogStatus);
 
-  const handleAddComment = () => {
-    const nextComment = commentInput.trim();
-
-    if (!nextComment || !post) {
-      return;
-    }
-
-    const nextPosts = addCommentToBlogPost(posts, post.id, nextComment);
-
-    persistAdminBlogPosts(nextPosts);
-    setPosts(nextPosts);
-    setCommentInput("");
-  };
+  useEffect(() => {
+    dispatch(fetchBlogById(blogId));
+    return () => dispatch(clearCurrentBlog());
+  }, [blogId, dispatch]);
 
   return (
     <AdminBlogLayout backTo="/admin/blogs" backLabel="Back to dashboard" title="">
-      {post ? (
+      {currentBlogStatus === "loading" ? (
+        <EmptyState>
+          <EmptyTitle>Loading blog post</EmptyTitle>
+          <EmptyText>Fetching the latest blog details from the API.</EmptyText>
+        </EmptyState>
+      ) : post ? (
         <>
           <SectionHeading>
             <h2>View Blog Post</h2>
@@ -92,7 +79,7 @@ const ViewBlogPost = () => {
 
               <MetaRow>
                 <MetaCard>
-                  <MiniAvatar>RP</MiniAvatar>
+                  <MiniAvatar>{getAvatarInitials(post.author)}</MiniAvatar>
                   <MetaText>
                     <strong>Author</strong>
                     <span>{post.author}</span>
@@ -109,7 +96,7 @@ const ViewBlogPost = () => {
                   <FiTag />
                   <MetaText>
                     <strong>Category & Tags</strong>
-                    <span>{[post.category, ...post.tags].join(", ")}</span>
+                    <span>{[post.category, ...post.tags.filter((tag) => tag !== post.category)].join(", ")}</span>
                   </MetaText>
                 </MetaCard>
               </MetaRow>
@@ -129,68 +116,37 @@ const ViewBlogPost = () => {
                     {post.views} views • {post.comments} comments • {post.readTime}
                   </span>
                 </MetaText>
-                {post.featuredVideo ? (
-                  <SecondaryButton as="a" href={post.featuredVideo} rel="noreferrer" target="_blank">
+                {post.featuredVideo || post.url ? (
+                  <SecondaryButton as="a" href={post.featuredVideo || post.url} rel="noreferrer" target="_blank">
                     <FiClock /> Featured Video
                   </SecondaryButton>
                 ) : null}
               </ActionGroup>
             </DetailsCard>
 
-            <CommentPanel>
-              <CommentHeader>
-                <h3>Comments ({post.comments})</h3>
+            <DetailsCard>
+              <ActionGroup style={{ justifyContent: "space-between", marginBottom: "1rem" }}>
+                <MetaText>
+                  <strong>Comments</strong>
+                  <span>
+                    {post.comments} total • {post.pendingComments} pending
+                  </span>
+                </MetaText>
                 <IconButton as={Link} title="Back to blogs" to="/admin/blogs">
                   <FiX />
                 </IconButton>
-              </CommentHeader>
-
-              <CommentList>
-                {post.commentThread.length ? (
-                  post.commentThread.map((comment) => (
-                    <CommentItem key={comment.id}>
-                      <MiniAvatar>{comment.author.slice(0, 1)}</MiniAvatar>
-                      <div>
-                        <CommentAuthor>
-                          <strong>{comment.author}</strong>
-                          <span>{comment.age}</span>
-                        </CommentAuthor>
-                        <CommentBody>{comment.message}</CommentBody>
-                        <CommentFooter>
-                          <span>
-                            <FiThumbsUp /> {comment.likes} Likes
-                          </span>
-                          <span>
-                            <FiMessageSquare /> Reply
-                          </span>
-                        </CommentFooter>
-                      </div>
-                    </CommentItem>
-                  ))
-                ) : (
-                  <EmptyText>No comments have been added to this blog post yet.</EmptyText>
-                )}
-              </CommentList>
-
-              <CommentComposer>
-                <CommentInput
-                  onChange={(event) => setCommentInput(event.target.value)}
-                  placeholder="Type your comment here"
-                  value={commentInput}
-                />
-                <ActionGroup style={{ justifyContent: "flex-end", marginTop: "0.75rem" }}>
-                  <PrimaryButton onClick={handleAddComment} type="button">
-                    Send <FiSend />
-                  </PrimaryButton>
-                </ActionGroup>
-              </CommentComposer>
-            </CommentPanel>
+              </ActionGroup>
+              <EmptyText>
+                Comment moderation endpoints are not part of the current API set, so this screen shows the server
+                counters only for now.
+              </EmptyText>
+            </DetailsCard>
           </DetailsGrid>
         </>
       ) : (
         <EmptyState>
           <EmptyTitle>Blog post not found</EmptyTitle>
-          <EmptyText>The selected blog could not be loaded. It may have been removed from the admin list.</EmptyText>
+          <EmptyText>{currentBlogError || "The selected blog could not be loaded."}</EmptyText>
         </EmptyState>
       )}
     </AdminBlogLayout>

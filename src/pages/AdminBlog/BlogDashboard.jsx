@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiEdit3, FiFileText, FiSend, FiTrash2 } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 import AdminBlogLayout from "../../components/AdminBlog/AdminBlogLayout.jsx";
 import AdminBlogTable from "../../components/AdminBlog/AdminBlogTable.jsx";
 import {
   buildBlogCounts,
   getBlogMonthLabel,
   getBlogFilterOptions,
-  loadAdminBlogPosts,
-  moveBlogPostToTrash,
-  persistAdminBlogPosts,
-} from "../../components/AdminBlog/adminBlogStore.js";
+} from "../../store/blog/blogUtils.js";
+import {
+  deleteBlogPost,
+  fetchBlogsList,
+  selectAdminBlogs,
+  selectBlogListError,
+  selectBlogListStatus,
+  selectBlogMutationState,
+} from "../../store/blog/blogSlice.js";
 import {
   SectionHeading,
   StatCard,
@@ -28,7 +34,11 @@ const statusMap = {
 };
 
 const BlogDashboard = () => {
-  const [posts, setPosts] = useState(() => loadAdminBlogPosts());
+  const dispatch = useDispatch();
+  const posts = useSelector(selectAdminBlogs);
+  const listError = useSelector(selectBlogListError);
+  const listStatus = useSelector(selectBlogListStatus);
+  const { deleteError } = useSelector(selectBlogMutationState);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeStatus, setActiveStatus] = useState("All Posts");
   const [filters, setFilters] = useState({
@@ -37,6 +47,10 @@ const BlogDashboard = () => {
     month: "All Time",
   });
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    dispatch(fetchBlogsList());
+  }, [dispatch]);
 
   const counts = buildBlogCounts(posts);
   const filterOptions = getBlogFilterOptions(posts);
@@ -90,10 +104,7 @@ const BlogDashboard = () => {
       return;
     }
 
-    const nextPosts = moveBlogPostToTrash(posts, blogId);
-
-    setPosts(nextPosts);
-    persistAdminBlogPosts(nextPosts);
+    dispatch(deleteBlogPost(blogId));
   };
 
   return (
@@ -129,7 +140,9 @@ const BlogDashboard = () => {
         activeStatus={activeStatus}
         counts={counts}
         currentPage={safeCurrentPage}
+        error={listError || deleteError}
         filters={filters}
+        isLoading={listStatus === "loading"}
         onDelete={handleDelete}
         onFilterChange={handleFilterChange}
         onPageChange={setCurrentPage}

@@ -9,7 +9,7 @@ import {
   FiUpload,
   FiX,
 } from "react-icons/fi";
-import { getEditorInitialValues } from "./adminBlogStore.js";
+import { getEditorInitialValues } from "../../store/blog/blogUtils.js";
 import {
   AddTagButton,
   CardHeading,
@@ -41,10 +41,12 @@ const readTimeOptions = ["2 min Read", "3 min Read", "4 min Read", "5 min Read",
 
 const AdminBlogEditor = ({
   categories,
+  isSubmitting = false,
   mode = "create",
   onCancel,
   onSubmit,
   post,
+  submitError = "",
 }) => {
   const [formValues, setFormValues] = useState(getEditorInitialValues(post));
   const [tagInput, setTagInput] = useState("");
@@ -89,11 +91,11 @@ const AdminBlogEditor = ({
       <SecondaryButton onClick={onCancel} type="button">
         Cancel
       </SecondaryButton>
-      <SecondaryButton onClick={() => handleSubmit("Draft")} type="button">
-        Save Draft
+      <SecondaryButton disabled={isSubmitting} onClick={() => handleSubmit("Draft")} type="button">
+        {isSubmitting && mode === "create" ? "Saving..." : "Save Draft"}
       </SecondaryButton>
-      <PrimaryButton onClick={() => handleSubmit("Published")} type="button">
-        {mode === "edit" ? "Update Post" : "Publish Post"} <FiSend />
+      <PrimaryButton disabled={isSubmitting} onClick={() => handleSubmit("Published")} type="button">
+        {isSubmitting ? "Submitting..." : mode === "edit" ? "Update Post" : "Publish Post"} <FiSend />
       </PrimaryButton>
     </>
   );
@@ -104,6 +106,7 @@ const AdminBlogEditor = ({
         <CardHeading>
           <h3>{mode === "edit" ? "Edit Blog Post" : "Create Blog Post"}</h3>
           <p>Manage headline, summary, body content, and publish metadata from one responsive editor.</p>
+          {submitError ? <p style={{ color: "#c13a3a", marginTop: "0.5rem" }}>{submitError}</p> : null}
         </CardHeading>
         <Field>
           <Label>Blog Title</Label>

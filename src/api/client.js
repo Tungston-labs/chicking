@@ -2,7 +2,7 @@ import {
   clearStoredAuthSession,
   loadStoredAuthSession,
   persistAuthSession,
-} from "./store/auth/authStorage.js";
+} from "../store/auth/authStorage.js";
 
 const DEFAULT_API_BASE_URL = "http://127.0.0.1:8000";
 const ACCESS_TOKEN_REFRESH_BUFFER_MS = 15 * 1000;
@@ -125,14 +125,8 @@ export const refreshAccessToken = async (refreshTokenOverride) => {
       }
 
       try {
-        const payload = await rawApiRequest(
-          "/auth/refresh-token",
-          createRequestOptions({
-            body: { refreshToken },
-            method: "POST",
-          })
-        );
-
+        const { refreshToken: requestRefreshToken } = await import("./auth/refreshToken.js");
+        const payload = await requestRefreshToken({ refreshToken });
         const nextSession = normalizeAuthSessionPayload(payload, currentSession);
 
         if (!nextSession.accessToken || !nextSession.refreshToken) {
@@ -208,46 +202,6 @@ export const apiRequest = async (
       })
     );
   }
-};
-
-export const authApi = {
-  forgotPassword: (payload) =>
-    apiRequest("/auth/forgot-password", {
-      body: payload,
-      method: "POST",
-      requiresAuth: false,
-    }),
-  getMe: (accessToken) =>
-    apiRequest("/auth/me", {
-      accessToken,
-      method: "GET",
-      requiresAuth: true,
-    }),
-  login: (payload) =>
-    apiRequest("/auth/login", {
-      body: payload,
-      method: "POST",
-      requiresAuth: false,
-    }),
-  refreshToken: (payload) =>
-    apiRequest("/auth/refresh-token", {
-      body: payload,
-      method: "POST",
-      requiresAuth: false,
-      retryOnUnauthorized: false,
-    }),
-  resetPassword: (payload) =>
-    apiRequest("/auth/reset-password", {
-      body: payload,
-      method: "POST",
-      requiresAuth: false,
-    }),
-  verifyOtp: (payload) =>
-    apiRequest("/auth/verify-otp", {
-      body: payload,
-      method: "POST",
-      requiresAuth: false,
-    }),
 };
 
 export const hasStoredSession = () => {

@@ -1,13 +1,8 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import AdminBlogEditor from "../../components/AdminBlog/AdminBlogEditor.jsx";
 import AdminBlogLayout from "../../components/AdminBlog/AdminBlogLayout.jsx";
-import {
-  createBlogPayload,
-  findBlogPost,
-  loadAdminBlogPosts,
-  persistAdminBlogPosts,
-  upsertBlogPost,
-} from "../../components/AdminBlog/adminBlogStore.js";
 import {
   EmptyState,
   EmptyText,
@@ -15,32 +10,56 @@ import {
   SectionHeading,
 } from "../../components/AdminBlog/AdminBlog.styles.js";
 import { blogCategories } from "../../components/HomeSections/data/homeSectionsData.js";
+import {
+  clearBlogMutationState,
+  clearCurrentBlog,
+  fetchBlogById,
+  selectBlogMutationState,
+  selectCurrentBlog,
+  selectCurrentBlogError,
+  selectCurrentBlogStatus,
+  updateBlogPost,
+} from "../../store/blog/blogSlice.js";
 
 const EditBlogPost = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { blogId } = useParams();
-  const storedPosts = loadAdminBlogPosts();
-  const post = findBlogPost(storedPosts, blogId) || null;
+  const post = useSelector(selectCurrentBlog);
+  const currentBlogError = useSelector(selectCurrentBlogError);
+  const currentBlogStatus = useSelector(selectCurrentBlogStatus);
+  const { updateError, updateStatus } = useSelector(selectBlogMutationState);
 
-  const handleSubmit = (formValues, status) => {
+  useEffect(() => {
+    dispatch(fetchBlogById(blogId));
+
+    return () => {
+      dispatch(clearBlogMutationState());
+      dispatch(clearCurrentBlog());
+    };
+  }, [blogId, dispatch]);
+
+  const handleSubmit = async (formValues, status) => {
     if (!post) {
       return;
     }
 
-    const nextPost = createBlogPayload({
-      existingPost: post,
-      formValues,
-      status,
-    });
-    const nextPosts = upsertBlogPost(loadAdminBlogPosts(), nextPost);
-
-    persistAdminBlogPosts(nextPosts);
-    navigate(`/admin/blogs/${nextPost.id}`);
+    try {
+      const nextPost = await dispatch(updateBlogPost({ blogId: post.id, formValues, status })).unwrap();
+      navigate(`/admin/blogs/${nextPost.id}`);
+    } catch {
+      // Errors are surfaced from Redux state in the editor.
+    }
   };
 
   return (
     <AdminBlogLayout backTo="/admin/blogs" backLabel="Back to dashboard" title="">
-      {post ? (
+      {currentBlogStatus === "loading" ? (
+        <EmptyState>
+          <EmptyTitle>Loading blog post</EmptyTitle>
+          <EmptyText>Pulling the latest details from the API so you can edit safely.</EmptyText>
+        </EmptyState>
+      ) : post ? (
         <>
           <SectionHeading>
             <h2>Edit Blog Post</h2>
@@ -48,17 +67,19 @@ const EditBlogPost = () => {
           </SectionHeading>
           <AdminBlogEditor
             categories={blogCategories}
+            isSubmitting={updateStatus === "loading"}
             key={post.id}
             mode="edit"
             onCancel={() => navigate(`/admin/blogs/${post.id}`)}
             onSubmit={handleSubmit}
             post={post}
+            submitError={updateError}
           />
         </>
       ) : (
         <EmptyState>
           <EmptyTitle>Blog post not found</EmptyTitle>
-          <EmptyText>The post you tried to edit is unavailable or may have been removed from local storage.</EmptyText>
+          <EmptyText>{currentBlogError || "The post you tried to edit is unavailable."}</EmptyText>
         </EmptyState>
       )}
     </AdminBlogLayout>
