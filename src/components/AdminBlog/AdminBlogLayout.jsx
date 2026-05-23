@@ -27,8 +27,8 @@ import {
 } from "./AdminBlog.styles.js";
 
 const navItems = [
-  { icon: <FiFileText />, label: "All Post", to: "/admin/blogs" },
-  { icon: <FiEdit3 />, label: "Add New Post", to: "/admin/blogs/new" },
+  { icon: <FiFileText />, label: "All Post", to: "/dashboard/blogs" },
+  { icon: <FiEdit3 />, label: "Add New Post", to: "/dashboard/blogs/new" },
 ];
 
 const formatRoleLabel = (role = "") =>

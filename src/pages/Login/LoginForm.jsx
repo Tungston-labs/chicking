@@ -71,7 +71,7 @@ const LoginForm = () => {
         })
       ).unwrap();
 
-      navigate(location.state?.from?.pathname || "/admin/blogs", {
+      navigate(location.state?.from?.pathname || "/dashboard/blogs", {
         replace: true,
       });
     } catch {

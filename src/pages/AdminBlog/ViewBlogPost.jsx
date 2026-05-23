@@ -48,7 +48,7 @@ const ViewBlogPost = () => {
   }, [blogId, dispatch]);
 
   return (
-    <AdminBlogLayout backTo="/admin/blogs" backLabel="Back to dashboard" title="">
+    <AdminBlogLayout backTo="/dashboard/blogs" backLabel="Back to dashboard" title="">
       {currentBlogStatus === "loading" ? (
         <EmptyState>
           <EmptyTitle>Loading blog post</EmptyTitle>
@@ -71,7 +71,7 @@ const ViewBlogPost = () => {
                   </MetaText>
                 </ActionGroup>
                 <ActionGroup>
-                  <SecondaryButton as={Link} to={`/admin/blogs/${post.id}/edit`}>
+                  <SecondaryButton as={Link} to={`/dashboard/blogs/${post.id}/edit`}>
                     <FiEdit2 /> Edit Post
                   </SecondaryButton>
                 </ActionGroup>
@@ -130,7 +130,7 @@ const ViewBlogPost = () => {
                     {post.comments} total • {post.pendingComments} pending
                   </span>
                 </MetaText>
-                <IconButton as={Link} title="Back to blogs" to="/admin/blogs">
+                <IconButton as={Link} title="Back to blogs" to="/dashboard/blogs">
                   <FiX />
                 </IconButton>
               </ActionGroup>

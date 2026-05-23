@@ -11,7 +11,7 @@ const PublicOnlyRoute = ({ children }) => {
   }
 
   if (isAuthenticated) {
-    return <Navigate replace to="/admin/blogs" />;
+    return <Navigate replace to="/dashboard/blogs" />;
   }
 
   return children;
