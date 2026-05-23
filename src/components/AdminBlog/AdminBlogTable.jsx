@@ -152,10 +152,10 @@ const AdminBlogTable = ({
                   </td>
                   <td>
                     <ActionGroup $compact $nowrap>
-                      <IconButton $compact as={Link} title="View blog" to={`/admin/blogs/${post.id}`}>
+                      <IconButton $compact as={Link} title="View blog" to={`/dashboard/blogs/${post.id}`}>
                         <FiEye />
                       </IconButton>
-                      <IconButton $compact as={Link} title="Edit blog" to={`/admin/blogs/${post.id}/edit`}>
+                      <IconButton $compact as={Link} title="Edit blog" to={`/dashboard/blogs/${post.id}/edit`}>
                         <FiEdit2 />
                       </IconButton>
                       <IconButton
@@ -207,10 +207,10 @@ const AdminBlogTable = ({
                 </MobileMeta>
               </MobilePostGrid>
               <ActionGroup style={{ marginTop: "0.9rem" }}>
-                <IconButton as={Link} to={`/admin/blogs/${post.id}`}>
+                <IconButton as={Link} to={`/dashboard/blogs/${post.id}`}>
                   <FiEye />
                 </IconButton>
-                <IconButton as={Link} to={`/admin/blogs/${post.id}/edit`}>
+                <IconButton as={Link} to={`/dashboard/blogs/${post.id}/edit`}>
                   <FiEdit2 />
                 </IconButton>
                 <IconButton $variant="danger" onClick={() => onDelete(post.id)} type="button">

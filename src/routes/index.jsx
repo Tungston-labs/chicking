@@ -89,19 +89,19 @@ const pageRoutes = [
   },
   {
     element: withProtectedRoute(BlogDashboard),
-    path: "/admin/blogs",
+    path: "/dashboard/blogs",
   },
   {
     element: withProtectedRoute(CreateBlogPost),
-    path: "/admin/blogs/new",
+    path: "/dashboard/blogs/new",
   },
   {
     element: withProtectedRoute(EditBlogPost),
-    path: "/admin/blogs/:blogId/edit",
+    path: "/dashboard/blogs/:blogId/edit",
   },
   {
     element: withProtectedRoute(ViewBlogPost),
-    path: "/admin/blogs/:blogId",
+    path: "/dashboard/blogs/:blogId",
   },
   {
     element: <Ukpackage />,

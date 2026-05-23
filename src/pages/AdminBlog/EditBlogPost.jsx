@@ -46,14 +46,14 @@ const EditBlogPost = () => {
 
     try {
       const nextPost = await dispatch(updateBlogPost({ blogId: post.id, formValues, status })).unwrap();
-      navigate(`/admin/blogs/${nextPost.id}`);
+      navigate(`/dashboard/blogs/${nextPost.id}`);
     } catch {
       // Errors are surfaced from Redux state in the editor.
     }
   };
 
   return (
-    <AdminBlogLayout backTo="/admin/blogs" backLabel="Back to dashboard" title="">
+    <AdminBlogLayout backTo="/dashboard/blogs" backLabel="Back to dashboard" title="">
       {currentBlogStatus === "loading" ? (
         <EmptyState>
           <EmptyTitle>Loading blog post</EmptyTitle>
@@ -70,7 +70,7 @@ const EditBlogPost = () => {
             isSubmitting={updateStatus === "loading"}
             key={post.id}
             mode="edit"
-            onCancel={() => navigate(`/admin/blogs/${post.id}`)}
+            onCancel={() => navigate(`/dashboard/blogs/${post.id}`)}
             onSubmit={handleSubmit}
             post={post}
             submitError={updateError}
