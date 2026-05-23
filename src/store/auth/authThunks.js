@@ -26,6 +26,16 @@ export const initializeAuthSession = createAsyncThunk(
 
       return await hydrateSession(nextSession, currentSession);
     } catch (error) {
+      if (currentSession.refreshToken) {
+        try {
+          const refreshedSession = await refreshAccessToken(currentSession.refreshToken);
+          return await hydrateSession(refreshedSession, currentSession);
+        } catch (refreshError) {
+          clearStoredAuthSession();
+          return rejectWithValue(getErrorMessage(refreshError, "Your session has expired. Please login again."));
+        }
+      }
+
       clearStoredAuthSession();
       return rejectWithValue(getErrorMessage(error, "Your session has expired. Please login again."));
     }
