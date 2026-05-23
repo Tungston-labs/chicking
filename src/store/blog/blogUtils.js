@@ -38,6 +38,24 @@ const reverseMonthLookup = {
   "12": "Dec",
 };
 
+export const normalizeBlogStatus = (status = "") => {
+  const normalizedStatus = String(status || "").trim().toLowerCase();
+
+  if (normalizedStatus === "published") {
+    return "Published";
+  }
+
+  if (normalizedStatus === "draft") {
+    return "Draft";
+  }
+
+  if (normalizedStatus === "trash") {
+    return "Trash";
+  }
+
+  return typeof status === "string" ? status.trim() : "";
+};
+
 export const slugifyTitle = (title = "") =>
   title
     .toLowerCase()
@@ -203,28 +221,65 @@ export const normalizeBlog = (blog) => {
     publishDateValue,
     publishedAt: normalizePublishedAt(blog.publishedAt, blog.date),
     readTime: blog.readTime || "2 min Read",
+    status: normalizeBlogStatus(blog.status),
     tags: Array.isArray(blog.tags) && blog.tags.length ? blog.tags : [blog.category].filter(Boolean),
     views: Number(blog.views || 0),
   };
 };
 
-export const normalizeBlogList = (payload) => {
+const extractBlogCollection = (payload) => {
   if (Array.isArray(payload)) {
-    return payload.map(normalizeBlog).filter(Boolean);
+    return payload;
   }
 
-  if (Array.isArray(payload?.items)) {
-    return payload.items.map(normalizeBlog).filter(Boolean);
+  if (!payload || typeof payload !== "object") {
+    return [];
   }
 
-  if (Array.isArray(payload?.blogs)) {
-    return payload.blogs.map(normalizeBlog).filter(Boolean);
+  if (Array.isArray(payload.items)) {
+    return payload.items;
+  }
+
+  if (Array.isArray(payload.blogs)) {
+    return payload.blogs;
+  }
+
+  if (Array.isArray(payload.data)) {
+    return payload.data;
+  }
+
+  if (payload.data && typeof payload.data === "object") {
+    return extractBlogCollection(payload.data);
   }
 
   return [];
 };
 
-export const unwrapBlogPayload = (payload) => normalizeBlog(payload?.blog || payload);
+export const normalizeBlogList = (payload) => {
+  return extractBlogCollection(payload).map(normalizeBlog).filter(Boolean);
+};
+
+const extractSingleBlog = (payload) => {
+  if (!payload || typeof payload !== "object") {
+    return payload;
+  }
+
+  if (payload.blog && typeof payload.blog === "object") {
+    return payload.blog;
+  }
+
+  if (payload.item && typeof payload.item === "object") {
+    return payload.item;
+  }
+
+  if (payload.data && typeof payload.data === "object") {
+    return extractSingleBlog(payload.data);
+  }
+
+  return payload;
+};
+
+export const unwrapBlogPayload = (payload) => normalizeBlog(extractSingleBlog(payload));
 
 const resolvePublishedAt = ({ existingBlog, publishDate, status }) => {
   if (publishDate) {
@@ -292,4 +347,4 @@ export const getBlogFilterOptions = (posts) => ({
 });
 
 export const getFallbackPublishedBlogs = (limit = 4) =>
-  fallbackBlogPosts.filter((post) => post.status === "Published").slice(0, limit);
+  fallbackBlogPosts.filter((post) => normalizeBlogStatus(post.status) === "Published").slice(0, limit);

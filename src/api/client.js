@@ -70,10 +70,20 @@ const extractApiErrorMessage = (payload) => {
 const parseApiResponse = async (response) => {
   const contentType = response.headers.get("content-type") || "";
   const isJsonResponse = contentType.includes("application/json");
+  const isHtmlResponse = contentType.includes("text/html");
   const payload = isJsonResponse ? await response.json() : await response.text();
 
   if (!response.ok) {
     const error = new Error(extractApiErrorMessage(payload));
+
+    error.data = payload;
+    error.status = response.status;
+
+    throw error;
+  }
+
+  if (isHtmlResponse) {
+    const error = new Error("The server returned HTML instead of JSON. Please verify the API route or server routing.");
 
     error.data = payload;
     error.status = response.status;

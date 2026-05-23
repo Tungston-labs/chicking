@@ -1,4 +1,4 @@
-import { BLOG_FETCH_PAGE_SIZE, getFallbackPublishedBlogs } from "./blogUtils.js";
+import { normalizeBlogStatus } from "./blogUtils.js";
 
 export const selectBlogState = (state) => state.blogs;
 export const selectAdminBlogs = (state) => state.blogs.items;
@@ -22,8 +22,10 @@ export const selectBlogMutationState = (state) => ({
   updateStatus: state.blogs.updateStatus,
 });
 export const selectPublishedBlogs = (state) => {
-  const publishedPosts = state.blogs.publicItems.filter((post) => post.status === "Published");
-  return publishedPosts.length ? publishedPosts : getFallbackPublishedBlogs(BLOG_FETCH_PAGE_SIZE);
+  return state.blogs.publicItems.filter((post) => {
+    const normalizedStatus = normalizeBlogStatus(post.status);
+    return normalizedStatus !== "Draft" && normalizedStatus !== "Trash";
+  });
 };
 export const selectHomeBlogPosts = (state) => {
   const publishedPosts = selectPublishedBlogs(state);

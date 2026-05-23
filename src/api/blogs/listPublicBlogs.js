@@ -13,7 +13,7 @@ const buildQuery = ({ category } = {}) => {
 };
 
 export const listPublicBlogs = (query = {}) =>
-  apiRequest(`/blogs/${buildQuery(query)}`, {
+  apiRequest(`/blogs${buildQuery(query)}`, {
     method: "GET",
     requiresAuth: false,
   });
