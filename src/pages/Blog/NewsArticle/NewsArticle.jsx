@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FiArrowLeft, FiExternalLink } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -38,6 +38,7 @@ function NewsArticle() {
   const articleError = useSelector(selectPublicCurrentBlogError);
   const titles = ["Insights, Ideas & Stories from Chicking"];
   const [titleIndex, setTitleIndex] = useState(0);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     dispatch(fetchPublicBlogById(blogId));
@@ -103,7 +104,27 @@ function NewsArticle() {
               </MetaRow>
 
               <BannerWrap>
-                <BannerImage alt={post.title} loading="lazy" src={post.image} />
+                {!imageError && post.image ? (
+                  <BannerImage 
+                    alt={post.title} 
+                    loading="lazy" 
+                    src={post.image}
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <div style={{
+                    width: "100%",
+                    height: "400px",
+                    backgroundColor: "#f0f0f0",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#999",
+                    fontSize: "16px",
+                  }}>
+                    Image unavailable
+                  </div>
+                )}
               </BannerWrap>
 
               {post.url ? (
@@ -115,7 +136,13 @@ function NewsArticle() {
                 </QuoteBox>
               ) : null}
 
-              <Content dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
+              {post.contentHtml ? (
+                <Content dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
+              ) : (
+                <Content>
+                  <p>{post.contentText || "No content available for this article."}</p>
+                </Content>
+              )}
             </>
           ) : (
             <>

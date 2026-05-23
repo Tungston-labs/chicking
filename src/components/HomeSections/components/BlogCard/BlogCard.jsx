@@ -1,5 +1,6 @@
 import { FaComment, FaEye, FaHeart, FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import {
   AuthorName,
   AuthorRow,
@@ -35,6 +36,7 @@ const BlogCard = ({
   views = 135,
 }) => {
   const navigate = useNavigate();
+  const [imageError, setImageError] = useState(false);
   const contentPreview = getContentPreview(contentText || "");
   const articlePath = `/new-articles/${id}`;
 
@@ -44,7 +46,27 @@ const BlogCard = ({
       onClick={(event) => event.stopPropagation()}
       to={articlePath}
     >
-      <img alt="" loading="lazy" src={image} />
+      {!imageError && image ? (
+        <img 
+          alt="" 
+          loading="lazy" 
+          src={image}
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        <div style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: "#f0f0f0",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#999",
+          fontSize: "14px",
+        }}>
+          Image unavailable
+        </div>
+      )}
       {isVideo && (
         <PlayButton>
           <FaPlay aria-hidden="true" />

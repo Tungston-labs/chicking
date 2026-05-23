@@ -3,10 +3,43 @@ import { blogPosts as fallbackBlogPosts } from "../../components/HomeSections/da
 export const BLOG_PAGE_SIZE = 5;
 export const BLOG_FETCH_PAGE_SIZE = 100;
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://178.248.112.5/";
 const DEFAULT_AUTHOR_ROLE = "Super Admin";
 const EMPTY_PUBLISHED_AT = "---";
 
 const fallbackImage = fallbackBlogPosts[0]?.image || null;
+
+/**
+ * Normalizes image URLs to absolute URLs
+ * Handles relative paths, absolute URLs, and placeholder URLs
+ */
+export const normalizeImageUrl = (imageUrl) => {
+  if (!imageUrl) {
+    return null;
+  }
+
+  // Remove example.com placeholders
+  if (typeof imageUrl === "string" && imageUrl.includes("example.com")) {
+    return null;
+  }
+
+  // If already absolute URL, return as is
+  if (typeof imageUrl === "string" && (imageUrl.startsWith("http://") || imageUrl.startsWith("https://"))) {
+    return imageUrl;
+  }
+
+  // If relative path, prepend API base URL
+  if (typeof imageUrl === "string" && imageUrl.startsWith("/")) {
+    return `${API_BASE_URL.replace(/\/$/, "")}${imageUrl}`;
+  }
+
+  // Default: treat as relative path from API base
+  if (typeof imageUrl === "string") {
+    return `${API_BASE_URL.replace(/\/$/, "")}/${imageUrl}`;
+  }
+
+  return null;
+};
 
 const monthLookup = {
   Apr: "04",
@@ -187,6 +220,7 @@ export const normalizeBlog = (blog) => {
   const contentHtml = toContentHtml(blog.content);
   const contentBlocks = splitContent(blog.content);
   const publishDateValue = toInputDate(blog.publishedAt) || toInputDate(blog.date);
+  const normalizedImage = normalizeImageUrl(blog.image) || fallbackImage;
 
   return {
     ...blog,
@@ -198,7 +232,7 @@ export const normalizeBlog = (blog) => {
     contentText: joinContent(htmlToPlainText(contentHtml || blog.content || "")),
     date: blog.date || formatDateLabel(publishDateValue),
     featuredVideo: blog.isVideo ? blog.url || "" : "",
-    image: blog.image || fallbackImage,
+    image: normalizedImage,
     pendingComments: Number(blog.pendingComments || 0),
     publishDateValue,
     publishedAt: normalizePublishedAt(blog.publishedAt, blog.date),
@@ -216,6 +250,7 @@ const normalizeBlogSummary = (blog, { includeContentPreview = false } = {}) => {
   const publishDateValue = toInputDate(blog.publishedAt) || toInputDate(blog.date);
   const fallbackPreview =
     !blog.excerpt && typeof blog.content === "string" ? htmlToPlainText(blog.content).replace(/\s+/g, " ").trim() : "";
+  const normalizedImage = normalizeImageUrl(blog.image) || fallbackImage;
 
   return {
     ...blog,
@@ -227,7 +262,7 @@ const normalizeBlogSummary = (blog, { includeContentPreview = false } = {}) => {
     contentText: includeContentPreview ? blog.excerpt || fallbackPreview : "",
     date: blog.date || formatDateLabel(publishDateValue),
     featuredVideo: blog.isVideo ? blog.url || "" : "",
-    image: blog.image || fallbackImage,
+    image: normalizedImage,
     pendingComments: Number(blog.pendingComments || 0),
     publishDateValue,
     publishedAt: normalizePublishedAt(blog.publishedAt, blog.date),
@@ -255,7 +290,25 @@ export const normalizeBlogList = (payload, options = {}) => {
   return [];
 };
 
-export const unwrapBlogPayload = (payload) => normalizeBlog(payload?.blog || payload);
+/**
+ * Extracts the blog object from various API response formats
+ * Handles: { blog: {...} }, { data: {...} }, or direct blog object
+ */
+export const unwrapBlogPayload = (payload) => {
+  if (!payload) {
+    return null;
+  }
+
+  // Try multiple response formats
+  const blog = payload?.blog || payload?.data || payload;
+
+  // Ensure we have a valid blog object
+  if (!blog || typeof blog !== "object") {
+    return null;
+  }
+
+  return normalizeBlog(blog);
+};
 
 const resolvePublishedAt = ({ existingBlog, publishDate, status }) => {
   if (publishDate) {
