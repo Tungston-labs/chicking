@@ -1,26 +1,28 @@
+import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "../components/ProtectedRoute.jsx";
 import PublicOnlyRoute from "../components/PublicOnlyRoute.jsx";
-import AboutUs from "../pages/AboutUs/index.jsx";
-import BlogSections from "../pages/Blog/BlogSection";
-import NewsArticle from "../pages/Blog/NewsArticle/NewsArticle.jsx";
-import BMI from "../pages/BMI/index.jsx";
-import FranchiseForm from "../pages/Franchise/index.jsx";
-import GlobalPresence from "../pages/GlobalPresence/index.jsx";
-import { Home } from "../pages/Home/index.js";
-import BlogDashboard from "../pages/AdminBlog/BlogDashboard.jsx";
-import CreateBlogPost from "../pages/AdminBlog/CreateBlogPost.jsx";
-import EditBlogPost from "../pages/AdminBlog/EditBlogPost.jsx";
-import ViewBlogPost from "../pages/AdminBlog/ViewBlogPost.jsx";
-import FaqSection from "../pages/FAQ/index.jsx";
-import ForgotPassword from "../pages/Login/ForgotPassword.jsx";
-import Login from "../pages/Login/index.jsx";
-import SetPassword from "../pages/Login/SetPassword.jsx";
-import VerifyCode from "../pages/Login/VerifyCode.jsx";
-import LeadershipSection from "../pages/Management/index.jsx";
-import Propositions from "../pages/Proposition/index.jsx";
-import Ukpackage from "../pages/Proposition/UkPackage/Ukpackage.jsx";
-import Uspackage from "../pages/Proposition/UsPackage/Uspackage.jsx";
+
+const AboutUs = lazy(() => import("../pages/AboutUs/index.jsx"));
+const BlogSections = lazy(() => import("../pages/Blog/BlogSection.jsx"));
+const NewsArticle = lazy(() => import("../pages/Blog/NewsArticle/NewsArticle.jsx"));
+const BMI = lazy(() => import("../pages/BMI/index.jsx"));
+const FranchiseForm = lazy(() => import("../pages/Franchise/index.jsx"));
+const GlobalPresence = lazy(() => import("../pages/GlobalPresence/index.jsx"));
+const Home = lazy(() => import("../pages/Home/index.js").then((module) => ({ default: module.Home })));
+const BlogDashboard = lazy(() => import("../pages/AdminBlog/BlogDashboard.jsx"));
+const CreateBlogPost = lazy(() => import("../pages/AdminBlog/CreateBlogPost.jsx"));
+const EditBlogPost = lazy(() => import("../pages/AdminBlog/EditBlogPost.jsx"));
+const ViewBlogPost = lazy(() => import("../pages/AdminBlog/ViewBlogPost.jsx"));
+const FaqSection = lazy(() => import("../pages/FAQ/index.jsx"));
+const ForgotPassword = lazy(() => import("../pages/Login/ForgotPassword.jsx"));
+const Login = lazy(() => import("../pages/Login/index.jsx"));
+const SetPassword = lazy(() => import("../pages/Login/SetPassword.jsx"));
+const VerifyCode = lazy(() => import("../pages/Login/VerifyCode.jsx"));
+const LeadershipSection = lazy(() => import("../pages/Management/index.jsx"));
+const Propositions = lazy(() => import("../pages/Proposition/index.jsx"));
+const Ukpackage = lazy(() => import("../pages/Proposition/UkPackage/Ukpackage.jsx"));
+const Uspackage = lazy(() => import("../pages/Proposition/UsPackage/Uspackage.jsx"));
 
 const withProtectedRoute = (Component) => (
   <ProtectedRoute>
@@ -32,6 +34,23 @@ const withPublicOnlyRoute = (Component) => (
   <PublicOnlyRoute>
     <Component />
   </PublicOnlyRoute>
+);
+
+const RouteFallback = () => (
+  <div
+    style={{
+      alignItems: "center",
+      color: "#891b1c",
+      display: "flex",
+      fontSize: "0.95rem",
+      fontWeight: 600,
+      justifyContent: "center",
+      minHeight: "40vh",
+      padding: "2rem 1rem",
+    }}
+  >
+    Loading page...
+  </div>
 );
 
 const pageRoutes = [
@@ -118,11 +137,13 @@ const pageRoutes = [
 ];
 
 const AppRoutes = () => (
-  <Routes>
-    {pageRoutes.map(({ element, path }) => (
-      <Route key={path} element={element} path={path} />
-    ))}
-  </Routes>
+  <Suspense fallback={<RouteFallback />}>
+    <Routes>
+      {pageRoutes.map(({ element, path }) => (
+        <Route key={path} element={element} path={path} />
+      ))}
+    </Routes>
+  </Suspense>
 );
 
 export default AppRoutes;

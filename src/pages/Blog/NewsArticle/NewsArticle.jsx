@@ -103,7 +103,7 @@ function NewsArticle() {
               </MetaRow>
 
               <BannerWrap>
-                <BannerImage src={post.image} />
+                <BannerImage alt={post.title} loading="lazy" src={post.image} />
               </BannerWrap>
 
               {post.url ? (

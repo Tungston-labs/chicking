@@ -208,17 +208,48 @@ export const normalizeBlog = (blog) => {
   };
 };
 
-export const normalizeBlogList = (payload) => {
+const normalizeBlogSummary = (blog, { includeContentPreview = false } = {}) => {
+  if (!blog) {
+    return null;
+  }
+
+  const publishDateValue = toInputDate(blog.publishedAt) || toInputDate(blog.date);
+  const fallbackPreview =
+    !blog.excerpt && typeof blog.content === "string" ? htmlToPlainText(blog.content).replace(/\s+/g, " ").trim() : "";
+
+  return {
+    ...blog,
+    authorRole: blog.authorRole || DEFAULT_AUTHOR_ROLE,
+    commentThread: Array.isArray(blog.commentThread) ? blog.commentThread : [],
+    comments: Number(blog.comments || 0),
+    content: [],
+    contentHtml: "",
+    contentText: includeContentPreview ? blog.excerpt || fallbackPreview : "",
+    date: blog.date || formatDateLabel(publishDateValue),
+    featuredVideo: blog.isVideo ? blog.url || "" : "",
+    image: blog.image || fallbackImage,
+    pendingComments: Number(blog.pendingComments || 0),
+    publishDateValue,
+    publishedAt: normalizePublishedAt(blog.publishedAt, blog.date),
+    readTime: blog.readTime || "2 min Read",
+    tags: Array.isArray(blog.tags) && blog.tags.length ? blog.tags : [blog.category].filter(Boolean),
+    views: Number(blog.views || 0),
+  };
+};
+
+export const normalizeBlogList = (payload, options = {}) => {
+  const normalizeListItem = options.fullContent ? normalizeBlog : (blog) => normalizeBlogSummary(blog, options);
+
   if (Array.isArray(payload)) {
-    return payload.map(normalizeBlog).filter(Boolean);
+    return payload.map(normalizeListItem).filter(Boolean);
   }
 
   if (Array.isArray(payload?.items)) {
-    return payload.items.map(normalizeBlog).filter(Boolean);
+    return payload.items.map(normalizeListItem).filter(Boolean);
   }
 
   if (Array.isArray(payload?.blogs)) {
-    return payload.blogs.map(normalizeBlog).filter(Boolean);
+    return payload.blogs.map(normalizeListItem).filter(Boolean);
   }
 
   return [];

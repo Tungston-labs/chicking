@@ -66,6 +66,73 @@ const readFileAsDataUrl = (file) =>
     reader.readAsDataURL(file);
   });
 
+const loadImageElement = (file) =>
+  new Promise((resolve, reject) => {
+    const objectUrl = URL.createObjectURL(file);
+    const image = new Image();
+
+    image.onload = () => {
+      resolve({
+        image,
+        revoke: () => URL.revokeObjectURL(objectUrl),
+      });
+    };
+
+    image.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error("Unable to process the selected image."));
+    };
+
+    image.src = objectUrl;
+  });
+
+const resizeImageFile = async (file, maxDimension) => {
+  const isResizableRasterImage =
+    file.type === "image/jpeg" || file.type === "image/jpg" || file.type === "image/png" || file.type === "image/webp";
+
+  if (!isResizableRasterImage) {
+    return readFileAsDataUrl(file);
+  }
+
+  const { image, revoke } = await loadImageElement(file);
+
+  try {
+    const width = image.naturalWidth;
+    const height = image.naturalHeight;
+    const largestSide = Math.max(width, height);
+
+    if (!largestSide || largestSide <= maxDimension) {
+      return readFileAsDataUrl(file);
+    }
+
+    const scale = maxDimension / largestSide;
+    const canvas = document.createElement("canvas");
+
+    canvas.width = Math.max(1, Math.round(width * scale));
+    canvas.height = Math.max(1, Math.round(height * scale));
+
+    const context = canvas.getContext("2d");
+
+    if (!context) {
+      return readFileAsDataUrl(file);
+    }
+
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+    return canvas.toDataURL(file.type === "image/jpg" ? "image/jpeg" : file.type, 0.82);
+  } finally {
+    revoke();
+  }
+};
+
+const readOptimizedFileAsDataUrl = (file, maxDimension) => {
+  if (!file || !file.type.startsWith("image/")) {
+    return readFileAsDataUrl(file);
+  }
+
+  return resizeImageFile(file, maxDimension);
+};
+
 const getUploadLabel = (value, emptyLabel, selectedLabel) => {
   if (!value) {
     return emptyLabel;
@@ -176,12 +243,12 @@ const AdminBlogEditor = ({
     }));
   };
 
-  const handleUpload = async (field, file) => {
+  const handleUpload = async (field, file, maxDimension) => {
     if (!file) {
       return;
     }
 
-    const dataUrl = await readFileAsDataUrl(file);
+    const dataUrl = await readOptimizedFileAsDataUrl(file, maxDimension);
 
     setFormValues((currentValues) => ({
       ...currentValues,
@@ -192,7 +259,7 @@ const AdminBlogEditor = ({
 
   const handleFeaturedImageChange = async (event) => {
     try {
-      await handleUpload("image", event.target.files?.[0]);
+      await handleUpload("image", event.target.files?.[0], 1600);
     } finally {
       event.target.value = "";
     }
@@ -214,7 +281,7 @@ const AdminBlogEditor = ({
         return;
       }
 
-      const dataUrl = await readFileAsDataUrl(file);
+      const dataUrl = await readOptimizedFileAsDataUrl(file, 1200);
       runCommand("insertImage", dataUrl);
     } finally {
       event.target.value = "";

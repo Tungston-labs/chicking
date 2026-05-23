@@ -44,7 +44,7 @@ const BlogCard = ({
       onClick={(event) => event.stopPropagation()}
       to={articlePath}
     >
-      <img src={image} alt="" />
+      <img alt="" loading="lazy" src={image} />
       {isVideo && (
         <PlayButton>
           <FaPlay aria-hidden="true" />
