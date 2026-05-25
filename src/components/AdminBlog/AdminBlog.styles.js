@@ -488,6 +488,25 @@ export const StatusPill = styled.span`
   font-weight: 600;
 `;
 
+export const StatusSelect = styled.select`
+  min-width: 6.9rem;
+  padding: 0.4rem 0.75rem;
+  border: 0;
+  border-radius: 999rem;
+  background: ${({ $status }) =>
+    $status === "Published"
+      ? "rgba(51, 183, 111, 0.12)"
+      : $status === "Draft"
+        ? "rgba(255, 173, 72, 0.14)"
+        : "rgba(255, 97, 97, 0.14)"};
+  color: ${({ $status }) =>
+    $status === "Published" ? "#2f9f61" : $status === "Draft" ? "#d68120" : "#d64d4d"};
+  font-size: 0.7rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+`;
+
 export const ActionGroup = styled.div`
   display: flex;
   flex-wrap: ${({ $nowrap }) => ($nowrap ? "nowrap" : "wrap")};

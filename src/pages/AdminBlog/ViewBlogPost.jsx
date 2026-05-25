@@ -4,10 +4,10 @@ import {
   FiClock,
   FiEdit2,
   FiTag,
-  FiX,
 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import AdminBlogCommentsPanel from "../../components/AdminBlog/AdminBlogCommentsPanel.jsx";
 import AdminBlogLayout from "../../components/AdminBlog/AdminBlogLayout.jsx";
 import {
   ActionGroup,
@@ -18,7 +18,6 @@ import {
   EmptyText,
   EmptyTitle,
   HeroImage,
-  IconButton,
   MetaCard,
   MetaRow,
   MetaText,
@@ -130,14 +129,12 @@ const ViewBlogPost = () => {
                     {post.comments} total • {post.pendingComments} pending
                   </span>
                 </MetaText>
-                <IconButton as={Link} title="Back to blogs" to="/dashboard/blogs">
-                  <FiX />
-                </IconButton>
               </ActionGroup>
-              <EmptyText>
-                Comment moderation endpoints are not part of the current API set, so this screen shows the server
-                counters only for now.
-              </EmptyText>
+              <AdminBlogCommentsPanel
+                blogId={post.id}
+                serverCommentCount={post.comments}
+                serverPendingCount={post.pendingComments}
+              />
             </DetailsCard>
           </DetailsGrid>
         </>

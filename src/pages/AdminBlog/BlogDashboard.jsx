@@ -5,16 +5,17 @@ import AdminBlogLayout from "../../components/AdminBlog/AdminBlogLayout.jsx";
 import AdminBlogTable from "../../components/AdminBlog/AdminBlogTable.jsx";
 import {
   buildBlogCounts,
+  getEditorInitialValues,
   getBlogMonthLabel,
   getBlogFilterOptions,
 } from "../../store/blog/blogUtils.js";
 import {
-  deleteBlogPost,
   fetchBlogsList,
   selectAdminBlogs,
   selectBlogListError,
   selectBlogListStatus,
   selectBlogMutationState,
+  updateBlogPost,
 } from "../../store/blog/blogSlice.js";
 import {
   SectionHeading,
@@ -38,9 +39,10 @@ const BlogDashboard = () => {
   const posts = useSelector(selectAdminBlogs);
   const listError = useSelector(selectBlogListError);
   const listStatus = useSelector(selectBlogListStatus);
-  const { deleteError } = useSelector(selectBlogMutationState);
+  const { updateError } = useSelector(selectBlogMutationState);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeStatus, setActiveStatus] = useState("All Posts");
+  const [updatingBlogId, setUpdatingBlogId] = useState("");
   const [filters, setFilters] = useState({
     author: "All Authors",
     category: "All Categories",
@@ -97,14 +99,36 @@ const BlogDashboard = () => {
     setCurrentPage(1);
   };
 
-  const handleDelete = (blogId) => {
-    const shouldTrash = window.confirm("Move this blog post to trash?");
-
-    if (!shouldTrash) {
+  const handleUpdateStatus = async (post, status) => {
+    if (!post || post.status === status) {
       return;
     }
 
-    dispatch(deleteBlogPost(blogId));
+    setUpdatingBlogId(post.id);
+
+    try {
+      await dispatch(
+        updateBlogPost({
+          blogId: post.id,
+          formValues: getEditorInitialValues(post),
+          status,
+        })
+      ).unwrap();
+    } catch {
+      // Errors are shown from Redux state in the dashboard empty/error messaging.
+    } finally {
+      setUpdatingBlogId("");
+    }
+  };
+
+  const handleDelete = (post) => {
+    const shouldTrash = window.confirm("Move this blog post to trash?");
+
+    if (!shouldTrash || !post) {
+      return;
+    }
+
+    handleUpdateStatus(post, "Trash");
   };
 
   return (
@@ -122,6 +146,7 @@ const BlogDashboard = () => {
       <SectionHeading>
         <h2>All Posts</h2>
         <p>Manage, review, search, and open each blog post from one responsive dashboard.</p>
+        {updateError ? <p style={{ color: "#b42318", marginTop: "0.4rem" }}>{updateError}</p> : null}
       </SectionHeading>
       <StatsGrid>
         {statCards.map(({ icon: Icon, label, value }) => (
@@ -140,7 +165,7 @@ const BlogDashboard = () => {
         activeStatus={activeStatus}
         counts={counts}
         currentPage={safeCurrentPage}
-        error={listError || deleteError}
+        error={listError || updateError}
         filters={filters}
         isLoading={listStatus === "loading"}
         onDelete={handleDelete}
@@ -150,9 +175,11 @@ const BlogDashboard = () => {
           setActiveStatus(value);
           setCurrentPage(1);
         }}
+        onUpdateStatus={handleUpdateStatus}
         options={filterOptions}
         posts={paginatedPosts}
         totalPages={totalPages}
+        updatingBlogId={updatingBlogId}
       />
     </AdminBlogLayout>
   );
