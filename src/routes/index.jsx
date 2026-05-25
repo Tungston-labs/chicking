@@ -115,6 +115,10 @@ const pageRoutes = [
     element: <NewsArticle />,
     path: "/new-articles/:blogId",
   },
+  {
+    element: <NewsArticle />,
+    path: "/new-article/:blogId",
+  },
 ];
 
 const AppRoutes = () => (

@@ -29,6 +29,7 @@ import {
   PostExcerpt,
   PostTitle,
   StatusPill,
+  StatusSelect,
   Table,
   TableCheckbox,
   TableWrap,
@@ -52,8 +53,10 @@ const AdminBlogTable = ({
   onFilterChange,
   onPageChange,
   onStatusChange,
+  onUpdateStatus,
   posts,
   totalPages,
+  updatingBlogId,
   options,
 }) => (
   <TableCard>
@@ -148,7 +151,17 @@ const AdminBlogTable = ({
                   <td>{String(post.comments).padStart(2, "0")}</td>
                   <td>{post.publishedAt}</td>
                   <td>
-                    <StatusPill $status={post.status}>{post.status}</StatusPill>
+                    <StatusSelect
+                      $status={post.status}
+                      aria-label={`Update status for ${post.title}`}
+                      disabled={updatingBlogId === post.id}
+                      onChange={(event) => onUpdateStatus(post, event.target.value)}
+                      value={post.status}
+                    >
+                      <option value="Published">Published</option>
+                      <option value="Draft">Draft</option>
+                      <option value="Trash">Trash</option>
+                    </StatusSelect>
                   </td>
                   <td>
                     <ActionGroup $compact $nowrap>
@@ -161,7 +174,8 @@ const AdminBlogTable = ({
                       <IconButton
                         $compact
                         $variant="danger"
-                        onClick={() => onDelete(post.id)}
+                        disabled={post.status === "Trash" || updatingBlogId === post.id}
+                        onClick={() => onDelete(post)}
                         title="Move to trash"
                         type="button"
                       >
@@ -206,6 +220,18 @@ const AdminBlogTable = ({
                   <span>{post.publishedAt}</span>
                 </MobileMeta>
               </MobilePostGrid>
+              <StatusSelect
+                $status={post.status}
+                aria-label={`Update status for ${post.title}`}
+                disabled={updatingBlogId === post.id}
+                onChange={(event) => onUpdateStatus(post, event.target.value)}
+                style={{ marginTop: "0.9rem" }}
+                value={post.status}
+              >
+                <option value="Published">Published</option>
+                <option value="Draft">Draft</option>
+                <option value="Trash">Trash</option>
+              </StatusSelect>
               <ActionGroup style={{ marginTop: "0.9rem" }}>
                 <IconButton as={Link} to={`/dashboard/blogs/${post.id}`}>
                   <FiEye />
@@ -213,7 +239,12 @@ const AdminBlogTable = ({
                 <IconButton as={Link} to={`/dashboard/blogs/${post.id}/edit`}>
                   <FiEdit2 />
                 </IconButton>
-                <IconButton $variant="danger" onClick={() => onDelete(post.id)} type="button">
+                <IconButton
+                  $variant="danger"
+                  disabled={post.status === "Trash" || updatingBlogId === post.id}
+                  onClick={() => onDelete(post)}
+                  type="button"
+                >
                   <FiTrash2 />
                 </IconButton>
               </ActionGroup>

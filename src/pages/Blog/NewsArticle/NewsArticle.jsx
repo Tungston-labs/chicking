@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FiArrowLeft, FiExternalLink } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -12,6 +12,7 @@ import {
   Container,
   Content,
   Date,
+  Excerpt,
   MetaRow,
   Name,
   QuoteBox,
@@ -22,6 +23,9 @@ import {
 import franchiseImg from "../../../../public/images/blog/blog1.svg";
 import PageLayout from "../../../components/Layout/PageLayout";
 import TopBanner from "../../../components/TopBanner";
+import NewsArticleComments from "./NewsArticleComments.jsx";
+import { getArticleSourceLabel } from "./newsArticleCommentUtils.js";
+import { usePublicBlogComments } from "./usePublicBlogComments.js";
 import {
   clearPublicCurrentBlog,
   fetchPublicBlogById,
@@ -38,6 +42,19 @@ function NewsArticle() {
   const articleError = useSelector(selectPublicCurrentBlogError);
   const titles = ["Insights, Ideas & Stories from Chicking"];
   const [titleIndex, setTitleIndex] = useState(0);
+  const sourceLabel = getArticleSourceLabel(post?.url);
+  const shouldShowComments = Boolean(blogId) && articleStatus !== "loading";
+  const {
+    commentForm,
+    commentSubmitMessage,
+    commentSubmitStatus,
+    comments,
+    commentsError,
+    commentsStatus,
+    handleCommentFieldChange,
+    handleCommentSubmit,
+    refreshComments,
+  } = usePublicBlogComments(blogId);
 
   useEffect(() => {
     dispatch(fetchPublicBlogById(blogId));
@@ -110,10 +127,12 @@ function NewsArticle() {
                 <QuoteBox>
                   Source:{" "}
                   <a href={post.url} rel="noreferrer" target="_blank">
-                    Open linked media <FiExternalLink style={{ verticalAlign: "middle" }} />
+                    {sourceLabel} <FiExternalLink style={{ verticalAlign: "middle" }} />
                   </a>
                 </QuoteBox>
               ) : null}
+
+              {post.excerpt ? <Excerpt>{post.excerpt}</Excerpt> : null}
 
               <Content dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
             </>
@@ -123,6 +142,20 @@ function NewsArticle() {
               <QuoteBox>{articleError || "The article you requested is unavailable right now."}</QuoteBox>
             </>
           )}
+
+          {shouldShowComments ? (
+            <NewsArticleComments
+              commentForm={commentForm}
+              commentSubmitMessage={commentSubmitMessage}
+              commentSubmitStatus={commentSubmitStatus}
+              comments={comments}
+              commentsError={commentsError}
+              commentsStatus={commentsStatus}
+              onCommentFieldChange={handleCommentFieldChange}
+              onCommentSubmit={handleCommentSubmit}
+              onRefreshComments={refreshComments}
+            />
+          ) : null}
         </Container>
       </Wrapper>
     </>
