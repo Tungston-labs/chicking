@@ -261,7 +261,7 @@ export const SectionTitle = styled.h2`
   font-size: 1.6rem;
   font-weight: 600;
   line-height: 1.25;
-
+   margin-top: 1rem;
   @media (max-width: 570px) {
     font-size: 1.35rem;
   }
