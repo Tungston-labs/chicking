@@ -20,7 +20,6 @@ export const MilestonesSection = styled.section`
     padding: 2.75rem 0 3rem;
   }
 `;
-
 export const BrandStamp = styled.div`
   display: flex;
   justify-content: center;
@@ -32,9 +31,22 @@ export const BrandStamp = styled.div`
     display: block;
   }
 
+  &.mobile-brand {
+    display: none;
+  }
+
   @media (max-width: 767px) {
     justify-content: flex-start;
-    margin-bottom: 1.6rem;
+    margin-bottom: 0;
+    margin-top: 1.4rem;
+
+    &.desktop-brand {
+      display: none;
+    }
+
+    &.mobile-brand {
+      display: flex;
+    }
   }
 `;
 

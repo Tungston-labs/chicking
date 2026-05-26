@@ -31,6 +31,39 @@ const NewsArticleComments = ({
 }) => {
   return (
     <CommentSection>
+      <SectionTitle style={{ marginTop: "2.5rem" }}>Comments ({comments.length})</SectionTitle>
+      {commentsStatus === "loading" ? (
+        <EmptyComments>Loading comments...</EmptyComments>
+      ) : commentsError ? (
+        <>
+          <EmptyComments>{commentsError}</EmptyComments>
+          <CommentFormButton onClick={() => onRefreshComments?.().catch(() => {})} type="button">
+            Retry Comments
+          </CommentFormButton>
+        </>
+      ) : comments.length ? (
+        <CommentList>
+          {comments.map((comment) => (
+            <CommentCard key={comment.id}>
+              <CommentMeta>
+                <div>
+                  <strong>{comment.name}</strong>
+                  <CommentDate>{formatCommentDate(comment.createdAt)}</CommentDate>
+                </div>
+              </CommentMeta>
+              <CommentMessage>{comment.message}</CommentMessage>
+              {comment.reply?.message ? (
+                <CommentReply>
+                  <strong>{comment.reply.adminName || "Admin"} replied</strong>
+                  <p>{comment.reply.message}</p>
+                </CommentReply>
+              ) : null}
+            </CommentCard>
+          ))}
+        </CommentList>
+      ) : (
+        <EmptyComments>No approved comments yet. Be the first to share your thoughts.</EmptyComments>
+      )}
       <SectionTitle>Leave a Comment</SectionTitle>
       <CommentForm onSubmit={onCommentSubmit}>
         <CommentFormGrid>
@@ -77,39 +110,7 @@ const NewsArticleComments = ({
         </CommentFormButton>
       </CommentForm>
 
-      <SectionTitle style={{ marginTop: "2.5rem" }}>Comments ({comments.length})</SectionTitle>
-      {commentsStatus === "loading" ? (
-        <EmptyComments>Loading comments...</EmptyComments>
-      ) : commentsError ? (
-        <>
-          <EmptyComments>{commentsError}</EmptyComments>
-          <CommentFormButton onClick={() => onRefreshComments?.().catch(() => {})} type="button">
-            Retry Comments
-          </CommentFormButton>
-        </>
-      ) : comments.length ? (
-        <CommentList>
-          {comments.map((comment) => (
-            <CommentCard key={comment.id}>
-              <CommentMeta>
-                <div>
-                  <strong>{comment.name}</strong>
-                  <CommentDate>{formatCommentDate(comment.createdAt)}</CommentDate>
-                </div>
-              </CommentMeta>
-              <CommentMessage>{comment.message}</CommentMessage>
-              {comment.reply?.message ? (
-                <CommentReply>
-                  <strong>{comment.reply.adminName || "Admin"} replied</strong>
-                  <p>{comment.reply.message}</p>
-                </CommentReply>
-              ) : null}
-            </CommentCard>
-          ))}
-        </CommentList>
-      ) : (
-        <EmptyComments>No approved comments yet. Be the first to share your thoughts.</EmptyComments>
-      )}
+      
     </CommentSection>
   );
 };
