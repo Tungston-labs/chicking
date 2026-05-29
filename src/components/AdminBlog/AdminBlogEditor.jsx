@@ -42,10 +42,7 @@ import {
   Tool,
   ToolColorInput,
   ToolSelect,
-  UploadActionButton,
-  UploadActions,
   UploadBox,
-  UploadPreview,
 } from "./AdminBlog.styles.js";
 
 const readTimeOptions = ["2 min Read", "3 min Read", "4 min Read", "5 min Read", "8 min Read"];
@@ -91,7 +88,6 @@ const AdminBlogEditor = ({
   const [tagInput, setTagInput] = useState("");
   const editorRef = useRef(null);
   const selectionRef = useRef(null);
-  const featuredImageInputRef = useRef(null);
   const featuredVideoInputRef = useRef(null);
   const inlineImageInputRef = useRef(null);
 
@@ -186,16 +182,7 @@ const AdminBlogEditor = ({
     setFormValues((currentValues) => ({
       ...currentValues,
       [field]: dataUrl,
-      ...(field === "image" ? { imageRemoved: false } : {}),
     }));
-  };
-
-  const handleFeaturedImageChange = async (event) => {
-    try {
-      await handleUpload("image", event.target.files?.[0]);
-    } finally {
-      event.target.value = "";
-    }
   };
 
   const handleFeaturedVideoChange = async (event) => {
@@ -231,14 +218,6 @@ const AdminBlogEditor = ({
     runCommand("createLink", url.trim());
   };
 
-  const handleRemoveFeaturedImage = () => {
-    setFormValues((currentValues) => ({
-      ...currentValues,
-      image: "",
-      imageRemoved: true,
-    }));
-  };
-
   const handleSubmit = (status) => {
     const content = editorRef.current?.innerHTML || formValues.content;
 
@@ -271,7 +250,10 @@ const AdminBlogEditor = ({
       <EditorCard>
         <CardHeading>
           <h3>{mode === "edit" ? "Edit Blog Post" : "Create Blog Post"}</h3>
-          <p>Manage headline, summary, body content, and publish metadata from one responsive editor.</p>
+          <p>
+            Manage headline, summary, body content, and publish metadata from one responsive editor. Add the first
+            image inside Blog Content to use it as the cover image.
+          </p>
           {submitError ? <p style={{ color: "#c13a3a", marginTop: "0.5rem" }}>{submitError}</p> : null}
         </CardHeading>
         <Field>
@@ -391,7 +373,7 @@ const AdminBlogEditor = ({
 
       <SettingsCard>
         <SettingsTitle>Post Settings</SettingsTitle>
-        <SettingsNote>Manage metadata, schedule, tags, featured image, and featured video from this panel.</SettingsNote>
+        <SettingsNote>Manage metadata, schedule, tags, and featured video from this panel.</SettingsNote>
         <Field>
           <Label>Category</Label>
           <Select onChange={handleFieldChange("category")} value={formValues.category}>
@@ -434,38 +416,8 @@ const AdminBlogEditor = ({
                   </button>
                 </TagChip>
               ))}
-            </TagList>
-          ) : null}
-        </Field>
-        <Field>
-          <Label>Featured Image</Label>
-          <UploadBox>
-            {formValues.image ? <UploadPreview alt="Featured blog preview" src={formValues.image} /> : <FiUpload size={20} />}
-            <span>
-              {getUploadLabel(
-                formValues.image,
-                "Upload a featured image for this blog post",
-                "Featured image selected from your device"
-              )}
-            </span>
-            <UploadActions>
-              <UploadActionButton onClick={() => featuredImageInputRef.current?.click()} type="button">
-                Browse
-              </UploadActionButton>
-              {formValues.image ? (
-                <UploadActionButton onClick={handleRemoveFeaturedImage} type="button">
-                  Remove
-                </UploadActionButton>
-              ) : null}
-            </UploadActions>
-            <input
-              accept="image/*"
-              hidden
-              onChange={handleFeaturedImageChange}
-              ref={featuredImageInputRef}
-              type="file"
-            />
-          </UploadBox>
+          </TagList>
+        ) : null}
         </Field>
         <Field>
           <Label>Featured Video</Label>
