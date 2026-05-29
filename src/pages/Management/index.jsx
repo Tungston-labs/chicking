@@ -68,7 +68,7 @@ const LeadershipSection = () => {
             description={
                 <>
         In order to support the Chicking franchise system along every step of the way, 
-                    <br />
+                   
            a dedicated team is comprised of highly qualified and experienced individuals.
                 </>
             }

@@ -34,15 +34,17 @@ export const BannerWrapper = styled.section`
 export const BannerContainer = styled.div`
   width: 100%;
   max-width: 1640px;
-  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
+  margin: 0 5rem;
   padding: 40px 30px 40px ;
 
   @media (max-width: 1100px) {
     padding: 30px 40px 25px;
+      margin: 0 2rem;
+
   }
 
   @media (max-width: 768px) {
@@ -50,6 +52,8 @@ export const BannerContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+    margin: 0 2rem;
+
   }
 
   @media (max-width: 480px) {
@@ -62,6 +66,10 @@ export const LeftSection = styled.div`
   max-width: 650px;
   z-index: 2;
   width: 100%;
+   @media (max-width: 1024px) {
+      max-width: 450px;
+
+  }
 `;
 
 export const Heading = styled.h1`
@@ -100,6 +108,7 @@ export const Description = styled.p`
 
   @media (max-width: 1200px) {
     font-size: 12px;
+    max-width: 420px;
   }
   @media (max-width: 768px) {
     font-size: 0.8rem;

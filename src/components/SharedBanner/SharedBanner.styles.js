@@ -134,7 +134,7 @@ export const BannerEyebrow = styled.p`
 
 export const BannerTitle = styled.h2`
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   line-height: 1.28;
   font-weight: 400;
   
@@ -154,6 +154,21 @@ export const BannerTitle = styled.h2`
     max-width: 48rem;
     margin: ${({ $mobileAlign }) => getTitleMargin($mobileAlign)};
     font-size: clamp(1.45rem, 5.25vw, 1.9rem);
+    line-height: 1.18;
+    text-wrap: balance;
+
+    .desktop-only {
+      display: none;
+    }
+
+    .mobile-only {
+      display: inline;
+    }
+  }
+    @media (max-width: 1023px) {
+    max-width: 48rem;
+    margin: ${({ $mobileAlign }) => getTitleMargin($mobileAlign)};
+    font-size: clamp(1.85rem, 6.25vw, 2.1rem);
     line-height: 1.18;
     text-wrap: balance;
 

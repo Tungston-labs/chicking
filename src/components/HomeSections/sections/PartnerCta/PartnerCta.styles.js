@@ -63,7 +63,7 @@ export const PartnerCtaDecorImage = styled.img`
     }}
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     ${({ $variant }) => {
       if ($variant === "location") {
         return `
@@ -76,7 +76,7 @@ export const PartnerCtaDecorImage = styled.img`
 
       if ($variant === "arrow") {
         return `
-          right: 16.8rem;
+          right: 10.8rem;
           bottom: 2rem;
         `;
       }
@@ -93,7 +93,7 @@ export const PartnerCtaDecorImage = styled.img`
     }}
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     ${({ $variant }) => {
       if ($variant === "location") {
         return `

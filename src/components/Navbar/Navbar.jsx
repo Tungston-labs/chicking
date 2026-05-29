@@ -76,7 +76,7 @@ const Navbar = () => {
 
         <NavActions>
           <FindLocationButton as={RouterLink} to="/franchiseform">
-            Find Location
+            Franchise With Us
             <CiLocationArrow1 aria-hidden="true" />
           </FindLocationButton>
 

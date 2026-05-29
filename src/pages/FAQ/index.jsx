@@ -30,7 +30,7 @@ function index() {
                 description={
                     <>
                         Yet with careful planning, focus, a solid Chicking network, and the right
-                        <br />
+                      
                         training and support, you can position your business for growth and success.
                     </>
                 }

@@ -59,7 +59,7 @@ const MissionSection = () => {
           <Crown />
 
           <Title>
-            Our <span>{currentData.title}</span>
+           <span>{currentData.title}</span>
           </Title>
 
           <Description>{currentData.description}</Description>
