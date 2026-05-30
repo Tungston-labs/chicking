@@ -9,8 +9,6 @@ import {
   TornBottom,
 } from "./style";
 
-import franchiseImg from "../../../public/images/franchise/franchise.svg";
-import tornEdge from "../../../public/images/franchise/bottom.png";
 import FranchiseFormCard from "../../components/FranchiseFormCard/FranchiseFormCard";
 import PartnerCta from "../../components/HomeSections/sections/PartnerCta";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter";
@@ -18,6 +16,9 @@ import PageLayout from "../../components/Layout/PageLayout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useFranchiseForm from "./useFranchiseForm";
+
+const franchiseImg = "/images/franchise/franchise.svg";
+const tornEdge = "/images/franchise/bottom.png";
 
 const FranchiseForm = () => {
   const {

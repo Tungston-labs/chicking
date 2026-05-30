@@ -15,13 +15,14 @@ import {
   Curly,
   ContentBox,
 } from "./style";
-import usaImg from "../../../../public/images//proposition/Majorman.svg";
-import ukImg from "../../../../public/images/proposition/Majorflag.svg";
-import breadTop from "../../../../public/images/proposition/breadtop.svg";
-import breadBottom from "../../../../public/images/proposition/breadbottom.svg";
-import curly from "../../../../public/images/proposition/curly.svg";
-import curlyright from "../../../../public/images/proposition/curlyright.svg";
 import { useNavigate } from "react-router-dom";
+
+const usaImg = "/images/proposition/Majorman.svg";
+const ukImg = "/images/proposition/Majorflag.svg";
+const breadTop = "/images/proposition/breadtop.svg";
+const breadBottom = "/images/proposition/breadbottom.svg";
+const curly = "/images/proposition/curly.svg";
+const curlyright = "/images/proposition/curlyright.svg";
 
 const MajorMarkets = () => {
     const navigate = useNavigate();

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { BrochureImage, Wrapper } from "./Ukpackage.style.js";
-import franchiseImg from "/images/proposition/logo.svg";
-import brochureImg from "../../../../public/images/proposition/uk.svg";
 import PageLayout from "../../../components/Layout/PageLayout";
 import SiteFooter from "../../../components/HomeSections/sections/SiteFooter";
 import TopBanner from "../../../components/TopBanner";
 import sharedBannerImages from "../../../assets/images/sharedBannerImages.js";
+
+const franchiseImg = "/images/proposition/logo.svg";
+const brochureImg = "/images/proposition/uk.svg";
 
 const Ukpackage = () => {
   const titles = ["United Kingdom Franchise Package"];

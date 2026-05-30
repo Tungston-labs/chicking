@@ -49,12 +49,12 @@ const AboutUs = () => {
     <PartnerCta
       title={
         <>
-          Partner With Chicking — Where Proven<strong> Success Meets Global Opportunity</strong>
+          Partner With Chicking — Where Proven<strong> <br></br> Success Meets Global Opportunity</strong>
         </>
       }
       description="BFI doesn't just provide a brand name; we deliver a complete chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
       action={{
-        to: "/contact",
+        to: "/franchiseform",
         label: "Franchise With Us",
       }}
     />

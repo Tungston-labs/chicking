@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TopBanner from "../../components/TopBanner";
-import franchiseImg from "../../../public/images/blog/blog1.svg";
 import PageLayout from "../../components/Layout/PageLayout";
 import BlogSection from "../../components/HomeSections/sections/BlogSection";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx";
 import { fetchPublicBlogsList, selectPublishedBlogs } from "../../store/blog/blogSlice.js";
+
+const franchiseImg = "/images/blog/blog1.svg";
 
 function BlogSections() {
   const dispatch = useDispatch();

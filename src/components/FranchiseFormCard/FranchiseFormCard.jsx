@@ -25,7 +25,8 @@ import {
   FileName,
 } from "../../pages/Franchise/style";
 import { FiUploadCloud } from "react-icons/fi";
-import headerImg from "../../../public/images/franchise/map.svg";
+
+const headerImg = "/images/franchise/map.svg";
 
 const FranchiseFormCard = ({
   selected,

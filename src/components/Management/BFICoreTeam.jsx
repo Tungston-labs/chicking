@@ -15,7 +15,7 @@ import {
   LogoCircle,
 } from "./BFICoreTeam.styles";
 
-import logo from "../../../public/images/management/logo.svg";
+const logo = "/images/management/logo.svg";
 
 import {
   leftTeam,

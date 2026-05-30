@@ -20,7 +20,6 @@ import {
   Title,
   Wrapper,
 } from "./NewsArticle.styles";
-import franchiseImg from "../../../../public/images/blog/blog1.svg";
 import PageLayout from "../../../components/Layout/PageLayout";
 import TopBanner from "../../../components/TopBanner";
 import NewsArticleComments from "./NewsArticleComments.jsx";
@@ -34,6 +33,8 @@ import {
   selectPublicCurrentBlogStatus,
 } from "../../../store/blog/blogSlice.js";
 import { extractFirstImageSrc, stripFirstImageFromHtml } from "../../../store/blog/blogUtils.js";
+
+const franchiseImg = "/images/blog/blog1.svg";
 
 function NewsArticle() {
   const dispatch = useDispatch();

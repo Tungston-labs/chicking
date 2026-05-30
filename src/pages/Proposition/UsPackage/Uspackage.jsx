@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { BrochureImage, Wrapper } from "../UkPackage/Ukpackage.style.js";
-import franchiseImg from "/images/proposition/logo.svg";
-import brochureImg from "../../../../public/images/proposition/us.svg";
-import brochureImg2 from "../../../../public/images/proposition/us2.svg";
 import PageLayout from "../../../components/Layout/PageLayout";
 import SiteFooter from "../../../components/HomeSections/sections/SiteFooter";
 import TopBanner from "../../../components/TopBanner";
 import sharedBannerImages from "../../../assets/images/sharedBannerImages.js";
+
+const franchiseImg = "/images/proposition/logo.svg";
+const brochureImg = "/images/proposition/us.svg";
+const brochureImg2 = "/images/proposition/us2.svg";
 
 const Uspackage = () => {
   const titles = ["United States Of America Franchise Package"];

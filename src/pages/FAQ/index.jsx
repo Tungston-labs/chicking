@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import TopBanner from '../../components/TopBanner'
-import faqImg from "../../../public/images/faq/faq1.svg";
 import FAQ from '../../components/FAQ/FAQ';
 import PageLayout from '../../components/Layout/PageLayout';
 import PartnerCta from '../../components/HomeSections/sections/PartnerCta';
 import SiteFooter from '../../components/HomeSections/sections/SiteFooter';
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
+
+const faqImg = "/images/faq/faq1.svg";
 function index() {
     const titles = [
         "Frequently Asked Questions?",

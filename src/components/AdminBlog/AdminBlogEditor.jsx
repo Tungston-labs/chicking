@@ -18,6 +18,13 @@ import {
 } from "react-icons/fi";
 import { getEditorInitialValues } from "../../store/blog/blogUtils.js";
 import {
+  fontOptions,
+  fontSizeOptions,
+  getUploadLabel,
+  readFileAsDataUrl,
+  readTimeOptions,
+} from "./AdminBlogEditor.helpers.js";
+import {
   AddTagButton,
   CardHeading,
   DesktopEditorActions,
@@ -44,36 +51,6 @@ import {
   ToolSelect,
   UploadBox,
 } from "./AdminBlog.styles.js";
-
-const readTimeOptions = ["2 min Read", "3 min Read", "4 min Read", "5 min Read", "8 min Read"];
-const fontOptions = ["Arial", "Georgia", "Tahoma", "Times New Roman", "Verdana"];
-const fontSizeOptions = [
-  { label: "12", value: "2" },
-  { label: "14", value: "3" },
-  { label: "18", value: "4" },
-  { label: "24", value: "5" },
-];
-
-const readFileAsDataUrl = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = () => resolve(String(reader.result || ""));
-    reader.onerror = () => reject(new Error("Unable to read the selected file."));
-    reader.readAsDataURL(file);
-  });
-
-const getUploadLabel = (value, emptyLabel, selectedLabel) => {
-  if (!value) {
-    return emptyLabel;
-  }
-
-  if (value.startsWith("data:")) {
-    return selectedLabel;
-  }
-
-  return value;
-};
 
 const AdminBlogEditor = ({
   categories,

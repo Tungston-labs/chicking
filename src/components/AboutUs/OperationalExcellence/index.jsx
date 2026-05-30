@@ -20,7 +20,7 @@ import SharedBanner from "../../SharedBanner";
 
 import sharedBannerImages from "../../../assets/images/sharedBannerImages";
 
-const FranchiseImage = "../../../../public/images/franchise-image.png";
+const FranchiseImage = "/images/franchise-image.png";
 
 const BEIGE_TOP = sharedBannerImages.edges.beigeTop;
 

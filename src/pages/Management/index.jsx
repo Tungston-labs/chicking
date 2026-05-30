@@ -14,13 +14,15 @@ import PageLayout from "../../components/Layout/PageLayout";
 import TopBanner from "../../components/TopBanner";
 import LeadershipCard from "../../components/Management/LeadershipCard";
 import { leadershipMembers } from "../../components/Management/leadershipData";
-import franchiseImg from "../../../public/images/management/topimage.svg";
 import LeadershipEffect from "../../components/Management/LeadershipEffect";
 import BFICoreTeam from "../../components/Management/BFICoreTeam";
 import BFIPillars from "../../components/Management/BFIPillars";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx";
 import LeadershipModal from "../../components/Management/modal/LeadershipModal.jsx";
+import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
+
+const franchiseImg = "/images/management/topimage.svg";
 
 const sectionContent = {
   tag: "Chicking Leadership Team",
@@ -123,8 +125,28 @@ const LeadershipSection = () => {
       <LeadershipEffect/>
       <BFICoreTeam/>
       <BFIPillars/>
-      
-            <SiteFooter topEdgeImage={sharedBannerImages.edges.footerBlack}/>
+    <PartnerCta
+      action={{
+        to: "/franchiseform",
+        label: "Franchise Inquiry",
+      }}
+      actionBackground="#ffffff"
+      actionTextColor="#891B1C"
+      background="#891B1C"
+      bottomEdgeImage={sharedBannerImages.edges.top}
+      description="BFI doesn't just provide a brand name. We deliver a complete Chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
+      textColor="#ffffff"
+      title={
+        <>
+          Partner With Chicking <strong>- Where Proven</strong>
+          <br />
+          <strong>Success Meets Global Opportunity</strong>,
+          
+        </>
+      }
+      topEdgeImage={sharedBannerImages.edges.top}
+    />            
+    <SiteFooter />
     </>
   );
 };

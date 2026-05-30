@@ -1,12 +1,11 @@
-
-import logincircle from '/public/images/login/logincircle.svg';
-import loginlogo from '/public/images/login/loginlogo.svg';
-import burger from '/public/images/login/login1.svg';
-import fries1 from '/public/images/login/login2.svg';
-import fries2 from '/public/images/login/login3.svg';
-import chicken from '/public/images/login/login4.svg';
-import dottedcircle from '/public/images/login/dottedcircle.svg';
-import forgot from '/public/images/login/forgot.svg';
+const logincircle = "/images/login/logincircle.svg";
+const loginlogo = "/images/login/loginlogo.svg";
+const burger = "/images/login/login1.svg";
+const fries1 = "/images/login/login2.svg";
+const fries2 = "/images/login/login3.svg";
+const chicken = "/images/login/login4.svg";
+const dottedcircle = "/images/login/dottedcircle.svg";
+const forgot = "/images/login/forgot.svg";
 
 const loginImages = {
   logincircle,
