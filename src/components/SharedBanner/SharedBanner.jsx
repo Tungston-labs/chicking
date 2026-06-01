@@ -76,6 +76,7 @@ export const BannerHeader = ({
 }) => {
   return (
     <BannerBody
+      data-animate="fade-up"
       $align={align}
       $mobileAlign={mobileAlign}
       $tabletAlign={tabletAlign}
@@ -105,8 +106,12 @@ export const BannerFeatures = ({ features = [] }) => {
 
   return (
     <BannerFeatureGrid>
-      {features.map((feature) => (
-        <BannerFeature key={feature.title}>
+      {features.map((feature, index) => (
+        <BannerFeature
+          data-animate="fade-up"
+          key={feature.title}
+          style={{ "--animate-delay": `${index * 90}ms` }}
+        >
           {feature.icon && (
             <BannerFeatureIcon>
               <img src={feature.icon} alt="" />
@@ -214,11 +219,11 @@ const SharedBanner = ({
         <BannerFeatures features={features} />
 
         {image && features.length === 0 && (
-          <BannerMedia aria-hidden={!imageAlt}>
+          <BannerMedia aria-hidden={!imageAlt} data-animate="zoom-in">
             <BannerImage src={image} alt={imageAlt} />
           </BannerMedia>
         )}
-        {children && <BannerChildren>{children}</BannerChildren>}
+        {children && <BannerChildren data-animate="fade-up">{children}</BannerChildren>}
       </BannerContent>
       {hasEdges &&
         renderEdge({

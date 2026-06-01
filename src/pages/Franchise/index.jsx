@@ -37,7 +37,7 @@ const FranchiseForm = () => {
       <PageWrapper>
         <ToastContainer position="top-right" autoClose={3000} />
         <HeroSection>
-          <HeroContent>
+          <HeroContent data-animate="fade-up">
             <div>
               <SmallTitle>Join Our Family &</SmallTitle>
 
@@ -53,18 +53,22 @@ const FranchiseForm = () => {
             <HeroImage src={franchiseImg} alt="Franchise" />
           </HeroContent>
 
-          <FranchiseFormCard
-            selected={selected}
-            setSelected={setSelected}
-            formData={formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            errors={errors}
-          />
+          <div data-animate="fade-up">
+            <FranchiseFormCard
+              selected={selected}
+              setSelected={setSelected}
+              formData={formData}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              errors={errors}
+            />
+          </div>
         </HeroSection>
 
         <TornBottom src={tornEdge} alt="" aria-hidden />
-        <PartnerCta />
+        <div data-animate="fade-up">
+          <PartnerCta />
+        </div>
         <SiteFooter />
       </PageWrapper>
     </PageLayout>

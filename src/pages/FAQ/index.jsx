@@ -37,28 +37,32 @@ function index() {
                 }
                 image={faqImg}
             />
-            <FAQ />
-            <PartnerCta
-                action={{
-                    to: "/franchiseform",
-                    label: "Franchise Inquiry",
-                }}
-                actionBackground="#ffffff"
-                actionTextColor="#891B1C"
-                background="#891B1C"
-                bottomEdgeImage={sharedBannerImages.edges.top}
-                description="BFI doesn't just provide a brand name. We deliver a complete Chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
-                textColor="#ffffff"
-                title={
-                    <>
-                        Partner With Chicking <strong>- Where Proven</strong>
-                        <br />
-                        <strong>Success Meets Global Opportunity</strong>,
+            <div data-animate="fade-up">
+                <FAQ />
+            </div>
+            <div data-animate="fade-up">
+                <PartnerCta
+                    action={{
+                        to: "/franchiseform",
+                        label: "Franchise Inquiry",
+                    }}
+                    actionBackground="#ffffff"
+                    actionTextColor="#891B1C"
+                    background="#891B1C"
+                    bottomEdgeImage={sharedBannerImages.edges.top}
+                    description="BFI doesn't just provide a brand name. We deliver a complete Chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
+                    textColor="#ffffff"
+                    title={
+                        <>
+                            Partner With Chicking <strong>- Where Proven</strong>
+                            <br />
+                            <strong>Success Meets Global Opportunity</strong>,
 
-                    </>
-                }
-                topEdgeImage={sharedBannerImages.edges.top}
-            />
+                        </>
+                    }
+                    topEdgeImage={sharedBannerImages.edges.top}
+                />
+            </div>
             <SiteFooter topEdgeImage={null} />
         </>
     )

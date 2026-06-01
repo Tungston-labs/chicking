@@ -19,11 +19,21 @@ const HomeSections = () => {
 
   return (
     <>
-      <BlogSection posts={homeBlogPosts} />
-      <FranchiseStorySection />
-      <FaqSection />
-      <ReasonsSection />
-      <PartnerCta />
+      <div data-animate="fade-up">
+        <BlogSection posts={homeBlogPosts} />
+      </div>
+      <div data-animate="fade-up">
+        <FranchiseStorySection />
+      </div>
+      <div data-animate="fade-up">
+        <FaqSection />
+      </div>
+      <div data-animate="fade-up">
+        <ReasonsSection />
+      </div>
+      <div data-animate="fade-up">
+        <PartnerCta />
+      </div>
       <SiteFooter topEdgeImage={sharedBannerImages.edges.footerBlack}/>
     </>
   );

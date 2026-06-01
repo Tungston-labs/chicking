@@ -35,16 +35,28 @@ export const SideImage = styled.div`
   border-radius: 10px;
   overflow: hidden;
 
-  background-image: url(${(props) => props.image});
+  background-image: url(${(props) => props.$image});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   flex-shrink: 0;
-  transition: 0.4s ease;
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
   position: relative;
   display: flex;
   align-items: flex-end;
+
+  &[data-animate] {
+    opacity: 1;
+    filter: none;
+  }
+
+  &:hover {
+    transform: translateY(-0.4rem);
+    box-shadow: 0 1.125rem 2rem rgba(0, 0, 0, 0.14);
+  }
 
   > div {
     width: 100%;
@@ -88,6 +100,16 @@ export const ContentCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition:
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 260ms ease,
+    box-shadow 260ms ease;
+
+  &:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 18px 38px rgba(0, 0, 0, 0.11);
+  }
 
   @media (max-width: 992px) {
     min-height: auto;
@@ -184,7 +206,7 @@ export const ChairmanQuoteText = styled.p`
 export const ArrowWrapper = styled.div`
   position: absolute;
 
-  right: -32px;
+  right: -42px;
 
   top: 50%;
 

@@ -20,30 +20,38 @@ const BMI = () => (
       description={bmiBanner.description}
       image={bmiBanner.image}
     />
-    <BmiMilestones />
-    <BmiCommitment />
-    <BmiFoodShowcase />
-    <PartnerCta
-      action={{
-        to: "/franchiseform",
-        label: "Franchise Inquiry",
-      }}
-      actionBackground="#ffffff"
-      actionTextColor="#891B1C"
-      background="#891B1C"
-      bottomEdgeImage={sharedBannerImages.edges.top}
-      description="BFI doesn't just provide a brand name. We deliver a complete Chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
-      textColor="#ffffff"
-      title={
-        <>
-          Partner With Chicking <strong>- Where Proven</strong>
-          <br />
-          <strong>Success Meets Global Opportunity</strong>,
-          
-        </>
-      }
-      topEdgeImage={sharedBannerImages.edges.top}
-    />
+    <div data-animate="fade-up">
+      <BmiMilestones />
+    </div>
+    <div data-animate="fade-up">
+      <BmiCommitment />
+    </div>
+    <div data-animate="fade-up">
+      <BmiFoodShowcase />
+    </div>
+    <div data-animate="fade-up">
+      <PartnerCta
+        action={{
+          to: "/franchiseform",
+          label: "Franchise Inquiry",
+        }}
+        actionBackground="#ffffff"
+        actionTextColor="#891B1C"
+        background="#891B1C"
+        bottomEdgeImage={sharedBannerImages.edges.top}
+        description="BFI doesn't just provide a brand name. We deliver a complete Chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
+        textColor="#ffffff"
+        title={
+          <>
+            Partner With Chicking <strong>- Where Proven</strong>
+            <br />
+            <strong>Success Meets Global Opportunity</strong>,
+            
+          </>
+        }
+        topEdgeImage={sharedBannerImages.edges.top}
+      />
+    </div>
 <SiteFooter topEdgeImage={null} />
   </PageLayout>
 );

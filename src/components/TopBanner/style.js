@@ -61,7 +61,7 @@ export const BannerContainer = styled.div`
   }
 `;
 
-export const LeftSection = styled.div`
+export const LeftSection = styled.div.attrs({ "data-animate": "fade-right" })`
   flex: 1;
   max-width: 650px;
   z-index: 2;
@@ -121,7 +121,7 @@ export const Description = styled.p`
   }
 `;
 
-export const RightSection = styled.div`
+export const RightSection = styled.div.attrs({ "data-animate": "fade-left" })`
   flex: 1;
   display: flex;
   justify-content: flex-end;
@@ -136,6 +136,15 @@ export const BannerImage = styled.img`
   width: 100%;
   max-width: 400px;
   object-fit: contain;
+  animation: soft-float 4.8s ease-in-out infinite;
+  transition:
+    transform 240ms ease,
+    filter 240ms ease;
+
+  &:hover {
+    filter: drop-shadow(0 1.125rem 1.25rem rgba(0, 0, 0, 0.16));
+    transform: scale(1.025);
+  }
 
   @media (max-width: 1200px) {
     max-width: 300px;

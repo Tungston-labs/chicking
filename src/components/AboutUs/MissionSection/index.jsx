@@ -33,7 +33,7 @@ const MissionSection = () => {
   return (
     <Section>
       <Container>
-        <SideImage image={currentData.leftImage}>
+        <SideImage data-animate="fade-right" $image={currentData.leftImage}>
           {currentData.quote && (
             <div>
               <ChairmanQuoteAuthor>
@@ -47,7 +47,7 @@ const MissionSection = () => {
           )}
         </SideImage>
 
-        <ContentCard>
+        <ContentCard data-animate="fade-up">
           <Crown />
 
           {/* Show title only if it exists */}
@@ -61,8 +61,9 @@ const MissionSection = () => {
         </ContentCard>
 
         <SideImage
+          data-animate="fade-left"
           $hideOnMobile
-          image={currentData.rightImage}
+          $image={currentData.rightImage}
         />
 
         <ArrowWrapper>
