@@ -20,7 +20,6 @@ import {
   Title,
   Wrapper,
 } from "./NewsArticle.styles";
-import franchiseImg from "../../../../public/images/blog/blog1.svg";
 import PageLayout from "../../../components/Layout/PageLayout";
 import TopBanner from "../../../components/TopBanner";
 import NewsArticleComments from "./NewsArticleComments.jsx";
@@ -33,6 +32,9 @@ import {
   selectPublicCurrentBlogError,
   selectPublicCurrentBlogStatus,
 } from "../../../store/blog/blogSlice.js";
+import { extractFirstImageSrc, stripFirstImageFromHtml } from "../../../store/blog/blogUtils.js";
+
+const franchiseImg = "/images/blog/blog1.svg";
 
 function NewsArticle() {
   const dispatch = useDispatch();
@@ -44,6 +46,8 @@ function NewsArticle() {
   const [titleIndex, setTitleIndex] = useState(0);
   const sourceLabel = getArticleSourceLabel(post?.url);
   const shouldShowComments = Boolean(blogId) && articleStatus !== "loading";
+  const articleCoverImage = extractFirstImageSrc(post?.contentHtml || "");
+  const articleBodyHtml = stripFirstImageFromHtml(post?.contentHtml || "");
   const {
     commentForm,
     commentSubmitMessage,
@@ -119,9 +123,11 @@ function NewsArticle() {
                 <Date>{post.date}</Date>
               </MetaRow>
 
-              <BannerWrap>
-                <BannerImage src={post.image} />
-              </BannerWrap>
+              {articleCoverImage || post.image ? (
+                <BannerWrap>
+                  <BannerImage alt={post.title} src={articleCoverImage || post.image} />
+                </BannerWrap>
+              ) : null}
 
               {post.url ? (
                 <QuoteBox>
@@ -134,7 +140,7 @@ function NewsArticle() {
 
               {post.excerpt ? <Excerpt>{post.excerpt}</Excerpt> : null}
 
-              <Content dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
+              <Content dangerouslySetInnerHTML={{ __html: articleBodyHtml }} />
             </>
           ) : (
             <>

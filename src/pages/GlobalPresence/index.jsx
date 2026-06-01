@@ -7,7 +7,8 @@ import FutureFrontiers from "../../components/GlobalPresence/frontiers/index.jsx
 import { renderGlobalPresenceBannerTitle } from "../../components/GlobalPresence/globalPresence.helpers.jsx";
 import GlobalPresenceMap from "../../components/GlobalPresence/map/index.jsx";
 import { globalPresenceBanner } from "../../components/GlobalPresence/data/globalPresenceData.js";
-import franchiseImg from "../../../public/images/management/topimage.svg";
+
+const franchiseImg = "/images/management/topimage.svg";
 
 const GlobalPresence = () => (
   <PageLayout>
@@ -17,28 +18,34 @@ const GlobalPresence = () => (
       image={franchiseImg}
     />
 
-    <GlobalPresenceMap />
-    <FutureFrontiers />
+    <div data-animate="fade-up">
+      <GlobalPresenceMap />
+    </div>
+    <div data-animate="fade-up">
+      <FutureFrontiers />
+    </div>
 
-    <PartnerCta
-      action={{
-        to: "/franchiseform",
-        label: "Franchise Inquiry",
-      }}
-      actionBackground="#891B1C"
-      background="#ffffff"
-      bottomEdgeColor="#000000"
-      description="Ready to take the next step in a priority market? Our team can guide you through territory availability, market fit, and the right franchise model for your region."
-      textColor="#171717"
-      title={
-        <>
-          Partner With Chicking <strong>- Where Proven</strong>
-          <br />
-          <strong>Success Meets Global Opportunity</strong>
-        </>
-      }
-      topEdgeImage={sharedBannerImages.edges.top}
-    />
+    <div data-animate="fade-up">
+      <PartnerCta
+        action={{
+          to: "/franchiseform",
+          label: "Franchise Inquiry",
+        }}
+        actionBackground="#891B1C"
+        background="#ffffff"
+        bottomEdgeColor="#000000"
+        description="Ready to take the next step in a priority market? Our team can guide you through territory availability, market fit, and the right franchise model for your region."
+        textColor="#171717"
+        title={
+          <>
+            Partner With Chicking <strong>- Where Proven</strong>
+            <br />
+            <strong>Success Meets Global Opportunity</strong>
+          </>
+        }
+        topEdgeImage={sharedBannerImages.edges.top}
+      />
+    </div>
 
     <SiteFooter topEdgeImage={sharedBannerImages.edges.footerBlack} />
   </PageLayout>

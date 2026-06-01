@@ -28,7 +28,7 @@ export const FooterTop = styled.div`
   padding: 5.25rem 2rem 2.25rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.5rem, 6vw, 5.5rem);
+  gap: clamp(0.5rem, 2vw, 5.5rem);
 
   @media (min-width: 761px) and (max-width: 1024px) {
     padding: 4rem 1.25rem 1.5rem;
@@ -105,7 +105,7 @@ export const FooterContactText = styled.p`
   @media (min-width: 761px) and (max-width: 1024px) {
     gap: 0.22rem;
     margin-top: 0.45rem;
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     line-height: 1.55;
   }
 `;

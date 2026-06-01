@@ -72,7 +72,7 @@ export const MilestonesIntro = styled.div`
 export const MilestonesHeading = styled.h2`
   margin: 0;
   color: #181818;
-  font-size: clamp(1.55rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.85rem, 2.2vw, 2.2rem);
   line-height: 1.18;
   font-weight: 400;
 

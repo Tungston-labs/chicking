@@ -1,4 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
+import ScrollAnimations from "./components/Animation/ScrollAnimations.jsx";
 import AppRoutes from "./routes/index.jsx";
 import ScrollToTop from "./routes/ScrollToTop.jsx";
 import AuthBootstrap from "./store/AuthBootstrap.jsx";
@@ -8,6 +9,7 @@ export default function App() {
     <Router>
       <AuthBootstrap />
       <ScrollToTop />
+      <ScrollAnimations />
       <AppRoutes />
     </Router>
   );

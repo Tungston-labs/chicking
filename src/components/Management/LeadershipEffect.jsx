@@ -14,7 +14,7 @@ import {
 
 import { leadershipData } from "./leadershipData";
 
-import brushImg from "../../../public/images/sharedbanner/footerblack.png";
+const brushImg = "/images/sharedbanner/footerblack.png";
 
 const LeadershipEffect = () => {
   return (

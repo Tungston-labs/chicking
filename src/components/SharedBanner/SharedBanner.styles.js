@@ -134,7 +134,7 @@ export const BannerEyebrow = styled.p`
 
 export const BannerTitle = styled.h2`
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   line-height: 1.28;
   font-weight: 400;
   
@@ -154,6 +154,21 @@ export const BannerTitle = styled.h2`
     max-width: 48rem;
     margin: ${({ $mobileAlign }) => getTitleMargin($mobileAlign)};
     font-size: clamp(1.45rem, 5.25vw, 1.9rem);
+    line-height: 1.18;
+    text-wrap: balance;
+
+    .desktop-only {
+      display: none;
+    }
+
+    .mobile-only {
+      display: inline;
+    }
+  }
+    @media (max-width: 1023px) {
+    max-width: 48rem;
+    margin: ${({ $mobileAlign }) => getTitleMargin($mobileAlign)};
+    font-size: clamp(1.85rem, 6.25vw, 2.1rem);
     line-height: 1.18;
     text-wrap: balance;
 
@@ -241,6 +256,14 @@ export const BannerFeature = styled.article`
   gap: 1.25rem;
   justify-content: center;
   text-align: left;
+  transition:
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 220ms ease;
+
+  &:hover {
+    transform: translateY(-0.35rem);
+  }
 
   @media (max-width: 900px) {
     gap: 0.85rem;
@@ -321,6 +344,7 @@ export const BannerImage = styled.img`
   width: min(100%, 24rem);
   height: auto;
   display: block;
+  animation: soft-float 5.2s ease-in-out infinite;
 `;
 
 export const BannerChildren = styled.div`

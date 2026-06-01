@@ -32,7 +32,7 @@ import {
   selectCurrentBlogError,
   selectCurrentBlogStatus,
 } from "../../store/blog/blogSlice.js";
-import { getAvatarInitials } from "../../store/blog/blogUtils.js";
+import { extractFirstImageSrc, getAvatarInitials, stripFirstImageFromHtml } from "../../store/blog/blogUtils.js";
 
 const ViewBlogPost = () => {
   const dispatch = useDispatch();
@@ -40,6 +40,8 @@ const ViewBlogPost = () => {
   const post = useSelector(selectCurrentBlog);
   const currentBlogError = useSelector(selectCurrentBlogError);
   const currentBlogStatus = useSelector(selectCurrentBlogStatus);
+  const heroImage = extractFirstImageSrc(post?.contentHtml || "");
+  const bodyHtml = stripFirstImageFromHtml(post?.contentHtml || "");
 
   useEffect(() => {
     dispatch(fetchBlogById(blogId));
@@ -102,8 +104,8 @@ const ViewBlogPost = () => {
 
               <ContentArticle>
                 <h2>{post.title}</h2>
-                <HeroImage alt={post.title} src={post.image} />
-                <div dangerouslySetInnerHTML={{ __html: post.contentHtml || "" }} />
+                {heroImage || post.image ? <HeroImage alt={post.title} src={heroImage || post.image} /> : null}
+                <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />
               </ContentArticle>
 
               <ActionGroup style={{ justifyContent: "space-between", marginTop: "1rem" }}>

@@ -357,7 +357,7 @@ export const RadioTitle = styled.h5`
 
 export const RadioText = styled.p`
   font-size: 14px;
-  color: #444444;
+  color: #000;
   margin: 0;
   line-height: 20px;
 `;

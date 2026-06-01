@@ -227,10 +227,6 @@ export const navItems = [
     path: "/about-us",
   },
   {
-    name: "Franchise Form",
-    path: "/franchiseform",
-  },
-  {
     name: "Unique Propositions",
     path: "/Unique-Propositions",
   },

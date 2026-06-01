@@ -10,10 +10,10 @@ import {
   CardTitle,
   CardText,
 } from "./style";
-import topShape from "../../../../public/images/proposition/yellowstar.svg";
-import icon1 from "../../../../public/images/proposition/sparkle.svg";
-import icon2 from "../../../../public/images/proposition/medal.svg";
-import icon3 from "../../../../public/images/proposition/globe.svg";
+const topShape = "/images/proposition/yellowstar.svg";
+const icon1 = "/images/proposition/sparkle.svg";
+const icon2 = "/images/proposition/medal.svg";
+const icon3 = "/images/proposition/globe.svg";
 
 const cardData = [
   {

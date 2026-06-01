@@ -9,7 +9,8 @@ import {
   BannerImage,
   BottomGraphic,
 } from "./style";
-import tornGraphic from "../../../public/images/franchise/bottomthin.png";
+
+const tornGraphic = "/images/franchise/bottomthin.png";
 
 const TopBanner = ({
   title,

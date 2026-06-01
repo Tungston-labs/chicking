@@ -136,6 +136,63 @@ const escapeHtml = (value = "") =>
 
 const hasHtmlTags = (value = "") => /<\/?[a-z][\s\S]*>/i.test(value);
 
+export const extractFirstImageSrc = (value = "") => {
+  if (typeof value !== "string" || !value.trim()) {
+    return "";
+  }
+
+  if (typeof DOMParser !== "undefined") {
+    try {
+      const document = new DOMParser().parseFromString(value, "text/html");
+      const imageSource = document.querySelector("img")?.getAttribute("src")?.trim();
+
+      if (imageSource) {
+        return imageSource;
+      }
+    } catch {
+      // Fall through to the regex-based fallback below.
+    }
+  }
+
+  const imageMatch = value.match(/<img\b[^>]*\bsrc=(["']?)([^"'\s>]+)\1[^>]*>/i);
+
+  return imageMatch?.[2]?.trim() || "";
+};
+
+export const stripFirstImageFromHtml = (value = "") => {
+  if (typeof value !== "string" || !value.trim()) {
+    return "";
+  }
+
+  if (typeof DOMParser !== "undefined") {
+    try {
+      const document = new DOMParser().parseFromString(value, "text/html");
+      const firstImage = document.querySelector("img");
+
+      if (!firstImage) {
+        return value;
+      }
+
+      const parentElement = firstImage.parentElement;
+      firstImage.remove();
+
+      if (
+        parentElement &&
+        !parentElement.querySelector("img, video, iframe") &&
+        !Array.from(parentElement.childNodes).some((node) => node.nodeType === 3 && node.textContent?.trim())
+      ) {
+        parentElement.remove();
+      }
+
+      return document.body.innerHTML;
+    } catch {
+      // Fall through to the regex-based fallback below.
+    }
+  }
+
+  return value.replace(/<img\b[^>]*>/i, "");
+};
+
 const htmlToPlainText = (value = "") =>
   value
     .replace(/<br\s*\/?>/gi, "\n")
@@ -202,9 +259,11 @@ export const normalizeBlog = (blog) => {
     return null;
   }
 
-  const contentHtml = toContentHtml(blog.content);
+  const contentSource = Array.isArray(blog.content) ? blog.content.filter(Boolean).join("\n\n") : blog.content || "";
+  const contentHtml = toContentHtml(contentSource);
   const contentBlocks = splitContent(blog.content);
   const publishDateValue = toInputDate(blog.publishedAt) || toInputDate(blog.date);
+  const contentImage = extractFirstImageSrc(contentHtml || contentSource);
 
   return {
     ...blog,
@@ -213,10 +272,10 @@ export const normalizeBlog = (blog) => {
     comments: Number(blog.comments || 0),
     content: contentBlocks,
     contentHtml,
-    contentText: joinContent(htmlToPlainText(contentHtml || blog.content || "")),
+    contentText: joinContent(htmlToPlainText(contentHtml || contentSource || "")),
     date: blog.date || formatDateLabel(publishDateValue),
     featuredVideo: blog.isVideo ? blog.url || "" : "",
-    image: blog.image || fallbackImage,
+    image: contentImage || blog.image || fallbackImage,
     pendingComments: Number(blog.pendingComments || 0),
     publishDateValue,
     publishedAt: normalizePublishedAt(blog.publishedAt, blog.date),
@@ -302,7 +361,7 @@ export const buildBlogRequestPayload = ({ existingBlog, formValues, status }) =>
   content: formValues.content.trim(),
   excerpt: formValues.excerpt.trim(),
   id: existingBlog?.id || createClientBlogId(formValues.title),
-  image: formValues.imageRemoved ? null : formValues.image || existingBlog?.image || fallbackImage,
+  image: extractFirstImageSrc(formValues.content) || existingBlog?.image || fallbackImage,
   isVideo: Boolean(formValues.featuredVideo.trim()),
   publishedAt: resolvePublishedAt({
     existingBlog,
@@ -322,8 +381,6 @@ export const getEditorInitialValues = (post) => ({
   content: post?.contentHtml || post?.contentText || "",
   excerpt: post?.excerpt || "",
   featuredVideo: post?.featuredVideo || "",
-  image: post?.image || "",
-  imageRemoved: false,
   publishDate: post?.publishDateValue || "",
   readTime: post?.readTime || "2 min Read",
   tags: post?.tags || [],

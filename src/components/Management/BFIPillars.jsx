@@ -19,7 +19,7 @@ import {
     sliderImages,
     supportData
 } from "./leadershipData";
-import awardIcon from "../../../public/images/proposition/medal.svg";
+const awardIcon = "/images/proposition/medal.svg";
 const BFIPillars = () => {
     const [currentImage, setCurrentImage] = useState(0);
     const [fade, setFade] = useState(true);

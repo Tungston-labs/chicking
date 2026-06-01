@@ -1,6 +1,6 @@
 // src/components/AboutUs/MissionSection/index.jsx
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 import {
   Section,
@@ -9,6 +9,8 @@ import {
   ContentCard,
   Title,
   Description,
+  ChairmanQuoteText,
+  ChairmanQuoteAuthor,
   ArrowWrapper,
   ArrowButton,
   Crown,
@@ -20,32 +22,10 @@ import { missionData } from "./data";
 const MissionSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // true = next arrow
-  // false = previous arrow
-  const [isNextDirection, setIsNextDirection] = useState(true);
-
   const handleSlide = () => {
-    if (isNextDirection) {
-      if (activeIndex === missionData.length - 1) {
-        setIsNextDirection(false);
-
-        setActiveIndex((prev) =>
-          prev === 0 ? missionData.length - 1 : prev - 1,
-        );
-      } else {
-        setActiveIndex((prev) => prev + 1);
-      }
-    } else {
-      if (activeIndex === 0) {
-        setIsNextDirection(true);
-
-        setActiveIndex((prev) =>
-          prev === missionData.length - 1 ? 0 : prev + 1,
-        );
-      } else {
-        setActiveIndex((prev) => prev - 1);
-      }
-    }
+    setActiveIndex((prev) =>
+      prev === missionData.length - 1 ? 0 : prev + 1,
+    );
   };
 
   const currentData = missionData[activeIndex];
@@ -53,23 +33,42 @@ const MissionSection = () => {
   return (
     <Section>
       <Container>
-        <SideImage image={currentData.leftImage} />
+        <SideImage data-animate="fade-right" $image={currentData.leftImage}>
+          {currentData.quote && (
+            <div>
+              <ChairmanQuoteAuthor>
+                {currentData.quote.author}
+              </ChairmanQuoteAuthor>
 
-        <ContentCard>
+              <ChairmanQuoteText>
+                “{currentData.quote.text}”
+              </ChairmanQuoteText>
+            </div>
+          )}
+        </SideImage>
+
+        <ContentCard data-animate="fade-up">
           <Crown />
 
-          <Title>
-            Our <span>{currentData.title}</span>
-          </Title>
+          {/* Show title only if it exists */}
+          {currentData.title && (
+            <Title>
+              <span>{currentData.title}</span>
+            </Title>
+          )}
 
           <Description>{currentData.description}</Description>
         </ContentCard>
 
-        <SideImage image={currentData.rightImage} />
+        <SideImage
+          data-animate="fade-left"
+          $hideOnMobile
+          $image={currentData.rightImage}
+        />
 
         <ArrowWrapper>
-          <ArrowButton onClick={handleSlide}>
-            <ArrowIcon>{isNextDirection ? "❯" : "❮"}</ArrowIcon>
+          <ArrowButton onClick={handleSlide} type="button">
+            <ArrowIcon>❯</ArrowIcon>
           </ArrowButton>
         </ArrowWrapper>
       </Container>

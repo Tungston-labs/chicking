@@ -18,13 +18,9 @@ export const Wrapper = styled.section`
 `;
 
 export const Container = styled.div`
- width: 50%;
-  
- @media (max-width:1440px){
-   width:100%;
-  max-width:920px;
-  margin:auto;
-  }
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
 `;
 
 export const BackLink = styled(Link)`

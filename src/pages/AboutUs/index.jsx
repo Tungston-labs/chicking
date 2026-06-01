@@ -7,7 +7,7 @@ import PartnerCta from "../../components/HomeSections/sections/PartnerCta";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter";
 import sharedBannerImages from "../../assets/images/sharedBannerImages";
 
-const franchiseImg = "/images/franchise/franchise.svg";
+const franchiseImg = "/images/franchise/aboutimg.svg";
 
 const AboutUs = () => {
   const titles = [
@@ -35,9 +35,7 @@ const AboutUs = () => {
       description={
         <>
           Yet with careful planning, focus, a solid Chicking network, and the
-          right
-          <br />
-          training and support, you can position your business for growth and
+          right training and support, you can position your business for growth and
           success.
         </>
       }
@@ -46,20 +44,24 @@ const AboutUs = () => {
 
     <MissionSection />
 
-    <OperationalExcellence />
+    <div data-animate="fade-up">
+      <OperationalExcellence />
+    </div>
 
-    <PartnerCta
-      title={
-        <>
-          Partner With Chicking — Where Proven<strong> Success Meets Global Opportunity</strong>
-        </>
-      }
-      description="BFI doesn't just provide a brand name; we deliver a complete chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
-      action={{
-        to: "/contact",
-        label: "Contact Us",
-      }}
-    />
+    <div data-animate="fade-up">
+      <PartnerCta
+        title={
+          <>
+            Partner With Chicking — Where Proven<strong> <br></br> Success Meets Global Opportunity</strong>
+          </>
+        }
+        description="BFI doesn't just provide a brand name; we deliver a complete chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
+        action={{
+          to: "/franchiseform",
+          label: "Franchise With Us",
+        }}
+      />
+    </div>
     <SiteFooter topEdgeImage={sharedBannerImages.edges.footerBlack}/>
   </PageLayout>
 );

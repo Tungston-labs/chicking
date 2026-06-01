@@ -9,8 +9,6 @@ import {
   TornBottom,
 } from "./style";
 
-import franchiseImg from "../../../public/images/franchise/franchise.svg";
-import tornEdge from "../../../public/images/franchise/bottom.png";
 import FranchiseFormCard from "../../components/FranchiseFormCard/FranchiseFormCard";
 import PartnerCta from "../../components/HomeSections/sections/PartnerCta";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter";
@@ -18,6 +16,9 @@ import PageLayout from "../../components/Layout/PageLayout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useFranchiseForm from "./useFranchiseForm";
+
+const franchiseImg = "/images/franchise/franchise.svg";
+const tornEdge = "/images/franchise/bottom.png";
 
 const FranchiseForm = () => {
   const {
@@ -36,7 +37,7 @@ const FranchiseForm = () => {
       <PageWrapper>
         <ToastContainer position="top-right" autoClose={3000} />
         <HeroSection>
-          <HeroContent>
+          <HeroContent data-animate="fade-up">
             <div>
               <SmallTitle>Join Our Family &</SmallTitle>
 
@@ -52,18 +53,22 @@ const FranchiseForm = () => {
             <HeroImage src={franchiseImg} alt="Franchise" />
           </HeroContent>
 
-          <FranchiseFormCard
-            selected={selected}
-            setSelected={setSelected}
-            formData={formData}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            errors={errors}
-          />
+          <div data-animate="fade-up">
+            <FranchiseFormCard
+              selected={selected}
+              setSelected={setSelected}
+              formData={formData}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              errors={errors}
+            />
+          </div>
         </HeroSection>
 
         <TornBottom src={tornEdge} alt="" aria-hidden />
-        <PartnerCta />
+        <div data-animate="fade-up">
+          <PartnerCta />
+        </div>
         <SiteFooter />
       </PageWrapper>
     </PageLayout>

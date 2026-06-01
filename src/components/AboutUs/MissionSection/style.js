@@ -1,6 +1,6 @@
 // src/components/AboutUs/MissionSection/style.js
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Section = styled.section`
   width: 100%;
@@ -33,19 +33,48 @@ export const SideImage = styled.div`
   min-width: 256px;
   height: 463px;
   border-radius: 10px;
+  overflow: hidden;
 
-  background-image: url(${(props) => props.image});
+  background-image: url(${(props) => props.$image});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   flex-shrink: 0;
-  transition: 0.4s ease;
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+
+  &[data-animate] {
+    opacity: 1;
+    filter: none;
+  }
+
+  &:hover {
+    transform: translateY(-0.4rem);
+    box-shadow: 0 1.125rem 2rem rgba(0, 0, 0, 0.14);
+  }
+
+  > div {
+    width: 100%;
+    padding: 14px 14px 16px;
+    background: #9d1414;
+    color: #ffffff;
+  }
 
   @media (max-width: 992px) {
     width: 100%;
     max-width: 380px;
     height: 320px;
+
+    ${({ $hideOnMobile }) =>
+      $hideOnMobile &&
+      css`
+        display: none;
+      `}
   }
 
   @media (max-width: 576px) {
@@ -71,6 +100,16 @@ export const ContentCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition:
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 260ms ease,
+    box-shadow 260ms ease;
+
+  &:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 18px 38px rgba(0, 0, 0, 0.11);
+  }
 
   @media (max-width: 992px) {
     min-height: auto;
@@ -96,9 +135,9 @@ export const Crown = styled.div`
 export const Title = styled.h2`
   font-family: "Poppins", sans-serif;
 
-  font-size: 24px;
+  font-size: 2.4rem;
 
-  line-height: 30px;
+  line-height: 2rem;
 
   letter-spacing: -0.03em;
 
@@ -117,7 +156,7 @@ export const Title = styled.h2`
   }
 
   @media (max-width: 768px) {
-    font-size: 22px;
+    font-size: 1.5rem;
   }
 `;
 
@@ -126,7 +165,7 @@ export const Description = styled.p`
 
   font-weight: 300;
 
-  font-size: 14px;
+  font-size: 0.875rem;
 
   line-height: 30px;
 
@@ -134,7 +173,7 @@ export const Description = styled.p`
 
   text-align: center;
 
-  color: #444444;
+  color: #000;
 
   max-width: 470px;
 
@@ -146,10 +185,28 @@ export const Description = styled.p`
   }
 `;
 
+export const ChairmanQuoteAuthor = styled.h3`
+  margin: 0 0 9px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+`;
+
+export const ChairmanQuoteText = styled.p`
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  font-weight: 400;
+`;
+
 export const ArrowWrapper = styled.div`
   position: absolute;
 
-  right: -32px;
+  right: -42px;
 
   top: 50%;
 
