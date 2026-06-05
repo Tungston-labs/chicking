@@ -1,0 +1,43 @@
+export const maldivesLocations = [
+  {
+    city: "Male",
+    coordinates: { lat: 4.1783987, lng: 73.5130868 },
+    country: "Maldives",
+    id: "maldives-male-5gh7",
+    nextTerritories: "Maldives store network",
+    place: "5GH7+964, Male, Maldives",
+    status: "Operational",
+    storeLink: "https://www.chickingmaldives.com/#lt-location",
+  },
+  {
+    city: "Hulhumale",
+    coordinates: { lat: 4.2134746, lng: 73.5401671 },
+    country: "Maldives",
+    id: "maldives-hulhumale-oak-tower",
+    nextTerritories: "Maldives store network",
+    place:
+      "Reethigas Magu Ground Floor, Oak Tower, Amin Avenue, Male Hulhumale Phase 2, 20057, Maldives",
+    status: "Operational",
+    storeLink: "https://www.chickingmaldives.com/#lt-location",
+  },
+  {
+    city: "Male",
+    coordinates: { lat: 4.1724251, lng: 73.5166361 },
+    country: "Maldives",
+    id: "maldives-male-boduthakurufaanu-magu-parkside",
+    nextTerritories: "Maldives store network",
+    place: "Boduthakurufaanu Magu Parkside, Male 20125, Maldives",
+    status: "Operational",
+    storeLink: "https://www.chickingmaldives.com/#lt-location",
+  },
+  {
+    city: "Hulhumale",
+    coordinates: { lat: 4.2285672, lng: 73.5461883 },
+    country: "Maldives",
+    id: "maldives-hulhumale-dhanbu-gas-magu",
+    nextTerritories: "Maldives store network",
+    place: "20803 Dhanbu Gas Magu, Hulhumale, Maldives",
+    status: "Operational",
+    storeLink: "https://www.chickingmaldives.com/#lt-location",
+  },
+];

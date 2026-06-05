@@ -314,14 +314,42 @@ export const PopupDetail = styled.p`
   }
 `;
 
+export const PopupStoreList = styled.div`
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+`;
+
 export const PopupInlineLink = styled(RouterLink)`
-  color: #891b1c;
+  color: #891b1c !important;
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
   transition: color 160ms ease;
 
-  &:hover {
-    color: #a61d18;
+  &:visited {
+    color: #891b1c !important;
+  }
+
+  &:hover,
+  &:focus {
+    color: #a61d18 !important;
+  }
+`;
+
+export const PopupExternalLink = styled.a`
+  color: #891b1c !important;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 160ms ease;
+
+  &:visited {
+    color: #891b1c !important;
+  }
+
+  &:hover,
+  &:focus {
+    color: #a61d18 !important;
   }
 `;

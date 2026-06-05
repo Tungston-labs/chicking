@@ -28,16 +28,52 @@ export const activeMarkerIcon = buildMarkerIcon(true);
 export const getLocationInquiryHref = (location) =>
   `/franchiseform?territory=${encodeURIComponent(location.place)}`;
 
-export const MapViewportController = ({ activeLocation, activeRegion }) => {
+export const setActiveLocationForRegion = ({
+  locationId,
+  regionId,
+  setActiveLocationIdsByRegion,
+}) => {
+  setActiveLocationIdsByRegion((current) => ({
+    ...current,
+    [regionId]: locationId,
+  }));
+};
+
+export const getLocationMarkerEventHandlers = ({
+  activeRegion,
+  location,
+  setActiveLocationIdsByRegion,
+}) => {
+  const activateLocation = (event) => {
+    setActiveLocationForRegion({
+      locationId: location.id,
+      regionId: activeRegion.id,
+      setActiveLocationIdsByRegion,
+    });
+
+    event.target.openPopup();
+  };
+
+  return {
+    click: activateLocation,
+    mouseover: activateLocation,
+  };
+};
+
+export const MapViewportController = ({
+  activeLocation,
+  activeRegion,
+  visibleLocations,
+}) => {
   const map = useMap();
 
   useEffect(() => {
-    if (!activeRegion?.locations?.length) {
+    if (!visibleLocations?.length) {
       return;
     }
 
     const bounds = L.latLngBounds(
-      activeRegion.locations.map((location) => [
+      visibleLocations.map((location) => [
         location.coordinates.lat,
         location.coordinates.lng,
       ]),
@@ -48,10 +84,10 @@ export const MapViewportController = ({ activeLocation, activeRegion }) => {
       maxZoom: activeRegion.focusZoom,
       padding: [50, 50],
     });
-  }, [activeRegion, map]);
+  }, [activeRegion.focusZoom, map, visibleLocations]);
 
   useEffect(() => {
-    if (!activeLocation) {
+    if (!activeLocation || visibleLocations?.length > 1) {
       return;
     }
 
@@ -62,7 +98,7 @@ export const MapViewportController = ({ activeLocation, activeRegion }) => {
         duration: 0.65,
       },
     );
-  }, [activeLocation, activeRegion.focusZoom, map]);
+  }, [activeLocation, activeRegion.focusZoom, map, visibleLocations?.length]);
 
   return null;
 };

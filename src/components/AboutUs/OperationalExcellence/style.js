@@ -4,6 +4,12 @@ export const Section = styled.section`
   width: 100%;
   overflow: hidden;
   font-family: "Poppins", sans-serif;
+  margin-bottom: -5.5rem;
+  padding-bottom: 0;
+
+  @media (max-width: 1100px) {
+    margin-bottom: 0;
+  }
 
   @media (max-width: 992px) {
     padding: 3rem 2rem;
@@ -151,24 +157,33 @@ export const Description = styled.p`
 `;
 
 export const RightContent = styled.div`
-  
+  flex: 0 0 min(36%, 31rem);
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @media (max-width: 1100px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const MainImage = styled.img`
-  width: 100%;
+  width: min(100%, 29rem);
   max-width: 29rem;
   object-fit: contain;
   display: block;
 
   @media (max-width: 992px) {
-    max-width: 23rem;
+    width: min(100%, 23rem);
   }
 
   @media (max-width: 768px) {
-    max-width: 20rem;
+    width: min(100%, 20rem);
   }
 
   @media (max-width: 576px) {
-    max-width: 16rem;
+    width: min(100%, 16rem);
   }
 `;

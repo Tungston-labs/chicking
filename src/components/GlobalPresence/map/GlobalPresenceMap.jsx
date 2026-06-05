@@ -1,6 +1,6 @@
 import "leaflet/dist/leaflet.css";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 import SectionHeader from "../../HomeSections/components/SectionHeader/index.jsx";
@@ -10,8 +10,10 @@ import {
   activeMarkerIcon,
   defaultMarkerIcon,
   DEFAULT_REGION_ID,
+  getLocationMarkerEventHandlers,
   getLocationInquiryHref,
   MapViewportController,
+  setActiveLocationForRegion,
 } from "./globalPresenceMap.helpers.js";
 import {
   LocationButton,
@@ -26,7 +28,9 @@ import {
   MapSurface,
   PopupCard,
   PopupDetail,
+  PopupExternalLink,
   PopupInlineLink,
+  PopupStoreList,
   PopupTitle,
   PresencePanel,
   PresenceShell,
@@ -53,6 +57,25 @@ const GlobalPresenceMap = () => {
   const activeLocation =
     activeRegion.locations.find((location) => location.id === activeLocationId) ||
     activeRegion.locations[0];
+  const activeCountry = activeLocation?.country || activeRegion.locations[0]?.country || "";
+  const activeRegionCountries = useMemo(() => {
+    const countriesByName = new Map();
+
+    activeRegion.locations.forEach((location) => {
+      if (!countriesByName.has(location.country)) {
+        countriesByName.set(location.country, location);
+      }
+    });
+
+    return Array.from(countriesByName.values());
+  }, [activeRegion.locations]);
+  const activeCountryLocations = useMemo(
+    () =>
+      activeRegion.locations.filter(
+        (location) => location.country === activeCountry,
+      ),
+    [activeCountry, activeRegion.locations],
+  );
 
   useEffect(() => {
     if (!activeLocation) {
@@ -97,24 +120,25 @@ const GlobalPresenceMap = () => {
             <LocationSidebarHeading>{activeRegion.label}</LocationSidebarHeading>
 
             <LocationList>
-              {activeRegion.locations.map((location) => (
+              {activeRegionCountries.map((location) => (
                 <LocationButton
-                  key={location.id}
+                  key={location.country}
                   type="button"
-                  $active={location.id === activeLocation?.id}
+                  $active={location.country === activeCountry}
                   onClick={() =>
-                    setActiveLocationIdsByRegion((current) => ({
-                      ...current,
-                      [activeRegion.id]: location.id,
-                    }))
+                    setActiveLocationForRegion({
+                      locationId: location.id,
+                      regionId: activeRegion.id,
+                      setActiveLocationIdsByRegion,
+                    })
                   }
                 >
                   <LocationIconWrap aria-hidden="true">
-                    <LocationIconPin $active={location.id === activeLocation?.id} />
+                    <LocationIconPin $active={location.country === activeCountry} />
                   </LocationIconWrap>
 
                   <LocationButtonLabel>
-                    <LocationName $active={location.id === activeLocation?.id}>
+                    <LocationName $active={location.country === activeCountry}>
                       {location.country}
                     </LocationName>
                   </LocationButtonLabel>
@@ -141,9 +165,10 @@ const GlobalPresenceMap = () => {
                 <MapViewportController
                   activeLocation={activeLocation}
                   activeRegion={activeRegion}
+                  visibleLocations={activeCountryLocations}
                 />
 
-                {activeRegion.locations.map((location) => (
+                {activeCountryLocations.map((location) => (
                   <Marker
                     key={location.id}
                     icon={
@@ -157,13 +182,11 @@ const GlobalPresenceMap = () => {
                         markerRefs.current[location.id] = marker;
                       }
                     }}
-                    eventHandlers={{
-                      click: () =>
-                        setActiveLocationIdsByRegion((current) => ({
-                          ...current,
-                          [activeRegion.id]: location.id,
-                        })),
-                    }}
+                    eventHandlers={getLocationMarkerEventHandlers({
+                      activeRegion,
+                      location,
+                      setActiveLocationIdsByRegion,
+                    })}
                   >
                     <Popup autoPanPadding={[30, 30]} closeButton={false}>
                       <PopupCard>
@@ -171,6 +194,32 @@ const GlobalPresenceMap = () => {
                         <PopupDetail>
                           <strong>Status :</strong> <span>{location.status}</span>
                         </PopupDetail>
+                        {location.storeLink && !location.stores?.length ? (
+                          <PopupDetail>
+                            <strong>Locations:</strong>{" "}
+                            <PopupExternalLink
+                              href={location.storeLink}
+                              rel="noreferrer"
+                              target="_blank"
+                            >
+                              View locations
+                            </PopupExternalLink>
+                          </PopupDetail>
+                        ) : null}
+                        {location.stores?.length ? (
+                          <PopupStoreList>
+                            {location.stores.map((store) => (
+                              <PopupExternalLink
+                                key={store.label}
+                                href={store.url}
+                                rel="noreferrer"
+                                target="_blank"
+                              >
+                                {store.label}
+                              </PopupExternalLink>
+                            ))}
+                          </PopupStoreList>
+                        ) : null}
                         <PopupDetail>
                           <strong>Next Territories:</strong>{" "}
                           <PopupInlineLink to={getLocationInquiryHref(location)}>
