@@ -11,10 +11,10 @@ import {
   defaultMarkerIcon,
   DEFAULT_REGION_ID,
   getLocationMarkerEventHandlers,
-  getLocationInquiryHref,
   MapViewportController,
   setActiveLocationForRegion,
 } from "./globalPresenceMap.helpers.js";
+import GlobalPresenceLocationPopup from "./GlobalPresenceLocationPopup.jsx";
 import {
   LocationButton,
   LocationButtonLabel,
@@ -26,12 +26,6 @@ import {
   LocationSidebarHeading,
   MapCard,
   MapSurface,
-  PopupCard,
-  PopupDetail,
-  PopupExternalLink,
-  PopupInlineLink,
-  PopupStoreList,
-  PopupTitle,
   PresencePanel,
   PresenceShell,
   RegionTab,
@@ -189,44 +183,7 @@ const GlobalPresenceMap = () => {
                     })}
                   >
                     <Popup autoPanPadding={[30, 30]} closeButton={false}>
-                      <PopupCard>
-                        <PopupTitle>{location.place}</PopupTitle>
-                        <PopupDetail>
-                          <strong>Status :</strong> <span>{location.status}</span>
-                        </PopupDetail>
-                        {location.storeLink && !location.stores?.length ? (
-                          <PopupDetail>
-                            <strong>Locations:</strong>{" "}
-                            <PopupExternalLink
-                              href={location.storeLink}
-                              rel="noreferrer"
-                              target="_blank"
-                            >
-                              View locations
-                            </PopupExternalLink>
-                          </PopupDetail>
-                        ) : null}
-                        {location.stores?.length ? (
-                          <PopupStoreList>
-                            {location.stores.map((store) => (
-                              <PopupExternalLink
-                                key={store.label}
-                                href={store.url}
-                                rel="noreferrer"
-                                target="_blank"
-                              >
-                                {store.label}
-                              </PopupExternalLink>
-                            ))}
-                          </PopupStoreList>
-                        ) : null}
-                        <PopupDetail>
-                          <strong>Next Territories:</strong>{" "}
-                          <PopupInlineLink to={getLocationInquiryHref(location)}>
-                            Inquire Within
-                          </PopupInlineLink>
-                        </PopupDetail>
-                      </PopupCard>
+                      <GlobalPresenceLocationPopup location={location} />
                     </Popup>
                   </Marker>
                 ))}

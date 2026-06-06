@@ -11,6 +11,7 @@ import {
   FiList,
   FiPaperclip,
   FiSend,
+  FiTrash2,
   FiType,
   FiUnderline,
   FiUpload,
@@ -63,10 +64,23 @@ const AdminBlogEditor = ({
 }) => {
   const [formValues, setFormValues] = useState(getEditorInitialValues(post));
   const [tagInput, setTagInput] = useState("");
+  const [hasInlineImage, setHasInlineImage] = useState(false);
   const editorRef = useRef(null);
   const selectionRef = useRef(null);
+  const selectedImageRef = useRef(null);
   const featuredVideoInputRef = useRef(null);
   const inlineImageInputRef = useRef(null);
+
+  const refreshInlineImageState = () => {
+    const images = Array.from(editorRef.current?.querySelectorAll("img") || []);
+    const selectedImage = selectedImageRef.current;
+
+    if (!selectedImage || !images.includes(selectedImage)) {
+      selectedImageRef.current = null;
+    }
+
+    setHasInlineImage(images.length > 0);
+  };
 
   useEffect(() => {
     if (!editorRef.current) {
@@ -76,6 +90,8 @@ const AdminBlogEditor = ({
     if (editorRef.current.innerHTML !== formValues.content) {
       editorRef.current.innerHTML = formValues.content || "";
     }
+
+    refreshInlineImageState();
   }, [formValues.content]);
 
   const syncEditorContent = () => {
@@ -85,6 +101,7 @@ const AdminBlogEditor = ({
       ...currentValues,
       content: nextContent,
     }));
+    refreshInlineImageState();
   };
 
   const saveSelection = () => {
@@ -180,9 +197,44 @@ const AdminBlogEditor = ({
 
       const dataUrl = await readFileAsDataUrl(file);
       runCommand("insertImage", dataUrl);
+      refreshInlineImageState();
     } finally {
       event.target.value = "";
     }
+  };
+
+  const handleEditorClick = (event) => {
+    if (event.target instanceof HTMLImageElement) {
+      selectedImageRef.current = event.target;
+      setHasInlineImage(true);
+      return;
+    }
+
+    selectedImageRef.current = null;
+    refreshInlineImageState();
+    saveSelection();
+  };
+
+  const handleRemoveInlineImage = () => {
+    const editorElement = editorRef.current;
+
+    if (!editorElement) {
+      return;
+    }
+
+    const imageToRemove = editorElement.contains(selectedImageRef.current)
+      ? selectedImageRef.current
+      : editorElement.querySelector("img");
+
+    if (!imageToRemove) {
+      refreshInlineImageState();
+      return;
+    }
+
+    imageToRemove.remove();
+    selectedImageRef.current = null;
+    syncEditorContent();
+    editorElement.focus();
   };
 
   const handleInsertLink = () => {
@@ -308,6 +360,15 @@ const AdminBlogEditor = ({
               <Tool aria-label="Insert image" onClick={() => inlineImageInputRef.current?.click()} type="button">
                 <FiImage />
               </Tool>
+              <Tool
+                aria-label="Remove image"
+                disabled={!hasInlineImage}
+                onClick={handleRemoveInlineImage}
+                title={hasInlineImage ? "Remove selected image" : "No image to remove"}
+                type="button"
+              >
+                <FiTrash2 />
+              </Tool>
               <Tool aria-label="Bullet list" onClick={() => runCommand("insertUnorderedList")} type="button">
                 <FiList />
               </Tool>
@@ -330,6 +391,7 @@ const AdminBlogEditor = ({
             <EditorArea
               contentEditable
               data-placeholder="Write your blog content here..."
+              onClick={handleEditorClick}
               onInput={syncEditorContent}
               onKeyUp={saveSelection}
               onMouseUp={saveSelection}

@@ -34,6 +34,7 @@ const FranchiseFormCard = ({
   formData,
   handleChange,
   handleSubmit,
+  isSubmitting,
   errors,
 }) => {
   return (
@@ -133,7 +134,19 @@ const FranchiseFormCard = ({
               name="investment"
               value={formData.investment}
               onChange={handleChange}
-            ></Select>
+            >
+              <option value="">Select Investment Capacity</option>
+              <option value="USD 100,000 - 250,000">
+                USD 100,000 - 250,000
+              </option>
+              <option value="USD 250,000 - 500,000">
+                USD 250,000 - 500,000
+              </option>
+              <option value="USD 500,000 - 1,000,000">
+                USD 500,000 - 1,000,000
+              </option>
+              <option value="USD 1,000,000+">USD 1,000,000+</option>
+            </Select>
             {errors.investment && <ErrorText> {errors.investment}</ErrorText>}
           </InputGroup>
           <InputGroup style={{ marginTop: "28px" }}>
@@ -158,7 +171,9 @@ const FranchiseFormCard = ({
               onChange={handleChange}
             />
           </InputGroup>
-          <SubmitButton type="submit">Submit Franchise Inquiry</SubmitButton>
+          <SubmitButton disabled={isSubmitting} type="submit">
+            {isSubmitting ? "Submitting..." : "Submit Franchise Inquiry"}
+          </SubmitButton>
         </LeftSection>
       </form>
     </FormCard>

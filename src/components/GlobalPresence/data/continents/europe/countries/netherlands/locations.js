@@ -1,12 +1,12 @@
 export const netherlandsLocations = [
   {
-    city: "Amsterdam",
-    coordinates: { lat: 52.3676, lng: 4.9041 },
+    city: "Rotterdam",
+    coordinates: { lat: 51.9330785, lng: 4.4784561 },
     country: "Netherlands",
-    id: "europe-amsterdam",
-    nextTerritories: "Netherlands market development",
-    place: "Amsterdam",
+    id: "netherlands-rotterdam-zwart-janstraat",
+    nextTerritories: "Netherlands store network",
+    place: "Zwart Janstraat 58A, 3035 AV Rotterdam, Netherlands",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nl/",
   },
 ];

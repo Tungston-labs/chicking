@@ -1,6 +1,7 @@
 // useFranchiseForm.js
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { submitFranchiseEnquiry } from "../../api/index.js";
 
 const titles = [
   "Grow With Us",
@@ -25,6 +26,7 @@ const useFranchiseForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -87,25 +89,7 @@ const useFranchiseForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const isValid = validate();
-
-    if (!isValid) {
-      toast.error("Please fill all required fields");
-      return;
-    }
-
-    const payload = {
-      ...formData,
-      interest: selected,
-    };
-
-    console.log(payload);
-
-    toast.success("Franchise inquiry submitted successfully");
-
+  const resetForm = () => {
     setFormData({
       fullName: "",
       email: "",
@@ -119,6 +103,35 @@ const useFranchiseForm = () => {
     setSelected("unit");
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const isValid = validate();
+
+    if (!isValid) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await submitFranchiseEnquiry({
+        formData,
+        interest: selected,
+      });
+
+      toast.success("Franchise inquiry sent successfully");
+      resetForm();
+    } catch (error) {
+      toast.error(
+        error?.message || "Unable to send franchise inquiry. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return {
     titles,
     titleIndex,
@@ -127,6 +140,7 @@ const useFranchiseForm = () => {
     formData,
     handleChange,
     handleSubmit,
+    isSubmitting,
     errors,
   };
 };

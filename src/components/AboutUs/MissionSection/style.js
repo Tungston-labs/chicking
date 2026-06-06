@@ -66,9 +66,12 @@ export const SideImage = styled.div`
   }
 
   @media (max-width: 992px) {
-    width: 100%;
+    width: min(100%, 380px);
     max-width: 380px;
+    min-width: 0;
     height: 320px;
+    align-self: center;
+    margin: 0 auto;
 
     ${({ $hideOnMobile }) =>
       $hideOnMobile &&
@@ -78,7 +81,12 @@ export const SideImage = styled.div`
   }
 
   @media (max-width: 576px) {
+    width: min(100%, 340px);
     height: 260px;
+
+    &[data-animate] {
+      transform: none;
+    }
   }
 `;
 

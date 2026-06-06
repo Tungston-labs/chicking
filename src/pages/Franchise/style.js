@@ -416,6 +416,11 @@ export const SubmitButton = styled.button`
     opacity: 0.9;
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
   @media (max-width: 767px) {
     width: 100%;
     min-width: 100%;

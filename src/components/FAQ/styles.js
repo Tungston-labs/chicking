@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   padding:80px 6rem;
@@ -107,4 +108,41 @@ vertical-align: middle;
      font-size:0.9rem;
     }
 
+`;
+
+export const ViewMoreWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2.2rem;
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
+`;
+
+export const ViewMoreButton = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.8rem;
+  padding: 0 1.4rem;
+  border-radius: 0.25rem;
+  background: #891b1c;
+  color: #ffffff;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease;
+
+  &:visited {
+    color: #ffffff;
+  }
+
+  &:hover,
+  &:focus {
+    filter: brightness(0.94);
+    transform: translateY(-0.0625rem);
+  }
 `;

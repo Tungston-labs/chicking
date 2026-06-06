@@ -709,6 +709,12 @@ export const Tool = styled.button`
     background: rgba(137, 27, 28, 0.08);
     color: #891b1c;
   }
+
+  &:disabled {
+    background: transparent;
+    color: #b9b9b9;
+    cursor: not-allowed;
+  }
 `;
 
 export const ToolSelect = styled.select`
@@ -775,6 +781,16 @@ export const EditorArea = styled.div`
     display: block;
     margin: 0.8rem 0;
     border-radius: 0.35rem;
+  }
+
+  img {
+    height: auto;
+    cursor: pointer;
+  }
+
+  img:hover {
+    outline: 0.125rem solid rgba(137, 27, 28, 0.28);
+    outline-offset: 0.2rem;
   }
 `;
 

@@ -25,9 +25,6 @@ const buildMarkerIcon = (active) =>
 export const defaultMarkerIcon = buildMarkerIcon(false);
 export const activeMarkerIcon = buildMarkerIcon(true);
 
-export const getLocationInquiryHref = (location) =>
-  `/franchiseform?territory=${encodeURIComponent(location.place)}`;
-
 export const setActiveLocationForRegion = ({
   locationId,
   regionId,

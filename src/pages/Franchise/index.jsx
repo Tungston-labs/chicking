@@ -29,6 +29,7 @@ const FranchiseForm = () => {
     formData,
     handleChange,
     handleSubmit,
+    isSubmitting,
     errors,
   } = useFranchiseForm();
 
@@ -60,6 +61,7 @@ const FranchiseForm = () => {
               formData={formData}
               handleChange={handleChange}
               handleSubmit={handleSubmit}
+              isSubmitting={isSubmitting}
               errors={errors}
             />
           </div>

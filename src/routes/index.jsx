@@ -13,6 +13,7 @@ import CreateBlogPost from "../pages/AdminBlog/CreateBlogPost.jsx";
 import EditBlogPost from "../pages/AdminBlog/EditBlogPost.jsx";
 import ViewBlogPost from "../pages/AdminBlog/ViewBlogPost.jsx";
 import FaqSection from "../pages/FAQ/index.jsx";
+import FaqBrochure from "../pages/FAQ/FaqBrochure.jsx";
 import ForgotPassword from "../pages/Login/ForgotPassword.jsx";
 import Login from "../pages/Login/index.jsx";
 import SetPassword from "../pages/Login/SetPassword.jsx";
@@ -66,6 +67,10 @@ const pageRoutes = [
   {
     element: <FaqSection />,
     path: "/faq",
+  },
+  {
+    element: <FaqBrochure />,
+    path: "/faq-brochure",
   },
   {
     element: <BlogSections />,

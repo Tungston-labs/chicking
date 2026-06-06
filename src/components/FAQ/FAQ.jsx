@@ -8,6 +8,8 @@ import {
     Item,
     Question,
     Answer,
+    ViewMoreButton,
+    ViewMoreWrap,
 } from "./styles";
 
 const faqData = [
@@ -79,6 +81,10 @@ const [active, setActive] = useState(null);
                     </Item>
                 ))}
             </Accordion>
+
+            <ViewMoreWrap>
+                <ViewMoreButton to="/faq-brochure">View More</ViewMoreButton>
+            </ViewMoreWrap>
         </Wrapper>
     );
 }
