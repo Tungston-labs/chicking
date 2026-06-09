@@ -74,8 +74,9 @@ export const AuthorRow = styled.div`
 export const Avatar = styled.img`
   width: 2.35rem;
   height: 2.35rem;
+  border: 1px solid #821b1c;
   border-radius: 999rem;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 export const AuthorName = styled.p`

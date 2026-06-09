@@ -143,7 +143,7 @@ export const Crown = styled.div`
 export const Title = styled.h2`
   font-family: "Poppins", sans-serif;
 
-  font-size: 2.4rem;
+  font-size: 1.7rem;
 
   line-height: 2rem;
 
