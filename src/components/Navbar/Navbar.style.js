@@ -1,4 +1,27 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const logoWobble = keyframes`
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  18% {
+    transform: rotate(-3deg) scale(1.015);
+  }
+
+  36% {
+    transform: rotate(3deg) scale(1.015);
+  }
+
+  54% {
+    transform: rotate(-2deg) scale(1.01);
+  }
+
+  72% {
+    transform: rotate(2deg) scale(1.01);
+  }
+`;
 
 export const Header = styled.header`
   width: 100%;
@@ -38,6 +61,20 @@ export const BrandLink = styled.a`
     width: 7.75rem;
     height: auto;
     display: block;
+    transform-origin: 50% 58%;
+    animation: ${logoWobble} 5.8s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  &:hover img,
+  &:focus-visible img {
+    animation-duration: 1.05s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    img {
+      animation: none;
+    }
   }
 
   @media (max-width: 768px) {

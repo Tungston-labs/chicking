@@ -133,7 +133,7 @@ function NewsArticle() {
                 <QuoteBox>
                   Source:{" "}
                   <a href={post.url} rel="noreferrer" target="_blank">
-                    {sourceLabel} <FiExternalLink style={{ verticalAlign: "middle" }} />
+                    {sourceLabel} <FiExternalLink  />
                   </a>
                 </QuoteBox>
               ) : null}

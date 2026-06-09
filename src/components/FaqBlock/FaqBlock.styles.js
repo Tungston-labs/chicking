@@ -1,5 +1,17 @@
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
+const pinJump = keyframes`
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-1rem);
+  }
+
+
+`;
 export const FaqBlockGrid = styled.div`
   display: grid;
   grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr);
@@ -57,6 +69,11 @@ export const FaqVisual = styled.div`
     min-height: 15.5rem;
     margin-top: 1.95rem;
   }
+    @media (min-width: 301px) and (max-width: 560px) {
+    width: min(100%, 24rem);
+    min-height: 15.5rem;
+    margin-top: 1.95rem;
+  }
 `;
 
 export const FaqVisualImage = styled.img`
@@ -69,47 +86,37 @@ export const FaqVisualImage = styled.img`
 
   ${({ $variant }) =>
     $variant === "pin"
-      ? `
-        left: -6%;
-        top: 0;
-        z-index: 2;
-        width: clamp(15.5rem, 52%, 20rem);
-      `
-      : `
-        left: clamp(3.5rem, 16%, 6rem);
-        right: 0;
-        bottom: -12%;
-        z-index: 1;
-        width: min(91%, 31rem);
-        opacity: 0.95;
-      `}
-
+      ? css`
+          left: -6%;
+          top: 0;
+          z-index: 2;
+          width: clamp(11.5rem, 52%, 20rem);
+          transform-origin: 50% 92%;
+          animation: ${pinJump} 0.9s ease-in-out infinite;
+          will-change: transform;
+        `
+      : css`
+          left: clamp(3.5rem, 16%, 6rem);
+          right: 0;
+          bottom: -12%;
+          z-index: 1;
+          width: min(91%, 31rem);
+          opacity: 0.95;
+        `}
   @media (min-width: 561px) and (max-width: 900px) {
     ${({ $variant }) =>
       $variant === "pin"
-        ? `
-          left: -0.35rem;
-          top: 0.1rem;
-          width: min(39%, 11.75rem);
-        `
-        : `
-          left: auto;
-          right: -0.15rem;
-          bottom: -0.2rem;
-          width: min(68%, 19.75rem);
-        `}
-  }
-
-  @media (max-width: 560px) {
-    ${({ $variant }) =>
-      $variant === "pin"
-        ? `
-          width: min(48%, 12rem);
-        `
-        : `
-          left: 2.25rem;
-          width: 95%;
-        `}
+        ? css`
+            left: -0.35rem;
+            top: 0.1rem;
+            width: min(39%, 11.75rem);
+          `
+        : css`
+            left: auto;
+            right: -0.15rem;
+            bottom: -0.2rem;
+            width: min(68%, 19.75rem);
+          `}
   }
 `;
 

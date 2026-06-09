@@ -33,12 +33,11 @@ export const FoodHeader = styled.div`
 `;
 
 export const FoodScrollerViewport = styled.div`
-  width: calc(100% + 4rem);
-  margin-right: -4rem;
+  width: 100%;
   overflow: hidden;
 
   @media (max-width: 1024px) {
-    width: calc(100% + 3rem);
+    width: calc(100% + 1.5rem);
     margin-right: -1.5rem;
   }
 
@@ -51,16 +50,16 @@ export const FoodScrollerViewport = styled.div`
 export const FoodScroller = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(38rem, 33.5rem);
-  gap: 1.4rem;
+  grid-auto-columns: clamp(17.5rem, 28vw, 24rem);
+  gap: 1rem;
   overflow-x: auto;
-  margin-right: 2rem;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  scroll-padding-inline: 0.1rem;
-  padding-bottom: 0.7rem;
+  scroll-padding-inline: 0;
+  padding: 0 0 0.85rem;
   scrollbar-width: thin;
   scrollbar-color: rgba(137, 27, 28, 0.34) transparent;
+  -webkit-overflow-scrolling: touch;
 
   & > * {
     scroll-snap-align: start;
@@ -80,14 +79,18 @@ export const FoodScroller = styled.div`
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    grid-auto-columns: minmax(24rem, 25rem);
+    grid-auto-columns: minmax(18rem, 23rem);
     gap: 1rem;
   }
 
   @media (max-width: 767px) {
-    grid-auto-columns: 90%;
+    grid-auto-columns: minmax(15.75rem, 82%);
     gap: 0.9rem;
     padding-bottom: 0.55rem;
+  }
+
+  @media (max-width: 380px) {
+    grid-auto-columns: 84%;
   }
 `;
 
@@ -98,7 +101,7 @@ export const FoodCard = styled.article`
 
 export const FoodImage = styled.img`
   width: 100%;
-  aspect-ratio: 1.18;
+  aspect-ratio: 1.28;
   object-fit: cover;
   display: block;
 `;
