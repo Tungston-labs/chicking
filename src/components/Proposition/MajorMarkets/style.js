@@ -2,71 +2,76 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
   width: 100%;
-  padding: 60px 6rem;
+  padding: 60px 6rem 90px;
 
   @media (max-width: 1200px) {
-    padding: 0px 4rem;
+    padding: 40px 4rem 70px;
   }
 
   @media (max-width: 768px) {
-    padding: 10px 20px;
+    padding: 30px 20px 70px;
   }
 
   @media (max-width: 570px) {
-    padding: 10px 20px 80px;
+    padding: 25px 20px 80px;
   }
 `;
 
 export const Container = styled.div`
+  width: 100%;
   display: grid;
-  grid-template-columns: 254px 1fr 254px;
-  align-items: center;
-  gap: 40px;
+  grid-template-columns: repeat(3, minmax(190px, 254px)) minmax(420px, 1fr);
+  align-items: end;
+  justify-content: start;
+  gap: clamp(16px, 1.4vw, 24px);
 
   @media (max-width: 1200px) {
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(3, minmax(180px, 254px));
+    justify-content: center;
     gap: 30px;
   }
 
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 254px));
+    align-items: stretch;
+  }
 
-    @media (max-width: 570px) {
+  @media (max-width: 570px) {
     grid-template-columns: 1fr;
   }
 `;
 
 export const SideCard = styled.div`
-  width:100%;
-  max-width:254px;
-  background:white;
-  overflow:hidden;
-  margin:auto;
-  box-shadow:0px 4px 20px rgba(0,0,0,.08);
-    display: flex;
+  width: 100%;
+  max-width: 254px;
+  background: white;
+  overflow: hidden;
+  margin: 0;
+  box-shadow: 0px 4px 20px rgba(0,0,0,.08);
+  display: flex;
   flex-direction: column;
   height: 100%;
 
+  @media (max-width: 1200px) {
+    order: 2;
+  }
+
   @media(max-width:768px){
-    max-width:80%;
-  }
-
-  &:nth-child(1){
-    @media(max-width:992px){
-      order:2;
-    }
-  }
-
-  &:nth-child(3){
-    @media(max-width:768px){
-      order:3;
-    }
+    max-width: 100%;
+    margin: 0 auto;
   }
 `;
 
 export const CardTop = styled.div`
   background: #B4172B;
   color: white;
-  padding: 25px 20px;
+  padding: 28px 14px 24px;
   text-align: center;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   @media(max-width:570px){
     padding:20px 15px;
@@ -74,11 +79,10 @@ export const CardTop = styled.div`
 `;
 
 export const Country = styled.h3`
-  margin-bottom:10px;
-
-  font-size:18px;
+  margin: 0 0 8px;
+  font-size: 18px;
   font-weight:600;
-  line-height:24px;
+  line-height: 1.35;
 
   @media(max-width:480px){
     font-size:16px;
@@ -87,6 +91,7 @@ export const Country = styled.h3`
 `;
 
 export const Package = styled.p`
+  margin: 0;
   font-size:12px;
   font-weight:600;
   line-height:20px;
@@ -95,14 +100,21 @@ export const Package = styled.p`
 export const Button = styled.button`
   background:#F39200;
   border:none;
-  padding:12px 25px;
+  padding:12px 24px;
   color:white;
   border-radius:6px;
   cursor:pointer;
   margin-top:15px;
-
   font-size:14px;
   font-weight:500;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+
+  &:hover {
+    background: #d98200;
+    transform: translateY(-1px);
+  }
 
   @media(max-width:480px){
     padding:10px 20px;
@@ -113,9 +125,13 @@ export const Button = styled.button`
 export const CardImage = styled.img`
   width:100%;
   flex:1;
-  min-height:250px;
+  min-height: 290px;
   object-fit:cover;
   display:block;
+
+  @media(max-width:1200px){
+    min-height:260px;
+  }
 
   @media(max-width:480px){
     min-height:220px;
@@ -126,15 +142,17 @@ export const CenterContent = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:30px;
+  gap:12px;
+  min-width: 0;
 
- @media(max-width:1440px){
-   gap:0px
+  @media(max-width:1440px){
+    gap:0px
   }
+
   @media(max-width:1200px){
     grid-column:1/-1;
-    order:-1;
-    margin-bottom:20px;
+    order:1;
+    margin-bottom:10px;
   }
 
   @media(max-width:570px){
@@ -155,7 +173,7 @@ export const ContentBox = styled.div`
 `;
 
 export const BreadTop = styled.img`
-  width:290px;
+  width:340px;
   max-width:100%;
   display:block;
 
@@ -175,7 +193,7 @@ export const BreadTop = styled.img`
 `;
 
 export const BreadBottom = styled.img`
-  width:290px;
+  width:340px;
   max-width:100%;
   display:block;
 
@@ -198,8 +216,11 @@ export const BreadBottom = styled.img`
 export const Curly = styled.img`
   opacity:.5;
 
-  
-    @media(max-width:1200px){
+  @media(min-width:1441px){
+    width:70px;
+  }
+
+  @media(max-width:1200px){
     width:50px;
   }
   @media(max-width:768px){
@@ -212,6 +233,7 @@ export const Heading = styled.h2`
   font-size:32px;
   line-height:48px;
   font-weight:400;
+  letter-spacing: 0;
 
   span{
     font-weight:700;
@@ -232,12 +254,12 @@ export const Heading = styled.h2`
 
   @media(max-width:570px){
     font-size:1.5rem;
-    line-height:20px;
+    line-height:30px;
   }
 `;
 
 export const Description = styled.p`
-  max-width:500px;
+  max-width:540px;
   margin:auto;
 
   font-size:16px;

@@ -22,7 +22,13 @@ import { missionData } from "./data";
 const MissionSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleSlide = () => {
+  const handlePreviousSlide = () => {
+    setActiveIndex((prev) =>
+      prev === 0 ? missionData.length - 1 : prev - 1,
+    );
+  };
+
+  const handleNextSlide = () => {
     setActiveIndex((prev) =>
       prev === missionData.length - 1 ? 0 : prev + 1,
     );
@@ -67,7 +73,19 @@ const MissionSection = () => {
         />
 
         <ArrowWrapper>
-          <ArrowButton onClick={handleSlide} type="button">
+          <ArrowButton
+            aria-label="Previous slide"
+            onClick={handlePreviousSlide}
+            type="button"
+          >
+            <ArrowIcon>❮</ArrowIcon>
+          </ArrowButton>
+
+          <ArrowButton
+            aria-label="Next slide"
+            onClick={handleNextSlide}
+            type="button"
+          >
             <ArrowIcon>❯</ArrowIcon>
           </ArrowButton>
         </ArrowWrapper>
