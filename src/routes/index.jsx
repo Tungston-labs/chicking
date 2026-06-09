@@ -20,6 +20,7 @@ import SetPassword from "../pages/Login/SetPassword.jsx";
 import VerifyCode from "../pages/Login/VerifyCode.jsx";
 import LeadershipSection from "../pages/Management/index.jsx";
 import Propositions from "../pages/Proposition/index.jsx";
+import ThaiPackage from "../pages/Proposition/ThaiPackage/ThaiPackage.jsx";
 import Ukpackage from "../pages/Proposition/UkPackage/Ukpackage.jsx";
 import Uspackage from "../pages/Proposition/UsPackage/Uspackage.jsx";
 
@@ -115,6 +116,10 @@ const pageRoutes = [
   {
     element: <Uspackage />,
     path: "/us-package",
+  },
+  {
+    element: <ThaiPackage />,
+    path: "/thai-package",
   },
   {
     element: <NewsArticle />,

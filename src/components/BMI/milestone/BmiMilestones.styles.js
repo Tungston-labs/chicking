@@ -35,7 +35,7 @@ export const BrandStamp = styled.div`
     display: none;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 899px) {
     justify-content: flex-start;
     margin-bottom: 0;
     margin-top: 1.4rem;

@@ -50,9 +50,9 @@ export const FoodScrollerViewport = styled.div`
 export const FoodScroller = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: clamp(17.5rem, 28vw, 24rem);
+  grid-auto-columns: clamp(17.5rem, 38vw, 30rem);
   gap: 1rem;
-  overflow-x: auto;
+  overflow-x: auto; 
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scroll-padding-inline: 0;

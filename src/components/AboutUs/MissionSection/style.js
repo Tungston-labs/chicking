@@ -213,17 +213,22 @@ export const ChairmanQuoteText = styled.p`
 
 export const ArrowWrapper = styled.div`
   position: absolute;
-
+  left: -42px;
   right: -42px;
-
   top: 50%;
-
   transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 2;
 
   @media (max-width: 992px) {
     position: static;
     transform: none;
     margin-top: 12px;
+    gap: 18px;
+    justify-content: center;
   }
 `;
 
@@ -242,6 +247,7 @@ export const ArrowButton = styled.button`
   justify-content: center;
 
   cursor: pointer;
+  pointer-events: auto;
 
   transition: 0.3s ease;
 

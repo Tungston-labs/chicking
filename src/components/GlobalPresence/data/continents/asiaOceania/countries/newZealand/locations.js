@@ -7,7 +7,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "225 Rora Street, Te Kuiti 3910, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Christchurch",
@@ -17,7 +17,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "Q4/364 Riccarton Road, Upper Riccarton, Christchurch 8041, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Lower Hutt",
@@ -27,7 +27,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "258 High Street, Hutt Central, Lower Hutt 5010, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Rotorua",
@@ -37,7 +37,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "1213 Amohau Street, Rotorua 3010, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Christchurch",
@@ -47,7 +47,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "303 Colombo Street, Sydenham, Christchurch 8023, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Wellington",
@@ -57,7 +57,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "225 Riddiford Street, Newtown, Wellington 6021, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Auckland",
@@ -67,7 +67,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "262 Lincoln Road, Henderson, Auckland 0610, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Auckland",
@@ -77,7 +77,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "64 Ormiston Road, East Tamaki, Auckland 2019, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Auckland",
@@ -87,7 +87,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "309 Botany Road, Botany Downs, Auckland 2013, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Gisborne",
@@ -97,7 +97,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "251 Gladstone Road, Gisborne 4010, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Auckland",
@@ -107,7 +107,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "Unit 7/235 Onehunga Mall, Onehunga, Auckland 1061, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Auckland",
@@ -117,7 +117,7 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "7 Mercari Way, Albany, Auckland 0632, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
   {
     city: "Auckland",
@@ -127,6 +127,6 @@ export const newZealandLocations = [
     nextTerritories: "New Zealand store network",
     place: "271 West Coast Road, Glen Eden, Auckland 0602, New Zealand",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chicking.nz/",
   },
 ];

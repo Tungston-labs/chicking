@@ -17,31 +17,53 @@ import {
 } from "./style";
 import { useNavigate } from "react-router-dom";
 
-const usaImg = "/images/proposition/Majorman.svg";
-const ukImg = "/images/proposition/Majorflag.svg";
 const breadTop = "/images/proposition/breadtop.svg";
 const breadBottom = "/images/proposition/breadbottom.svg";
 const curly = "/images/proposition/curly.svg";
 const curlyright = "/images/proposition/curlyright.svg";
 
+const marketCards = [
+  {
+    country: "United States Of America",
+    image: "/images/proposition/Majorman.svg",
+    imageAlt: "United States franchise package",
+    route: "/us-package",
+  },
+  {
+    country: "United Kingdom",
+    image: "/images/proposition/Majorflag.svg",
+    imageAlt: "United Kingdom franchise package",
+    route: "/uk-package",
+  },
+  {
+    country: "Thailand",
+    image: "/images/proposition/Thailogo.svg",
+    imageAlt: "Thailand franchise package",
+    route: "/thai-package",
+  },
+];
+
 const MajorMarkets = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Container>
-        <SideCard>
-          <CardTop>
-            <Country>United States Of America</Country>
-            <Package>Franchise Package</Package>
-            <Button onClick={() => navigate("/us-package")}>
-      View Package
-    </Button>
-          </CardTop>
+        {marketCards.map((card) => (
+          <SideCard key={card.country}>
+            <CardTop>
+              <Country>{card.country}</Country>
+              <Package>Franchise Package</Package>
+              <Button onClick={() => navigate(card.route)}>
+                View Package
+              </Button>
+            </CardTop>
 
-          <CardImage src={usaImg} alt="USA" />
-        </SideCard>
+            <CardImage src={card.image} alt={card.imageAlt} />
+          </SideCard>
+        ))}
 
-        <CenterContent> 
+        <CenterContent>
           <Curly src={curly} alt="" />
 
           <ContentBox>
@@ -62,18 +84,6 @@ const MajorMarkets = () => {
 
           <Curly src={curlyright} alt="" />
         </CenterContent>
-
-        <SideCard>
-          <CardTop>
-            <Country>United Kingdom</Country>
-            <Package>Franchise Package</Package>
-        <Button onClick={() => navigate("/uk-package")}>
-      View Package
-    </Button>
-          </CardTop>
-
-          <CardImage src={ukImg} alt="UK" />
-        </SideCard>
       </Container>
     </Wrapper>
   );
