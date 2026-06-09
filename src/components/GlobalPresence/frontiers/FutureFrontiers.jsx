@@ -1,33 +1,13 @@
-import { useState } from "react";
-import { FiArrowRight, FiMapPin } from "react-icons/fi";
 import bmiImages from "../../../assets/images/bmiImages.js";
 import SharedBanner from "../../SharedBanner/index.jsx";
 import {
-  frontierFilters,
-  futureFrontierMarkets,
-} from "../data/globalPresenceData.js";
-import {
-  FrontierAction,
-  FrontierCard,
   FrontierContent,
-  FrontierFilterButton,
-  FrontierFilters,
-  FrontierGrid,
-  FrontierIcon,
-  FrontierMarket,
-  FrontierNote,
-  FrontierStatus,
+  FrontierLine,
+  FrontierRegion,
+  FrontierText,
 } from "./FutureFrontiers.styles.js";
 
-const DEFAULT_FILTER_ID = "all";
-
 const FutureFrontiers = () => {
-  const [activeFilterId, setActiveFilterId] = useState(DEFAULT_FILTER_ID);
-
-  const visibleMarkets = futureFrontierMarkets.filter((market) =>
-    market.filterIds.includes(activeFilterId),
-  );
-
   return (
     <SharedBanner
       background="#000"
@@ -49,37 +29,18 @@ const FutureFrontiers = () => {
       topEdgeImage={bmiImages.edges.darkTop}
     >
       <FrontierContent>
-        <FrontierFilters>
-          {frontierFilters.map((filter) => (
-            <FrontierFilterButton
-              key={filter.id}
-              type="button"
-              $active={filter.id === activeFilterId}
-              onClick={() => setActiveFilterId(filter.id)}
-            >
-              {filter.label}
-            </FrontierFilterButton>
-          ))}
-        </FrontierFilters>
+        <FrontierLine>
+          <FrontierRegion>Africa:</FrontierRegion>
+          <FrontierText>
+            Democratic Republic of the Congo | Malawi | Mauritius | Reunion |
+            Seychelles | Fiji | Tanzania
+          </FrontierText>
+        </FrontierLine>
 
-        <FrontierGrid>
-          {visibleMarkets.map((market) => (
-            <FrontierCard key={market.id}>
-              <FrontierIcon aria-hidden="true">
-                <FiMapPin />
-              </FrontierIcon>
-              <FrontierMarket>{market.market}</FrontierMarket>
-              <FrontierStatus>{market.status}</FrontierStatus>
-              <FrontierNote>{market.note}</FrontierNote>
-              <FrontierAction
-                to={`/franchiseform?territory=${encodeURIComponent(market.market)}`}
-              >
-                Express Interest
-                <FiArrowRight aria-hidden="true" />
-              </FrontierAction>
-            </FrontierCard>
-          ))}
-        </FrontierGrid>
+        <FrontierLine>
+          <FrontierRegion>Asia / Middle East:</FrontierRegion>
+          <FrontierText>Jordan | South America / Caribbean: Suriname</FrontierText>
+        </FrontierLine>
       </FrontierContent>
     </SharedBanner>
   );
