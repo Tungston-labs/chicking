@@ -82,7 +82,7 @@ export const SideImage = styled.div`
 
   @media (max-width: 576px) {
     width: min(100%, 340px);
-    height: 260px;
+    height: 380px;
 
     &[data-animate] {
       transform: none;
