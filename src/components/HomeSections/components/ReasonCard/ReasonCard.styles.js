@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 const imageFloat = keyframes`
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
   }
 
   50% {
@@ -68,8 +68,8 @@ export const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transform-origin: center bottom;
-  animation: ${imageFloat} 4.8s ease-in-out infinite;
+  transform-origin: center  ;
+  animation: ${imageFloat} 12.8s ease-in-out infinite;
   filter: drop-shadow(0 0.7rem 1rem rgba(0, 0, 0, 0.16));
   will-change: transform;
 
