@@ -17,7 +17,7 @@ export const Heading=styled.h2`
 margin-bottom:20px;
 font-weight: 400;
 font-style: Regular;
-font-size: 32px;
+font-size: 36px;
 line-height: 140%;
 letter-spacing: 0%;
 text-transform: capitalize;

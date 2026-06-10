@@ -45,7 +45,7 @@ const sectionContent = {
 
 const LeadershipSection = () => {
    const [selectedMember, setSelectedMember] = useState(null);
-      const titles = [ "highly qualified & experienced individuals"];
+      const titles = [ "Highly Qualified & Experienced Individuals"];
       const [titleIndex, setTitleIndex] = useState(0);
       useEffect(() => {
           const interval = setInterval(() => {

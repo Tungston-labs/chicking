@@ -19,7 +19,7 @@ export const Title = styled.h2`
   margin-bottom: 20px;
 font-weight: 400;
 font-style: Bold;
-font-size: 32px;
+font-size: 36px;
 letter-spacing: 2%;
 text-align: center;
 text-transform: capitalize;

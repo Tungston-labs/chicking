@@ -32,7 +32,7 @@ export const Heading = styled.h2`
   text-align:center;
 font-weight: 400;
 font-style: Regular;
-font-size: 32px;
+font-size: 36px;
 line-height: 140%;
 letter-spacing: 0%;
 text-align: center;
@@ -51,7 +51,7 @@ text-transform: capitalize;
 export const Description = styled.p`
   text-align:center;
   max-width:760px;
-  margin:auto auto 70px;
+  margin:0px auto 70px;
 font-weight: 400;
 font-style: Regular;
 font-size: 14px;

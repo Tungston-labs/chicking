@@ -1,7 +1,4 @@
-
-import { Card,  Image, Text, Title } from "./ReasonCard.styles.js";
-
-
+import { Card, Image, ImageStage, Text, Title } from "./ReasonCard.styles.js";
 
 const ReasonCard = ({ image, text, title }) => (
   <Card>
@@ -9,7 +6,9 @@ const ReasonCard = ({ image, text, title }) => (
       <Title>{title}</Title>
       <Text>{text}</Text>
     </div>
-    <Image src={image} alt="" />
+    <ImageStage>
+      <Image src={image} alt="" />
+    </ImageStage>
   </Card>
 );
 
