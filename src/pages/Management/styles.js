@@ -86,7 +86,7 @@ export const ImageContainer = styled.div`
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 `;
 
 export const Overlay = styled.div`
@@ -167,12 +167,12 @@ export const MemberRole = styled.div`
   }
 `;
 export const MemberName = styled.div`
-  font-size: ${({ isSmall }) => (isSmall ? "14px" : "16px")};
+  font-size: ${({ isSmall }) => (isSmall ? "16px" : "16px")};
   font-weight: 700;
   color: ${({ isRed }) => (isRed ? "#8d2f23" : "#111")};
   line-height: 1.3;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 
   @media (max-width: 768px) {
     font-size: ${({ isSmall }) => (isSmall ? "13px" : "15px")};
@@ -216,7 +216,7 @@ letter-spacing: 2%;
 export const Heading = styled.div`
 font-weight: 400;
 font-style: Regular;
-font-size: 32px;
+font-size: 36px;
 line-height: 140%;
 letter-spacing: 0%;
 text-transform: capitalize;

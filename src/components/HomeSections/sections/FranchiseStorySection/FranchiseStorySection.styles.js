@@ -328,8 +328,8 @@ export const CarouselArrow = styled.button`
   top: 50%;
   z-index: 5;
 
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
 
   display: flex;
   align-items: center;
@@ -338,8 +338,8 @@ export const CarouselArrow = styled.button`
   border: none;
   border-radius: 50%;
 
-  background: rgba(91, 36, 48, 0.82);
-  color: #fff;
+  background: #ffffff;
+  color: #c1121f; /* red arrow */
   box-shadow: 0 0.65rem 1.4rem rgba(46, 13, 20, 0.2);
 
   cursor: pointer;
@@ -347,8 +347,11 @@ export const CarouselArrow = styled.button`
   transform: translateY(-50%);
   transition:
     background 0.28s ease,
+    color 0.28s ease,
     box-shadow 0.28s ease,
-    transform 0.28s ease;
+    transform 0.28s ease,
+    width 0.28s ease,
+    height 0.28s ease;
 
   ${({ $placement, $position }) =>
     $placement === "stage"
@@ -370,11 +373,12 @@ export const CarouselArrow = styled.button`
         `}
 
   &:hover {
-    background: #54e1e8;
+    background: #c1121f; /* red background */
+    color: #fff; /* white arrow */
     box-shadow: 0 0.9rem 1.6rem rgba(46, 13, 20, 0.26);
     transform: translateY(calc(-50% - 1px)) scale(1.04);
-     width: 2.75rem;
-  height: 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
   }
 
   &:active {
