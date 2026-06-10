@@ -279,7 +279,7 @@ export const BannerFeatureIcon = styled.div`
   flex: 0 0 auto;
   border-radius: 999rem;
   background: rgba(255, 255, 255, 0.16);
-  box-shadow: 1.25rem 1.25rem 0 rgba(0, 0, 0, 0.08);
+  box-shadow: .25rem .25rem 0 rgba(0, 0, 0, 0.08);
 
   img {
     width: 6.25rem;

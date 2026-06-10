@@ -162,7 +162,7 @@ export const RightContent = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-
+  
   @media (max-width: 1100px) {
     width: 100%;
     justify-content: center;
@@ -174,7 +174,7 @@ export const MainImage = styled.img`
   max-width: 29rem;
   object-fit: contain;
   display: block;
-
+  
   @media (max-width: 992px) {
     width: min(100%, 23rem);
   }

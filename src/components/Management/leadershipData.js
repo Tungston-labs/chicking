@@ -14,7 +14,7 @@ export const leadershipMembers = [
     id: 1,
     gridArea: "founder",
     isRed: true,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    image: "/images/management/profile",
     role: "Founder & Chairman",
     name: "MR. A K MANSOOR",
      description: [
@@ -31,15 +31,15 @@ export const leadershipMembers = [
     id: 2,
     gridArea: "ceo",
     isSmall: true,
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d",
-    role: "Chief Executive Officer",
+    image: "/images/management/profile",
+    role: "Chief Executive Officer& Legal& Compliances",
     name: "MR. SREEKANTH N PILLAI",
   },
   {
     id: 3,
     gridArea: "exec",
     isSmall: true,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    image: "/images/management/profile",
     role: "Executive Director",
     name: "MR. MIRZAB MANSOOR",
   },
@@ -47,7 +47,7 @@ export const leadershipMembers = [
     id: 4,
     gridArea: "opsDir",
     isSmall: true,
-    image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce",
+    image: "/images/management/profile",
     role: "Operations Director",
     name: "MR. MAQBOOL MODI",
   },
@@ -55,7 +55,7 @@ export const leadershipMembers = [
     id: 5,
     gridArea: "dir",
     isSmall: true,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    image: "/images/management/profile",
     role: "Director",
     name: "MR. NIYAS USMAN",
   },
@@ -63,7 +63,7 @@ export const leadershipMembers = [
     id: 6,
     gridArea: "opsMgr",
     isSmall: true,
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d",
+    image: "/images/management/profile",
     role: "Operations Manager-Europe",
     name: "MR. SHAFEER",
   },
@@ -71,7 +71,7 @@ export const leadershipMembers = [
     id: 7,
     gridArea: "globalOps",
     isSmall: true,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    image: "/images/management/profile",
     role: "Global Franchise Operations Manager",
     name: "MR. SAYED",
   },
@@ -104,11 +104,7 @@ export const leadershipData = [
 ];
 
 export const leftTeam = [
-  {
-    title: "LEGAL",
-    name: "MR. PRASANTH K PILLAI",
-    role: "Manager - Legal & Compliances",
-  },
+ 
   {
     title: "FINANCE & LOGISTICS",
     name: "MR. SAJEER",
@@ -116,16 +112,21 @@ export const leftTeam = [
   },
   {
     title: "GLOBAL PROJECT CONSTRUCTIONS PLANS",
-    name: "Project Manager",
-    role: "",
+    name: "MR. SUMESH SOMAN",
+    role: "Project Manager",
+  },
+   {
+    title: "IT& POS SUPPORT",
+    name: "MR. PRASANTH K PILLAI",
+    role: "IT & SYSTEM",
   },
 ];
 
 export const rightTeam = [
   {
     title: "GLOBAL DIGITAL BRANDING & CREATIVES",
-    name: "Project Manager",
-    role: "",
+    name: "MR. A JOHN WILLIAM",
+    role: "Creative Head",
   },
   {
     title: "3D DRAWINGS & LAYOUTS",
