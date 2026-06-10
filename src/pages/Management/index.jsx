@@ -36,11 +36,7 @@ const sectionContent = {
   description:
     "From Your Entry-Level Staff To Your Senior Manager, Everyone Has Something To Learn And Teach One Another. Make Sure That The Work Atmosphere Encourages Collaboration And Creativity That Is Aligned With Performance.",
 
-  leftText1:
-    "Keep An Eye Out For Good Leaders Who Cultivate A Mentality Of Success In The Workplace.",
 
-  leftText2:
-    "The Best Leaders Are Authentic; They Do What They Say And Are Consistent In Their Actions",
 };
 
 const LeadershipSection = () => {
@@ -81,9 +77,7 @@ const LeadershipSection = () => {
         <Container>
           <GridContainer>
 
-            <LeftText1>
-              {sectionContent.leftText1}
-            </LeftText1>
+       
 
             <MainContentArea>
               <Tag>
@@ -104,9 +98,7 @@ const LeadershipSection = () => {
 
             </MainContentArea>
 
-            <LeftText2>
-              {sectionContent.leftText2}
-            </LeftText2>
+          
 
             {leadershipMembers.map((member) => (
               <LeadershipCard
