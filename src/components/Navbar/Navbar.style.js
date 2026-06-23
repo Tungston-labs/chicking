@@ -1,5 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
+const BRAND_RED = "#891b1c";
+
 const logoWobble = keyframes`
   0%,
   100% {
@@ -109,7 +111,7 @@ export const NavActions = styled.div`
 `;
 
 export const NavLink = styled.a`
-  color: ${({ $active }) => ($active ? "#a11f24" : "#000000")};
+  color: ${({ $active }) => ($active ? BRAND_RED : "#000000")};
   font-size: 1rem;
   font-weight: 500;
   line-height: 1;
@@ -118,7 +120,7 @@ export const NavLink = styled.a`
   transition: color 160ms ease;
 
   &:hover {
-    color: #891b1c;
+    color: ${BRAND_RED};
   }
   @media (min-width: 1024px) and (max-width: 1380px) {
     font-size: 0.75rem;
@@ -271,7 +273,7 @@ export const MobileMenuItem = styled.a`
   white-space: nowrap;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: ${BRAND_RED};
     color: #ffffff;
   }
 

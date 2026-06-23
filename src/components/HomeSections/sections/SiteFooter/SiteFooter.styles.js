@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+const BRAND_RED = "#891b1c";
+const BRAND_ORANGE = "#F39200";
+
 export const Footer = styled.footer`
   position: relative;
   background: #000;
@@ -169,7 +172,7 @@ export const FooterNav = styled.nav`
 `;
 
 export const FooterNavLink = styled.a`
-  color: ${({ $active }) => ($active ? "#891b1c" : "#ffffff")};
+  color: ${({ $active }) => ($active ? BRAND_ORANGE : "#ffffff")};
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1;
@@ -179,6 +182,10 @@ export const FooterNavLink = styled.a`
 
   &:first-child {
     font-weight: 800;
+  }
+
+  &:hover {
+    color: ${BRAND_RED};
   }
 
   @media (min-width: 761px) and (max-width: 1024px) {
@@ -233,7 +240,7 @@ export const FooterSocialLink = styled.a`
   }
 
   &:hover {
-    color: #f39200;
+    color: ${BRAND_RED};
     transform: translateY(-0.0625rem);
   }
 `;
@@ -294,7 +301,7 @@ export const FooterCopyright = styled.p`
     transition: color 160ms ease;
 
     &:hover {
-      color: #f39200;
+      color: ${BRAND_RED};
     }
   }
 `;

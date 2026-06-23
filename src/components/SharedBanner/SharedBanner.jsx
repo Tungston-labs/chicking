@@ -55,6 +55,7 @@ const renderEdge = ({
         aria-hidden="true"
         alt=""
         src={edgeImage}
+        $edgeColor={edgeColor}
         $position={position}
       />
     );

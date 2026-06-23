@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
   font-family: "Poppins", sans-serif;
-  margin-bottom: -5.5rem;
-  padding-bottom: 0;
+  margin-bottom: -3.25rem;
+  padding-bottom: 1rem;
 
   @media (max-width: 1100px) {
     margin-bottom: 0;
@@ -162,10 +162,12 @@ export const RightContent = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  padding-bottom: 0;
   
   @media (max-width: 1100px) {
     width: 100%;
     justify-content: center;
+    padding-bottom: 0;
   }
 `;
 
@@ -174,9 +176,11 @@ export const MainImage = styled.img`
   max-width: 29rem;
   object-fit: contain;
   display: block;
+  transform: translateY(2.75rem);
   
   @media (max-width: 992px) {
     width: min(100%, 23rem);
+    transform: none;
   }
 
   @media (max-width: 768px) {
