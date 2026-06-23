@@ -65,6 +65,7 @@ export const PaintEdge = styled.img`
       ? "clamp(1.5rem, 6.85vw, 2.5rem)"
       : "clamp(1.7rem, 8.1vw, 2.7rem)"};
   display: block;
+  background: ${({ $edgeColor }) => $edgeColor || "transparent"};
   object-fit: fill;
   pointer-events: none;
   user-select: none;

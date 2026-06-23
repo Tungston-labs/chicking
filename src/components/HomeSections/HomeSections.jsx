@@ -7,20 +7,33 @@ import FranchiseStorySection from "./sections/FranchiseStorySection/index.jsx";
 import PartnerCta from "./sections/PartnerCta/index.jsx";
 import ReasonsSection from "./sections/ReasonsSection/index.jsx";
 import SiteFooter from "./sections/SiteFooter/index.jsx";
-import { fetchPublicBlogsList, selectHomeBlogPosts } from "../../store/blog/blogSlice.js";
+import {
+  fetchPublicBlogsList,
+  selectHomeBlogPosts,
+  selectPublicBlogListError,
+  selectPublicBlogListStatus,
+} from "../../store/blog/blogSlice.js";
 
 const HomeSections = () => {
   const dispatch = useDispatch();
   const homeBlogPosts = useSelector(selectHomeBlogPosts);
+  const blogListStatus = useSelector(selectPublicBlogListStatus);
+  const blogListError = useSelector(selectPublicBlogListError);
 
   useEffect(() => {
-    dispatch(fetchPublicBlogsList());
-  }, [dispatch]);
+    if (blogListStatus === "idle") {
+      dispatch(fetchPublicBlogsList());
+    }
+  }, [blogListStatus, dispatch]);
 
   return (
     <>
       <div data-animate="fade-up">
-        <BlogSection posts={homeBlogPosts} />
+        <BlogSection
+          error={blogListError}
+          isLoading={blogListStatus === "loading"}
+          posts={homeBlogPosts}
+        />
       </div>
       <div data-animate="fade-up">
         <FranchiseStorySection />

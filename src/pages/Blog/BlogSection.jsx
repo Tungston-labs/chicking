@@ -6,19 +6,28 @@ import BlogSection from "../../components/HomeSections/sections/BlogSection";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx";
-import { fetchPublicBlogsList, selectPublishedBlogs } from "../../store/blog/blogSlice.js";
+import {
+  fetchPublicBlogsList,
+  selectPublicBlogListError,
+  selectPublicBlogListStatus,
+  selectPublishedBlogs,
+} from "../../store/blog/blogSlice.js";
 
 const franchiseImg = "/images/blog/blog1.svg";
 
 function BlogSections() {
   const dispatch = useDispatch();
   const posts = useSelector(selectPublishedBlogs);
+  const blogListStatus = useSelector(selectPublicBlogListStatus);
+  const blogListError = useSelector(selectPublicBlogListError);
   const titles = ["Insights, Ideas & Stories from Chicking"];
   const [titleIndex, setTitleIndex] = useState(0);
 
   useEffect(() => {
-    dispatch(fetchPublicBlogsList());
-  }, [dispatch]);
+    if (blogListStatus === "idle") {
+      dispatch(fetchPublicBlogsList());
+    }
+  }, [blogListStatus, dispatch]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,7 +53,11 @@ function BlogSections() {
         image={franchiseImg}
       />
       <div data-animate="fade-up">
-        <BlogSection posts={posts} />
+        <BlogSection
+          error={blogListError}
+          isLoading={blogListStatus === "loading"}
+          posts={posts}
+        />
       </div>
 
       <div data-animate="fade-up">

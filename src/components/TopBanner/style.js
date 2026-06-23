@@ -57,7 +57,7 @@ export const BannerContainer = styled.div`
   }
 
   @media (max-width: 480px) {
-    padding: 30px 16px 20px;
+    padding: 30px 0 20px;
   }
 `;
 
@@ -157,12 +157,13 @@ export const BannerImage = styled.img`
 
 export const BottomGraphic = styled.img`
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-
-  object-fit: cover;
+  bottom: -1px;
+  left: -0.2rem;
+  width: calc(100% + 0.4rem);
+  height: clamp(2.65rem, 2.1vw, 3.7rem);
+  background: #ffffff;
+  object-fit: fill;
   z-index: 1;
   pointer-events: none;
+  user-select: none;
 `;

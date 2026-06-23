@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BannerWrapper,
   BannerContainer,
@@ -16,7 +15,11 @@ const TopBanner = ({
   title,
   description,
   image,
+  imageAlt,
 }) => {
+  const resolvedImageAlt =
+    imageAlt || (typeof title === "string" ? title : "Chicking franchise banner");
+
   return (
     <BannerWrapper>
       <BannerContainer>
@@ -25,11 +28,17 @@ const TopBanner = ({
           <Description>{description}</Description>
         </LeftSection>
         <RightSection>
-          <BannerImage src={image} alt="banner"  loading="eager" />
+          <BannerImage
+            src={image}
+            alt={resolvedImageAlt}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
         </RightSection>
       </BannerContainer>
 
-      <BottomGraphic src={tornGraphic} alt="torn-graphic" />
+      <BottomGraphic src={tornGraphic} alt="" aria-hidden="true" />
     </BannerWrapper>
   );
 };
