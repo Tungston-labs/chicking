@@ -57,7 +57,7 @@ export const BannerContainer = styled.div`
   }
 
   @media (max-width: 480px) {
-    padding: 30px 16px 20px;
+    padding: 30px 0 20px;
   }
 `;
 

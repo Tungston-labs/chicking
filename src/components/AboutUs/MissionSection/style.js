@@ -24,7 +24,7 @@ export const Container = styled.div`
 
   @media (max-width: 992px) {
     flex-direction: column;
-    gap: 24px;
+    gap: 32px;
   }
 `;
 
@@ -51,6 +51,7 @@ export const SideImage = styled.div`
   &[data-animate] {
     opacity: 1;
     filter: none;
+    transform: none;
   }
 
   &:hover {
@@ -74,8 +75,8 @@ export const SideImage = styled.div`
     margin: 0 auto;
 
     ${({ $hideOnMobile }) =>
-      $hideOnMobile &&
-      css`
+    $hideOnMobile &&
+    css`
         display: none;
       `}
   }
@@ -109,8 +110,6 @@ export const ContentCard = styled.div`
   flex-direction: column;
   justify-content: center;
   transition:
-    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 680ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 260ms ease,
     box-shadow 260ms ease;
 

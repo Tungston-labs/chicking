@@ -49,8 +49,8 @@ const HeroFirst = () => {
         restaurant chain, and capitalize on a proven business model.
       </HeroSubtitle>
 
-      <HeroButton onClick={() => navigate("/franchiseform")} type="button">
-        Franchise With Us <CiLocationArrow1 aria-hidden="true" />
+      <HeroButton onClick={() => navigate("/global-presence")} type="button">
+        Find Our Locations <CiLocationArrow1 aria-hidden="true" />
       </HeroButton>
 
       <ImageWrapper className={`state-${state}`}>

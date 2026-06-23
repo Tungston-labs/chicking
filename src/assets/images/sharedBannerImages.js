@@ -22,6 +22,7 @@ export const sharedBannerImages = {
     darkArrow: "/images/sharedbanner/darkarrow.svg",
     locationFlag: "/images/sharedbanner/locationflag.svg",
     smiley: "/images/sharedbanner/smiley.svg",
+    whiteArrow: "/images/sharedbanner/whitearrow.svg",
   },
 };
 
