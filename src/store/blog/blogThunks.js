@@ -36,6 +36,16 @@ export const fetchPublicBlogsList = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(getErrorMessage(error, "Unable to load published blogs right now."));
     }
+  },
+  {
+    condition: ({ category } = {}, { getState }) => {
+      if (category) {
+        return true;
+      }
+
+      const { publicItems, publicListStatus } = getState().blogs;
+      return publicListStatus !== "loading" && !(publicListStatus === "succeeded" && publicItems.length > 0);
+    },
   }
 );
 
