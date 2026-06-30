@@ -9,7 +9,7 @@ import {
   BottomGraphic,
 } from "./style";
 
-const tornGraphic = "/images/franchise/bottomthin.png";
+const tornGraphic = "/images/sharedbanner/top.png";
 
 const TopBanner = ({
   title,

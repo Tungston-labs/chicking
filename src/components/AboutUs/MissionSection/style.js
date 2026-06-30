@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 export const Section = styled.section`
   width: 100%;
   padding: 100px 20px;
-  background: #FFFFFF;
+  background: #ffffff;
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -21,7 +21,14 @@ export const Container = styled.div`
   justify-content: center;
   gap: 32px;
   position: relative;
-
+  @media (max-width: 1400px) {
+    gap: 32px;
+    max-width: 930px;
+  }
+  @media (max-width: 1100px) {
+    gap: 32px;
+    max-width: 900px;
+  }
   @media (max-width: 992px) {
     flex-direction: column;
     gap: 32px;
@@ -75,8 +82,8 @@ export const SideImage = styled.div`
     margin: 0 auto;
 
     ${({ $hideOnMobile }) =>
-    $hideOnMobile &&
-    css`
+      $hideOnMobile &&
+      css`
         display: none;
       `}
   }
@@ -113,14 +120,21 @@ export const ContentCard = styled.div`
     transform 260ms ease,
     box-shadow 260ms ease;
 
-  &:hover {
+  &:hover { 
     transform: translateY(-0.25rem);
     box-shadow: 0px 18px 38px rgba(0, 0, 0, 0.11);
   }
-
+  @media (max-width: 1400px) {
+    gap: 32px;
+    padding: 0;
+  }
+  @media (max-width: 1100px) {
+    gap: 32px;
+    padding: 0;
+  }
   @media (max-width: 992px) {
     min-height: auto;
-    padding: 50px 24px;
+    padding: 0;
   }
 `;
 
@@ -187,7 +201,7 @@ export const Description = styled.p`
   margin: 0 auto;
 
   @media (max-width: 768px) {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 28px;
   }
 `;
@@ -221,6 +235,11 @@ export const ArrowWrapper = styled.div`
   justify-content: space-between;
   pointer-events: none;
   z-index: 2;
+
+  @media (max-width: 1439px) {
+    left: -72px;
+    right: -72px;
+  }
 
   @media (max-width: 992px) {
     position: static;
