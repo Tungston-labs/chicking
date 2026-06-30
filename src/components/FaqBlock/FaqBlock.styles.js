@@ -92,7 +92,7 @@ export const FaqVisualImage = styled.img`
           z-index: 2;
           width: clamp(11.5rem, 52%, 20rem);
           transform-origin: 50% 92%;
-          animation: ${pinJump} 0.9s ease-in-out infinite;
+          animation: ${pinJump} 1.3s ease-in-out infinite;
           will-change: transform;
         `
       : css`

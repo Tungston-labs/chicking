@@ -40,10 +40,11 @@ export const Text = styled.p`
 `;
 
 export const ImageStage = styled.div`
-  width: 12.5rem;
+  width: 15rem;
   height: 10.5rem;
   flex-shrink: 0;
   display: inline-flex;
+  margin-left:2rem;
   align-items: center;
   justify-content: center;
   transition:
@@ -67,7 +68,7 @@ export const ImageStage = styled.div`
 export const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transform-origin: center  ;
   animation: ${imageFloat} 2.8s ease-in-out infinite;
   filter: drop-shadow(0 0.7rem 1rem rgba(0, 0, 0, 0.16));

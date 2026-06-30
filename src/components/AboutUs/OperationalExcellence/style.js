@@ -4,8 +4,8 @@ export const Section = styled.section`
   width: 100%;
   overflow: visible;
   font-family: "Poppins", sans-serif;
-  margin-bottom: -3.25rem;
-  padding-bottom: 1rem;
+  margin-bottom: clamp(-2.7rem, -8.1vw, -1.7rem);
+  padding-bottom: 0;
 
   @media (max-width: 1100px) {
     margin-bottom: 0;
@@ -28,11 +28,13 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  min-height: 30rem;
 
   @media (max-width: 1100px) {
     flex-direction: column;
     align-items: flex-start;
     gap: 2.5rem;
+    min-height: 0;
   }
 `;
 
@@ -159,6 +161,7 @@ export const Description = styled.p`
 export const RightContent = styled.div`
   flex: 0 0 min(36%, 31rem);
   min-width: 0;
+  align-self: stretch;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -166,6 +169,7 @@ export const RightContent = styled.div`
   
   @media (max-width: 1100px) {
     width: 100%;
+    align-self: auto;
     justify-content: center;
     padding-bottom: 0;
   }
@@ -176,11 +180,9 @@ export const MainImage = styled.img`
   max-width: 29rem;
   object-fit: contain;
   display: block;
-  transform: translateY(2.75rem);
   
   @media (max-width: 992px) {
     width: min(100%, 23rem);
-    transform: none;
   }
 
   @media (max-width: 768px) {
