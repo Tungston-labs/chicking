@@ -18,7 +18,7 @@ import SharedBanner from "../../SharedBanner";
 
 import sharedBannerImages from "../../../assets/images/sharedBannerImages";
 
-const FranchiseImage = "/images/franchise-image.png";
+const FranchiseImage = "/images/about/chicking1.png";
 
 const BEIGE_TOP = sharedBannerImages.edges.beigeTop;
 
