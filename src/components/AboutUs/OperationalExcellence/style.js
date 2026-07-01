@@ -163,10 +163,10 @@ export const RightContent = styled.div`
   min-width: 0;
   align-self: stretch;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding-bottom: 0;
-  
+  align-items: center;
+  justify-content: center;
+    margin-bottom: 20;
+
   @media (max-width: 1100px) {
     width: 100%;
     align-self: auto;
@@ -180,6 +180,7 @@ export const MainImage = styled.img`
   max-width: 29rem;
   object-fit: contain;
   display: block;
+  margin-bottom: 20;
   
   @media (max-width: 992px) {
     width: min(100%, 23rem);
