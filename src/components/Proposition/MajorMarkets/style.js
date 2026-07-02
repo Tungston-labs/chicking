@@ -20,7 +20,7 @@ export const Wrapper = styled.section`
 export const Container = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(190px, 254px)) minmax(420px, 1fr);
+  grid-template-columns: repeat(3, minmax(90px, 240px)) minmax(420px, 1fr);
   align-items: end;
   justify-content: start;
   gap: clamp(16px, 1.4vw, 24px);
@@ -65,13 +65,13 @@ export const SideCard = styled.div`
 export const CardTop = styled.div`
   background: #B4172B;
   color: white;
-  padding: 28px 14px 24px;
+  padding: 32px 14px 24px;
   text-align: center;
-  min-height: 190px;
+  min-height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   @media(max-width:570px){
     padding:20px 15px;
@@ -83,6 +83,7 @@ export const Country = styled.h3`
   font-size: 18px;
   font-weight:600;
   line-height: 1.35;
+  text-align: center;
 
   @media(max-width:480px){
     font-size:16px;
@@ -104,7 +105,7 @@ export const Button = styled.button`
   color:white;
   border-radius:6px;
   cursor:pointer;
-  margin-top:15px;
+  margin-top:auto;
   font-size:14px;
   font-weight:500;
   transition:
@@ -112,7 +113,7 @@ export const Button = styled.button`
     transform 0.25s ease;
 
   &:hover {
-    background: #d98200;
+    background: #d26900;
     transform: translateY(-1px);
   }
 
@@ -124,17 +125,16 @@ export const Button = styled.button`
 
 export const CardImage = styled.img`
   width:100%;
-  flex:1;
-  min-height: 290px;
-  object-fit:cover;
+  aspect-ratio: 2.4/ 3;
+  object-fit: cover;
   display:block;
 
   @media(max-width:1200px){
-    min-height:260px;
+    aspect-ratio: 4 / 3;
   }
 
   @media(max-width:480px){
-    min-height:220px;
+    aspect-ratio: 4 / 3;
   }
 `;
 
