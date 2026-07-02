@@ -134,7 +134,7 @@ export const FindLocationButton = styled.a`
   min-height: 2.5rem;
   padding: 0 1.375rem;
   border-radius: 0.25rem;
-  background: #F39200;
+  background: #b15b00;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 500;
@@ -145,7 +145,7 @@ export const FindLocationButton = styled.a`
     transform 160ms ease;
 
   &:hover {
-    background: #dd8200;
+    background: #8f4700;
     transform: translateY(-0.0625rem);
   }
 
