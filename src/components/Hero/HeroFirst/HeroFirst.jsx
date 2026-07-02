@@ -69,12 +69,16 @@ const HeroFirst = () => {
             width="120"
             height="120"
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <span>Countries</span>
           <img
             src={homeImages.hero.floating.dottedCount}
             alt=""
             className="dotted-item-count"
+            loading="lazy"
+            decoding="async"
           />
         </FloatingItem>
 
@@ -84,9 +88,11 @@ const HeroFirst = () => {
             width="120"
             height="120"
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <span>Locations</span>
-          <img src={homeImages.hero.floating.dotted} alt="" className="dotted-item" />
+          <img src={homeImages.hero.floating.dotted} alt="" className="dotted-item" loading="lazy" decoding="async" />
         </FloatingItem>
 
         <FloatingItem className="rightCenter">
@@ -95,13 +101,15 @@ const HeroFirst = () => {
             width="120"
             height="120"
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <span>Years of excellence</span>
-          <img src={homeImages.hero.floating.dotted} alt="" className="dotted-item" />
+          <img src={homeImages.hero.floating.dotted} alt="" className="dotted-item" loading="lazy" decoding="async" />
         </FloatingItem>
 
         <FloatingItem className="star">
-          <img src={homeImages.hero.floating.star} width="120" height="120" alt="" />
+          <img src={homeImages.hero.floating.star} width="120" height="120" alt="" loading="lazy" decoding="async" />
         </FloatingItem>
 
 
