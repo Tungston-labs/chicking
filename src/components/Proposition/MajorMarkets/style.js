@@ -125,7 +125,7 @@ export const Button = styled.button`
 
 export const CardImage = styled.img`
   width:100%;
-  aspect-ratio: 2.4/ 3;
+  aspect-ratio: 2/ 3;
   object-fit: cover;
   display:block;
 

@@ -44,7 +44,7 @@ const BlogCard = ({
       onClick={(event) => event.stopPropagation()}
       to={articlePath}
     >
-      <img src={image} alt={title || excerpt || "Article image"} loading="lazy" decoding="async" />
+      <img src={image} alt={title || excerpt || "Article image"} />
       {isVideo && (
         <PlayButton>
           <FaPlay aria-hidden="true" />
@@ -63,7 +63,7 @@ const BlogCard = ({
       tabIndex={0}
     >
       <AuthorRow>
-        <Avatar src="/images/logo.svg" alt={author ? `${author} avatar` : "Author avatar"} loading="lazy" decoding="async" />
+        <Avatar src="/images/logo.svg" alt={author ? `${author} avatar` : "Author avatar"} />
         <div>
           <AuthorName>{author}</AuthorName>
           <MetaLine>{date} / {readTime}</MetaLine>

@@ -7,7 +7,7 @@ const ReasonCard = ({ image, text, title }) => (
       <Text>{text}</Text>
     </div>
     <ImageStage>
-      <Image src={image} alt={title || ""} aria-hidden={title ? undefined : "true"} loading="lazy" decoding="async" />
+      <Image src={image} alt={title || ""} aria-hidden={title ? undefined : "true"} />
     </ImageStage>
   </Card>
 );
