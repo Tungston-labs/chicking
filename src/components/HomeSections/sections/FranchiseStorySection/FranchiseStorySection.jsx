@@ -51,7 +51,7 @@ const FranchiseStorySection = () => {
           $position="left"
           $direction={slideDirection}
         >
-          <StoryImage src={previousStory.image} alt="" />
+          <StoryImage src={previousStory.image} alt={previousStory.author || ""} aria-hidden={previousStory.author ? undefined : "true"} />
           <CarouselArrow
             type="button"
             $position="left"
@@ -103,7 +103,7 @@ const FranchiseStorySection = () => {
                 </StoryCardMeta>
               </StoryCardCopy>
               <StoryImagePanel $direction={slideDirection}>
-                <StoryImage src={story.image} alt="" />
+                <StoryImage src={story.image} alt={story.author || ""} aria-hidden={story.author ? undefined : "true"} />
               </StoryImagePanel>
             </StoryCard>
             <CarouselArrow
