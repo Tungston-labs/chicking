@@ -115,7 +115,11 @@ export const BannerFeatures = ({ features = [] }) => {
         >
           {feature.icon && (
             <BannerFeatureIcon>
-              <img src={feature.icon} alt="" />
+              <img
+                src={feature.icon}
+                alt={feature.title || ""}
+                aria-hidden={feature.title ? undefined : "true"}
+              />
             </BannerFeatureIcon>
           )}
           <BannerFeatureContent>
