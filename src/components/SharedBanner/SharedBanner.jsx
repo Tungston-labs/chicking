@@ -47,7 +47,7 @@ const renderEdge = ({
   forceEdgeImages,
   position,
 }) => {
-    if (
+  if (
     shouldUseRasterEdge({ background, edgeColor, edgeImage, forceEdgeImages })
   ) {
     return (
@@ -55,8 +55,6 @@ const renderEdge = ({
         aria-hidden="true"
         alt=""
         src={edgeImage}
-        loading="lazy"
-        decoding="async"
         $edgeColor={edgeColor}
         $position={position}
       />
@@ -121,8 +119,6 @@ export const BannerFeatures = ({ features = [] }) => {
                 src={feature.icon}
                 alt={feature.title || ""}
                 aria-hidden={feature.title ? undefined : "true"}
-                loading="lazy"
-                decoding="async"
               />
             </BannerFeatureIcon>
           )}

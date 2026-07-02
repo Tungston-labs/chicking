@@ -59,7 +59,7 @@ const MajorMarkets = () => {
               </Button>
             </CardTop>
 
-            <CardImage src={card.image} alt={card.imageAlt} loading="lazy" decoding="async" />
+            <CardImage src={card.image} alt={card.imageAlt} />
           </SideCard>
         ))}
 
