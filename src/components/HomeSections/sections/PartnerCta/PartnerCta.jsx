@@ -8,7 +8,7 @@ import {
 
 const defaultAction = {
   to: "/franchiseform",
-  label: "Franchise With Us",
+  label: "Franchise Inquiry",
 };
 
 const defaultTitle = (
