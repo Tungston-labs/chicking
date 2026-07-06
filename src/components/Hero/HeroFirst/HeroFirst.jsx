@@ -60,8 +60,9 @@ const HeroFirst = () => {
 
   return (
     <HeroFirstContainer>
-      <HeroTitle>{texts[index]}</HeroTitle>
-
+<HeroTitle key={index}>
+  {texts[index]}
+</HeroTitle>
       <HeroSubtitle>
         Join Chicking, the world's fastest-growing Halal quick-service
         restaurant chain, and capitalize on a proven business model.
