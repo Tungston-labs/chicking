@@ -4,11 +4,12 @@ import homeImages from "../../../assets/images/homeImages.js";
 const slideUp = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translate3d(0,44px,0);
   }
+
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0,0,0);
   }
 `;
 
@@ -31,8 +32,9 @@ export const HeroTitle = styled.h1`
   text-align: center;
   color: #000;
   margin: 0;
-  animation: ${slideUp} 0.5s ease;
+  animation: ${slideUp} 350ms cubic-bezier(.22,1,.36,1);
 
+  will-change: transform, opacity;
   strong {
     font-weight: 700;
   }
