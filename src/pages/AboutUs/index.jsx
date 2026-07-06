@@ -58,7 +58,7 @@ const AboutUs = () => {
         description="BFI doesn't just provide a brand name; we deliver a complete chicking franchise business system backed by 20 years of operational expertise. From day one of your franchise journey through years of growth, our team remains dedicated to your profitability and success."
         action={{
           to: "/franchiseform",
-          label: "Franchise With Us",
+          label: "Franchise Inquiry",
         }}
       />
     </div>
