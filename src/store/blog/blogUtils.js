@@ -1,4 +1,34 @@
 import { blogPosts as fallbackBlogPosts } from "../../components/HomeSections/data/homeSectionsData.js";
+import { API_BASE_URL } from "../../api/client.js";
+
+const resolveBlogImageSource = (source = "") => {
+  if (!source || typeof source !== "string") {
+    return source;
+  }
+
+  const trimmedSource = source.trim();
+  if (/^https?:\/\//i.test(trimmedSource)) {
+    return trimmedSource;
+  }
+
+  if (trimmedSource.startsWith("/uploads/")) {
+    return trimmedSource;
+  }
+
+  if (trimmedSource.startsWith("uploads/")) {
+    return `/${trimmedSource}`;
+  }
+
+  if (trimmedSource.startsWith("/api/")) {
+    return trimmedSource;
+  }
+
+  if (trimmedSource.startsWith("/")) {
+    return trimmedSource;
+  }
+
+  return `${API_BASE_URL}/${trimmedSource}`;
+};
 
 export const BLOG_PAGE_SIZE = 5;
 export const BLOG_FETCH_PAGE_SIZE = 100;
@@ -263,7 +293,8 @@ export const normalizeBlog = (blog) => {
   const contentHtml = toContentHtml(contentSource);
   const contentBlocks = splitContent(blog.content);
   const publishDateValue = toInputDate(blog.publishedAt) || toInputDate(blog.date);
-  const contentImage = extractFirstImageSrc(contentHtml || contentSource);
+  const contentImage = resolveBlogImageSource(extractFirstImageSrc(contentHtml || contentSource));
+  const blogImage = resolveBlogImageSource(blog.image || "");
 
   return {
     ...blog,
@@ -275,7 +306,7 @@ export const normalizeBlog = (blog) => {
     contentText: joinContent(htmlToPlainText(contentHtml || contentSource || "")),
     date: blog.date || formatDateLabel(publishDateValue),
     featuredVideo: blog.isVideo ? blog.url || "" : "",
-    image: contentImage || blog.image || fallbackImage,
+    image: contentImage || blogImage || fallbackImage,
     pendingComments: Number(blog.pendingComments || 0),
     publishDateValue,
     publishedAt: normalizePublishedAt(blog.publishedAt, blog.date),

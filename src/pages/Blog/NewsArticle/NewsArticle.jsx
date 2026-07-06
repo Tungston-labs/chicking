@@ -34,7 +34,7 @@ import {
 } from "../../../store/blog/blogSlice.js";
 import { extractFirstImageSrc, stripFirstImageFromHtml } from "../../../store/blog/blogUtils.js";
 
-const franchiseImg = "/images/blog/blog1.svg";
+const franchiseImg = `${import.meta.env.BASE_URL}images/blog/blog1.svg`;
 
 function NewsArticle() {
   const dispatch = useDispatch();

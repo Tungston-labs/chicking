@@ -13,7 +13,7 @@ import {
   selectPublishedBlogs,
 } from "../../store/blog/blogSlice.js";
 
-const franchiseImg = "/images/blog/blog1.svg";
+const franchiseImg = `${import.meta.env.BASE_URL}images/blog/blog1.svg`;
 
 function BlogSections() {
   const dispatch = useDispatch();
