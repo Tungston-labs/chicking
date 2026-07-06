@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "../components/ProtectedRoute.jsx";
 import PublicOnlyRoute from "../components/PublicOnlyRoute.jsx";
+import LoadingFallback from "../components/Common/LoadingFallback.jsx";
 
 const AboutUs = lazy(() => import("../pages/AboutUs/index.jsx"));
 const BlogSections = lazy(() => import("../pages/Blog/BlogSection"));
@@ -134,7 +135,7 @@ const pageRoutes = [
 ];
 
 const AppRoutes = () => (
-  <Suspense fallback={null}>
+  <Suspense fallback={<LoadingFallback />}>
     <Routes>
       {pageRoutes.map(({ element, path }) => (
         <Route key={path} element={element} path={path} />

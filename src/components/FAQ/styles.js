@@ -88,7 +88,7 @@ vertical-align: middle;
 
 export const Answer = styled.div`
   background:#FBF7E8;
-  padding:40px 70px;
+  padding:40px 20px;
 
 font-style: Medium;
 font-size: 1rem;

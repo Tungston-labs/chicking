@@ -7,6 +7,29 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'vendor-react';
+              }
+              if (id.includes('@reduxjs') || id.includes('react-redux')) {
+                return 'vendor-redux';
+              }
+              return 'vendor';
+            }
+          },
+        },
+      },
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+        },
+      },
+    },
     server: proxyTarget
       ? {
           proxy: {

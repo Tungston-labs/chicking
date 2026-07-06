@@ -36,18 +36,18 @@ export const HeroTitle = styled.h1`
   strong {
     font-weight: 700;
   }
-   @media (max-width: 1023px) {
-   font-size: 2.5rem;
-    }
-     @media (max-width: 767px) {
-      font-size: 2rem;
-      min-height: auto;
-    }
+  @media (max-width: 1023px) {
+    font-size: 2.5rem;
+  }
+  @media (max-width: 767px) {
+    font-size: 2rem;
+    min-height: auto;
+  }
 
-    @media (max-width: 480px) {
-      font-size: 1.7rem;
-      line-height: 1.2;
-    }
+  @media (max-width: 480px) {
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
 `;
 
 export const HeroSubtitle = styled.p`
@@ -136,9 +136,10 @@ export const ImageWrapper = styled.div`
     transform: translate(-50%, -50%);
 
     z-index: 0;
-    opacity: 0.10;
+    opacity: 0.1;
 
-    animation: floatBg 6s ease-in-out infinite;
+    animation: ${({ $animate }) =>
+      $animate ? "floatBg 6s ease-in-out infinite" : "none"};
   }
 
   @keyframes floatBg {
@@ -153,7 +154,6 @@ export const ImageWrapper = styled.div`
     }
   }
 
-  
   .left {
     left: -120px;
     top: 10%;
@@ -177,34 +177,34 @@ export const ImageWrapper = styled.div`
   .left::after {
     transform: translateX(-50%) rotate(-40deg);
   }
-&.state-0 {
-  .left {
-    transform: translate(0, -50%);
-  }
+  &.state-0 {
+    .left {
+      transform: translate(0, -50%);
+    }
 
-  .rightTop {
-    transform: translate(0, 0);
-  }
+    .rightTop {
+      transform: translate(0, 0);
+    }
 
-  .rightCenter {
-    transform: translate(0, -50%);
-  }
+    .rightCenter {
+      transform: translate(0, -50%);
+    }
 
-  .star {
-    transform: translate(0, 0);
+    .star {
+      transform: translate(0, 0);
+    }
   }
-}
   &.state-1 {
     .left {
       transform: translate(-20px, -30%);
     }
     .rightTop {
-      transform: translate(180px, 140px);
-    }
+    transform: translate(60px, 40px);
+}
     .rightCenter {
       transform: translate(0, -20%);
     }
-      .star {
+    .star {
       transform: translate(-50px, -80%);
     }
   }
@@ -214,17 +214,17 @@ export const ImageWrapper = styled.div`
       transform: translate(0, -20%);
     }
     .rightTop {
-      transform: translateX(180px) translateY(480px);
+      transform: translate(60px, 80px);
     }
     .rightCenter {
-      transform: translateX(-960px) translateY(-20%);
+      transform: translate(-180px, -20%);
     }
     .star {
       transform: translate(50px, -100%);
     }
   }
 
-    @media (max-width: 1300px) {
+  @media (max-width: 1300px) {
     .left {
       left: -80px;
     }
@@ -238,8 +238,8 @@ export const ImageWrapper = styled.div`
         transform: translate(80px, 10px);
       }
       .rightCenter {
-      transform: translate(-40px, -10%);
-    }
+        transform: translate(-40px, -10%);
+      }
       .star {
         transform: translate(-30px, -60%);
       }
@@ -258,7 +258,6 @@ export const ImageWrapper = styled.div`
     }
   }
 
-
   @media (max-width: 1023px) {
     .left {
       left: -2rem;
@@ -276,7 +275,7 @@ export const ImageWrapper = styled.div`
       top: 48%;
       transform: translateY(-50%);
     }
-    
+
     .star {
       right: -1.5rem;
       top: 8%;
@@ -302,7 +301,6 @@ export const ImageWrapper = styled.div`
       }
     }
   }
-
 
   @media (max-width: 767px) {
     max-width: 22rem;
@@ -371,7 +369,6 @@ export const MainImage = styled.img`
   }
 `;
 
-
 export const FloatingItem = styled.div`
   position: absolute;
   z-index: 3;
@@ -379,9 +376,9 @@ export const FloatingItem = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 1.2rem;
-transition:
-  transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
-  opacity 0.8s ease;
+  transition:
+    transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.8s ease;
   span {
     z-index: 2;
     white-space: nowrap;
@@ -414,7 +411,8 @@ transition:
     height: 7rem;
     z-index: 1;
     pointer-events: none;
-transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);  }
+    transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
   &.left .dotted-item-count {
     top: 60%;
@@ -426,7 +424,6 @@ transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);  }
     top: 70%;
     right: 60%;
   }
-
 
   @media (max-width: 1300px) {
     padding: 1rem;
@@ -486,7 +483,6 @@ transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);  }
       top: 75%;
     }
   }
-
 
   @media (max-width: 768px) {
     position: absolute;
