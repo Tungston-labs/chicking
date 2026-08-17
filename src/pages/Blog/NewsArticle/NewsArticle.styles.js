@@ -124,7 +124,7 @@ letter-spacing: 0%;
 
 `;
 
-export const Date = styled.div`
+export const ArticleDate = styled.div`
 color:#757575;
 font-weight: 400;
 font-style: Regular;
@@ -253,11 +253,14 @@ export const Content = styled.div`
   @media (max-width: 768px) {
     font-size: 16px;
     line-height: 1.8;
+        max-width: 3rem;
+
   }
 
   @media (max-width: 570px) {
     font-size: 14px;
     line-height: 1.7;
+    max-width: 3rem;
   }
 `;
 export const CommentSection = styled.section`

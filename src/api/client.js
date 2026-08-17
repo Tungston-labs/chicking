@@ -7,7 +7,19 @@ import {
 const DEFAULT_API_BASE_URL = "http://127.0.0.1:8000";
 const ACCESS_TOKEN_REFRESH_BUFFER_MS = 15 * 1000;
 
-export const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || DEFAULT_API_BASE_URL).replace(/\/+$/, "");
+const removeTrailingSlashes = (url) => {
+  let normalizedUrl = url;
+
+  while (normalizedUrl.endsWith("/")) {
+    normalizedUrl = normalizedUrl.slice(0, -1);
+  }
+
+  return normalizedUrl;
+};
+
+export const API_BASE_URL = removeTrailingSlashes(
+  import.meta.env.VITE_API_BASE_URL || DEFAULT_API_BASE_URL
+);
 
 let refreshPromise = null;
 

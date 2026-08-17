@@ -463,7 +463,7 @@ export const Input = styled.input`
   padding-bottom: 0.65rem;
   padding-left: ${({ $hasIcon }) => ($hasIcon ? "2.35rem" : "0.95rem")};
   border: 0.0625rem solid ${authBorder};
-  border-radius: ${({ $rounded = false }) => ($rounded ? "0.2rem" : "0.2rem")};
+  border-radius: ${({ $rounded = false }) => ($rounded ? "999rem" : "0.2rem")};
   background: #ffffff;
   color: ${authText};
   font-size: 0.8rem;

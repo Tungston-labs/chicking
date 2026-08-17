@@ -15,11 +15,13 @@ import {
   Title,
 } from "./BlogCard.styles.js";
 
-const getContentPreview = (value = "") =>
-  value
-    .replace(/<[^>]+>/g, " ")
+const getContentPreview = (value = "") => {
+  const document = new DOMParser().parseFromString(value, "text/html");
+
+  return document.body.textContent
     .replace(/\s+/g, " ")
     .trim();
+};
 
 const BlogCard = ({
   author,

@@ -7,7 +7,7 @@ import SiteFooter from '../../components/HomeSections/sections/SiteFooter';
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 
 const faqImg = "/images/faq/faq1.svg";
-function index() {
+function Index() {
     const titles = [
         "Frequently Asked Questions?",
         "Let’s Clear Things Up",
@@ -68,4 +68,4 @@ function index() {
     )
 }
 
-export default index
+export default Index

@@ -469,6 +469,24 @@ export const PostExcerpt = styled.span`
   line-height: 1.5;
 `;
 
+const STATUS_BACKGROUND = {
+  Published: "rgba(51, 183, 111, 0.12)",
+  Draft: "rgba(255, 173, 72, 0.14)",
+};
+
+const STATUS_COLOR = {
+  Published: "#33b76f",
+  Draft: "#ff9d3c",
+};
+const STATUS_SELECT_BACKGROUND = {
+  Published: "rgba(51, 183, 111, 0.12)",
+  Draft: "rgba(255, 173, 72, 0.14)",
+};
+
+const STATUS_SELECT_COLOR = {
+  Published: "#2f9f61",
+  Draft: "#d68120",
+};
 export const StatusPill = styled.span`
   display: inline-flex;
   align-items: center;
@@ -477,13 +495,9 @@ export const StatusPill = styled.span`
   padding: 0.35rem 0.65rem;
   border-radius: 999rem;
   background: ${({ $status }) =>
-    $status === "Published"
-      ? "rgba(51, 183, 111, 0.12)"
-      : $status === "Draft"
-        ? "rgba(255, 173, 72, 0.14)"
-        : "rgba(255, 97, 97, 0.14)"};
+    STATUS_BACKGROUND[$status] || "rgba(255, 97, 97, 0.14)"};
   color: ${({ $status }) =>
-    $status === "Published" ? "#33b76f" : $status === "Draft" ? "#ff9d3c" : "#ff6161"};
+    STATUS_COLOR[$status] || "#ff6161"};
   font-size: 0.68rem;
   font-weight: 600;
 `;
@@ -494,19 +508,14 @@ export const StatusSelect = styled.select`
   border: 0;
   border-radius: 999rem;
   background: ${({ $status }) =>
-    $status === "Published"
-      ? "rgba(51, 183, 111, 0.12)"
-      : $status === "Draft"
-        ? "rgba(255, 173, 72, 0.14)"
-        : "rgba(255, 97, 97, 0.14)"};
+    STATUS_SELECT_BACKGROUND[$status] || "rgba(255, 97, 97, 0.14)"};
   color: ${({ $status }) =>
-    $status === "Published" ? "#2f9f61" : $status === "Draft" ? "#d68120" : "#d64d4d"};
+    STATUS_SELECT_COLOR[$status] || "#d64d4d"};
   font-size: 0.7rem;
   font-weight: 600;
   outline: none;
   cursor: pointer;
 `;
-
 export const ActionGroup = styled.div`
   display: flex;
   flex-wrap: ${({ $nowrap }) => ($nowrap ? "nowrap" : "wrap")};

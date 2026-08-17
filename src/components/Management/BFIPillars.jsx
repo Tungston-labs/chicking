@@ -20,31 +20,34 @@ import {
     supportData
 } from "./leadershipData";
 const awardIcon = "/images/proposition/medal.svg";
+const FADE_DURATION = 700;
+const SLIDE_DURATION = 3000;
+
 const BFIPillars = () => {
-    const [currentImage, setCurrentImage] = useState(0);
-    const [fade, setFade] = useState(true);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [fade, setFade] = useState(true);
 
-    useEffect(() => {
+  const showNextImage = () => {
+    setCurrentImage((prev) => (prev + 1) % sliderImages.length);
+    setFade(true);
+  };
 
-        const interval = setInterval(() => {
+  useEffect(() => {
+    let timeoutId;
 
-            setFade(false);
+    const changeImage = () => {
+      setFade(false);
+      timeoutId = setTimeout(showNextImage, FADE_DURATION);
+    };
 
-            setTimeout(() => {
+    const interval = setInterval(changeImage, SLIDE_DURATION);
 
-                setCurrentImage(
-                    prev => (prev + 1) % sliderImages.length
-                );
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutId);
+    };
+  }, []);
 
-                setFade(true);
-
-            }, 700);
-
-        }, 3000);
-
-        return () => clearInterval(interval);
-
-    }, []);
 
     return (
         <Wrapper>

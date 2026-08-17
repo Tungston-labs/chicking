@@ -38,6 +38,9 @@ const EMPTY_PUBLISHED_AT = "---";
 
 const fallbackImage = fallbackBlogPosts[0]?.image || null;
 
+const isObject = (value) => typeof value === "object" && value !== null;
+const isBlankString = (value) => typeof value !== "string" || !value.trim();
+
 const monthLookup = {
   Apr: "04",
   Aug: "08",
@@ -63,13 +66,15 @@ const reverseMonthLookup = {
   "07": "Jul",
   "08": "Aug",
   "09": "Sep",
-  "10": "Oct",
-  "11": "Nov",
-  "12": "Dec",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec",
 };
 
 export const normalizeBlogStatus = (status = "") => {
-  const normalizedStatus = String(status || "").trim().toLowerCase();
+  const normalizedStatus = String(status || "")
+    .trim()
+    .toLowerCase();
 
   if (normalizedStatus === "published") {
     return "Published";
@@ -85,15 +90,15 @@ export const normalizeBlogStatus = (status = "") => {
 
   return typeof status === "string" ? status.trim() : "";
 };
-
-export const slugifyTitle = (title = "") =>
-  title
+export const slugifyTitle = (title) =>
+  String(title ?? "")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 60);
 
-export const createClientBlogId = (title = "") => `${slugifyTitle(title) || "blog-post"}-${Date.now().toString(36)}`;
+export const createClientBlogId = (title) =>
+  `${slugifyTitle(title) || "blog-post"}-${Date.now().toString(36)}`;
 
 const formatDateLabel = (inputDate) => {
   if (!inputDate) {
@@ -167,14 +172,17 @@ const escapeHtml = (value = "") =>
 const hasHtmlTags = (value = "") => /<\/?[a-z][\s\S]*>/i.test(value);
 
 export const extractFirstImageSrc = (value = "") => {
-  if (typeof value !== "string" || !value.trim()) {
+  if (isBlankString(value)) {
     return "";
   }
 
   if (typeof DOMParser !== "undefined") {
     try {
       const document = new DOMParser().parseFromString(value, "text/html");
-      const imageSource = document.querySelector("img")?.getAttribute("src")?.trim();
+      const imageSource = document
+        .querySelector("img")
+        ?.getAttribute("src")
+        ?.trim();
 
       if (imageSource) {
         return imageSource;
@@ -184,13 +192,15 @@ export const extractFirstImageSrc = (value = "") => {
     }
   }
 
-  const imageMatch = value.match(/<img\b[^>]*\bsrc=(["']?)([^"'\s>]+)\1[^>]*>/i);
+  const imageMatch = value.match(
+    /<img\b[^>]*\bsrc=(["']?)([^"'\s>]+)\1[^>]*>/i,
+  );
 
   return imageMatch?.[2]?.trim() || "";
 };
 
 export const stripFirstImageFromHtml = (value = "") => {
-  if (typeof value !== "string" || !value.trim()) {
+  if (isBlankString(value)) {
     return "";
   }
 
@@ -209,7 +219,9 @@ export const stripFirstImageFromHtml = (value = "") => {
       if (
         parentElement &&
         !parentElement.querySelector("img, video, iframe") &&
-        !Array.from(parentElement.childNodes).some((node) => node.nodeType === 3 && node.textContent?.trim())
+        !Array.from(parentElement.childNodes).some(
+          (node) => node.nodeType === 3 && node.textContent?.trim(),
+        )
       ) {
         parentElement.remove();
       }
@@ -254,7 +266,9 @@ const toContentHtml = (content) => {
     return "";
   }
 
-  return paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("");
+  return paragraphs
+    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+    .join("");
 };
 
 const splitContent = (content) => {
@@ -266,7 +280,9 @@ const splitContent = (content) => {
     return [];
   }
 
-  const normalizedContent = hasHtmlTags(content) ? htmlToPlainText(content) : content;
+  const normalizedContent = hasHtmlTags(content)
+    ? htmlToPlainText(content)
+    : content;
 
   return normalizedContent
     .split(/\n{2,}/)
@@ -289,11 +305,18 @@ export const normalizeBlog = (blog) => {
     return null;
   }
 
-  const contentSource = Array.isArray(blog.content) ? blog.content.filter(Boolean).join("\n\n") : blog.content || "";
+  const contentSource = Array.isArray(blog.content)
+    ? blog.content.filter(Boolean).join("\n\n")
+    : typeof blog.content === "string"
+    ? blog.content
+    : "";
   const contentHtml = toContentHtml(contentSource);
   const contentBlocks = splitContent(blog.content);
-  const publishDateValue = toInputDate(blog.publishedAt) || toInputDate(blog.date);
-  const contentImage = resolveBlogImageSource(extractFirstImageSrc(contentHtml || contentSource));
+  const publishDateValue =
+    toInputDate(blog.publishedAt) || toInputDate(blog.date);
+  const contentImage = resolveBlogImageSource(
+    extractFirstImageSrc(contentHtml || contentSource),
+  );
   const blogImage = resolveBlogImageSource(blog.image || "");
 
   return {
@@ -303,7 +326,9 @@ export const normalizeBlog = (blog) => {
     comments: Number(blog.comments || 0),
     content: contentBlocks,
     contentHtml,
-    contentText: joinContent(htmlToPlainText(contentHtml || contentSource || "")),
+    contentText: joinContent(
+      htmlToPlainText(contentHtml || contentSource || ""),
+    ),
     date: blog.date || formatDateLabel(publishDateValue),
     featuredVideo: blog.isVideo ? blog.url || "" : "",
     image: contentImage || blogImage || fallbackImage,
@@ -312,7 +337,10 @@ export const normalizeBlog = (blog) => {
     publishedAt: normalizePublishedAt(blog.publishedAt, blog.date),
     readTime: blog.readTime || "2 min Read",
     status: normalizeBlogStatus(blog.status),
-    tags: Array.isArray(blog.tags) && blog.tags.length ? blog.tags : [blog.category].filter(Boolean),
+    tags:
+      Array.isArray(blog.tags) && blog.tags.length
+        ? blog.tags
+        : [blog.category].filter(Boolean),
     views: Number(blog.views || 0),
   };
 };
@@ -322,7 +350,7 @@ const extractBlogCollection = (payload) => {
     return payload;
   }
 
-  if (!payload || typeof payload !== "object") {
+  if (!isObject(payload)) {
     return [];
   }
 
@@ -350,7 +378,7 @@ export const normalizeBlogList = (payload) => {
 };
 
 const extractSingleBlog = (payload) => {
-  if (!payload || typeof payload !== "object") {
+  if (!isObject(payload)) {
     return payload;
   }
 
@@ -369,7 +397,8 @@ const extractSingleBlog = (payload) => {
   return payload;
 };
 
-export const unwrapBlogPayload = (payload) => normalizeBlog(extractSingleBlog(payload));
+export const unwrapBlogPayload = (payload) =>
+  normalizeBlog(extractSingleBlog(payload));
 
 const resolvePublishedAt = ({ existingBlog, publishDate, status }) => {
   if (publishDate) {
@@ -377,7 +406,8 @@ const resolvePublishedAt = ({ existingBlog, publishDate, status }) => {
   }
 
   if (status === "Published") {
-    return existingBlog?.publishedAt && existingBlog.publishedAt !== EMPTY_PUBLISHED_AT
+    return existingBlog?.publishedAt &&
+      existingBlog.publishedAt !== EMPTY_PUBLISHED_AT
       ? existingBlog.publishedAt
       : new Date().toISOString();
   }
@@ -385,14 +415,21 @@ const resolvePublishedAt = ({ existingBlog, publishDate, status }) => {
   return undefined;
 };
 
-export const buildBlogRequestPayload = ({ existingBlog, formValues, status }) => ({
+export const buildBlogRequestPayload = ({
+  existingBlog,
+  formValues,
+  status,
+}) => ({
   author: formValues.author.trim(),
   authorRole: existingBlog?.authorRole || DEFAULT_AUTHOR_ROLE,
   category: formValues.category.trim(),
   content: formValues.content.trim(),
   excerpt: formValues.excerpt.trim(),
   id: existingBlog?.id || createClientBlogId(formValues.title),
-  image: extractFirstImageSrc(formValues.content) || existingBlog?.image || fallbackImage,
+  image:
+    extractFirstImageSrc(formValues.content) ||
+    existingBlog?.image ||
+    fallbackImage,
   isVideo: Boolean(formValues.featuredVideo.trim()),
   publishedAt: resolvePublishedAt({
     existingBlog,
@@ -423,16 +460,25 @@ export const buildBlogCounts = (posts) =>
     (accumulator, post) => ({
       ...accumulator,
       total: accumulator.total + 1,
-      [post.status.toLowerCase()]: (accumulator[post.status.toLowerCase()] || 0) + 1,
+      [post.status.toLowerCase()]:
+        (accumulator[post.status.toLowerCase()] || 0) + 1,
     }),
-    { total: 0, published: 0, draft: 0, trash: 0 }
+    { total: 0, published: 0, draft: 0, trash: 0 },
   );
 
 export const getBlogFilterOptions = (posts) => ({
   authors: [...new Set(posts.map((post) => post.author).filter(Boolean))],
   categories: [...new Set(posts.map((post) => post.category).filter(Boolean))],
-  months: [...new Set(posts.map((post) => getBlogMonthLabel(post.publishDateValue)).filter(Boolean))],
+  months: [
+    ...new Set(
+      posts
+        .map((post) => getBlogMonthLabel(post.publishDateValue))
+        .filter(Boolean),
+    ),
+  ],
 });
 
 export const getFallbackPublishedBlogs = (limit = 4) =>
-  fallbackBlogPosts.filter((post) => normalizeBlogStatus(post.status) === "Published").slice(0, limit);
+  fallbackBlogPosts
+    .filter((post) => normalizeBlogStatus(post.status) === "Published")
+    .slice(0, limit);

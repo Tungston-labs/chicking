@@ -11,7 +11,7 @@ import {
   BannerWrap,
   Container,
   Content,
-  Date,
+  ArticleDate,
   Excerpt,
   MetaRow,
   Name,
@@ -120,7 +120,7 @@ function NewsArticle() {
                   </AuthorWrap>
                 </div>
 
-                <Date>{post.date}</Date>
+                <ArticleDate>{post.date}</ArticleDate>
               </MetaRow>
 
               {articleCoverImage || post.image ? (

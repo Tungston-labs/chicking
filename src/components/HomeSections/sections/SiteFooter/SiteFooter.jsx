@@ -34,8 +34,19 @@ const icons = {
   phone: <FiPhoneCall />,
 };
 
-const normalizePath = (path) => (path === "/" ? "/" : path.replace(/\/+$/, ""));
+const normalizePath = (path) => {
+  if (path === "/") {
+    return "/";
+  }
 
+  let normalizedPath = path;
+
+  while (normalizedPath.endsWith("/")) {
+    normalizedPath = normalizedPath.slice(0, -1);
+  }
+
+  return normalizedPath;
+};
 const isActivePath = (currentPath, itemPath) => {
   const normalizedCurrentPath = normalizePath(currentPath);
   const normalizedItemPath = normalizePath(itemPath);

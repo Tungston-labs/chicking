@@ -12,11 +12,13 @@ const buildReplyPayloads = (payload) => {
       ? payload.trim()
       : String(payload?.message || payload?.reply || payload?.content || "").trim();
 
-  if (message) {
-    variants.push({ message });
-    variants.push({ reply: message });
-    variants.push({ content: message });
-  }
+if (message) {
+  variants.push(
+    { message },
+    { reply: message },
+    { content: message }
+  );
+}
 
   return variants.filter(
     (variant, index, currentVariants) =>

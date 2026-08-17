@@ -8,20 +8,18 @@ const ReasonsSection = () => (
     background="#891b1c"
     description={
       <>
-        Chicking aims to be the top choice for dining out, known for
-        bringing unmatched happiness with our one-of-a-kind menu items.
-        We strive for a future where all patrons savor our delicious
-        dishes, leading the way in fast-food quality.
+        Chicking aims to be the top choice for dining out, known for bringing
+        unmatched happiness with our one-of-a-kind menu items. We strive for a
+        future where all patrons savor our delicious dishes, leading the way in
+        fast-food quality.
       </>
     }
     edgeColor="#ffffff"
     title={
       <>
-        We&apos;re Here To
-     
-        <strong> Revolutionize</strong> The <br></br>World
-      
-        With Best <strong>Fried Chicken</strong>
+        We&apos;re Here To <strong>Revolutionize</strong> The
+        <br />
+        World With Best <strong>Fried Chicken</strong>
       </>
     }
   >
