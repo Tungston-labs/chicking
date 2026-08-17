@@ -225,8 +225,8 @@ export const MapSurface = styled.div`
     top: 1.18rem;
     left: 50%;
     z-index: 1;
-    width: 2.15rem;
-    height: 1.1rem;
+    width: 1.85rem;
+    height: 1.85rem;
     border-radius: 999rem;
     background: #ffffff;
     box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1);

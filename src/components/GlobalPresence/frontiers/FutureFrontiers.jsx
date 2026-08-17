@@ -70,7 +70,7 @@ const FutureFrontiers = () => {
               <FrontierMarket>{market.market}</FrontierMarket>
               <FrontierStatus>{market.status}</FrontierStatus>
               <FrontierAction
-                to={`/franchiseform?territory=${encodeURIComponent(market.market)}`}
+                to={`/franchiseform?country=${encodeURIComponent(market.market)}`}
               >
                 Express Interest
                 <FiArrowRight aria-hidden="true" />

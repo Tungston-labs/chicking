@@ -1,5 +1,6 @@
 import { FaComment, FaEye, FaHeart, FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { slugifyTitle } from "../../../../store/blog/blogUtils.js";
 import {
   AuthorName,
   AuthorRow,
@@ -36,7 +37,7 @@ const BlogCard = ({
 }) => {
   const navigate = useNavigate();
   const contentPreview = getContentPreview(contentText || "");
-  const articlePath = `/new-articles/${id}`;
+  const articlePath = `/post/${slugifyTitle(title) || id}`;
 
   return (
   <Card>

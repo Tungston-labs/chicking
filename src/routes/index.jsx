@@ -16,7 +16,6 @@ const CreateBlogPost = lazy(() => import("../pages/AdminBlog/CreateBlogPost.jsx"
 const EditBlogPost = lazy(() => import("../pages/AdminBlog/EditBlogPost.jsx"));
 const ViewBlogPost = lazy(() => import("../pages/AdminBlog/ViewBlogPost.jsx"));
 const FaqSection = lazy(() => import("../pages/FAQ/index.jsx"));
-const FaqBrochure = lazy(() => import("../pages/FAQ/FaqBrochure.jsx"));
 const ForgotPassword = lazy(() => import("../pages/Login/ForgotPassword.jsx"));
 const Login = lazy(() => import("../pages/Login/index.jsx"));
 const SetPassword = lazy(() => import("../pages/Login/SetPassword.jsx"));
@@ -73,10 +72,6 @@ const pageRoutes = [
     path: "/faq",
   },
   {
-    element: <FaqBrochure />,
-    path: "/faq-brochure",
-  },
-  {
     element: <BlogSections />,
     path: "/blog",
   },
@@ -126,7 +121,7 @@ const pageRoutes = [
   },
   {
     element: <NewsArticle />,
-    path: "/new-articles/:blogId",
+    path: "/post/:blogSlug",
   },
   {
     element: <NewsArticle />,

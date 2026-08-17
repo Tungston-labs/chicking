@@ -27,25 +27,30 @@ import { getArticleSourceLabel } from "./newsArticleCommentUtils.js";
 import { usePublicBlogComments } from "./usePublicBlogComments.js";
 import {
   clearPublicCurrentBlog,
+  fetchPublicBlogsList,
   fetchPublicBlogById,
+  selectPublishedBlogs,
   selectPublicCurrentBlog,
   selectPublicCurrentBlogError,
   selectPublicCurrentBlogStatus,
 } from "../../../store/blog/blogSlice.js";
-import { extractFirstImageSrc, stripFirstImageFromHtml } from "../../../store/blog/blogUtils.js";
+import { extractFirstImageSrc, slugifyTitle, stripFirstImageFromHtml } from "../../../store/blog/blogUtils.js";
 
 const franchiseImg = `${import.meta.env.BASE_URL}images/blog/blog1.svg`;
 
 function NewsArticle() {
   const dispatch = useDispatch();
-  const { blogId } = useParams();
+  const { blogId, blogSlug } = useParams();
+  const posts = useSelector(selectPublishedBlogs);
   const post = useSelector(selectPublicCurrentBlog);
   const articleStatus = useSelector(selectPublicCurrentBlogStatus);
   const articleError = useSelector(selectPublicCurrentBlogError);
   const titles = ["Insights, Ideas & Stories from Chicking"];
   const [titleIndex, setTitleIndex] = useState(0);
   const sourceLabel = getArticleSourceLabel(post?.url);
-  const shouldShowComments = Boolean(blogId) && articleStatus !== "loading";
+  const resolvedBlog = blogSlug ? posts.find((item) => slugifyTitle(item.title) === blogSlug || item.id === blogSlug) : null;
+  const resolvedBlogId = blogId || resolvedBlog?.id || "";
+  const shouldShowComments = Boolean(resolvedBlogId) && articleStatus !== "loading";
   const articleCoverImage = extractFirstImageSrc(post?.contentHtml || "");
   const articleBodyHtml = stripFirstImageFromHtml(post?.contentHtml || "");
   const {
@@ -58,15 +63,25 @@ function NewsArticle() {
     handleCommentFieldChange,
     handleCommentSubmit,
     refreshComments,
-  } = usePublicBlogComments(blogId);
+  } = usePublicBlogComments(resolvedBlogId);
 
   useEffect(() => {
-    dispatch(fetchPublicBlogById(blogId));
+    if (blogSlug && posts.length === 0) {
+      dispatch(fetchPublicBlogsList());
+    }
+  }, [blogSlug, dispatch, posts.length]);
+
+  useEffect(() => {
+    if (!resolvedBlogId) {
+      return undefined;
+    }
+
+    dispatch(fetchPublicBlogById(resolvedBlogId));
 
     return () => {
       dispatch(clearPublicCurrentBlog());
     };
-  }, [blogId, dispatch]);
+  }, [resolvedBlogId, dispatch]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -99,7 +114,7 @@ function NewsArticle() {
             <FiArrowLeft /> Back to Blog
           </BackLink>
 
-          {articleStatus === "loading" ? (
+          {articleStatus === "loading" || (blogSlug && !resolvedBlogId) ? (
             <Title>Loading article...</Title>
           ) : post ? (
             <>

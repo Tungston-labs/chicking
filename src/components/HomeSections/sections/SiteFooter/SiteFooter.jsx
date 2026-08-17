@@ -1,12 +1,10 @@
 import { useLocation, NavLink as RouterLink } from "react-router-dom";
 import {
-  FiInstagram,
   FiMail,
   FiMap,
   FiPhoneCall,
-  FiTwitter,
 } from "react-icons/fi";
-import { SiMeta } from "react-icons/si";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
 import { footerInfo, navItems } from "../../data/homeSectionsData.js";
 
@@ -52,16 +50,31 @@ const isActivePath = (currentPath, itemPath) => {
 
 const socialLinks = (
   <>
-    <FooterSocialLink href="#">
-      <FiTwitter />
+    <FooterSocialLink
+      aria-label="Chicking Studios on YouTube"
+      href="https://www.youtube.com/chickingstudios"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <FaYoutube />
     </FooterSocialLink>
 
-    <FooterSocialLink href="#">
-      <FiInstagram />
+    <FooterSocialLink
+      aria-label="Chicking UK on Instagram"
+      href="https://www.instagram.com/chickinguk"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <FaInstagram />
     </FooterSocialLink>
 
-    <FooterSocialLink href="#">
-      <SiMeta />
+    <FooterSocialLink
+      aria-label="Chicking Global on Facebook"
+      href="https://www.facebook.com/chickingglobal"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <FaFacebookF />
     </FooterSocialLink>
   </>
 );

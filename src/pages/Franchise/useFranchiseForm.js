@@ -12,6 +12,12 @@ const titles = [
 
 const useFranchiseForm = () => {
   const [titleIndex, setTitleIndex] = useState(0);
+  const initialCountry =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("country") ||
+        new URLSearchParams(window.location.search).get("territory") ||
+        ""
+      : "";
 
   const [selected, setSelected] = useState("unit");
 
@@ -19,7 +25,7 @@ const useFranchiseForm = () => {
     fullName: "",
     email: "",
     phone: "",
-    country: "",
+    country: initialCountry,
     investment: "",
     additionalInfo: "",
     file: null,
