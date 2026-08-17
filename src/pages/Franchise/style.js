@@ -142,7 +142,6 @@ text-transform: capitalize;
 export const HeroImage = styled.img`
   width: 400px;
   object-fit: contain;
-  margin-top: -25px;
 
   @media (max-width: 1023px) {
     width: 320px;
@@ -157,7 +156,6 @@ export const FormCard = styled.div`
   background: #ffffff;
   border-radius: 28px;
   padding: 4px 70px 58px;
-  margin-top: -60px;
   position: relative;
   z-index: 10;
 

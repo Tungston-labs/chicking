@@ -206,11 +206,13 @@ export const FooterSocials = styled.div`
           display: none;
         }
       `
-      : `
+      : $placement === "bottom"
+        ? `
         @media (min-width: 1025px) {
           display: none;
         }
-      `}
+      `
+        : ""}
 
   @media (min-width: 761px) and (max-width: 1024px) {
     gap: 0.8rem;

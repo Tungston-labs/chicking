@@ -1,3 +1,2 @@
 export const getLocationInquiryHref = (location) =>
-  `/franchiseform?territory=${encodeURIComponent(location.place)}`;
-
+  `/franchiseform?country=${encodeURIComponent(location.country || location.place)}`;
