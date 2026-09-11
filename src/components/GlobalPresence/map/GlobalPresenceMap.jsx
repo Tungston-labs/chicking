@@ -150,7 +150,7 @@ const GlobalPresenceMap = () => {
                   type="button"
                   $active={location.country === activeCountry}
                   onClick={() => {
-                    setSelectedLocationId(location.id);
+                    setSelectedLocationId(null);
                     setActiveLocationForRegion({
                       locationId: location.id,
                       regionId: activeRegion.id,
