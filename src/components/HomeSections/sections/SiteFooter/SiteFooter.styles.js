@@ -199,21 +199,6 @@ export const FooterSocials = styled.div`
   gap: 1rem;
   flex: 0 0 auto;
 
-  ${({ $placement }) =>
-    $placement === "nav"
-      ? `
-        @media (max-width: 1024px) {
-          display: none;
-        }
-      `
-      : $placement === "bottom"
-        ? `
-        @media (min-width: 1025px) {
-          display: none;
-        }
-      `
-        : ""}
-
   @media (min-width: 761px) and (max-width: 1024px) {
     gap: 0.8rem;
   }
@@ -246,6 +231,7 @@ export const FooterSocialLink = styled.a`
     transform: translateY(-0.0625rem);
   }
 `;
+
 export const FooterBottom = styled.div`
   position: relative;
   z-index: 1;
@@ -264,18 +250,19 @@ export const FooterBottomInner = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.35rem;
+  gap: 1.75rem;
 
   @media (min-width: 761px) and (max-width: 1024px) {
-    justify-content: space-between;
+    justify-content: center;
     padding: 1rem 1.25rem 1.1rem;
+    gap: 1.25rem;
   }
 
   @media (max-width: 760px) {
     padding: 1.2rem 1rem 1.5rem;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 1rem;
   }
 `;
@@ -289,11 +276,11 @@ export const FooterCopyright = styled.p`
 
   @media (min-width: 761px) and (max-width: 1024px) {
     font-size: 0.88rem;
-    text-align: right;
+    text-align: center;
   }
 
   @media (max-width: 760px) {
-    text-align: left;
+    text-align: center;
     font-size: 0.75rem;
   }
 

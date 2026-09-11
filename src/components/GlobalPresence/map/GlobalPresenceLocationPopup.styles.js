@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 export const PopupCard = styled.div`
   position: relative;
-  min-width: 11rem;
-  max-width: 16rem;
-  padding: 0.75rem 0.9rem;
+  min-width: 8rem;
+  max-width: 11rem;
+  padding: 0.55rem 0.9rem;
   background: #ffffff;
   border-radius: 0.6rem;
   box-shadow: 0 0.6rem 2rem rgba(0, 0, 0, 0.18);
@@ -56,9 +56,9 @@ export const PopupCloseButton = styled.button`
 export const PopupTitle = styled.h4`
   margin: 0;
   color: #161616;
-  font-size: 0.84rem;
+  font-size: 0.74rem;
   line-height: 1.35;
-  font-weight: 600;
+  font-weight: 400;
   flex: 1;
 `;
 
@@ -103,7 +103,7 @@ export const PopupExternalLink = styled.a`
   gap: 0.3rem;
   margin-top: 0.4rem;
   color: #891b1c !important;
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 600;
   text-decoration: none;
   transition: color 160ms ease;

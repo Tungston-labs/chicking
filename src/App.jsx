@@ -3,6 +3,7 @@ import ScrollAnimations from "./components/Animation/ScrollAnimations.jsx";
 import AppRoutes from "./routes/index.jsx";
 import ScrollToTop from "./routes/ScrollToTop.jsx";
 import AuthBootstrap from "./store/AuthBootstrap.jsx";
+import WhatsappFloatingWidget from "./components/WhatsappWidget/WhatsappFloatingWidget.jsx";
 
 export default function App() {
   return (
@@ -11,7 +12,9 @@ export default function App() {
       <ScrollToTop />
       <ScrollAnimations />
       <AppRoutes />
+      <WhatsappFloatingWidget />
     </Router>
   );
 }
+
 
