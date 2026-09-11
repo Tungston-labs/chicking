@@ -1,17 +1,12 @@
-import "leaflet/dist/leaflet.css";
-
 import { useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { Minus, Plus, RotateCcw } from "lucide-react";
+import { Map as PigeonMap, Overlay } from "pigeon-maps";
 
 import SectionHeader from "../../HomeSections/components/SectionHeader/index.jsx";
 import { PageSection } from "../../Layout/PageLayout.jsx";
 import { globalPresenceRegions } from "../data/globalPresenceData.js";
 import {
-  activeMarkerIcon,
-  defaultMarkerIcon,
   DEFAULT_REGION_ID,
-  getLocationMarkerEventHandlers,
-  MapViewportController,
   setActiveLocationForRegion,
 } from "./globalPresenceMap.helpers.js";
 import GlobalPresenceLocationPopup from "./GlobalPresenceLocationPopup.jsx";
@@ -25,6 +20,8 @@ import {
   LocationSidebar,
   LocationSidebarHeading,
   MapCard,
+  MapControlButton,
+  MapControlToolbar,
   MapSurface,
   PresencePanel,
   PresenceShell,
@@ -39,7 +36,8 @@ const GlobalPresenceMap = () => {
       globalPresenceRegions.map((region) => [region.id, region.locations[0]?.id || ""]),
     ),
   );
-  const markerRefs = useRef({});
+
+  const [selectedLocationId, setSelectedLocationId] = useState(null);
 
   const activeRegion =
     globalPresenceRegions.find((region) => region.id === activeRegionId) ||
@@ -51,18 +49,19 @@ const GlobalPresenceMap = () => {
   const activeLocation =
     activeRegion.locations.find((location) => location.id === activeLocationId) ||
     activeRegion.locations[0];
+
   const activeCountry = activeLocation?.country || activeRegion.locations[0]?.country || "";
+
   const activeRegionCountries = useMemo(() => {
     const countriesByName = new Map();
-
     activeRegion.locations.forEach((location) => {
       if (!countriesByName.has(location.country)) {
         countriesByName.set(location.country, location);
       }
     });
-
     return Array.from(countriesByName.values());
   }, [activeRegion.locations]);
+
   const activeCountryLocations = useMemo(
     () =>
       activeRegion.locations.filter(
@@ -71,17 +70,45 @@ const GlobalPresenceMap = () => {
     [activeCountry, activeRegion.locations],
   );
 
+  // Compute center and zoom state for Pigeon Maps
+  const [center, setCenter] = useState([2.0341783, 45.3411703]);
+  const [zoom, setZoom] = useState(activeRegion.focusZoom || 12);
+
+  // Update center & zoom when country changes
   useEffect(() => {
-    if (!activeLocation) {
-      return;
-    }
+    if (!activeCountryLocations?.length) return;
+    const avgLat =
+      activeCountryLocations.reduce((acc, loc) => acc + loc.coordinates.lat, 0) /
+      activeCountryLocations.length;
+    const avgLng =
+      activeCountryLocations.reduce((acc, loc) => acc + loc.coordinates.lng, 0) /
+      activeCountryLocations.length;
 
-    const marker = markerRefs.current[activeLocation.id];
+    setCenter([avgLat, avgLng]);
+    setZoom(activeRegion.focusZoom || 12);
+  }, [activeCountry, activeCountryLocations, activeRegion.focusZoom]);
 
-    if (marker) {
-      marker.openPopup();
-    }
-  }, [activeLocation]);
+  const handleMarkerClick = (id) => {
+    setSelectedLocationId((prev) => (prev === id ? null : id));
+    setActiveLocationForRegion({
+      locationId: id,
+      regionId: activeRegion.id,
+      setActiveLocationIdsByRegion,
+    });
+  };
+
+  const handleResetView = () => {
+    if (!activeCountryLocations?.length) return;
+    const avgLat =
+      activeCountryLocations.reduce((acc, loc) => acc + loc.coordinates.lat, 0) /
+      activeCountryLocations.length;
+    const avgLng =
+      activeCountryLocations.reduce((acc, loc) => acc + loc.coordinates.lng, 0) /
+      activeCountryLocations.length;
+
+    setCenter([avgLat, avgLng]);
+    setZoom(activeRegion.focusZoom || 12);
+  };
 
   return (
     <PageSection spacing="4rem 2rem 4.5rem">
@@ -102,7 +129,10 @@ const GlobalPresenceMap = () => {
               key={region.id}
               type="button"
               $active={region.id === activeRegion.id}
-              onClick={() => setActiveRegionId(region.id)}
+              onClick={() => {
+                setActiveRegionId(region.id);
+                setSelectedLocationId(null);
+              }}
             >
               {region.label}
             </RegionTab>
@@ -119,13 +149,14 @@ const GlobalPresenceMap = () => {
                   key={location.country}
                   type="button"
                   $active={location.country === activeCountry}
-                  onClick={() =>
+                  onClick={() => {
+                    setSelectedLocationId(location.id);
                     setActiveLocationForRegion({
                       locationId: location.id,
                       regionId: activeRegion.id,
                       setActiveLocationIdsByRegion,
-                    })
-                  }
+                    });
+                  }}
                 >
                   <LocationIconWrap aria-hidden="true">
                     <LocationIconPin $active={location.country === activeCountry} />
@@ -143,51 +174,80 @@ const GlobalPresenceMap = () => {
 
           <MapCard>
             <MapSurface>
-              <MapContainer
-                center={[
-                  activeLocation?.coordinates.lat || 0,
-                  activeLocation?.coordinates.lng || 0,
-                ]}
-                zoom={activeRegion.focusZoom}
-                scrollWheelZoom={false}
+              <PigeonMap
+                center={center}
+                zoom={zoom}
+                onBoundsChanged={({ center: newCenter, zoom: newZoom }) => {
+                  setCenter(newCenter);
+                  setZoom(newZoom);
+                }}
+                metaWheelZoom={false}
+                twoFingerPageScroll={true}
               >
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-
-                <MapViewportController
-                  activeLocation={activeLocation}
-                  activeRegion={activeRegion}
-                  visibleLocations={activeCountryLocations}
-                />
-
-                {activeCountryLocations.map((location) => (
-                  <Marker
-                    key={location.id}
-                    icon={
-                      location.id === activeLocation?.id
-                        ? activeMarkerIcon
-                        : defaultMarkerIcon
-                    }
-                    position={[location.coordinates.lat, location.coordinates.lng]}
-                    ref={(marker) => {
-                      if (marker) {
-                        markerRefs.current[location.id] = marker;
-                      }
-                    }}
-                    eventHandlers={getLocationMarkerEventHandlers({
-                      activeRegion,
-                      location,
-                      setActiveLocationIdsByRegion,
-                    })}
+                <MapControlToolbar>
+                  <MapControlButton
+                    type="button"
+                    onClick={() => setZoom((z) => Math.min(z + 1, 18))}
+                    title="Zoom In"
+                    aria-label="Zoom In"
                   >
-                    <Popup autoPanPadding={[30, 30]} closeButton={false}>
-                      <GlobalPresenceLocationPopup location={location} />
-                    </Popup>
-                  </Marker>
-                ))}
-              </MapContainer>
+                    <Plus size={18} />
+                  </MapControlButton>
+                  <MapControlButton
+                    type="button"
+                    onClick={() => setZoom((z) => Math.max(z - 1, 1))}
+                    title="Zoom Out"
+                    aria-label="Zoom Out"
+                  >
+                    <Minus size={18} />
+                  </MapControlButton>
+                  <MapControlButton
+                    type="button"
+                    onClick={handleResetView}
+                    title="Reset View"
+                    aria-label="Reset View"
+                  >
+                    <RotateCcw size={16} />
+                  </MapControlButton>
+                </MapControlToolbar>
+
+                {activeCountryLocations.flatMap((location) => {
+                  const isActive = location.id === activeLocationId;
+                  const isSelected = location.id === selectedLocationId;
+
+                  return [
+                    <Overlay
+                      key={`pin-${location.id}`}
+                      anchor={[location.coordinates.lat, location.coordinates.lng]}
+                      offset={[29, 56]}
+                    >
+                      <div
+                        className={`presence-marker${isActive || isSelected ? " is-active" : ""}`}
+                        onClick={() => handleMarkerClick(location.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <span className="presence-marker-pin"></span>
+                        <span className="presence-marker-logo">
+                          <img src="/images/logo.svg" alt="" />
+                        </span>
+                      </div>
+                    </Overlay>,
+
+                    isSelected ? (
+                      <Overlay
+                        key={`popup-${location.id}`}
+                        anchor={[location.coordinates.lat, location.coordinates.lng]}
+                        offset={[120, 75]}
+                      >
+                        <GlobalPresenceLocationPopup
+                          location={location}
+                          onClose={() => setSelectedLocationId(null)}
+                        />
+                      </Overlay>
+                    ) : null,
+                  ].filter(Boolean);
+                })}
+              </PigeonMap>
             </MapSurface>
           </MapCard>
         </PresencePanel>
@@ -195,5 +255,6 @@ const GlobalPresenceMap = () => {
     </PageSection>
   );
 };
+
 
 export default GlobalPresenceMap;

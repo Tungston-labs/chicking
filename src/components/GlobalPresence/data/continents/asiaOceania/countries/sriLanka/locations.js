@@ -7,6 +7,6 @@ export const sriLankaLocations = [
     nextTerritories: "Sri Lanka multi-city expansion",
     place: "Colombo",
     status: "Operational",
-    storeLink: "",
+    storeLink: "https://chickingsrilanka.com/#lt-location",
   },
 ];

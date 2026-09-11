@@ -1,30 +1,32 @@
-import { getLocationInquiryHref } from "./GlobalPresenceLocationPopup.helpers.js";
+import { X } from "lucide-react";
+
 import {
   PopupCard,
-  PopupDetail,
+  PopupCloseButton,
   PopupExternalLink,
-  PopupInlineLink,
+  PopupHeader,
   PopupStoreList,
   PopupTitle,
 } from "./GlobalPresenceLocationPopup.styles.js";
 
-const GlobalPresenceLocationPopup = ({ location }) => (
+const GlobalPresenceLocationPopup = ({ location, onClose }) => (
   <PopupCard>
-    <PopupTitle>{location.place}</PopupTitle>
-    <PopupDetail>
-      <strong>Status :</strong> <span>{location.status}</span>
-    </PopupDetail>
+    <PopupHeader>
+      <PopupTitle>{location.place}</PopupTitle>
+      {onClose && (
+        <PopupCloseButton type="button" onClick={onClose} aria-label="Close location popup">
+          <X size={14} />
+        </PopupCloseButton>
+      )}
+    </PopupHeader>
     {location.storeLink && !location.stores?.length ? (
-      <PopupDetail>
-        <strong>Locations:</strong>{" "}
-        <PopupExternalLink
-          href={location.storeLink}
-          rel="noreferrer"
-          target="_blank"
-        >
-          View locations
-        </PopupExternalLink>
-      </PopupDetail>
+      <PopupExternalLink
+        href={location.storeLink}
+        rel="noreferrer"
+        target="_blank"
+      >
+        View locations
+      </PopupExternalLink>
     ) : null}
     {location.stores?.length ? (
       <PopupStoreList>
@@ -40,14 +42,11 @@ const GlobalPresenceLocationPopup = ({ location }) => (
         ))}
       </PopupStoreList>
     ) : null}
-    <PopupDetail>
-      <strong>Next Territories:</strong>{" "}
-      <PopupInlineLink to={getLocationInquiryHref(location)}>
-        Inquire Within
-      </PopupInlineLink>
-    </PopupDetail>
   </PopupCard>
 );
 
 export default GlobalPresenceLocationPopup;
+
+
+
 

@@ -6,7 +6,7 @@ import AuthBootstrap from "./store/AuthBootstrap.jsx";
 
 export default function App() {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <AuthBootstrap />
       <ScrollToTop />
       <ScrollAnimations />
@@ -14,3 +14,4 @@ export default function App() {
     </Router>
   );
 }
+
