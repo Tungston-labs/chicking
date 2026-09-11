@@ -51,11 +51,17 @@ export const getLocationMarkerEventHandlers = ({
     event.target.openPopup();
   };
 
+  const deactivateLocation = (event) => {
+    event.target.closePopup();
+  };
+
   return {
     click: activateLocation,
     mouseover: activateLocation,
+    mouseout: deactivateLocation,
   };
 };
+
 
 export const MapViewportController = ({
   activeLocation,

@@ -170,34 +170,15 @@ export const MapCard = styled.div`
 export const MapSurface = styled.div`
   position: relative;
   min-height: 35rem;
+  width: 100%;
+  background: #efe9dd;
 
-  .leaflet-container {
+  .pigeon-map-container,
+  & > div {
     width: 100%;
     min-height: 35rem;
     background: #efe9dd;
     font-family: inherit;
-  }
-
-  .leaflet-control-attribution {
-    font-size: 0.68rem;
-  }
-
-  .leaflet-popup-content-wrapper {
-    border-radius: 1.4rem;
-    padding: 0;
-    box-shadow: 0 1rem 3rem rgba(15, 12, 8, 0.16);
-  }
-
-  .leaflet-popup-content {
-    margin: 0;
-  }
-
-  .leaflet-popup-tip {
-    background: #ffffff;
-  }
-
-  .leaflet-popup-close-button {
-    display: none;
   }
 
   .presence-marker {
@@ -248,13 +229,14 @@ export const MapSurface = styled.div`
   }
 
   .presence-marker.is-active {
-    transform: scale(1.03);
+    transform: scale(1.05);
   }
 
   @media (max-width: 980px) {
     min-height: 31rem;
 
-    .leaflet-container {
+    .pigeon-map-container,
+    & > div {
       min-height: 31rem;
     }
   }
@@ -262,7 +244,8 @@ export const MapSurface = styled.div`
   @media (max-width: 768px) {
     min-height: 28rem;
 
-    .leaflet-container {
+    .pigeon-map-container,
+    & > div {
       min-height: 28rem;
     }
 
@@ -285,5 +268,49 @@ export const MapSurface = styled.div`
     .presence-marker-logo img {
       width: 1.32rem;
     }
+  }
+`;
+
+
+export const MapControlToolbar = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 0.35rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+`;
+
+export const MapControlButton = styled.button`
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: #ffffff;
+  color: #2c2c2c;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.08);
+
+  &:hover {
+    background: #891b1c;
+    color: #ffffff;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;

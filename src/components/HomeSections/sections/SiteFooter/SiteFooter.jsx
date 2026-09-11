@@ -5,7 +5,6 @@ import {
   FiPhoneCall,
 } from "react-icons/fi";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
-import { FaSquareInstagram } from "react-icons/fa6";
 import { footerInfo, navItems } from "../../data/homeSectionsData.js";
 
 import {
@@ -143,7 +142,7 @@ const SiteFooter = ({ topEdgeImage, topedgeImage }) => {
           <FooterCopyright>
             © Copyright 2026, Chicking.
             Designed By{" "}
-            <a href="https://tungstonlabs.com">
+            <a href="https://tungstonlabs.com" target="_blank" rel="noreferrer">
               Tungston Labs
             </a>
           </FooterCopyright>

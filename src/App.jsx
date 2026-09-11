@@ -3,14 +3,18 @@ import ScrollAnimations from "./components/Animation/ScrollAnimations.jsx";
 import AppRoutes from "./routes/index.jsx";
 import ScrollToTop from "./routes/ScrollToTop.jsx";
 import AuthBootstrap from "./store/AuthBootstrap.jsx";
+import WhatsappFloatingWidget from "./components/WhatsappWidget/WhatsappFloatingWidget.jsx";
 
 export default function App() {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <AuthBootstrap />
       <ScrollToTop />
       <ScrollAnimations />
       <AppRoutes />
+      <WhatsappFloatingWidget />
     </Router>
   );
 }
+
+
