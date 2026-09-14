@@ -228,7 +228,7 @@ export const navItems = [
   },
   {
     name: "Unique Propositions",
-    path: "/Unique-Propositions",
+    path: "/unique-propositions",
   },
   {
     name: "Global Presence",

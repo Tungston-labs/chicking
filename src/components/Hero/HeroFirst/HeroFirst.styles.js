@@ -387,6 +387,15 @@ export const FloatingItem = styled.div`
     font-weight: 500;
   }
 
+  .stat-number {
+    z-index: 2;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #891b1c;
+    margin-top: 0.25rem;
+    line-height: 1;
+  }
+
   img:not(.dotted-item, .dotted-item-count) {
     width: 5rem;
     height: 5rem;
@@ -398,6 +407,10 @@ export const FloatingItem = styled.div`
 
     span {
       font-size: 0.7rem;
+    }
+
+    .stat-number {
+      font-size: 0.9rem;
     }
 
     img:not(.dotted-item, .dotted-item-count) {
