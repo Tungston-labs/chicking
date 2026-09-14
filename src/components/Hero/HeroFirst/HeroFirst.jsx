@@ -60,22 +60,23 @@ const HeroFirst = () => {
 
   return (
     <HeroFirstContainer>
-<HeroTitle key={index}>
-  {texts[index]}
-</HeroTitle>
+      <HeroTitle>
+        A <strong>Global</strong> Brand, Built to <strong>Partner</strong>.
+      </HeroTitle>
       <HeroSubtitle>
         Join Chicking, the world's fastest-growing Halal quick-service
         restaurant chain, and capitalize on a proven business model.
       </HeroSubtitle>
 
       <HeroButton onClick={() => navigate("/global-presence")} type="button">
-        Find Our Locations <CiLocationArrow1 aria-hidden="true" />
+        INVESTMENT INQUIRY <CiLocationArrow1 aria-hidden="true" />
       </HeroButton>
 
-<ImageWrapper
-  $animate={animate}
-  className={animate ? `state-${state}` : "state-0"}
->        {/* Main Image */}
+      <ImageWrapper
+        $animate={animate}
+        className={animate ? `state-${state}` : "state-0"}
+      >
+        {/* Main Image */}
         <MainImage
           src={images[imageIndex]}
           alt="Chicking global franchise hero"
@@ -96,6 +97,7 @@ const HeroFirst = () => {
             height="120"
             alt=""
           />
+          <strong className="stat-number">36+</strong>
           <span>Countries</span>
           <img
             src={homeImages.hero.floating.dottedCount}
@@ -117,6 +119,7 @@ const HeroFirst = () => {
             height="120"
             alt=""
           />
+          <strong className="stat-number">160+</strong>
           <span>Locations</span>
           <img
             src={homeImages.hero.floating.dotted}
@@ -138,6 +141,7 @@ const HeroFirst = () => {
             height="120"
             alt=""
           />
+          <strong className="stat-number">20+</strong>
           <span>Years of excellence</span>
           <img
             src={homeImages.hero.floating.dotted}

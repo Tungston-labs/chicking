@@ -1,4 +1,4 @@
-const TeamIcon = "/images/team.png";
+const TeamIcon = "/images/team.svg";
 const MenuIcon = "/images/menu.png";
 const NetworkIcon = "/images/network.png";
 const StoreIcon = "/images/store.png";

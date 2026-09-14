@@ -49,7 +49,7 @@ const pageRoutes = [
   },
   {
     element: <Propositions />,
-    path: "/Unique-Propositions",
+    path: "/unique-propositions",
   },
   {
     element: <AboutUs />,

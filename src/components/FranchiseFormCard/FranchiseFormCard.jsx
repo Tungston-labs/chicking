@@ -24,6 +24,7 @@ import {
   HiddenFileInput,
   FileName,
 } from "../../pages/Franchise/style";
+import { COUNTRIES } from "../../constants/countries.js";
 import { FiUploadCloud } from "react-icons/fi";
 
 const headerImg = "/images/franchise/map.svg";
@@ -96,7 +97,11 @@ const FranchiseFormCard = ({
                 onChange={handleChange}
               >
                 <option value=""> Select Country </option>
-                <option value="India"> India </option>
+                {COUNTRIES.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
               </Select>
               {errors.country && <ErrorText>{errors.country}</ErrorText>}
             </InputGroup>
