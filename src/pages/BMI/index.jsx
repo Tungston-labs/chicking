@@ -20,7 +20,7 @@ const BMI = () => (
       title={bmiBanner.titleLines.map((line, index) => (
         <span key={line}>
           {line}
-          {index < bmiBanner.titleLines.length - 1 ? <br /> : null}
+          {index < bmiBanner.titleLines.length - 1 ? <> <br /></> : null}
         </span>
       ))}
       description={bmiBanner.description}

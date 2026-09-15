@@ -16,6 +16,7 @@ const TopBanner = ({
   description,
   image,
   imageAlt,
+  as = "h1",
 }) => {
   const resolvedImageAlt =
     imageAlt || (typeof title === "string" ? title : "Chicking franchise banner");
@@ -24,7 +25,7 @@ const TopBanner = ({
     <BannerWrapper>
       <BannerContainer>
         <LeftSection>
-          <Heading>{title}</Heading>
+          <Heading as={as}>{title}</Heading>
           <Description>{description}</Description>
         </LeftSection>
         <RightSection>

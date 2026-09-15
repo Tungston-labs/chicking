@@ -12,7 +12,7 @@ const franchiseImg = "/images/franchise/aboutimg.svg";
 
 const AboutUs = () => {
   const titles = [
-    "Partner With a Global Franchise Leader",
+    "Over 20 Years of QSR Excellence & Growth",
     "Turn Ambition Into International Success",
     "Scale Your Business With a Proven Global Model",
     "Expanding Opportunities Delivering Global Success",

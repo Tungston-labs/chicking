@@ -13,9 +13,9 @@ const franchiseImg = "/images/proposition/logo.svg";
 const Propositions = () => {
       const navigate = useNavigate();
     const titles = [
-        "Partner With A Global Franchise Leader",
-        "Turn Ambition Into International Success",
-        " Scale Your Business With a Proven Global Model",
+        "Why Partner With Chicking: Unique Advantages",
+        "Proven Business System & High Yield QSR Model",
+        "Global Brand Equity & Halal Certification",
         "Expanding Opportunities Delivering Global Success",
     ];
     const [titleIndex, setTitleIndex] = useState(0);

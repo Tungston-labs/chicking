@@ -116,6 +116,7 @@ const EmptyMessage = styled.div`
 `;
 
 const CustomSelect = ({
+  id,
   name,
   value,
   onChange,
@@ -127,6 +128,7 @@ const CustomSelect = ({
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const containerRef = useRef(null);
+  const listboxId = `${id || name}-listbox`;
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -159,7 +161,13 @@ const CustomSelect = ({
   return (
     <SelectContainer ref={containerRef}>
       <SelectTrigger
+        id={id}
         type="button"
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        aria-controls={listboxId}
+        aria-label={placeholder}
         $isOpen={isOpen}
         $hasValue={Boolean(value)}
         $hasError={hasError}
@@ -170,7 +178,7 @@ const CustomSelect = ({
       </SelectTrigger>
 
       {isOpen && (
-        <DropdownMenu>
+        <DropdownMenu id={listboxId} role="listbox" aria-label={placeholder}>
           {searchable && (
             <SearchBox>
               <FiSearch size={16} />
@@ -179,6 +187,7 @@ const CustomSelect = ({
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                aria-label={`Search ${placeholder}`}
                 autoFocus
               />
             </SearchBox>
@@ -189,6 +198,8 @@ const CustomSelect = ({
               filteredOptions.map((option) => (
                 <OptionItem
                   key={option}
+                  role="option"
+                  aria-selected={option === value}
                   $isSelected={option === value}
                   onClick={() => handleSelect(option)}
                 >

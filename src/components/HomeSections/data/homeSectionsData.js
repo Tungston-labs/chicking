@@ -11,8 +11,8 @@ export const blogCategories = [
 
 export const blogPosts = [
   {
-    author: "Robert Pattinson",
-    authorRole: "Super Admin",
+    author: "Chicking Global Team",
+    authorRole: "Chicking Editorial Team",
     category: "New Store Openings",
     comments: 12,
     date: "Apr 20, 2026",
@@ -30,8 +30,8 @@ export const blogPosts = [
     views: 135,
   },
   {
-    author: "Robert Pattinson",
-    authorRole: "Super Admin",
+    author: "Chicking Global Team",
+    authorRole: "Chicking Editorial Team",
     category: "Training & Support",
     comments: 0,
     date: "Apr 18, 2026",
@@ -48,8 +48,8 @@ export const blogPosts = [
     views: 98,
   },
   {
-    author: "Robert Pattinson",
-    authorRole: "Super Admin",
+    author: "Chicking Global Team",
+    authorRole: "Chicking Editorial Team",
     category: "Franchise Opportunities",
     comments: 12,
     date: "Apr 16, 2026",
@@ -66,8 +66,8 @@ export const blogPosts = [
     views: 176,
   },
   {
-    author: "Robert Pattinson",
-    authorRole: "Super Admin",
+    author: "Chicking Global Team",
+    authorRole: "Chicking Editorial Team",
     category: "Menu Innovations",
     comments: 12,
     date: "Apr 12, 2026",
@@ -84,8 +84,8 @@ export const blogPosts = [
     views: 142,
   },
   {
-    author: "Robert Pattinson",
-    authorRole: "Super Admin",
+    author: "Chicking Global Team",
+    authorRole: "Chicking Editorial Team",
     category: "Upcoming Locations",
     comments: 0,
     date: "Apr 11, 2026",
@@ -101,8 +101,8 @@ export const blogPosts = [
     views: 85,
   },
   {
-    author: "Robert Pattinson",
-    authorRole: "Super Admin",
+    author: "Chicking Global Team",
+    authorRole: "Chicking Editorial Team",
     category: "New Store Openings",
     comments: 8,
     date: "Apr 08, 2026",

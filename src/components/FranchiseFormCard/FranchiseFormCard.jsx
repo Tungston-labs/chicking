@@ -66,39 +66,46 @@ const FranchiseFormCard = ({
         <LeftSection>
           <FormGrid>
             <InputGroup>
-              <Label>Full Name</Label>
+              <Label htmlFor="fullName">Full Name</Label>
               <Input
+                id="fullName"
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
                 placeholder="David Lee"
+                aria-required="true"
               />
               {errors.fullName && <ErrorText>{errors.fullName} </ErrorText>}
             </InputGroup>
             <InputGroup>
-              <Label>Email Address</Label>
+              <Label htmlFor="email">Email Address</Label>
               <Input
+                id="email"
                 name="email"
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="davidlee@gmail.com"
+                aria-required="true"
               />
               {errors.email && <ErrorText> {errors.email}</ErrorText>}
             </InputGroup>
             <InputGroup>
-              <Label>Phone Number</Label>
+              <Label htmlFor="phone">Phone Number</Label>
               <Input
+                id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+234 567 8900"
+                aria-required="true"
               />
               {errors.phone && <ErrorText>{errors.phone} </ErrorText>}
             </InputGroup>
             <InputGroup>
-              <Label>Country</Label>
+              <Label htmlFor="country">Country</Label>
               <CustomSelect
+                id="country"
                 name="country"
                 value={formData.country}
                 onChange={handleChange}
@@ -114,15 +121,22 @@ const FranchiseFormCard = ({
             {" "}
             Investment Details{" "}
           </SectionTitle>
-          <Label>Level Of Interest</Label>
-          <RadioWrapper>
+          <Label as="span">Level Of Interest</Label>
+          <RadioWrapper role="radiogroup" aria-label="Level Of Interest">
             <RadioCard
               active={selected === "master"}
               onClick={() => setSelected("master")}
             >
-              <input type="radio" checked={selected === "master"} readOnly />
+              <input
+                type="radio"
+                id="radio-master"
+                name="interestLevel"
+                checked={selected === "master"}
+                onChange={() => setSelected("master")}
+                aria-label="Master Franchise - Large Area"
+              />
               <RadioContent>
-                <RadioTitle> Master Franchise </RadioTitle>
+                <RadioTitle as="label" htmlFor="radio-master"> Master Franchise </RadioTitle>
                 <RadioText> Large Area</RadioText>
               </RadioContent>
             </RadioCard>
@@ -130,16 +144,24 @@ const FranchiseFormCard = ({
               active={selected === "unit"}
               onClick={() => setSelected("unit")}
             >
-              <input type="radio" checked={selected === "unit"} readOnly />
+              <input
+                type="radio"
+                id="radio-unit"
+                name="interestLevel"
+                checked={selected === "unit"}
+                onChange={() => setSelected("unit")}
+                aria-label="Unit Ownership - Single Store"
+              />
               <RadioContent>
-                <RadioTitle> Unit Ownership</RadioTitle>
+                <RadioTitle as="label" htmlFor="radio-unit"> Unit Ownership</RadioTitle>
                 <RadioText> Single Store</RadioText>
               </RadioContent>
             </RadioCard>
           </RadioWrapper>
           <InputGroup style={{ marginTop: "28px" }}>
-            <Label> Estimated Investment Capacity </Label>
+            <Label htmlFor="investment"> Estimated Investment Capacity </Label>
             <CustomSelect
+              id="investment"
               name="investment"
               value={formData.investment}
               onChange={handleChange}
@@ -151,22 +173,25 @@ const FranchiseFormCard = ({
             {errors.investment && <ErrorText> {errors.investment}</ErrorText>}
           </InputGroup>
           <InputGroup style={{ marginTop: "28px" }}>
-            <Label>Document Upload</Label>
-            <UploadBox as="label">
+            <Label htmlFor="file">Document Upload</Label>
+            <UploadBox as="label" htmlFor="file">
               <FiUploadCloud size={30} />
               <p> Click to upload or drag and drop</p>
               {formData.file && <FileName> {formData.file.name} </FileName>}
               <HiddenFileInput
+                id="file"
                 type="file"
                 name="file"
                 onChange={handleChange}
+                aria-required="true"
               />
             </UploadBox>
             {errors.file && <ErrorText> {errors.file}</ErrorText>}
           </InputGroup>
           <InputGroup style={{ marginTop: "28px" }}>
-            <Label> Additional Information / Questions </Label>
+            <Label htmlFor="additionalInfo"> Additional Information / Questions </Label>
             <TextArea
+              id="additionalInfo"
               name="additionalInfo"
               value={formData.additionalInfo}
               onChange={handleChange}

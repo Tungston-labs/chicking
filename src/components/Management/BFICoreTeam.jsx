@@ -60,7 +60,7 @@ const BFICoreTeam = () => {
           <CenterLogo>
 
             <LogoCircle>
-              <img src={logo} alt="" />
+              <img src={logo} alt="Chicking Core Team Logo" />
             </LogoCircle>
 
           </CenterLogo>

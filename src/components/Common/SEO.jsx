@@ -26,6 +26,10 @@ const SEO = ({
       <meta name="description" content={description} />
       <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
       <link rel="canonical" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="en" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="shortcut icon" href="/favicon.svg" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:site_name" content={DEFAULT_SITE_NAME} />

@@ -128,6 +128,7 @@ function NewsArticle() {
 
       <TopBanner
         key={titleIndex}
+        as="h2"
         title={titles[titleIndex]}
         description={
           <>

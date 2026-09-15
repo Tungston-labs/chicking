@@ -32,7 +32,7 @@ export const leadershipMembers = [
     gridArea: "ceo",
     isSmall: true,
     image: "/images/management/profile",
-    role: "Chief Executive Officer& Legal& Compliances",
+    role: "Chief Executive Officer & Legal & Compliances",
     name: "MR. SREEKANTH N PILLAI",
   },
   {
@@ -64,7 +64,7 @@ export const leadershipMembers = [
     gridArea: "opsMgr",
     isSmall: true,
     image: "/images/management/profile",
-    role: "Operations Manager-Europe",
+    role: "Operations Manager - Europe",
     name: "MR. SHAFEER",
   },
   {
@@ -116,7 +116,7 @@ export const leftTeam = [
     role: "Project Manager",
   },
    {
-    title: "IT& POS SUPPORT",
+    title: "IT & POS SUPPORT",
     name: "MR. PRASANTH K PILLAI",
     role: "IT & SYSTEM",
   },

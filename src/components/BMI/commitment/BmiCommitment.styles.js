@@ -15,7 +15,7 @@ export const CommitmentSection = styled.section`
     width: min(46rem, 44vw);
     height: min(46rem, 34vw);
     background: url("/images/bmi/darkbginner.svg") center/contain no-repeat;
-    opacity: 2.32;
+    opacity: 0.32;
     transform: translateY(-50%);
     pointer-events: none;
     z-index: 1;
@@ -43,15 +43,18 @@ export const CommitmentSection = styled.section`
 export const CommitmentBannerContent = styled.div`
   position: relative;
   z-index: 2;
+  padding: 1rem 0;
 `;
 
 export const CommitmentCards = styled.div`
+  position: relative;
+  z-index: 3;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.75rem, 3vw, 3rem);
-  align-items: start;
-  margin-left: 8%;
-  padding: 0 clamp(0.2rem, 1.4vw, 0.9rem);
+  align-items: stretch;
+  margin-left: 0;
+  padding: 0 clamp(0.5rem, 2vw, 1.5rem);
 
   @media (min-width: 768px) and (max-width: 1024px) {
     gap: 1.3rem;
@@ -69,98 +72,103 @@ export const CommitmentCards = styled.div`
 export const CommitmentCard = styled.article`
   box-sizing: border-box;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   min-height: 14rem;
-  padding: 0 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.5px solid #2d2b2b;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
 
   @media (min-width: 768px) and (max-width: 1024px) {
     min-height: 12rem;
-    padding: 0 0.5rem;
+    padding: 1.2rem;
   }
 
   @media (max-width: 900px) {
     min-height: 0;
-    padding: 0;
+    padding: 1.2rem;
   }
 `;
 
 export const CommitmentIconBox = styled.div`
-  width: 5.5rem;
+  width: 4.5rem;
   height: 4.5rem;
   display: grid;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
 
   img {
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 2.4rem;
+    height: 2.4rem;
     display: block;
+    object-fit: contain;
   }
 
   @media (max-width: 768px) {
-    width: 5rem;
-    height: 4.1rem;
+    width: 4rem;
+    height: 4rem;
   }
 `;
 
 export const CommitmentTitle = styled.h3`
   margin: 1.2rem 0 0;
   color: #ffffff;
-  font-size: clamp(1.3rem, 1.5vw, 1.9rem);
-  line-height: 1.25;
-  font-weight: 400;
+  font-size: clamp(1.2rem, 1.4vw, 1.6rem);
+  line-height: 1.3;
+  font-weight: 600;
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     line-height: 1.3;
   }
 `;
 
 export const CommitmentText = styled.p`
-  max-width: 20rem;
-  margin: 0.9rem 0 0;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.98rem;
-  line-height: 1.7;
+  max-width: 100%;
+  margin: 0.8rem 0 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.65;
 
   @media (min-width: 768px) and (max-width: 1024px) {
     font-size: 0.875rem;
-    line-height: 1.65;
+    line-height: 1.6;
   }
 
   @media (max-width: 767px) {
     font-size: 0.875rem;
-    line-height: 1.65;
+    line-height: 1.6;
   }
 `;
 
 export const CommitmentHand = styled.img`
   position: absolute;
-  left: 2.6rem;
-  bottom: 6rem;
-  width: min(15rem, 22vw);
-  opacity: 0.68;
+  right: 2rem;
+  bottom: -0.5rem;
+  width: clamp(10rem, 18vw, 16rem);
+  max-height: 75%;
+  object-fit: contain;
+  opacity: 0.35;
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
 
   @media (max-width: 1024px) {
-    top: 1.7rem;
-    left: 1.5rem;
-    width: 8.6rem;
-    opacity: 0.62;
+    right: 1rem;
+    bottom: 0;
+    width: 11rem;
+    opacity: 0.25;
   }
 
   @media (max-width: 900px) {
-    top: 1.4rem;
-    left: 1.1rem;
-    width: 3.6rem;
-    opacity: 0.18;
-  }
-
-  @media (max-width: 560px) {
-    top: 1.1rem;
-    left: 10.85rem;
-    width: 13rem;
-    opacity: 0.56;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: -1rem;
+    width: 12rem;
+    opacity: 0.2;
   }
 `;
