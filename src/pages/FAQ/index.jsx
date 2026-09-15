@@ -2,12 +2,28 @@ import React, { useState, useEffect } from 'react'
 import TopBanner from '../../components/TopBanner'
 import FAQ from '../../components/FAQ/FAQ';
 import PageLayout from '../../components/Layout/PageLayout';
-import PartnerCta from '../../components/HomeSections/sections/PartnerCta';
-import SiteFooter from '../../components/HomeSections/sections/SiteFooter';
+import PartnerCta from '../../components/HomeSections/sections/PartnerCta/index.jsx';
+import SiteFooter from '../../components/HomeSections/sections/SiteFooter/index.jsx';
+import SEO from '../../components/Common/SEO.jsx';
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
+import { faqs } from "../../components/HomeSections/data/homeSectionsData.js";
 
 const faqImg = "/images/faq/faq1.svg";
-function index() {
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer,
+        },
+    })),
+};
+
+function FAQPage() {
     const titles = [
         "Frequently Asked Questions?",
         "Let’s Clear Things Up",
@@ -24,6 +40,12 @@ function index() {
     }, [titles.length]);
     return (
         <>
+            <SEO
+                title="Frequently Asked Questions (FAQ) | Chicking Franchise"
+                description="Find answers to common questions about Chicking franchise requirements, training, equipment, support, and business operations."
+                canonicalPath="/faq"
+                schema={faqSchema}
+            />
             <PageLayout />
             <TopBanner
                 key={titleIndex}
@@ -68,4 +90,6 @@ function index() {
     )
 }
 
-export default index
+export default FAQPage;
+
+

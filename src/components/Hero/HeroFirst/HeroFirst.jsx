@@ -119,7 +119,7 @@ const HeroFirst = () => {
             height="120"
             alt=""
           />
-          <strong className="stat-number">160+</strong>
+          <strong className="stat-number">400+</strong>
           <span>Locations</span>
           <img
             src={homeImages.hero.floating.dotted}

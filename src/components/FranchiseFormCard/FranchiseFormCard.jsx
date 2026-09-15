@@ -7,7 +7,6 @@ import {
   InputGroup,
   Label,
   Input,
-  Select,
   RadioWrapper,
   RadioCard,
   RadioContent,
@@ -25,7 +24,15 @@ import {
   FileName,
 } from "../../pages/Franchise/style";
 import { COUNTRIES } from "../../constants/countries.js";
+import CustomSelect from "./CustomSelect.jsx";
 import { FiUploadCloud } from "react-icons/fi";
+
+const INVESTMENT_OPTIONS = [
+  "USD 100,000 - 250,000",
+  "USD 250,000 - 500,000",
+  "USD 500,000 - 1,000,000",
+  "USD 1,000,000+",
+];
 
 const headerImg = "/images/franchise/map.svg";
 
@@ -91,18 +98,15 @@ const FranchiseFormCard = ({
             </InputGroup>
             <InputGroup>
               <Label>Country</Label>
-              <Select
+              <CustomSelect
                 name="country"
                 value={formData.country}
                 onChange={handleChange}
-              >
-                <option value=""> Select Country </option>
-                {COUNTRIES.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </Select>
+                options={COUNTRIES}
+                placeholder="Select Country"
+                searchable={true}
+                hasError={Boolean(errors.country)}
+              />
               {errors.country && <ErrorText>{errors.country}</ErrorText>}
             </InputGroup>
           </FormGrid>
@@ -135,23 +139,15 @@ const FranchiseFormCard = ({
           </RadioWrapper>
           <InputGroup style={{ marginTop: "28px" }}>
             <Label> Estimated Investment Capacity </Label>
-            <Select
+            <CustomSelect
               name="investment"
               value={formData.investment}
               onChange={handleChange}
-            >
-              <option value="">Select Investment Capacity</option>
-              <option value="USD 100,000 - 250,000">
-                USD 100,000 - 250,000
-              </option>
-              <option value="USD 250,000 - 500,000">
-                USD 250,000 - 500,000
-              </option>
-              <option value="USD 500,000 - 1,000,000">
-                USD 500,000 - 1,000,000
-              </option>
-              <option value="USD 1,000,000+">USD 1,000,000+</option>
-            </Select>
+              options={INVESTMENT_OPTIONS}
+              placeholder="Select Investment Capacity"
+              searchable={false}
+              hasError={Boolean(errors.investment)}
+            />
             {errors.investment && <ErrorText> {errors.investment}</ErrorText>}
           </InputGroup>
           <InputGroup style={{ marginTop: "28px" }}>

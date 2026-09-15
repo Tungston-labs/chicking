@@ -18,9 +18,10 @@ import LeadershipEffect from "../../components/Management/LeadershipEffect";
 import BFICoreTeam from "../../components/Management/BFICoreTeam";
 import BFIPillars from "../../components/Management/BFIPillars";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
-import SiteFooter from "../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx";
+import SiteFooter from "../../components/HomeSections/sections/SiteFooter/index.jsx";
 import LeadershipModal from "../../components/Management/modal/LeadershipModal.jsx";
-import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
+import PartnerCta from "../../components/HomeSections/sections/PartnerCta/index.jsx";
+import SEO from "../../components/Common/SEO.jsx";
 
 const franchiseImg = "/images/management/topimage.svg";
 
@@ -52,6 +53,11 @@ const LeadershipSection = () => {
       }, [titles.length]);
   return (
     <>
+        <SEO
+          title="Leadership & Management Team | Chicking"
+          description="Meet the highly qualified and experienced leadership team behind Chicking's international growth, franchise management, and operational support."
+          canonicalPath="/management"
+        />
         {selectedMember && (
         <LeadershipModal
           member={selectedMember}
@@ -152,3 +158,4 @@ const LeadershipSection = () => {
 };
 
 export default LeadershipSection;
+

@@ -10,9 +10,10 @@ import {
 } from "./style";
 
 import FranchiseFormCard from "../../components/FranchiseFormCard/FranchiseFormCard";
-import PartnerCta from "../../components/HomeSections/sections/PartnerCta";
-import SiteFooter from "../../components/HomeSections/sections/SiteFooter";
+import PartnerCta from "../../components/HomeSections/sections/PartnerCta/index.jsx";
+import SiteFooter from "../../components/HomeSections/sections/SiteFooter/index.jsx";
 import PageLayout from "../../components/Layout/PageLayout";
+import SEO from "../../components/Common/SEO.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useFranchiseForm from "./useFranchiseForm";
@@ -35,6 +36,11 @@ const FranchiseForm = () => {
 
   return (
     <PageLayout>
+      <SEO
+        title="Franchise Application Form | Chicking Opportunity"
+        description="Complete the Chicking franchise inquiry form to begin your journey toward owning a successful global QSR franchise outlet."
+        canonicalPath="/franchiseform"
+      />
       <PageWrapper>
         <ToastContainer position="top-right" autoClose={3000} />
         <HeroSection>
@@ -78,3 +84,4 @@ const FranchiseForm = () => {
 };
 
 export default FranchiseForm;
+

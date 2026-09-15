@@ -4,8 +4,9 @@ import TopBanner from "../../components/TopBanner";
 import PageLayout from "../../components/Layout/PageLayout";
 import BlogSection from "../../components/HomeSections/sections/BlogSection";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
-import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
-import SiteFooter from "../../components/HomeSections/sections/SiteFooter/SiteFooter.jsx";
+import PartnerCta from "../../components/HomeSections/sections/PartnerCta/index.jsx";
+import SiteFooter from "../../components/HomeSections/sections/SiteFooter/index.jsx";
+import SEO from "../../components/Common/SEO.jsx";
 import {
   fetchPublicBlogsList,
   selectPublicBlogListError,
@@ -39,6 +40,11 @@ function BlogSections() {
 
   return (
     <>
+      <SEO
+        title="Latest News & Franchise Insights | Chicking Blog"
+        description="Stay updated with the latest news, industry insights, store openings, franchise opportunities, and behind-the-scenes stories from Chicking."
+        canonicalPath="/blog"
+      />
       <PageLayout />
       <TopBanner
         key={titleIndex}
@@ -89,3 +95,4 @@ function BlogSections() {
 }
 
 export default BlogSections;
+

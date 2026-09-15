@@ -3,8 +3,9 @@ import FranchiseBanner from "../../components/TopBanner";
 import OperationalExcellence from "../../components/AboutUs/OperationalExcellence";
 import PageLayout from "../../components/Layout/PageLayout";
 import MissionSection from "../../components/AboutUs/MissionSection";
-import PartnerCta from "../../components/HomeSections/sections/PartnerCta";
-import SiteFooter from "../../components/HomeSections/sections/SiteFooter";
+import PartnerCta from "../../components/HomeSections/sections/PartnerCta/index.jsx";
+import SiteFooter from "../../components/HomeSections/sections/SiteFooter/index.jsx";
+import SEO from "../../components/Common/SEO.jsx";
 import sharedBannerImages from "../../assets/images/sharedBannerImages";
 
 const franchiseImg = "/images/franchise/aboutimg.svg";
@@ -29,6 +30,11 @@ const AboutUs = () => {
 
   return (
   <PageLayout>
+    <SEO
+      title="About Us | Chicking Global Franchise"
+      description="Learn about Chicking's 20-year history, mission, operational excellence, and global quick-service restaurant franchise network."
+      canonicalPath="/about-us"
+    />
     <FranchiseBanner
       key={titleIndex}
       title={titles[titleIndex]}
@@ -68,3 +74,4 @@ const AboutUs = () => {
 }
 
 export default AboutUs;
+

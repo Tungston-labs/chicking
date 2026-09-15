@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { BrochureImage, Wrapper } from "./ThaiPackage.styles.js";
 import PageLayout from "../../../components/Layout/PageLayout";
-import SiteFooter from "../../../components/HomeSections/sections/SiteFooter";
+import SiteFooter from "../../../components/HomeSections/sections/SiteFooter/index.jsx";
 import TopBanner from "../../../components/TopBanner";
+import SEO from "../../../components/Common/SEO.jsx";
 import sharedBannerImages from "../../../assets/images/sharedBannerImages.js";
 
 const franchiseImg = "/images/proposition/logo.svg";
@@ -15,6 +16,11 @@ const ThaiPackage = () => {
 
   return (
     <>
+      <SEO
+        title="Thailand Franchise Package | Chicking Opportunity"
+        description="Explore the Thailand franchise package brochure and market opportunity details for Chicking QSR outlets."
+        canonicalPath="/thai-package"
+      />
       <PageLayout />
 
       <TopBanner
@@ -46,3 +52,4 @@ const ThaiPackage = () => {
 };
 
 export default ThaiPackage;
+

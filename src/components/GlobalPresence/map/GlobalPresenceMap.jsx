@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { Map as PigeonMap, Overlay } from "pigeon-maps";
 
@@ -84,6 +84,7 @@ const GlobalPresenceMap = () => {
       activeCountryLocations.reduce((acc, loc) => acc + loc.coordinates.lng, 0) /
       activeCountryLocations.length;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCenter([avgLat, avgLng]);
     setZoom(activeRegion.focusZoom || 12);
   }, [activeCountry, activeCountryLocations, activeRegion.focusZoom]);
