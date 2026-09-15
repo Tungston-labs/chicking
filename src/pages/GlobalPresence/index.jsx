@@ -1,7 +1,8 @@
 import PageLayout from "../../components/Layout/PageLayout.jsx";
-import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
+import PartnerCta from "../../components/HomeSections/sections/PartnerCta/index.jsx";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter/index.jsx";
 import TopBanner from "../../components/TopBanner/index.jsx";
+import SEO from "../../components/Common/SEO.jsx";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import FutureFrontiers from "../../components/GlobalPresence/frontiers/index.jsx";
 import { renderGlobalPresenceBannerTitle } from "../../components/GlobalPresence/globalPresence.helpers.jsx";
@@ -12,6 +13,11 @@ const franchiseImg = "/images/management/topimage.svg";
 
 const GlobalPresence = () => (
   <PageLayout>
+    <SEO
+      title="Global Presence | Chicking Outlets Worldwide"
+      description="Explore Chicking's global presence across 36+ countries and 400+ locations in the Middle East, Europe, Africa, and Asia-Pacific."
+      canonicalPath="/global-presence"
+    />
     <TopBanner
       title={renderGlobalPresenceBannerTitle(globalPresenceBanner.titleLines)}
       description={globalPresenceBanner.description}
@@ -52,4 +58,5 @@ const GlobalPresence = () => (
 );
 
 export default GlobalPresence;
+
 ``

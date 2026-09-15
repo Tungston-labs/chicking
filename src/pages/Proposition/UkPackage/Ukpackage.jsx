@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BrochureImage, Wrapper } from "./Ukpackage.style.js";
 import PageLayout from "../../../components/Layout/PageLayout";
-import SiteFooter from "../../../components/HomeSections/sections/SiteFooter";
+import SiteFooter from "../../../components/HomeSections/sections/SiteFooter/index.jsx";
 import TopBanner from "../../../components/TopBanner";
+import SEO from "../../../components/Common/SEO.jsx";
 import sharedBannerImages from "../../../assets/images/sharedBannerImages.js";
 
 const franchiseImg = "/images/proposition/logo.svg";
@@ -14,6 +15,11 @@ const Ukpackage = () => {
 
   return (
     <>
+      <SEO
+        title="UK Franchise Package | Chicking Opportunity"
+        description="Explore the United Kingdom franchise package brochure and investment details for Chicking QSR outlets."
+        canonicalPath="/uk-package"
+      />
       <PageLayout />
 
       <TopBanner
@@ -40,3 +46,4 @@ const Ukpackage = () => {
 };
 
 export default Ukpackage;
+

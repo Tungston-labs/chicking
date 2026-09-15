@@ -16,13 +16,12 @@ const LeadershipCard = ({
   name,
   gridArea,
   isRed,
-  isSmall,
   onClick
 }) => {
   return (
-    <MemberCard gridArea={gridArea} isSmall={isSmall} onClick={onClick}>
-      <ImageContainer isSmall={isSmall}>
-        <MemberImage src={image} alt={name} isSmall={isSmall}/>
+    <MemberCard gridArea={gridArea} onClick={onClick}>
+      <ImageContainer>
+        <MemberImage src={image} alt={name} />
         <Overlay>
           <ArrowButton>
             <FiArrowUpRight />
@@ -30,16 +29,13 @@ const LeadershipCard = ({
         </Overlay>
       </ImageContainer>
 
-   <MemberRole isSmall={isSmall}>
-  {role}
-</MemberRole>
+      <MemberRole>
+        {role}
+      </MemberRole>
 
-<MemberName
-  isRed={isRed}
-  isSmall={isSmall}
->
-  {name}
-</MemberName>
+      <MemberName isRed={isRed}>
+        {name}
+      </MemberName>
     </MemberCard>
   );
 };

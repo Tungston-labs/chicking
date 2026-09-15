@@ -74,19 +74,26 @@ export const GridContainer = styled.div`
 `;
 
 export const MemberCard = styled.div`
-  grid-area:${({ gridArea }) => gridArea || "auto"};
-  text-align:center;
-  width:100%;
-  max-width:${({ isSmall }) =>
-    isSmall ? "170px" : "200px"};
+  grid-area: ${({ gridArea }) => gridArea || "auto"};
+  text-align: center;
+  width: 100%;
+  max-width: 190px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+  cursor: pointer;
 `;
 
 export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
+  height: 190px;
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 `;
 
 export const Overlay = styled.div`
@@ -144,42 +151,51 @@ export const ArrowButton = styled.div`
 `;
 
 export const MemberImage = styled.img`
-  width:100%;
-  height:${({ isSmall }) =>
-    isSmall ? "180px" : "200px"};
-  object-fit:cover;
-
-  
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 `;
 
 export const MemberRole = styled.div`
-  font-size: ${({ isSmall }) => (isSmall ? "12px" : "13px")};
-  color: #333;
+  font-size: 12px;
+  color: #555;
   font-weight: 500;
+  margin-top: 4px;
   margin-bottom: 4px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.35;
 
   @media (max-width: 768px) {
-    font-size: ${({ isSmall }) => (isSmall ? "11px" : "12px")};
+    font-size: 11px;
+    min-height: 28px;
   }
 
   @media (max-width: 570px) {
-    font-size: ${({ isSmall }) => (isSmall ? "14px" : "15px")};
+    font-size: 13px;
+    min-height: auto;
   }
 `;
+
 export const MemberName = styled.div`
-  font-size: ${({ isSmall }) => (isSmall ? "16px" : "16px")};
+  font-size: 14px;
   font-weight: 700;
   color: ${({ isRed }) => (isRed ? "#8d2f23" : "#111")};
   line-height: 1.3;
   text-transform: uppercase;
   margin-bottom: 2px;
+  text-align: center;
 
   @media (max-width: 768px) {
-    font-size: ${({ isSmall }) => (isSmall ? "13px" : "15px")};
+    font-size: 13px;
   }
 
   @media (max-width: 570px) {
-    font-size: ${({ isSmall }) => (isSmall ? "14px" : "20px")};
+    font-size: 15px;
   }
 `;
 

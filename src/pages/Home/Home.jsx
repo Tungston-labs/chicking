@@ -2,6 +2,7 @@ import Hero from "../../components/Hero/index.jsx";
 import HomeSections from "../../components/HomeSections/index.jsx";
 import PageLayout from "../../components/Layout/PageLayout.jsx";
 import SharedBanner from "../../components/SharedBanner/index.jsx";
+import SEO from "../../components/Common/SEO.jsx";
 import { homeBanners } from "../../components/HomeSections/data/homeSectionsData.js";
 
 const renderLines = (lines) => (
@@ -41,6 +42,11 @@ const renderBannerTitle = (title) => {
 const Home = () => {
   return (
     <PageLayout>
+      <SEO
+        title="Chicking - Global Halal Quick-Service Restaurant Franchise"
+        description="Take the first step toward owning a successful global Chicking franchise. Join over 160 outlets in 36+ countries worldwide."
+        canonicalPath="/"
+      />
       <Hero />
       {homeBanners.map((banner) => (
         <SharedBanner
@@ -55,3 +61,4 @@ const Home = () => {
 };
 
 export default Home;
+

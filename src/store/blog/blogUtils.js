@@ -33,7 +33,7 @@ const resolveBlogImageSource = (source = "") => {
 export const BLOG_PAGE_SIZE = 5;
 export const BLOG_FETCH_PAGE_SIZE = 100;
 
-const DEFAULT_AUTHOR_ROLE = "Super Admin";
+const DEFAULT_AUTHOR_ROLE = "Chicking Editorial Team";
 const EMPTY_PUBLISHED_AT = "---";
 
 const fallbackImage = fallbackBlogPosts[0]?.image || null;

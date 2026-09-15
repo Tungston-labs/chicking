@@ -2,19 +2,20 @@ import React, { useEffect, useState } from "react";
 import CompetitiveAdvantage from "../../components/Proposition/CompetitiveAdvantage/CompetitiveAdvantage";
 import PageLayout from "../../components/Layout/PageLayout";
 import MajorMarkets from "../../components/Proposition/MajorMarkets/MajorMarkets";
-import SiteFooter from "../../components/HomeSections/sections/SiteFooter";
+import SiteFooter from "../../components/HomeSections/sections/SiteFooter/index.jsx";
 import TopBanner from "../../components/TopBanner";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import { useNavigate } from "react-router-dom";
-import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
+import PartnerCta from "../../components/HomeSections/sections/PartnerCta/index.jsx";
+import SEO from "../../components/Common/SEO.jsx";
 
 const franchiseImg = "/images/proposition/logo.svg";
 const Propositions = () => {
       const navigate = useNavigate();
     const titles = [
-        "Partner With A Global Franchise Leader",
-        "Turn Ambition Into International Success",
-        " Scale Your Business With a Proven Global Model",
+        "Why Partner With Chicking: Unique Advantages",
+        "Proven Business System & High Yield QSR Model",
+        "Global Brand Equity & Halal Certification",
         "Expanding Opportunities Delivering Global Success",
     ];
     const [titleIndex, setTitleIndex] = useState(0);
@@ -27,6 +28,11 @@ const Propositions = () => {
     }, [titles.length]);
     return (
         <>
+        <SEO
+            title="Unique Propositions | Chicking Franchise"
+            description="Discover Chicking's unique competitive advantages, major target markets, and proven halal QSR model across global markets."
+            canonicalPath="/unique-propositions"
+        />
         <PageLayout/>
         <TopBanner
             key={titleIndex}
@@ -75,3 +81,4 @@ const Propositions = () => {
 };
 
 export default Propositions;
+

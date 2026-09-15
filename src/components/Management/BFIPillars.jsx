@@ -65,6 +65,7 @@ const BFIPillars = () => {
                     <ImageSection>
                         <StoreImage
                             src={sliderImages[currentImage]}
+                            alt="Chicking BFI franchise store showcase"
                             fade={fade}
                         />
                     </ImageSection>
@@ -78,7 +79,7 @@ const BFIPillars = () => {
                                 <IconWrap>
                                     <img
                                         src={awardIcon}
-                                        alt="award"
+                                        alt="Support pillar award icon"
                                     />
                                 </IconWrap>
 

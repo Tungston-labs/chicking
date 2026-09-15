@@ -22,6 +22,7 @@ import {
 } from "./NewsArticle.styles";
 import PageLayout from "../../../components/Layout/PageLayout";
 import TopBanner from "../../../components/TopBanner";
+import SEO from "../../../components/Common/SEO.jsx";
 import NewsArticleComments from "./NewsArticleComments.jsx";
 import { getArticleSourceLabel } from "./newsArticleCommentUtils.js";
 import { usePublicBlogComments } from "./usePublicBlogComments.js";
@@ -91,12 +92,43 @@ function NewsArticle() {
     return () => clearInterval(interval);
   }, [titles.length]);
 
+  const articleSchema = post
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.excerpt || post.title,
+        "image": articleCoverImage || post.image ? [articleCoverImage || post.image] : [],
+        "author": {
+          "@type": "Person",
+          "name": post.author || "Chicking Admin",
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Chicking",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://chickingglobal.com/images/logo.svg",
+          },
+        },
+        "datePublished": post.publishDateValue || post.date,
+      }
+    : null;
+
   return (
     <>
+      <SEO
+        title={post ? `${post.title} | Chicking Blog` : "Blog Article | Chicking"}
+        description={post?.excerpt || "Read the full blog article from Chicking."}
+        image={articleCoverImage || post?.image}
+        canonicalPath={blogSlug ? `/post/${blogSlug}` : `/new-article/${blogId}`}
+        schema={articleSchema}
+      />
       <PageLayout />
 
       <TopBanner
         key={titleIndex}
+        as="h2"
         title={titles[titleIndex]}
         description={
           <>
@@ -184,3 +216,4 @@ function NewsArticle() {
 }
 
 export default NewsArticle;
+

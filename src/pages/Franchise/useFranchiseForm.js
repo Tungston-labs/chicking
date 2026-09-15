@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { submitFranchiseEnquiry } from "../../api/index.js";
+import { trackFormSubmission } from "../../utils/analytics.js";
 
 const titles = [
   "Grow With Us",
@@ -124,6 +125,12 @@ const useFranchiseForm = () => {
     try {
       await submitFranchiseEnquiry({
         formData,
+        interest: selected,
+      });
+
+      trackFormSubmission("franchise_inquiry_form", {
+        country: formData.country,
+        investment: formData.investment,
         interest: selected,
       });
 

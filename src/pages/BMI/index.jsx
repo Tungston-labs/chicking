@@ -1,7 +1,8 @@
 import PageLayout from "../../components/Layout/PageLayout.jsx";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter/index.jsx";
-import PartnerCta from "../../components/HomeSections/sections/PartnerCta/PartnerCta.jsx";
+import PartnerCta from "../../components/HomeSections/sections/PartnerCta/index.jsx";
 import TopBanner from "../../components/TopBanner/index.jsx";
+import SEO from "../../components/Common/SEO.jsx";
 import BmiCommitment from "../../components/BMI/commitment/index.jsx";
 import BmiFoodShowcase from "../../components/BMI/showcase/index.jsx";
 import BmiMilestones from "../../components/BMI/milestone/index.jsx";
@@ -10,11 +11,16 @@ import { bmiBanner } from "../../components/BMI/data/bmiData.js";
 
 const BMI = () => (
   <PageLayout>
+    <SEO
+      title="Bites, Meals & Innovations (BMI) | Chicking"
+      description="Explore Chicking's commitment to culinary excellence, menu innovations, fresh quality ingredients, and 100% Halal certification."
+      canonicalPath="/bmi"
+    />
     <TopBanner
       title={bmiBanner.titleLines.map((line, index) => (
         <span key={line}>
           {line}
-          {index < bmiBanner.titleLines.length - 1 ? <br /> : null}
+          {index < bmiBanner.titleLines.length - 1 ? <> <br /></> : null}
         </span>
       ))}
       description={bmiBanner.description}
@@ -57,3 +63,4 @@ const BMI = () => (
 );
 
 export default BMI;
+

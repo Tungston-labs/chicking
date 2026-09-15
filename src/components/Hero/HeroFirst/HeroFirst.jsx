@@ -95,13 +95,14 @@ const HeroFirst = () => {
             decoding="async"
             width="120"
             height="120"
-            alt=""
+            alt="36+ Countries global presence icon"
           />
           <strong className="stat-number">36+</strong>
           <span>Countries</span>
           <img
             src={homeImages.hero.floating.dottedCount}
             alt=""
+            aria-hidden="true"
             loading="lazy"
             decoding="async"
             width="40"
@@ -117,13 +118,14 @@ const HeroFirst = () => {
             decoding="async"
             width="120"
             height="120"
-            alt=""
+            alt="400+ Store locations icon"
           />
-          <strong className="stat-number">160+</strong>
+          <strong className="stat-number">400+</strong>
           <span>Locations</span>
           <img
             src={homeImages.hero.floating.dotted}
             alt=""
+            aria-hidden="true"
             loading="lazy"
             decoding="async"
             width="30"
@@ -139,13 +141,14 @@ const HeroFirst = () => {
             decoding="async"
             width="120"
             height="120"
-            alt=""
+            alt="20+ Years of industry excellence icon"
           />
           <strong className="stat-number">20+</strong>
           <span>Years of excellence</span>
           <img
             src={homeImages.hero.floating.dotted}
             alt=""
+            aria-hidden="true"
             loading="lazy"
             decoding="async"
             width="30"
@@ -162,6 +165,7 @@ const HeroFirst = () => {
             width="120"
             height="120"
             alt=""
+            aria-hidden="true"
           />
         </FloatingItem>
       </ImageWrapper>
