@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { Map as PigeonMap, Overlay } from "pigeon-maps";
 
@@ -29,6 +29,19 @@ import {
   RegionTabs,
 } from "./GlobalPresenceMap.styles.js";
 
+// CleanMapControlToolbar filters out PigeonMap's injected internal map props to avoid React unknown DOM prop warnings
+const CleanMapControlToolbar = ({
+  left,
+  top,
+  latLngToPixel,
+  pixelToLatLng,
+  setCenterZoom,
+  mapProps,
+  mapState,
+  children,
+  ...rest
+}) => <MapControlToolbar {...rest}>{children}</MapControlToolbar>;
+
 const GlobalPresenceMap = () => {
   const [activeRegionId, setActiveRegionId] = useState(DEFAULT_REGION_ID);
   const [activeLocationIdsByRegion, setActiveLocationIdsByRegion] = useState(() =>
@@ -39,6 +52,7 @@ const GlobalPresenceMap = () => {
 
   const [selectedLocationId, setSelectedLocationId] = useState(null);
   const [hoveredLocationId, setHoveredLocationId] = useState(null);
+  const hoverTimeoutRef = useRef(null);
 
   const activeRegion =
     globalPresenceRegions.find((region) => region.id === activeRegionId) ||
@@ -110,6 +124,23 @@ const GlobalPresenceMap = () => {
 
     setCenter([avgLat, avgLng]);
     setZoom(activeRegion.focusZoom || 12);
+  };
+
+  const handleMouseEnterLocation = (id) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    setHoveredLocationId(id);
+  };
+
+  const handleMouseLeaveLocation = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredLocationId(null);
+    }, 220);
   };
 
   return (
@@ -186,7 +217,7 @@ const GlobalPresenceMap = () => {
                 metaWheelZoom={false}
                 twoFingerPageScroll={true}
               >
-                <MapControlToolbar>
+                <CleanMapControlToolbar>
                   <MapControlButton
                     type="button"
                     onClick={() => setZoom((z) => Math.min(z + 1, 18))}
@@ -211,12 +242,13 @@ const GlobalPresenceMap = () => {
                   >
                     <RotateCcw size={16} />
                   </MapControlButton>
-                </MapControlToolbar>
+                </CleanMapControlToolbar>
 
                 {activeCountryLocations.flatMap((location) => {
                   const isActive = location.id === activeLocationId;
                   const isSelected = location.id === selectedLocationId;
                   const isHovered = location.id === hoveredLocationId;
+                  const showPopup = isSelected || isHovered;
 
                   return [
                     <Overlay
@@ -227,8 +259,8 @@ const GlobalPresenceMap = () => {
                       <div
                         className={`presence-marker${isActive || isSelected || isHovered ? " is-active" : ""}`}
                         onClick={() => handleMarkerClick(location.id)}
-                        onMouseEnter={() => setHoveredLocationId(location.id)}
-                        onMouseLeave={() => setHoveredLocationId(null)}
+                        onMouseEnter={() => handleMouseEnterLocation(location.id)}
+                        onMouseLeave={handleMouseLeaveLocation}
                         style={{ cursor: "pointer" }}
                       >
                         <span className="presence-marker-pin"></span>
@@ -238,27 +270,7 @@ const GlobalPresenceMap = () => {
                       </div>
                     </Overlay>,
 
-                    isHovered && !isSelected ? (
-                      <Overlay
-                        key={`hover-popup-${location.id}`}
-                        anchor={[location.coordinates.lat, location.coordinates.lng]}
-                        offset={[120, 75]}
-                      >
-                        <GlobalPresenceLocationPopup
-                          location={{
-                            ...location,
-                            place: `${location.country} Location`,
-                          }}
-                          statusInfo={{
-                            country: location.country,
-                            status: "Operational",
-                            nextTerritories: "Inquire Within",
-                          }}
-                        />
-                      </Overlay>
-                    ) : null,
-
-                    isSelected ? (
+                    showPopup ? (
                       <Overlay
                         key={`popup-${location.id}`}
                         anchor={[location.coordinates.lat, location.coordinates.lng]}
@@ -266,7 +278,9 @@ const GlobalPresenceMap = () => {
                       >
                         <GlobalPresenceLocationPopup
                           location={location}
-                          onClose={() => setSelectedLocationId(null)}
+                          onClose={isSelected ? () => setSelectedLocationId(null) : null}
+                          onMouseEnter={() => handleMouseEnterLocation(location.id)}
+                          onMouseLeave={handleMouseLeaveLocation}
                         />
                       </Overlay>
                     ) : null,

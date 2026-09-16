@@ -9,8 +9,8 @@ import {
   PopupTitle,
 } from "./GlobalPresenceLocationPopup.styles.js";
 
-const GlobalPresenceLocationPopup = ({ location, statusInfo, onClose }) => (
-  <PopupCard>
+const GlobalPresenceLocationPopup = ({ location, statusInfo, onClose, onMouseEnter, onMouseLeave }) => (
+  <PopupCard onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
     <PopupHeader>
       <PopupTitle>{location.place || location.country}</PopupTitle>
       {onClose && (
