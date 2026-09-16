@@ -38,6 +38,7 @@ const GlobalPresenceMap = () => {
   );
 
   const [selectedLocationId, setSelectedLocationId] = useState(null);
+  const [hoveredLocationId, setHoveredLocationId] = useState(null);
 
   const activeRegion =
     globalPresenceRegions.find((region) => region.id === activeRegionId) ||
@@ -215,6 +216,7 @@ const GlobalPresenceMap = () => {
                 {activeCountryLocations.flatMap((location) => {
                   const isActive = location.id === activeLocationId;
                   const isSelected = location.id === selectedLocationId;
+                  const isHovered = location.id === hoveredLocationId;
 
                   return [
                     <Overlay
@@ -223,16 +225,38 @@ const GlobalPresenceMap = () => {
                       offset={[29, 56]}
                     >
                       <div
-                        className={`presence-marker${isActive || isSelected ? " is-active" : ""}`}
+                        className={`presence-marker${isActive || isSelected || isHovered ? " is-active" : ""}`}
                         onClick={() => handleMarkerClick(location.id)}
+                        onMouseEnter={() => setHoveredLocationId(location.id)}
+                        onMouseLeave={() => setHoveredLocationId(null)}
                         style={{ cursor: "pointer" }}
                       >
                         <span className="presence-marker-pin"></span>
                         <span className="presence-marker-logo">
-                          <img src="/images/logo.svg" alt="" />
+                          <img src="/images/logo.svg" alt={`Chicking location marker for ${location.country}`} />
                         </span>
                       </div>
                     </Overlay>,
+
+                    isHovered && !isSelected ? (
+                      <Overlay
+                        key={`hover-popup-${location.id}`}
+                        anchor={[location.coordinates.lat, location.coordinates.lng]}
+                        offset={[120, 75]}
+                      >
+                        <GlobalPresenceLocationPopup
+                          location={{
+                            ...location,
+                            place: `${location.country} Location`,
+                          }}
+                          statusInfo={{
+                            country: location.country,
+                            status: "Operational",
+                            nextTerritories: "Inquire Within",
+                          }}
+                        />
+                      </Overlay>
+                    ) : null,
 
                     isSelected ? (
                       <Overlay

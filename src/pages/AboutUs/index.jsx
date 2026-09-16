@@ -10,6 +10,19 @@ import sharedBannerImages from "../../assets/images/sharedBannerImages";
 
 const franchiseImg = "/images/franchise/aboutimg.svg";
 
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Us | Chicking Global Franchise",
+  "description": "Learn about Chicking's 20-year history, mission, operational excellence, and global quick-service restaurant franchise network.",
+  "url": "http://178.248.112.5/about-us",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chicking",
+    "logo": "http://178.248.112.5/images/logo.svg",
+  },
+};
+
 const AboutUs = () => {
   const titles = [
     "Over 20 Years of QSR Excellence & Growth",
@@ -34,6 +47,7 @@ const AboutUs = () => {
       title="About Us | Chicking Global Franchise"
       description="Learn about Chicking's 20-year history, mission, operational excellence, and global quick-service restaurant franchise network."
       canonicalPath="/about-us"
+      schema={aboutSchema}
     />
     <FranchiseBanner
       key={titleIndex}

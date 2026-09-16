@@ -386,13 +386,14 @@ const resolvePublishedAt = ({ existingBlog, publishDate, status }) => {
 };
 
 export const buildBlogRequestPayload = ({ existingBlog, formValues, status }) => ({
-  author: formValues.author.trim(),
+  author: (formValues.author || "Chicking Marketing Team").trim(),
   authorRole: existingBlog?.authorRole || DEFAULT_AUTHOR_ROLE,
   category: formValues.category.trim(),
   content: formValues.content.trim(),
   excerpt: formValues.excerpt.trim(),
   id: existingBlog?.id || createClientBlogId(formValues.title),
   image: extractFirstImageSrc(formValues.content) || existingBlog?.image || fallbackImage,
+  imageAlt: formValues.imageAlt?.trim() || formValues.title?.trim() || "Chicking Blog Article Cover Image",
   isVideo: Boolean(formValues.featuredVideo.trim()),
   publishedAt: resolvePublishedAt({
     existingBlog,
@@ -407,11 +408,12 @@ export const buildBlogRequestPayload = ({ existingBlog, formValues, status }) =>
 });
 
 export const getEditorInitialValues = (post) => ({
-  author: post?.author || "Admin",
+  author: post?.author || "Chicking Marketing Team",
   category: post?.category || "New Store Openings",
   content: post?.contentHtml || post?.contentText || "",
   excerpt: post?.excerpt || "",
   featuredVideo: post?.featuredVideo || "",
+  imageAlt: post?.imageAlt || "",
   publishDate: post?.publishDateValue || "",
   readTime: post?.readTime || "2 min Read",
   tags: post?.tags || [],

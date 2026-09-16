@@ -100,8 +100,8 @@ function NewsArticle() {
         "description": post.excerpt || post.title,
         "image": articleCoverImage || post.image ? [articleCoverImage || post.image] : [],
         "author": {
-          "@type": "Person",
-          "name": post.author || "Chicking Admin",
+          "@type": "Organization",
+          "name": post.author || "Chicking Marketing Team",
         },
         "publisher": {
           "@type": "Organization",
@@ -157,10 +157,10 @@ function NewsArticle() {
                   <p>{post.readTime}</p>
 
                   <AuthorWrap>
-                    <Avatar src="/images/logo.svg" />
+                    <Avatar src="/images/logo.svg" alt={`${post.author || "Chicking Marketing Team"} avatar`} />
 
                     <AuthorInfo>
-                      <Name>{post.author}</Name>
+                      <Name>{post.author || "Chicking Marketing Team"}</Name>
 
                       <Role>{post.authorRole}</Role>
                     </AuthorInfo>

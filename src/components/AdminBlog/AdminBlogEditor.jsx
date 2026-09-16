@@ -195,8 +195,26 @@ const AdminBlogEditor = ({
         return;
       }
 
+      const altText =
+        window.prompt(
+          "Enter descriptive alt text for this image (Required for SEO & Accessibility):",
+          formValues.imageAlt || formValues.title || "Blog article image"
+        ) ||
+        formValues.imageAlt ||
+        formValues.title ||
+        "Blog article image";
+
       const dataUrl = await readFileAsDataUrl(file);
       runCommand("insertImage", dataUrl);
+
+      const insertedImage =
+        editorRef.current?.querySelector(`img[src="${dataUrl}"]`) ||
+        editorRef.current?.querySelector("img:not([alt])");
+
+      if (insertedImage) {
+        insertedImage.setAttribute("alt", altText);
+      }
+
       refreshInlineImageState();
     } finally {
       event.target.value = "";
@@ -412,7 +430,15 @@ const AdminBlogEditor = ({
 
       <SettingsCard>
         <SettingsTitle>Post Settings</SettingsTitle>
-        <SettingsNote>Manage metadata, schedule, tags, and featured video from this panel.</SettingsNote>
+        <SettingsNote>Manage metadata, schedule, tags, alt text, and featured video from this panel.</SettingsNote>
+        <Field>
+          <Label>Cover Image Alt Text (Required for SEO)</Label>
+          <Input
+            onChange={handleFieldChange("imageAlt")}
+            placeholder="Descriptive alt text for post image..."
+            value={formValues.imageAlt}
+          />
+        </Field>
         <Field>
           <Label>Category</Label>
           <Select onChange={handleFieldChange("category")} value={formValues.category}>

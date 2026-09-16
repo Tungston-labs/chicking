@@ -1,10 +1,10 @@
 export const sharedBannerImages = {
   edges: {
-    top: "/images/sharedbanner/bottom.png",
-    bottom: "/images/sharedbanner/top.png",
-    footerBlack: "/images/sharedbanner/footerblack.png",
-    beigeTop: "/images/sharedbanner/beigetop.png",
-    beigeBottom: "/images/sharedbanner/beigebottom.png",
+    top: "/images/sharedbanner/bottom.webp",
+    bottom: "/images/sharedbanner/top.webp",
+    footerBlack: "/images/sharedbanner/footerblack.webp",
+    beigeTop: "/images/sharedbanner/beigetop.webp",
+    beigeBottom: "/images/sharedbanner/beigebottom.webp",
   },
   intro: {
     background: "/images/sharedbanner/mapbackground.svg",
