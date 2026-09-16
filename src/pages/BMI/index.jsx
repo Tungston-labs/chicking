@@ -9,12 +9,26 @@ import BmiMilestones from "../../components/BMI/milestone/index.jsx";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import { bmiBanner } from "../../components/BMI/data/bmiData.js";
 
+const bmiSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Bites, Meals & Innovations (BMI) | Chicking",
+  "description": "Explore Chicking's commitment to culinary excellence, menu innovations, fresh quality ingredients, and 100% Halal certification.",
+  "url": "http://178.248.112.5/bmi",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chicking",
+    "logo": "http://178.248.112.5/images/logo.svg",
+  },
+};
+
 const BMI = () => (
   <PageLayout>
     <SEO
       title="Bites, Meals & Innovations (BMI) | Chicking"
       description="Explore Chicking's commitment to culinary excellence, menu innovations, fresh quality ingredients, and 100% Halal certification."
       canonicalPath="/bmi"
+      schema={bmiSchema}
     />
     <TopBanner
       title={bmiBanner.titleLines.map((line, index) => (

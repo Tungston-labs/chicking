@@ -21,7 +21,7 @@ export const bmiMilestones = [
   },
   {
     description:
-      "Chicking opened its first outlet in Deira, Dubai, becoming the world's first fully Halal international quick service restaurant. A bold vision was born.",
+      "Chicking accelerated its growth across the Gulf region, launching successful store outlets in Oman, Qatar, and Saudi Arabia.",
     image: bmiImages.foods[0],
     items: [
       "Rapid expansion across Gulf countries (GCC).",
@@ -32,7 +32,7 @@ export const bmiMilestones = [
   },
   {
     description:
-      "Chicking opened its first outlet in Deira, Dubai, becoming the world's first fully Halal international quick service restaurant. A bold vision was born.",
+      "Chicking expanded into major international territories including India and key African markets, establishing a true global footprint.",
     image: bmiImages.foods[1],
     items: [
       "Entered international markets including India and parts of Africa.",

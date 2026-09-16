@@ -40,6 +40,19 @@ const sectionContent = {
 
 };
 
+const managementSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Leadership & Management Team | Chicking",
+  "description": "Meet the highly qualified and experienced leadership team behind Chicking's international growth, franchise management, and operational support.",
+  "url": "http://178.248.112.5/management",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chicking",
+    "logo": "http://178.248.112.5/images/logo.svg",
+  },
+};
+
 const LeadershipSection = () => {
    const [selectedMember, setSelectedMember] = useState(null);
       const titles = [ "Highly Qualified & Experienced Individuals"];
@@ -57,6 +70,7 @@ const LeadershipSection = () => {
           title="Leadership & Management Team | Chicking"
           description="Meet the highly qualified and experienced leadership team behind Chicking's international growth, franchise management, and operational support."
           canonicalPath="/management"
+          schema={managementSchema}
         />
         {selectedMember && (
         <LeadershipModal

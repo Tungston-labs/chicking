@@ -52,6 +52,7 @@ const FaqBlock = ({
                 $variant="map"
                 src={mapImage}
                 alt=""
+                aria-hidden="true"
                 loading="lazy"
               />
             )}
@@ -61,6 +62,7 @@ const FaqBlock = ({
                 $variant="pin"
                 src={pinImage}
                 alt=""
+                aria-hidden="true"
                 loading="lazy"
               />
             )}

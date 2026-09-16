@@ -11,12 +11,26 @@ import { globalPresenceBanner } from "../../components/GlobalPresence/data/globa
 
 const franchiseImg = "/images/management/topimage.svg";
 
+const globalPresenceSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Global Presence | Chicking Outlets Worldwide",
+  "description": "Explore Chicking's global presence across 36+ countries and 400+ locations in the Middle East, Europe, Africa, and Asia-Pacific.",
+  "url": "http://178.248.112.5/global-presence",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chicking",
+    "logo": "http://178.248.112.5/images/logo.svg",
+  },
+};
+
 const GlobalPresence = () => (
   <PageLayout>
     <SEO
       title="Global Presence | Chicking Outlets Worldwide"
       description="Explore Chicking's global presence across 36+ countries and 400+ locations in the Middle East, Europe, Africa, and Asia-Pacific."
       canonicalPath="/global-presence"
+      schema={globalPresenceSchema}
     />
     <TopBanner
       title={renderGlobalPresenceBannerTitle(globalPresenceBanner.titleLines)}

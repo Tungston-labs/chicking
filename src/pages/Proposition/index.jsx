@@ -10,6 +10,19 @@ import PartnerCta from "../../components/HomeSections/sections/PartnerCta/index.
 import SEO from "../../components/Common/SEO.jsx";
 
 const franchiseImg = "/images/proposition/logo.svg";
+const propositionSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Unique Propositions | Chicking Franchise",
+  "description": "Discover Chicking's unique competitive advantages, major target markets, and proven halal QSR model across global markets.",
+  "url": "http://178.248.112.5/unique-propositions",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chicking",
+    "logo": "http://178.248.112.5/images/logo.svg",
+  },
+};
+
 const Propositions = () => {
       const navigate = useNavigate();
     const titles = [
@@ -32,6 +45,7 @@ const Propositions = () => {
             title="Unique Propositions | Chicking Franchise"
             description="Discover Chicking's unique competitive advantages, major target markets, and proven halal QSR model across global markets."
             canonicalPath="/unique-propositions"
+            schema={propositionSchema}
         />
         <PageLayout/>
         <TopBanner

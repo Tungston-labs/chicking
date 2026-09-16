@@ -9,7 +9,7 @@ import {
   BottomGraphic,
 } from "./style";
 
-const tornGraphic = "/images/sharedbanner/top.png";
+const tornGraphic = "/images/sharedbanner/top.webp";
 
 const TopBanner = ({
   title,
