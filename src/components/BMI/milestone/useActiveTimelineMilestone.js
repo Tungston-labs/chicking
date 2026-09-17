@@ -1,70 +1,79 @@
 import { useEffect, useRef, useState } from "react";
 
-const HEADING_TRIGGER_OFFSET = 12;
-
-const useActiveTimelineMilestone = (items) => {
+const useActiveTimelineMilestone = (items = []) => {
   const [activeMilestoneIndex, setActiveMilestoneIndex] = useState(0);
-  const timelineScrollAreaRef = useRef(null);
-  const timelineYearHeaderRefs = useRef([]);
+  const containerRef = useRef(null);
+  const isScrollingRef = useRef(false);
+
+  const goToMilestone = (index) => {
+    if (index >= 0 && index < items.length) {
+      setActiveMilestoneIndex(index);
+    }
+  };
+
+  const nextMilestone = () => {
+    setActiveMilestoneIndex((prev) => (prev + 1) % items.length);
+  };
+
+  const prevMilestone = () => {
+    setActiveMilestoneIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+  };
 
   useEffect(() => {
-    const scrollArea = timelineScrollAreaRef.current;
+    const element = containerRef.current;
+    if (!element || items.length === 0) return undefined;
 
-    if (!scrollArea || items.length === 0) {
-      return undefined;
-    }
-
-    const updateActiveMilestone = () => {
-      const headerElements = timelineYearHeaderRefs.current.filter(Boolean);
-
-      if (headerElements.length === 0) {
-        return;
-      }
-
-      const hasReachedScrollEnd =
-        scrollArea.scrollTop + scrollArea.clientHeight >= scrollArea.scrollHeight - 2;
-
-      if (hasReachedScrollEnd) {
-        setActiveMilestoneIndex(headerElements.length - 1);
-        return;
-      }
-
-      const scrollAreaTop = scrollArea.getBoundingClientRect().top;
-      const triggerTop = scrollAreaTop + HEADING_TRIGGER_OFFSET;
-      let nextIndex = 0;
-
-      headerElements.forEach((headerElement, index) => {
-        const headerTop = headerElement.getBoundingClientRect().top;
-
-        if (headerTop <= triggerTop) {
-          nextIndex = index;
+    const handleWheel = (e) => {
+      // If currently debouncing a wheel step, prevent rapid jumping
+      if (isScrollingRef.current) {
+        if (
+          (e.deltaY > 0 && activeMilestoneIndex < items.length - 1) ||
+          (e.deltaY < 0 && activeMilestoneIndex > 0)
+        ) {
+          e.preventDefault();
         }
-      });
+        return;
+      }
 
-      setActiveMilestoneIndex(nextIndex);
+      if (e.deltaY > 0) {
+        // Scrolling down
+        if (activeMilestoneIndex < items.length - 1) {
+          e.preventDefault();
+          isScrollingRef.current = true;
+          setActiveMilestoneIndex((prev) => prev + 1);
+          setTimeout(() => {
+            isScrollingRef.current = false;
+          }, 450);
+        }
+        // If at last milestone (11/11), do not preventDefault -> natural scroll to next section
+      } else if (e.deltaY < 0) {
+        // Scrolling up
+        if (activeMilestoneIndex > 0) {
+          e.preventDefault();
+          isScrollingRef.current = true;
+          setActiveMilestoneIndex((prev) => prev - 1);
+          setTimeout(() => {
+            isScrollingRef.current = false;
+          }, 450);
+        }
+        // If at first milestone (01/11), do not preventDefault -> natural scroll up
+      }
     };
 
-    const frameId = window.requestAnimationFrame(updateActiveMilestone);
-
-    scrollArea.addEventListener("scroll", updateActiveMilestone, { passive: true });
-    window.addEventListener("resize", updateActiveMilestone);
+    element.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
-      window.cancelAnimationFrame(frameId);
-      scrollArea.removeEventListener("scroll", updateActiveMilestone);
-      window.removeEventListener("resize", updateActiveMilestone);
+      element.removeEventListener("wheel", handleWheel);
     };
-  }, [items]);
-
-  const setTimelineYearHeaderRef = (index) => (element) => {
-    timelineYearHeaderRefs.current[index] = element;
-  };
+  }, [items.length, activeMilestoneIndex]);
 
   return {
     activeMilestone: items[activeMilestoneIndex] || items[0] || null,
     activeMilestoneIndex,
-    setTimelineYearHeaderRef,
-    timelineScrollAreaRef,
+    containerRef,
+    goToMilestone,
+    nextMilestone,
+    prevMilestone,
   };
 };
 

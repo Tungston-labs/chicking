@@ -1,106 +1,144 @@
-import { PiArrowFatLinesRightFill } from "react-icons/pi";
-
-import bmiImages from "../../../assets/images/bmiImages.js";
-import { PageSection } from "../../Layout/PageLayout.jsx";
+import React from "react";
+import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
 import { bmiMilestones } from "../data/bmiData.js";
 import useActiveTimelineMilestone from "./useActiveTimelineMilestone.js";
 import {
-  BrandStamp,
-  MilestonesGrid,
-  MilestonesHeading,
-  MilestonesIntro,
+  BackgroundLayer,
+  BulletItem,
+  BulletList,
+  CheckIconWrapper,
+  ContentArea,
+  ContentBox,
+  HeaderOverlay,
+  KeyBrandTitle,
+  MainContainer,
+  MilestoneDescription,
+  MilestoneIntro,
   MilestonesSection,
-  MilestonesText,
-  MilestoneVisual,
-  MilestoneVisualImage,
-  Timeline,
-  TimelineDescription,
-  TimelineGroup,
-  TimelineItem,
-  TimelineItemIcon,
-  TimelineList,
-  TimelineScrollArea,
-  TimelineYear,
-  TimelineYearHeader,
-  TimelineYearIcon,
+  MilestoneTitle,
+  ScrollIndicator,
+  StepCounter,
+  TimelineDot,
+  TimelineSidebar,
+  TimelineTrack,
+  TimelineYearItem,
+  YearText,
 } from "./BmiMilestones.styles.js";
+
+const CheckIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" />
+    <path
+      d="M8.5 12.5L11 15L15.5 9.5"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 const BmiMilestones = () => {
   const {
     activeMilestone,
-    setTimelineYearHeaderRef,
-    timelineScrollAreaRef,
+    activeMilestoneIndex,
+    containerRef,
+    goToMilestone,
+    nextMilestone,
   } = useActiveTimelineMilestone(bmiMilestones);
 
+  const isLastSlide = activeMilestoneIndex === bmiMilestones.length - 1;
+
+  const handleScrollClick = () => {
+    if (isLastSlide) {
+      goToMilestone(0);
+    } else {
+      nextMilestone();
+    }
+  };
+
+  const activeCounter = activeMilestone.counter || "01/11";
+  const [activeNum, totalNum] = activeCounter.split("/");
+
   return (
-  <MilestonesSection>
-  <PageSection>
-    <BrandStamp className="desktop-brand">
-      <img src={bmiImages.logo} alt="Chicking" />
-    </BrandStamp>
+    <MilestonesSection ref={containerRef}>
+      <BackgroundLayer>
+        <img
+          key={activeMilestone.bgImage || activeMilestoneIndex}
+          src={activeMilestone.bgImage || "/images/bmi/bmi1.svg"}
+          alt=""
+          aria-hidden="true"
+        />
+      </BackgroundLayer>
 
-    <MilestonesGrid>
-      <MilestonesIntro>
-        <MilestonesHeading>
-          Key Brand <strong>Milestones</strong>
-        </MilestonesHeading>
+      <HeaderOverlay>
+        <KeyBrandTitle>
+          KEY <strong>BRAND</strong> MILESTONES
+        </KeyBrandTitle>
+        <StepCounter>
+          <span className="active-num">{activeNum}</span>
+          <span className="total-num">/{totalNum}</span>
+        </StepCounter>
+      </HeaderOverlay>
 
-        <MilestonesText>
-          Chicking&apos;s journey has been shaped by disciplined expansion,
-          recognizable product appeal, and a business model designed for
-          durability.
-        </MilestonesText>
+      <MainContainer>
+        <TimelineSidebar>
+          <TimelineTrack>
+            {bmiMilestones.map((item, index) => {
+              const isActive = index === activeMilestoneIndex;
+              return (
+                <TimelineYearItem
+                  key={`${item.year}-${index}`}
+                  onClick={() => goToMilestone(index)}
+                  title={`Select ${item.year}`}
+                >
+                  <YearText $active={isActive}>{item.year}</YearText>
+                  <TimelineDot $active={isActive} />
+                </TimelineYearItem>
+              );
+            })}
+          </TimelineTrack>
+        </TimelineSidebar>
 
-        <MilestoneVisual>
-          <MilestoneVisualImage
-            key={`${activeMilestone.year}-${activeMilestone.image}`}
-            src={activeMilestone.image}
-            alt={`${activeMilestone.year} milestone visual`}
-          />
-        </MilestoneVisual>
-
-        {/* Mobile brand stamp */}
-        <BrandStamp className="mobile-brand">
-          <img src={bmiImages.logo} alt="Chicking" />
-        </BrandStamp>
-      </MilestonesIntro>
-
-      <Timeline>
-        <TimelineScrollArea ref={timelineScrollAreaRef}>
-          {bmiMilestones.map((milestone, index) => (
-            <TimelineGroup key={`${milestone.year}-${index}`}>
-              <TimelineYearHeader ref={setTimelineYearHeaderRef(index)}>
-                <TimelineYearIcon aria-hidden="true">
-                  <PiArrowFatLinesRightFill />
-                </TimelineYearIcon>
-                <TimelineYear>{milestone.year}</TimelineYear>
-              </TimelineYearHeader>
-
-              {milestone.description ? (
-                <TimelineDescription>
-                  {milestone.description}
-                </TimelineDescription>
+        <ContentArea>
+          <ContentBox key={activeMilestoneIndex}>
+            <MilestoneTitle>
+              {activeMilestone.titlePrefix}
+              {activeMilestone.highlightWord ? (
+                <span className="highlight">{activeMilestone.highlightWord}</span>
               ) : null}
+              {activeMilestone.titleSuffix}
+            </MilestoneTitle>
 
-              <TimelineList>
-                {milestone.items.map((item) => (
-                  <TimelineItem key={item}>
-                    <TimelineItemIcon
-                      src={bmiImages.tickRow}
-                      alt=""
-                      aria-hidden="true"
-                    />
-                    <span>{item}</span>
-                  </TimelineItem>
+            {activeMilestone.description ? (
+              <MilestoneDescription>{activeMilestone.description}</MilestoneDescription>
+            ) : null}
+
+            {activeMilestone.intro ? (
+              <MilestoneIntro>{activeMilestone.intro}</MilestoneIntro>
+            ) : null}
+
+            {activeMilestone.items && activeMilestone.items.length > 0 ? (
+              <BulletList>
+                {activeMilestone.items.map((bullet, bulletIdx) => (
+                  <BulletItem key={`${bulletIdx}-${bullet}`}>
+                    <CheckIconWrapper>
+                      <CheckIcon />
+                    </CheckIconWrapper>
+                    <span>{bullet}</span>
+                  </BulletItem>
                 ))}
-              </TimelineList>
-            </TimelineGroup>
-          ))}
-        </TimelineScrollArea>
-      </Timeline>
-    </MilestonesGrid>
-  </PageSection>
-</MilestonesSection>
+              </BulletList>
+            ) : null}
+          </ContentBox>
+        </ContentArea>
+      </MainContainer>
+
+      <ScrollIndicator onClick={handleScrollClick} aria-label="Scroll milestones">
+        {isLastSlide ? <FaAngleDoubleUp /> : <FaAngleDoubleDown />}
+        <span>SCROLL</span>
+      </ScrollIndicator>
+    </MilestonesSection>
   );
 };
 

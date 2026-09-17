@@ -88,13 +88,13 @@ const routes = [
   },
   {
     path: "/bmi",
-    title: "Bites, Meals & Innovations (BMI) | Chicking",
+    title: "Brand Momentum & Investment (BMI) | Chicking",
     description:
       "Explore Chicking's commitment to culinary excellence, menu innovations, fresh quality ingredients, and 100% Halal certification.",
     schema: {
       "@context": "https://schema.org",
       "@type": "AboutPage",
-      name: "Bites, Meals & Innovations (BMI) | Chicking",
+      name: "Brand Momentum & Investment (BMI) | Chicking",
       description:
         "Explore Chicking's commitment to culinary excellence, menu innovations, fresh quality ingredients, and 100% Halal certification.",
       url: `${SITE_URL}/bmi`,
