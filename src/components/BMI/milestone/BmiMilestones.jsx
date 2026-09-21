@@ -9,6 +9,7 @@ import {
   CheckIconWrapper,
   ContentArea,
   ContentBox,
+  FullHeightVerticalLine,
   HeaderOverlay,
   KeyBrandTitle,
   MainContainer,
@@ -38,6 +39,14 @@ const CheckIcon = () => (
   </svg>
 );
 
+const ITEM_STEP_HEIGHT = 83.2; // 32px height + 51.2px (3.2rem) gap
+
+// Map items so 1999 - 2000 (index 10) precedes 2026 (index 0) matching Image 2 layout
+const displayTimelineItems = [
+  { ...bmiMilestones[10], originalIndex: 10 },
+  ...bmiMilestones.slice(0, 10).map((item, idx) => ({ ...item, originalIndex: idx })),
+];
+
 const BmiMilestones = () => {
   const {
     activeMilestone,
@@ -60,6 +69,13 @@ const BmiMilestones = () => {
   const activeCounter = activeMilestone.counter || "01/11";
   const [activeNum, totalNum] = activeCounter.split("/");
 
+  const activeDisplayIndex = displayTimelineItems.findIndex(
+    (item) => item.originalIndex === activeMilestoneIndex
+  );
+
+  // Smooth translateY placing active item right at the content top level
+  const trackTranslateY = -(activeDisplayIndex * ITEM_STEP_HEIGHT) + 3;
+
   return (
     <MilestonesSection ref={containerRef}>
       <BackgroundLayer>
@@ -71,10 +87,14 @@ const BmiMilestones = () => {
         />
       </BackgroundLayer>
 
+
+      <FullHeightVerticalLine />
+
       <HeaderOverlay>
         <KeyBrandTitle>
           KEY <strong>BRAND</strong> MILESTONES
         </KeyBrandTitle>
+
         <StepCounter>
           <span className="active-num">{activeNum}</span>
           <span className="total-num">/{totalNum}</span>
@@ -83,13 +103,13 @@ const BmiMilestones = () => {
 
       <MainContainer>
         <TimelineSidebar>
-          <TimelineTrack>
-            {bmiMilestones.map((item, index) => {
-              const isActive = index === activeMilestoneIndex;
+          <TimelineTrack $translateY={trackTranslateY}>
+            {displayTimelineItems.map((item) => {
+              const isActive = item.originalIndex === activeMilestoneIndex;
               return (
                 <TimelineYearItem
-                  key={`${item.year}-${index}`}
-                  onClick={() => goToMilestone(index)}
+                  key={`${item.year}-${item.originalIndex}`}
+                  onClick={() => goToMilestone(item.originalIndex)}
                   title={`Select ${item.year}`}
                 >
                   <YearText $active={isActive}>{item.year}</YearText>

@@ -24,7 +24,6 @@ const useActiveTimelineMilestone = (items = []) => {
     if (!element || items.length === 0) return undefined;
 
     const handleWheel = (e) => {
-      // If currently debouncing a wheel step, prevent rapid jumping
       if (isScrollingRef.current) {
         if (
           (e.deltaY > 0 && activeMilestoneIndex < items.length - 1) ||
@@ -45,7 +44,6 @@ const useActiveTimelineMilestone = (items = []) => {
             isScrollingRef.current = false;
           }, 450);
         }
-        // If at last milestone (11/11), do not preventDefault -> natural scroll to next section
       } else if (e.deltaY < 0) {
         // Scrolling up
         if (activeMilestoneIndex > 0) {
@@ -56,7 +54,6 @@ const useActiveTimelineMilestone = (items = []) => {
             isScrollingRef.current = false;
           }, 450);
         }
-        // If at first milestone (01/11), do not preventDefault -> natural scroll up
       }
     };
 
