@@ -30,6 +30,7 @@ const OperationalExcellence = ({ videoUrl }) => {
     <>
       <Section data-animate="fade-up">
         <Container>
+          <WingsDishImage src={about2Img} alt="Chicking Chicken Wings Dish" />
           <HeaderWrapper>
             <Heading>
               Operational <span>Excellence</span>
@@ -40,7 +41,6 @@ const OperationalExcellence = ({ videoUrl }) => {
               Chicking's Expanding International Network And Explore Opportunities Across
               Established And Emerging Markets.
             </Subtitle>
-            <WingsDishImage src={about2Img} alt="Chicking Chicken Wings Dish" />
           </HeaderWrapper>
 
           <MainGrid>

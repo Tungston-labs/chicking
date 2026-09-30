@@ -45,6 +45,7 @@ const AboutUs = () => {
             One Recipe For Success
           </>
         }
+        
         description="Join Chicking's Global Franchise Network And Build Your Business With A Proven QSR Concept, Innovative Products, Dedicated Support, And Exceptional Customer Appeal."
         image={bannerGraphic}
       />

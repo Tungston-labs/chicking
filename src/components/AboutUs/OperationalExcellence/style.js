@@ -77,22 +77,28 @@ export const Subtitle = styled.p`
 
 export const WingsDishImage = styled.img`
   position: absolute;
-  top: -1.25rem;
-  right: -22.5rem;
-  width: 20rem;
+  top: -2.5rem;
+  right: -1rem;
+  width: 22rem;
   height: auto;
   object-fit: contain;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1300px) {
+    top: -1.5rem;
+    right: 0;
+    width: 17rem;
+  }
+
+  @media (max-width: 992px) {
     display: none;
   }
 `;
 
 export const MainGrid = styled.div`
   display: flex;
-  gap: 3.125rem;
+  gap: 3.5rem;
   align-items: flex-start;
 
   @media (max-width: 992px) {
@@ -102,20 +108,37 @@ export const MainGrid = styled.div`
 `;
 
 export const VideoCardWrapper = styled.div`
-  flex: 1;
+  width: calc(29rem + ((100vw - 82.5rem) / 2 + 2.5rem));
+  max-width: calc(32rem + ((100vw - 82.5rem) / 2 + 2.5rem));
   position: relative;
-  border-radius: 0.75rem;
+  border-radius: 0 0.75rem 0.75rem 0;
   overflow: hidden;
   box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: opacity 0.3s ease;
+  margin-left: calc(-1 * ((100vw - 82.5rem) / 2 + 2.5rem));
+  flex-shrink: 0;
 
   &:hover {
     opacity: 0.95;
   }
 
+  @media (max-width: 1380px) {
+    margin-left: -2.5rem;
+    width: calc(27rem + 2.5rem);
+    max-width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    margin-left: -1.5rem;
+    width: calc(24rem + 1.5rem);
+  }
+
   @media (max-width: 992px) {
+    margin-left: 0;
     width: 100%;
+    max-width: 100%;
+    border-radius: 0.75rem;
   }
 `;
 
