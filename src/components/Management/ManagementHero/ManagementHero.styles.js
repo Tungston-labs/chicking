@@ -28,7 +28,7 @@ export const HorizontalDividerLine = styled.div`
 
   &.top-line {
     position: absolute;
-    top: 330px;
+    top: 320px;
     left: 0;
     right: 0;
     z-index: 1;
@@ -39,7 +39,6 @@ export const HorizontalDividerLine = styled.div`
   }
 
   &.bottom-line {
-    margin: 35px 0 25px;
   }
 `;
 

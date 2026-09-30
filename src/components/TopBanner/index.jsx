@@ -17,6 +17,7 @@ const TopBanner = ({
   image,
   imageAlt,
   as = "h1",
+  showBottomGraphic = true,
 }) => {
   const resolvedImageAlt =
     imageAlt || (typeof title === "string" ? title : "Chicking franchise banner");
@@ -39,7 +40,9 @@ const TopBanner = ({
         </RightSection>
       </BannerContainer>
 
-      <BottomGraphic src={tornGraphic} alt="" aria-hidden="true" />
+      {showBottomGraphic && (
+        <BottomGraphic src={tornGraphic} alt="" aria-hidden="true" />
+      )}
     </BannerWrapper>
   );
 };

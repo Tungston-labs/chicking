@@ -113,17 +113,17 @@ export const DotArrowImage = styled.img`
 
 export const SectionHeader = styled.div`
   max-width: 52rem;
-  margin-bottom: 2.25rem;
-  margin-left: 17.5rem;
+  margin-bottom: 8rem;
+  margin-left: 6.5rem;
 
   @media (max-width: 1300px) {
-    margin-left: 14rem;
-    max-width: 46rem;
+    margin-left: 9rem;
+    max-width: 48rem;
   }
 
   @media (max-width: 1100px) {
-    margin-left: 11rem;
-    max-width: 40rem;
+    margin-left: 7.5rem;
+    max-width: 42rem;
   }
 
   @media (max-width: 992px) {
@@ -183,7 +183,8 @@ export const ContentWrapper = styled.div`
 
 export const MissionCard = styled.div`
   width: 100%;
-  max-width: 50rem;
+  max-width: 51rem;
+  bottom:5rem;
   background: #ffffff;
   border-radius: 1.25rem;
   padding: 2.5rem 2.8rem;
@@ -191,12 +192,12 @@ export const MissionCard = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 0.75rem;
   position: relative;
   z-index: 3;
 
   @media (max-width: 1300px) {
-    max-width: 46rem;
+    max-width: 45rem;
     padding: 2.25rem 2.25rem;
   }
 
