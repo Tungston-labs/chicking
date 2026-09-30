@@ -12,6 +12,8 @@ import {
   ItemTitle,
   ItemDescription,
   DotArrowImage,
+  TopLeftGradientOverlay,
+  BottomRightGradientOverlay,
 } from "./style";
 
 const about1Img = "/images/about/about1.svg";
@@ -21,11 +23,14 @@ const MissionSection = () => {
   return (
     <Section data-animate="fade-up">
       <LeftAboutImage src={about1Img} alt="Chicking Quality Food" />
+      <TopLeftGradientOverlay />
+      <BottomRightGradientOverlay />
       <Container>
+        <DotArrowImage src={dotArrowImg} alt="" aria-hidden="true" />
         <SectionHeader>
           <Title>
             Strong Focus On Quality, Innovation, Halal<br />
-            Standards &amp; Customer Satisfaction
+            Standards &amp; <strong>Customer Satisfaction</strong>
           </Title>
           <Subtitle>
             Chicking Is A Homegrown UAE Quick Service Restaurant (QSR) Brand Founded In
@@ -36,8 +41,6 @@ const MissionSection = () => {
         </SectionHeader>
 
         <ContentWrapper>
-          <DotArrowImage src={dotArrowImg} alt="" aria-hidden="true" />
-
           <MissionCard>
             <MissionItem>
               <ItemTitle>Our <strong>Mission</strong></ItemTitle>

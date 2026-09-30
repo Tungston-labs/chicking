@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   width: 100%;
-  padding: 5rem 0 5.5rem;
-  background: linear-gradient(180deg, #fffbf6 0%, #ffffff 100%);
+  padding: 4.5rem 0 5rem;
+  background-image: url("/images/about/background.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
 
@@ -14,6 +17,38 @@ export const Section = styled.section`
   @media (max-width: 576px) {
     padding: 2.5rem 0;
   }
+`;
+
+export const TopLeftGradientOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 50%;
+  background: radial-gradient(
+    ellipse at 5% 5%,
+    rgba(243, 146, 0, 0.22) 0%,
+    rgba(243, 146, 0, 0.08) 40%,
+    rgba(243, 146, 0, 0) 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+`;
+
+export const BottomRightGradientOverlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at 95% 95%,
+    rgba(243, 146, 0, 0.6) 0%,
+    rgba(243, 146, 0, 0.28) 35%,
+    rgba(243, 146, 0, 0) 70%
+  );
+  pointer-events: none;
+  z-index: 1;
 `;
 
 export const LeftAboutImage = styled.img`
@@ -28,12 +63,12 @@ export const LeftAboutImage = styled.img`
   z-index: 2;
   pointer-events: none;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1400px) {
     max-width: 26rem;
   }
 
-  @media (max-width: 1100px) {
-    max-width: 22rem;
+  @media (max-width: 1200px) {
+    max-width: 21rem;
   }
 
   @media (max-width: 992px) {
@@ -57,17 +92,36 @@ export const Container = styled.div`
   }
 `;
 
-export const SectionHeader = styled.div`
-  max-width: 52rem;
-  margin-bottom: 3rem;
-  margin-left: 18rem;
+export const DotArrowImage = styled.img`
+  position: absolute;
+  top: 0.5rem;
+  right: 2.5rem;
+  width: 8.5rem;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
 
-  @media (max-width: 1300px) {
-    margin-left: 15rem;
+  @media (max-width: 1200px) {
+    right: 1.5rem;
+    width: 7rem;
   }
 
-  @media (max-width: 1100px) {
-    margin-left: 12rem;
+  @media (max-width: 992px) {
+    display: none;
+  }
+`;
+
+export const SectionHeader = styled.div`
+  max-width: 54rem;
+  margin-bottom: 2.25rem;
+  margin-left: 17.5rem;
+
+  @media (max-width: 1400px) {
+    margin-left: 14.5rem;
+  }
+
+  @media (max-width: 1200px) {
+    margin-left: 11.5rem;
   }
 
   @media (max-width: 992px) {
@@ -76,17 +130,21 @@ export const SectionHeader = styled.div`
   }
 
   @media (max-width: 768px) {
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 `;
 
 export const Title = styled.h2`
   font-family: "Poppins", sans-serif;
   font-size: 2.125rem; /* 34px */
-  font-weight: 700;
+  font-weight: 500;
   color: #111111;
   line-height: 1.35;
   margin-bottom: 1rem;
+
+  strong {
+    font-weight: 700;
+  }
 
   @media (max-width: 1024px) {
     font-size: 1.75rem;
@@ -103,7 +161,7 @@ export const Subtitle = styled.p`
   font-weight: 300;
   line-height: 1.75;
   color: #555555;
-  max-width: 48.75rem;
+  max-width: 50rem;
 
   @media (max-width: 768px) {
     font-size: 0.81rem;
@@ -115,49 +173,44 @@ export const ContentWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   position: relative;
-  margin-top: 1.25rem;
 
   @media (max-width: 992px) {
     justify-content: center;
   }
 `;
 
-export const DotArrowImage = styled.img`
-  position: absolute;
-  top: -4rem;
-  right: 0;
-  width: 8.75rem;
-  height: auto;
-  pointer-events: none;
-  z-index: 1;
-
-  @media (max-width: 992px) {
-    display: none;
-  }
-`;
-
 export const MissionCard = styled.div`
   width: 100%;
-  max-width: 41rem;
-  background: #ffffff;
-  border-radius: 1rem;
-  padding: 3.125rem 2.8rem;
-  box-shadow: 0 0.75rem 2.5rem rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  max-width: 54rem;
+  background: linear-gradient(
+    145deg,
+    #ffffff 60%,
+    rgba(255, 255, 255, 0.96) 78%,
+    rgba(255, 247, 235, 0.9) 100%
+  );
+  border-radius: 1.25rem;
+  padding: 3.25rem 3.25rem;
+  box-shadow: 0 0.75rem 2.5rem rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
   position: relative;
   z-index: 3;
 
+  @media (max-width: 1200px) {
+    max-width: 48rem;
+    padding: 2.75rem 2.25rem;
+  }
+
   @media (max-width: 1024px) {
+    max-width: 100%;
     padding: 2.25rem 1.875rem;
     gap: 1.75rem;
   }
 
   @media (max-width: 768px) {
-    width: 100%;
-    max-width: 100%;
     padding: 1.75rem 1.25rem;
   }
 `;
