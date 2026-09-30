@@ -2,195 +2,190 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   width: 100%;
-  overflow: visible;
-  font-family: "Poppins", sans-serif;
-  margin-bottom: clamp(-2.7rem, -8.1vw, -1.7rem);
-  padding-bottom: 0;
-
-  @media (max-width: 1100px) {
-    margin-bottom: 0;
-  }
+  padding: 5rem 0 5.5rem;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
 
   @media (max-width: 992px) {
-    padding: 3rem 2rem;
+    padding: 3.5rem 0;
   }
 
   @media (max-width: 576px) {
-    padding: 2.5rem 1rem;
+    padding: 2.5rem 0;
   }
 `;
 
 export const Container = styled.div`
-  width: 100%;
-  max-width: 1650px;
+  max-width: 82.5rem; /* 1320px */
   margin: 0 auto;
+  padding: 0 2.5rem;
+  position: relative;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  min-height: 30rem;
+  @media (max-width: 1024px) {
+    padding: 0 1.5rem;
+  }
 
-  @media (max-width: 1100px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2.5rem;
-    min-height: 0;
+  @media (max-width: 576px) {
+    padding: 0 1rem;
   }
 `;
 
-export const LeftContent = styled.div`
-  flex: 1;
-  width: 100%;
+export const HeaderWrapper = styled.div`
+  max-width: 51.25rem;
+  margin-bottom: 3.125rem;
+  position: relative;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2.18rem;
+  }
 `;
 
 export const Heading = styled.h2`
-  font-size: 2rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.125rem; /* 34px */
   font-weight: 300;
-  color: #000000;
-  line-height: 1.2;
-  margin-bottom: 1.3rem;
+  color: #111111;
+  line-height: 1.3;
+  margin-bottom: 1rem;
 
   span {
     font-weight: 700;
   }
 
-  @media (max-width: 768px) {
-    font-size: 1.8rem;
+  @media (max-width: 1024px) {
+    font-size: 1.75rem;
   }
 
-  @media (max-width: 576px) {
-    font-size: 1.6rem;
-    margin-bottom: 2rem;
+  @media (max-width: 768px) {
+    font-size: 1.45rem;
   }
 `;
 
-export const CardWrapper = styled.div`
+export const Subtitle = styled.p`
+  font-family: "Poppins", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #555555;
+  max-width: 48.75rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.81rem;
+  }
+`;
+
+export const WingsDishImage = styled.img`
+  position: absolute;
+  top: -1.25rem;
+  right: -22.5rem;
+  width: 20rem;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 1;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
+`;
+
+export const MainGrid = styled.div`
+  display: flex;
+  gap: 3.125rem;
+  align-items: flex-start;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    gap: 2.18rem;
+  }
+`;
+
+export const VideoCardWrapper = styled.div`
+  flex: 1;
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.95;
+  }
+
+  @media (max-width: 992px) {
+    width: 100%;
+  }
+`;
+
+export const VideoCardImage = styled.img`
+  width: 100%;
+  height: 28.75rem;
+  object-fit: cover;
+  display: block;
+
+  @media (max-width: 768px) {
+    height: 18.75rem;
+  }
+`;
+
+export const FeaturesWrapper = styled.div`
+  flex: 1.2;
   display: flex;
   flex-direction: column;
+  gap: 1.75rem;
 
-  @media (max-width: 576px) {
-    gap: 1.8rem;
+  @media (max-width: 992px) {
+    width: 100%;
   }
 `;
 
-export const Card = styled.div`
+export const FeatureCard = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-
-  width: 100%;
-
-  img {
-    width: 3.1rem;
-    height: 3.1rem;
-    object-fit: contain;
-    flex-shrink: 0;
-
-    /* REMOVE THIS */
-    /* margin-top: 0.15rem; */
-
-    /* ADD THIS */
-    align-self: flex-start;
-  }
-
-  &:nth-child(1),
-  &:nth-child(2) {
-    max-width: 100%;
-  }
-
-  &:nth-child(3),
-  &:nth-child(4) {
-    max-width: 62%;
-  }
-
-  @media (max-width: 1100px) {
-    &:nth-child(3),
-    &:nth-child(4) {
-      max-width: 100%;
-    }
-  }
-
-  @media (max-width: 576px) {
-    gap: 0.8rem;
-
-    img {
-      width: 2.8rem;
-      height: 2.8rem;
-    }
-  }
+  gap: 1.25rem;
 `;
 
-export const Content = styled.div`
-  width: 100%;
-`;
-
-export const Title = styled.h3`
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: #000;
-  line-height: 1.2;
-  margin: 0 0 0.55rem 0;
-
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  flex-wrap: wrap;
-
-  span {
-    font-weight: 700;
-  }
-`;
-
-export const Description = styled.p`
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.8;
-  color: #2d2d2d;
-
-  @media (max-width: 768px) {
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
-
-  @media (max-width: 576px) {
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-`;
-
-export const RightContent = styled.div`
-  flex: 0 0 min(36%, 31rem);
-  min-width: 0;
-  align-self: stretch;
+export const IconBox = styled.div`
+  width: 2.875rem;
+  height: 2.875rem;
+  min-width: 2.875rem;
+  border-radius: 0.375rem;
+  border: 1.5px solid #ebac0a;
   display: flex;
   align-items: center;
   justify-content: center;
-    margin-bottom: 20;
+  color: #ebac0a;
+  font-size: 1.25rem;
+  margin-top: 0.125rem;
+  background: #ffffff;
+`;
 
-  @media (max-width: 1100px) {
-    width: 100%;
-    align-self: auto;
-    justify-content: center;
-    padding-bottom: 0;
+export const FeatureContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const FeatureTitle = styled.h3`
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #111111;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.375rem;
+
+  span {
+    font-weight: 700;
   }
 `;
 
-export const MainImage = styled.img`
-  width: min(100%, 29rem);
-  max-width: 29rem;
-  object-fit: contain;
-  display: block;
-  margin-bottom: 20;
-  
-  @media (max-width: 992px) {
-    width: min(100%, 23rem);
-  }
-
-  @media (max-width: 768px) {
-    width: min(100%, 20rem);
-  }
-
-  @media (max-width: 576px) {
-    width: min(100%, 16rem);
-  }
+export const FeatureDescription = styled.p`
+  font-family: "Poppins", sans-serif;
+  font-size: 0.81rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #555555;
+  margin: 0;
 `;

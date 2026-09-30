@@ -1,296 +1,197 @@
-// src/components/AboutUs/MissionSection/style.js
-
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Section = styled.section`
   width: 100%;
-  padding: 100px 20px;
-  background: #ffffff;
+  padding: 5rem 0 5.5rem;
+  background: linear-gradient(180deg, #fffbf6 0%, #ffffff 100%);
+  position: relative;
   overflow: hidden;
 
-  @media (max-width: 768px) {
-    padding: 70px 16px;
+  @media (max-width: 992px) {
+    padding: 3.5rem 0;
+  }
+
+  @media (max-width: 576px) {
+    padding: 2.5rem 0;
+  }
+`;
+
+export const LeftAboutImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  max-width: 32rem;
+  object-fit: contain;
+  object-position: left center;
+  z-index: 2;
+  pointer-events: none;
+
+  @media (max-width: 1300px) {
+    max-width: 26rem;
+  }
+
+  @media (max-width: 1100px) {
+    max-width: 22rem;
+  }
+
+  @media (max-width: 992px) {
+    display: none;
   }
 `;
 
 export const Container = styled.div`
-  max-width: 1320px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
+  max-width: 82.5rem; /* 1320px */
+  margin: 0 auto;
+  padding: 0 2.5rem;
   position: relative;
-  @media (max-width: 1400px) {
-    gap: 32px;
-    max-width: 930px;
-  }
-  @media (max-width: 1100px) {
-    gap: 32px;
-    max-width: 900px;
-  }
-  @media (max-width: 992px) {
-    flex-direction: column;
-    gap: 32px;
-  }
-`;
+  z-index: 3;
 
-export const SideImage = styled.div`
-  width: 256px;
-  min-width: 256px;
-  height: 463px;
-  border-radius: 10px;
-  overflow: hidden;
-
-  background-image: url(${(props) => props.$image});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  flex-shrink: 0;
-  transition:
-    box-shadow 0.4s ease,
-    transform 0.4s ease;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-
-  &[data-animate] {
-    opacity: 1;
-    filter: none;
-    transform: none;
-  }
-
-  &:hover {
-    transform: translateY(-0.4rem);
-    box-shadow: 0 1.125rem 2rem rgba(0, 0, 0, 0.14);
-  }
-
-  > div {
-    width: 100%;
-    padding: 14px 14px 16px;
-    background: #9d1414;
-    color: #ffffff;
-  }
-
-  @media (max-width: 992px) {
-    width: min(100%, 380px);
-    max-width: 380px;
-    min-width: 0;
-    height: 320px;
-    align-self: center;
-    margin: 0 auto;
-
-    ${({ $hideOnMobile }) =>
-      $hideOnMobile &&
-      css`
-        display: none;
-      `}
+  @media (max-width: 1024px) {
+    padding: 0 1.5rem;
   }
 
   @media (max-width: 576px) {
-    width: min(100%, 340px);
-    height: 380px;
-
-    &[data-animate] {
-      transform: none;
-    }
+    padding: 0 1rem;
   }
 `;
 
-export const ContentCard = styled.div`
-  width: 100%;
-  max-width: 610px;
-  min-height: 470px;
+export const SectionHeader = styled.div`
+  max-width: 52rem;
+  margin-bottom: 3rem;
+  margin-left: 18rem;
 
-  background: #ffffff;
-
-  padding: 70px 55px;
-
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
-
-  text-align: center;
-
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition:
-    transform 260ms ease,
-    box-shadow 260ms ease;
-
-  &:hover { 
-    transform: translateY(-0.25rem);
-    box-shadow: 0px 18px 38px rgba(0, 0, 0, 0.11);
+  @media (max-width: 1300px) {
+    margin-left: 15rem;
   }
-  @media (max-width: 1400px) {
-    gap: 32px;
-    padding: 0;
-  }
+
   @media (max-width: 1100px) {
-    gap: 32px;
-    padding: 0;
+    margin-left: 12rem;
   }
+
   @media (max-width: 992px) {
-    min-height: auto;
-    padding: 0;
+    margin-left: 0;
+    max-width: 100%;
   }
-`;
 
-export const Crown = styled.div`
-  width: 120px;
-  height: 45px;
-
-  background-image: url("/images/crown.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 export const Title = styled.h2`
   font-family: "Poppins", sans-serif;
-
-  font-size: 1.7rem;
-
-  line-height: 2rem;
-
-  letter-spacing: -0.03em;
-
-  text-align: center;
-
-  text-transform: capitalize;
-
-  font-weight: 400;
-
+  font-size: 2.125rem; /* 34px */
+  font-weight: 700;
   color: #111111;
+  line-height: 1.35;
+  margin-bottom: 1rem;
 
-  margin-bottom: 28px;
-
-  span {
-    font-weight: 600;
+  @media (max-width: 1024px) {
+    font-size: 1.75rem;
   }
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
   }
 `;
 
-export const Description = styled.p`
+export const Subtitle = styled.p`
   font-family: "Poppins", sans-serif;
-
+  font-size: 0.84rem; /* ~13.5px */
   font-weight: 300;
-
-  font-size: 0.875rem;
-
-  line-height: 30px;
-
-  letter-spacing: 0.02em;
-
-  text-align: center;
-
-  color: #000;
-
-  max-width: 470px;
-
-  margin: 0 auto;
+  line-height: 1.75;
+  color: #555555;
+  max-width: 48.75rem;
 
   @media (max-width: 768px) {
-    font-size: 14px;
-    line-height: 28px;
+    font-size: 0.81rem;
   }
 `;
 
-export const ChairmanQuoteAuthor = styled.h3`
-  margin: 0 0 9px;
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-  line-height: 1.2;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-`;
-
-export const ChairmanQuoteText = styled.p`
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  font-size: 0.78rem;
-  line-height: 1.65;
-  font-weight: 400;
-`;
-
-export const ArrowWrapper = styled.div`
-  position: absolute;
-  left: -42px;
-  right: -42px;
-  top: 50%;
-  transform: translateY(-50%);
+export const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  pointer-events: none;
-  z-index: 2;
-
-  @media (max-width: 1439px) {
-    left: -72px;
-    right: -72px;
-  }
+  justify-content: flex-end;
+  position: relative;
+  margin-top: 1.25rem;
 
   @media (max-width: 992px) {
-    position: static;
-    transform: none;
-    margin-top: 12px;
-    gap: 18px;
     justify-content: center;
   }
 `;
 
-export const ArrowButton = styled.button`
-  width: 62px;
-  height: 62px;
+export const DotArrowImage = styled.img`
+  position: absolute;
+  top: -4rem;
+  right: 0;
+  width: 8.75rem;
+  height: auto;
+  pointer-events: none;
+  z-index: 1;
 
-  border-radius: 50%;
-
-  border: none;
-
-  background: #9d1414;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-  pointer-events: auto;
-
-  transition: 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 576px) {
-    width: 54px;
-    height: 54px;
+  @media (max-width: 992px) {
+    display: none;
   }
 `;
 
-export const ArrowIcon = styled.span`
-  color: #ffffff;
-
-  font-size: 28px;
-
+export const MissionCard = styled.div`
+  width: 100%;
+  max-width: 41rem;
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 3.125rem 2.8rem;
+  box-shadow: 0 0.75rem 2.5rem rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.03);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 2.25rem;
+  position: relative;
+  z-index: 3;
 
-  transition: 0.3s ease;
+  @media (max-width: 1024px) {
+    padding: 2.25rem 1.875rem;
+    gap: 1.75rem;
+  }
 
-  @media (max-width: 576px) {
-    font-size: 24px;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.75rem 1.25rem;
+  }
+`;
+
+export const MissionItem = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ItemTitle = styled.h3`
+  font-family: "Poppins", sans-serif;
+  font-size: 1.375rem; /* 22px */
+  font-weight: 400;
+  color: #111111;
+  margin-bottom: 0.75rem;
+
+  strong {
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+`;
+
+export const ItemDescription = styled.p`
+  font-family: "Poppins", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #444444;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 0.81rem;
   }
 `;

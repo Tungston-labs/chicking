@@ -18,7 +18,7 @@ import {
 import {
     sliderImages,
     supportData
-} from "./leadershipData";
+} from "../LeadershipTeam/leadershipData";
 const awardIcon = "/images/proposition/medal.svg";
 const BFIPillars = () => {
     const [currentImage, setCurrentImage] = useState(0);

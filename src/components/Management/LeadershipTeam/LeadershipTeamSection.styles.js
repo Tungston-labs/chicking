@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   width: 100%;
-  background: #f9f8f6;
+  background: #f7f1eb;
   padding: 80px 0 90px;
+  position: relative;
 
   @media (max-width: 992px) {
     padding: 60px 0;
@@ -18,6 +19,8 @@ export const Container = styled.div`
   max-width: 1320px;
   margin: 0 auto;
   padding: 0 40px;
+  position: relative;
+  z-index: 2;
 
   @media (max-width: 1024px) {
     padding: 0 24px;
@@ -80,6 +83,18 @@ export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -40px;
+    right: -40px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.06);
+    z-index: 1;
+  }
 
   @media (max-width: 1100px) {
     grid-template-columns: repeat(3, 1fr);
@@ -98,23 +113,37 @@ export const GridContainer = styled.div`
 `;
 
 export const Card = styled.div`
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border: 1px solid #eaeaea;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
+  z-index: 2;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    border-color: #dcdcdc;
+
+    & > div {
+      border-color: #c0c5cc;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
   }
+  transition: all 0.3s ease;
+`;
+
+export const CardInnerFrame = styled.div`
+  width: 100%;
+  height: 210px;
+  background: #ffffff;
+  border: 1.5px solid #e2e6ea;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 `;
 
 export const AvatarBox = styled.div`
@@ -122,12 +151,10 @@ export const AvatarBox = styled.div`
   height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  background: #eef0f2;
-  margin-bottom: 20px;
+  background: #cfd4d9;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #f4f4f4;
 
   @media (max-width: 768px) {
     width: 120px;

@@ -21,7 +21,7 @@ export const Container = styled.div`
   padding: 0 40px;
   display: flex;
   gap: 60px;
-  align-items: flex-start;
+  align-items: stretch;
 
   @media (max-width: 1024px) {
     gap: 40px;
@@ -36,8 +36,8 @@ export const Container = styled.div`
 `;
 
 export const LeftSidebar = styled.div`
-  width: 260px;
-  min-width: 260px;
+  width: 240px;
+  min-width: 240px;
   flex-shrink: 0;
   padding-top: 10px;
 
@@ -60,7 +60,7 @@ export const SidebarTitle = styled.h3`
 
 export const RightContent = styled.div`
   flex: 1;
-  border-left: 1px solid #eeeeee;
+  border-left: 1.5px solid #d0d0d0;
   padding-left: 50px;
 
   @media (max-width: 1024px) {
@@ -74,12 +74,19 @@ export const RightContent = styled.div`
 `;
 
 export const QuoteSymbol = styled.div`
-  font-family: "Georgia", "Times New Roman", serif;
-  font-size: 54px;
-  line-height: 1;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #891b1c;
   color: #891b1c;
-  margin-bottom: 16px;
+  border-radius: 4px;
+  font-family: "Poppins", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  padding: 2px 10px;
+  line-height: 1;
+  margin-bottom: 24px;
 `;
 
 export const QuoteText = styled.p`

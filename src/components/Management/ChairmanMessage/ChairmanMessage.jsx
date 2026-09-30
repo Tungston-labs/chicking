@@ -21,10 +21,10 @@ const ChairmanMessage = () => {
         </LeftSidebar>
 
         <RightContent>
-          <QuoteSymbol>“</QuoteSymbol>
+          <QuoteSymbol>66</QuoteSymbol>
 
           <QuoteText>
-            SINCE opening our first outlet along Dubai's Al Muteena Road in the
+            SINCE opening our first outlet along Dubai's Muteena Road in the
             bustling Deira district, Chicking has continued its meteoric rise and
             rapid expansion to become one of the strongest quick service restaurants
             in the world. Today, the franchise consists of more than 160 outlets,
@@ -44,7 +44,7 @@ const ChairmanMessage = () => {
           <Divider />
 
           <AuthorName>A K MANSOOR</AuthorName>
-          <AuthorTitle>Founder & Chairman</AuthorTitle>
+          <AuthorTitle>Founder &amp; Chairman</AuthorTitle>
         </RightContent>
       </Container>
     </Section>

@@ -1,90 +1,64 @@
-// src/components/AboutUs/MissionSection/index.jsx
-
-import { useState } from "react";
-
+import React from "react";
 import {
   Section,
   Container,
-  SideImage,
-  ContentCard,
+  SectionHeader,
   Title,
-  Description,
-  ChairmanQuoteText,
-  ChairmanQuoteAuthor,
-  ArrowWrapper,
-  ArrowButton,
-  Crown,
-  ArrowIcon,
+  Subtitle,
+  ContentWrapper,
+  LeftAboutImage,
+  MissionCard,
+  MissionItem,
+  ItemTitle,
+  ItemDescription,
+  DotArrowImage,
 } from "./style";
 
-import { missionData } from "./data";
+const about1Img = "/images/about/about1.svg";
+const dotArrowImg = "/images/about/dotarrow.svg";
 
 const MissionSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handlePreviousSlide = () => {
-    setActiveIndex((prev) =>
-      prev === 0 ? missionData.length - 1 : prev - 1,
-    );
-  };
-
-  const handleNextSlide = () => {
-    setActiveIndex((prev) =>
-      prev === missionData.length - 1 ? 0 : prev + 1,
-    );
-  };
-
-  const currentData = missionData[activeIndex];
-
   return (
-    <Section>
+    <Section data-animate="fade-up">
+      <LeftAboutImage src={about1Img} alt="Chicking Quality Food" />
       <Container>
-        <SideImage $image={currentData.leftImage}>
-          {currentData.quote && (
-            <div>
-              <ChairmanQuoteAuthor>
-                {currentData.quote.author}
-              </ChairmanQuoteAuthor>
+        <SectionHeader>
+          <Title>
+            Strong Focus On Quality, Innovation, Halal<br />
+            Standards &amp; Customer Satisfaction
+          </Title>
+          <Subtitle>
+            Chicking Is A Homegrown UAE Quick Service Restaurant (QSR) Brand Founded In
+            Dubai In 2000. What Began With A Passion For Creating Delicious, High-Quality
+            Fried Chicken Has Grown Into An International Brand Serving Customers Across
+            Multiple Markets Worldwide.
+          </Subtitle>
+        </SectionHeader>
 
-              <ChairmanQuoteText>
-                “{currentData.quote.text}”
-              </ChairmanQuoteText>
-            </div>
-          )}
-        </SideImage>
+        <ContentWrapper>
+          <DotArrowImage src={dotArrowImg} alt="" aria-hidden="true" />
 
-        <ContentCard>
-          <Crown />
+          <MissionCard>
+            <MissionItem>
+              <ItemTitle>Our <strong>Mission</strong></ItemTitle>
+              <ItemDescription>
+                To create unforgettable moments with our signature fried chicken by
+                sourcing the finest ingredients, using innovative recipes, and
+                maintaining top quality and freshness. We aim to redefine fast food with
+                exceptional service and taste, focusing on customer satisfaction.
+              </ItemDescription>
+            </MissionItem>
 
-          {/* Show title only if it exists */}
-          {currentData.title && (
-            <Title>
-              <span>{currentData.title}</span>
-            </Title>
-          )}
-
-          <Description>{currentData.description}</Description>
-        </ContentCard>
-
-        <SideImage $hideOnMobile $image={currentData.rightImage} />
-
-        <ArrowWrapper>
-          <ArrowButton
-            aria-label="Previous slide"
-            onClick={handlePreviousSlide}
-            type="button"
-          >
-            <ArrowIcon>❮</ArrowIcon>
-          </ArrowButton>
-
-          <ArrowButton
-            aria-label="Next slide"
-            onClick={handleNextSlide}
-            type="button"
-          >
-            <ArrowIcon>❯</ArrowIcon>
-          </ArrowButton>
-        </ArrowWrapper>
+            <MissionItem>
+              <ItemTitle>Our <strong>Vision</strong></ItemTitle>
+              <ItemDescription>
+                To be the leading restaurant destination, known for delivering joy through
+                our unique and signature menus. Chicking aims to delight every
+                customer and set the standard for excellence in the fast-food industry.
+              </ItemDescription>
+            </MissionItem>
+          </MissionCard>
+        </ContentWrapper>
       </Container>
     </Section>
   );

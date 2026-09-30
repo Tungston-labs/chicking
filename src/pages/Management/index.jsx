@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import PageLayout from "../../components/Layout/PageLayout";
-import ManagementHero from "../../components/Management/ManagementHero";
-import ChairmanMessage from "../../components/Management/ChairmanMessage";
-import LeadershipTeamSection from "../../components/Management/LeadershipTeamSection";
-import LeadershipEffect from "../../components/Management/LeadershipEffect";
-import BFICoreTeam from "../../components/Management/BFICoreTeam";
-import BFIPillars from "../../components/Management/BFIPillars";
+import ManagementHero from "../../components/Management/ManagementHero/ManagementHero";
+import ChairmanMessage from "../../components/Management/ChairmanMessage/ChairmanMessage";
+import LeadershipTeamSection from "../../components/Management/LeadershipTeam/LeadershipTeamSection";
+import LeadershipEffect from "../../components/Management/LeadershipTeam/LeadershipEffect";
+import BFICoreTeam from "../../components/Management/BFICoreTeam/BFICoreTeam";
+import BFIPillars from "../../components/Management/BFIPillars/BFIPillars";
 import sharedBannerImages from "../../assets/images/sharedBannerImages.js";
 import SiteFooter from "../../components/HomeSections/sections/SiteFooter/index.jsx";
 import LeadershipModal from "../../components/Management/modal/LeadershipModal.jsx";

@@ -22,17 +22,21 @@ import {
   StatItem,
   StatNumber,
   StatLabel,
+  HorizontalDividerLine,
+  BottomSectionRow,
+  VerticalDividerLine,
 } from "./ManagementHero.styles";
 
-const founderImageSrc = "/images/management/profile.png";
+const founderImageSrc = "/images/management/manzoor.svg";
 
 const ManagementHero = () => {
   return (
     <HeroWrapper data-animate="fade-down">
+      <HorizontalDividerLine className="top-line" />
       <Container>
         <HeroHeader>
           <Tag>The People Behind The Brand</Tag>
-          <Title>Highly Qualified & Experienced Individuals</Title>
+          <Title>Highly Qualified &amp; Experienced Individuals</Title>
           <Subtitle>
             In Order To Support The Chicking Franchise System Along Every Step Of
             The Way, A Dedicated Team Is Comprised Of Highly Qualified And Experienced
@@ -43,31 +47,20 @@ const ManagementHero = () => {
         <ChairmanCardContainer>
           <ImageCardWrapper>
             <ImageBox>
-              <VerticalTextStrip>Founder & CEO</VerticalTextStrip>
+              <VerticalTextStrip>FOUNDER &amp; CEO</VerticalTextStrip>
               <FounderImage src={founderImageSrc} alt="A K Mansoor" />
             </ImageBox>
-            <SocialIconsRow>
-              <a href="#twitter" aria-label="Twitter">
-                <FaTwitter />
-              </a>
-              <a href="#instagram" aria-label="Instagram">
-                <FaInstagram />
-              </a>
-              <a href="#website" aria-label="Website">
-                <FaGlobe />
-              </a>
-            </SocialIconsRow>
           </ImageCardWrapper>
 
           <ChairmanInfoContent>
             <InfoTop>
-              <InfoTag>Founder & Chairman</InfoTag>
+              <InfoTag>FOUNDER &amp; CHAIRMAN</InfoTag>
               <InfoTitle>A K MANSOOR</InfoTitle>
               <InfoBio>
-                Chicking® Started With A Vision Of Our Founder & Chairman, Mr.
+                Chicking® Started With A Vision Of Our Founder &amp; Chairman, Mr.
                 A. K. Mansoor, Who Identified The Need For A Fully Halal Compliant
                 QSR That Serves Great Tasting Food In An Inviting Environment. Created
-                In 2000 Through A Vision Of Founder & Managing Director Mr. A. K.
+                In 2000 Through A Vision Of Founder &amp; Managing Director Mr. A. K.
                 Mansoor And Established In Dubai, Chicking® Is A Leading Quick
                 Service Restaurant (QSR) Company With Business Across The Middle
                 East And Asia. The Brand Is Distinctly Known For Its Longstanding
@@ -79,27 +72,47 @@ const ManagementHero = () => {
                 From Around The World In Modern And Inviting Family-Oriented Settings.
               </InfoBio>
             </InfoTop>
-
-            <StatsGrid>
-              <StatItem>
-                <StatNumber>2000</StatNumber>
-                <StatLabel>Founded in Dubai</StatLabel>
-              </StatItem>
-              <StatItem>
-                <StatNumber>470 +</StatNumber>
-                <StatLabel>Stores worldwide</StatLabel>
-              </StatItem>
-              <StatItem>
-                <StatNumber>36 +</StatNumber>
-                <StatLabel>Countries served</StatLabel>
-              </StatItem>
-              <StatItem>
-                <StatNumber>2500 +</StatNumber>
-                <StatLabel>People employed</StatLabel>
-              </StatItem>
-            </StatsGrid>
           </ChairmanInfoContent>
         </ChairmanCardContainer>
+      </Container>
+
+      <HorizontalDividerLine className="bottom-line" />
+
+      <Container>
+        <BottomSectionRow>
+          <SocialIconsRow>
+            <a href="#twitter" aria-label="Twitter">
+              <FaTwitter />
+            </a>
+            <a href="#instagram" aria-label="Instagram">
+              <FaInstagram />
+            </a>
+            <a href="#website" aria-label="Website">
+              <FaGlobe />
+            </a>
+          </SocialIconsRow>
+
+          <VerticalDividerLine />
+
+          <StatsGrid>
+            <StatItem>
+              <StatNumber>2000</StatNumber>
+              <StatLabel>Founded in Dubai</StatLabel>
+            </StatItem>
+            <StatItem>
+              <StatNumber>470 +</StatNumber>
+              <StatLabel>Stores worldwide</StatLabel>
+            </StatItem>
+            <StatItem>
+              <StatNumber>36 +</StatNumber>
+              <StatLabel>Countries served</StatLabel>
+            </StatItem>
+            <StatItem>
+              <StatNumber>2500 +</StatNumber>
+              <StatLabel>People employed</StatLabel>
+            </StatItem>
+          </StatsGrid>
+        </BottomSectionRow>
       </Container>
     </HeroWrapper>
   );
