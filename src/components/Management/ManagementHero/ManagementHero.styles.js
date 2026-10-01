@@ -23,8 +23,8 @@ export const HeroWrapper = styled.section`
 
 export const HorizontalDividerLine = styled.div`
   width: 100%;
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.25);
+  height: 0.5px;
+  background-color: #FFFFFF80;
   margin: 0;
 `;
 
@@ -70,6 +70,7 @@ export const Title = styled.h1`
   line-height: 1.2;
   color: #ffffff;
   margin-bottom: 6px;
+    margin-top: -0.2rem;
 
   @media (max-width: 1024px) {
     font-size: 28px;
@@ -189,7 +190,7 @@ export const InfoTitle = styled.h2`
   color: #ffffff;
   letter-spacing: 0.02em;
   margin-bottom: 6px;
-
+  margin-top: -0.2rem;
   @media (max-width: 768px) {
     font-size: 24px;
     margin-bottom: 6px;

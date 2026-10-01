@@ -56,6 +56,7 @@ export const Title = styled.h2`
   color: #111111;
   line-height: 1.25;
   margin-bottom: 6px;
+    margin-top: -0.2rem;
 
   @media (max-width: 1024px) {
     font-size: 30px;

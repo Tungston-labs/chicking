@@ -50,7 +50,7 @@ export const SidebarTitle = styled.h3`
 
 export const RightContent = styled.div`
   flex: 1;
-  border-left: 2px solid #d0d0d0;
+  border-left: 1px solid #00000080 ;
   padding: 50px 0 50px 50px;
 
   @media (max-width: 1024px) {
@@ -87,7 +87,7 @@ export const QuoteText = styled.p`
 
 export const Divider = styled.hr`
   border: none;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #00000080;
   margin: 30px 0 20px;
 `;
 

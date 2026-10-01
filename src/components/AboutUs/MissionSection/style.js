@@ -199,7 +199,7 @@ export const MissionCard = styled.div`
   padding: 1.65rem 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 0.5rem;
 
   /* 🪄 PREMIUM GLASSMORPHISM EFFECT */
   background: linear-gradient(
@@ -234,18 +234,18 @@ export const MissionCard = styled.div`
   @media (max-width: 1600px) {
     max-width: 56rem;
     padding: 1.4rem 2.25rem;
-    gap: 0.95rem;
+  gap: 0.5rem;
   }
   @media (max-width: 1300px) {
     max-width: 48rem;
     padding: 1.35rem 2.25rem;
-    gap: 0.9rem;
+  gap: 0.5rem;
   }
 
   @media (max-width: 1100px) {
     max-width: 42rem;
     padding: 1.25rem 1.85rem;
-    gap: 0.85rem;
+  gap: 0.5rem;
   }
 
   @media (max-width: 992px) {

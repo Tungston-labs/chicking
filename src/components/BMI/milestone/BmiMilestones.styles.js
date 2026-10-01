@@ -205,8 +205,8 @@ export const TimelineSidebar = styled.aside`
     width: 100%;
     height: auto;
     max-height: none;
-    margin-bottom: 1rem;
-    overflow: visible;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
   }
 `;
 
@@ -224,13 +224,28 @@ export const TimelineTrack = styled.div`
   @media (max-width: 768px) {
     position: relative;
     top: 0;
-    transform: none;
+    transform: none !important;
     flex-direction: row;
     overflow-x: auto;
-    padding-bottom: 0.5rem;
-    gap: 0.85rem;
+    overflow-y: hidden;
+    padding: 0.4rem 0.25rem 0.75rem;
+    gap: 0.65rem;
     scrollbar-width: thin;
-    scrollbar-color: #f39200 transparent;
+    scrollbar-color: #f39200 rgba(255, 255, 255, 0.2);
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+      display: block;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #f39200;
+      border-radius: 4px;
+    }
   }
 `;
 
@@ -246,10 +261,17 @@ export const TimelineYearItem = styled.div`
 
   @media (max-width: 768px) {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-shrink: 0;
     align-items: center;
+    justify-content: center;
     height: auto;
+    padding: 0.45rem 0.85rem;
+    border-radius: 20px;
+    background: ${(props) => (props.$active ? "#f39200" : "rgba(255, 255, 255, 0.15)")};
+    border: 1px solid ${(props) => (props.$active ? "#f39200" : "rgba(255, 255, 255, 0.25)")};
+    box-shadow: ${(props) => (props.$active ? "0 2px 8px rgba(243, 146, 0, 0.4)" : "none")};
+    transition: all 0.3s ease;
   }
 `;
 
@@ -268,8 +290,11 @@ export const YearText = styled.span`
   }
 
   @media (max-width: 768px) {
-    font-size: ${(props) => (props.$active ? "1.1rem" : "0.85rem")};
+    font-size: 0.825rem;
+    font-weight: ${(props) => (props.$active ? "700" : "600")};
+    color: ${(props) => (props.$active ? "#ffffff" : "rgba(255, 255, 255, 0.9)")};
     padding-right: 0;
+    text-align: center;
   }
 `;
 
@@ -285,7 +310,7 @@ export const TimelineDot = styled.div`
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 
   @media (max-width: 768px) {
-    margin-top: 0.25rem;
+    display: none;
   }
 `;
 

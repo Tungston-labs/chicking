@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
 import { bmiMilestones } from "../data/bmiData.js";
 import useActiveTimelineMilestone from "./useActiveTimelineMilestone.js";
@@ -43,13 +43,6 @@ const CheckIcon = () => (
 
 const ITEM_STEP_HEIGHT_REM = 5.2; // 2.0rem item height + 3.2rem gap
 
-// Tripled list for infinite rolling timeline without gaps at top or bottom
-const displayTimelineItems = [
-  ...bmiMilestones.map((item, idx) => ({ ...item, originalIndex: idx, keyId: `prev-${idx}` })),
-  ...bmiMilestones.map((item, idx) => ({ ...item, originalIndex: idx, keyId: `curr-${idx}` })),
-  ...bmiMilestones.map((item, idx) => ({ ...item, originalIndex: idx, keyId: `next-${idx}` })),
-];
-
 const BmiMilestones = () => {
   const {
     activeMilestone,
@@ -58,6 +51,18 @@ const BmiMilestones = () => {
     goToMilestone,
     nextMilestone,
   } = useActiveTimelineMilestone(bmiMilestones);
+
+  const itemRefs = useRef([]);
+
+  useEffect(() => {
+    if (window.innerWidth <= 768 && itemRefs.current[activeMilestoneIndex]) {
+      itemRefs.current[activeMilestoneIndex].scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }, [activeMilestoneIndex]);
 
   const isLastSlide = activeMilestoneIndex === bmiMilestones.length - 1;
 
@@ -72,11 +77,8 @@ const BmiMilestones = () => {
   const activeCounter = activeMilestone.counter || "01/11";
   const [activeNum, totalNum] = activeCounter.split("/");
 
-  // Active item in middle set of displayTimelineItems
-  const activeDisplayIndex = activeMilestoneIndex + bmiMilestones.length;
-
   // Position active item at the 2nd dot (offset by 1 step from top)
-  const trackTranslateY = -((activeDisplayIndex - 1) * ITEM_STEP_HEIGHT_REM);
+  const trackTranslateY = -((activeMilestoneIndex - 1) * ITEM_STEP_HEIGHT_REM);
 
   return (
     <MilestonesSection ref={containerRef}>
@@ -111,13 +113,15 @@ const BmiMilestones = () => {
       <MainContainer>
         <TimelineSidebar>
           <TimelineTrack $translateY={trackTranslateY}>
-            {displayTimelineItems.map((item) => {
-              const isActive = item.originalIndex === activeMilestoneIndex;
+            {bmiMilestones.map((item, idx) => {
+              const isActive = idx === activeMilestoneIndex;
               return (
                 <TimelineYearItem
-                  key={item.keyId}
-                  onClick={() => goToMilestone(item.originalIndex)}
+                  key={item.year || idx}
+                  ref={(el) => (itemRefs.current[idx] = el)}
+                  onClick={() => goToMilestone(idx)}
                   title={`Select ${item.year}`}
+                  $active={isActive}
                 >
                   <YearText $active={isActive}>{item.year}</YearText>
                   <TimelineDot $active={isActive} />
