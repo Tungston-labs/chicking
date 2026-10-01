@@ -12,6 +12,15 @@ import {
   AuthorTitle,
 } from "./ChairmanMessage.styles";
 
+const QuoteIcon = () => (
+  <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M3 14H11C12.6569 14 14 12.6569 14 11V3C14 1.34315 12.6569 0 11 0H3C1.34315 0 0 1.34315 0 3V11C0 19 5 25 14 28L16 23.5C10 21.5 8 17.5 8 14H3ZM21 14H29C30.6569 14 32 12.6569 32 11V3C32 1.34315 30.6569 0 29 0H21C19.3431 0 18 1.34315 18 3V11C18 19 23 25 32 28L34 23.5C28 21.5 26 17.5 26 14H21Z"
+      fill="#891b1c"
+    />
+  </svg>
+);
+
 const ChairmanMessage = () => {
   return (
     <Section data-animate="fade-up">
@@ -21,7 +30,9 @@ const ChairmanMessage = () => {
         </LeftSidebar>
 
         <RightContent>
-          <QuoteSymbol>66</QuoteSymbol>
+          <QuoteSymbol>
+            <QuoteIcon />
+          </QuoteSymbol>
 
           <QuoteText>
             SINCE opening our first outlet along Dubai's Muteena Road in the

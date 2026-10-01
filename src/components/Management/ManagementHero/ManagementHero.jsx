@@ -7,23 +7,24 @@ import {
   Tag,
   Title,
   Subtitle,
+  ChairmanSectionWrapper,
   ChairmanCardContainer,
+  VerticalTextStripCol,
   ImageCardWrapper,
-  ImageBox,
-  VerticalTextStrip,
   FounderImage,
-  SocialIconsRow,
   ChairmanInfoContent,
-  InfoTop,
   InfoTag,
   InfoTitle,
   InfoBio,
+  BottomSectionWrapper,
+  BottomSectionRow,
+  VerticalTextStripSpace,
+  SocialIconsRow,
   StatsGrid,
   StatItem,
   StatNumber,
   StatLabel,
   HorizontalDividerLine,
-  BottomSectionRow,
   VerticalDividerLine,
 } from "./ManagementHero.styles";
 
@@ -32,7 +33,6 @@ const founderImageSrc = "/images/management/manzoor.svg";
 const ManagementHero = () => {
   return (
     <HeroWrapper data-animate="fade-down">
-      <HorizontalDividerLine className="top-line" />
       <Container>
         <HeroHeader>
           <Tag>The People Behind The Brand</Tag>
@@ -43,17 +43,24 @@ const ManagementHero = () => {
             Individuals.
           </Subtitle>
         </HeroHeader>
+      </Container>
 
-        <ChairmanCardContainer>
-          <ImageCardWrapper>
-            <ImageBox>
-              <VerticalTextStrip>FOUNDER &amp; CEO</VerticalTextStrip>
+      <HorizontalDividerLine />
+
+      <ChairmanSectionWrapper>
+        <Container style={{ height: "100%" }}>
+          <ChairmanCardContainer>
+            <VerticalTextStripCol>
+              <span>FOUNDER &amp; CEO</span>
+            </VerticalTextStripCol>
+
+            <VerticalDividerLine className="left-vertical-line" />
+
+            <ImageCardWrapper>
               <FounderImage src={founderImageSrc} alt="A K Mansoor" />
-            </ImageBox>
-          </ImageCardWrapper>
+            </ImageCardWrapper>
 
-          <ChairmanInfoContent>
-            <InfoTop>
+            <ChairmanInfoContent>
               <InfoTag>FOUNDER &amp; CHAIRMAN</InfoTag>
               <InfoTitle>A K MANSOOR</InfoTitle>
               <InfoBio>
@@ -71,49 +78,51 @@ const ManagementHero = () => {
                 Adherence To Providing A Varied Menu Inspired By Taste Cultures
                 From Around The World In Modern And Inviting Family-Oriented Settings.
               </InfoBio>
-            </InfoTop>
-          </ChairmanInfoContent>
-        </ChairmanCardContainer>
-      </Container>
+            </ChairmanInfoContent>
+          </ChairmanCardContainer>
+        </Container>
+      </ChairmanSectionWrapper>
 
-      <HorizontalDividerLine className="bottom-line" />
+      <HorizontalDividerLine />
 
-      <Container>
-        <BottomSectionRow>
-          <SocialIconsRow>
-            <a href="#twitter" aria-label="Twitter">
-              <FaTwitter />
-            </a>
-            <a href="#instagram" aria-label="Instagram">
-              <FaInstagram />
-            </a>
-            <a href="#website" aria-label="Website">
-              <FaGlobe />
-            </a>
-          </SocialIconsRow>
-
-          <VerticalDividerLine />
-
-          <StatsGrid>
-            <StatItem>
-              <StatNumber>2000</StatNumber>
-              <StatLabel>Founded in Dubai</StatLabel>
-            </StatItem>
-            <StatItem>
-              <StatNumber>470 +</StatNumber>
-              <StatLabel>Stores worldwide</StatLabel>
-            </StatItem>
-            <StatItem>
-              <StatNumber>36 +</StatNumber>
-              <StatLabel>Countries served</StatLabel>
-            </StatItem>
-            <StatItem>
-              <StatNumber>2500 +</StatNumber>
-              <StatLabel>People employed</StatLabel>
-            </StatItem>
-          </StatsGrid>
-        </BottomSectionRow>
-      </Container>
+      <BottomSectionWrapper>
+        <Container>
+          <BottomSectionRow>
+            <VerticalTextStripSpace />
+            <VerticalDividerLine className="left-vertical-line-bottom" />
+            <SocialIconsRow>
+              <a href="#twitter" aria-label="Twitter">
+                <FaTwitter />
+              </a>
+              <a href="#instagram" aria-label="Instagram">
+                <FaInstagram />
+              </a>
+              <a href="#website" aria-label="Website">
+                <FaGlobe />
+              </a>
+            </SocialIconsRow>
+            <VerticalDividerLine className="middle-vertical-line-bottom" />
+            <StatsGrid>
+              <StatItem>
+                <StatNumber>2000</StatNumber>
+                <StatLabel>Founded in Dubai</StatLabel>
+              </StatItem>
+              <StatItem>
+                <StatNumber>470 +</StatNumber>
+                <StatLabel>Stores worldwide</StatLabel>
+              </StatItem>
+              <StatItem>
+                <StatNumber>36 +</StatNumber>
+                <StatLabel>Countries served</StatLabel>
+              </StatItem>
+              <StatItem>
+                <StatNumber>2500 +</StatNumber>
+                <StatLabel>People employed</StatLabel>
+              </StatItem>
+            </StatsGrid>
+          </BottomSectionRow>
+        </Container>
+      </BottomSectionWrapper>
     </HeroWrapper>
   );
 };

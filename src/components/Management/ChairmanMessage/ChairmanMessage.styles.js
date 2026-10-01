@@ -3,16 +3,9 @@ import styled from "styled-components";
 export const Section = styled.section`
   width: 100%;
   background: #ffffff;
-  padding: 80px 0;
+  padding: 0;
   border-bottom: 1px solid #f0f0f0;
-
-  @media (max-width: 992px) {
-    padding: 60px 0;
-  }
-
-  @media (max-width: 576px) {
-    padding: 40px 0;
-  }
+  position: relative;
 `;
 
 export const Container = styled.div`
@@ -20,39 +13,36 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 40px;
   display: flex;
-  gap: 60px;
   align-items: stretch;
 
   @media (max-width: 1024px) {
-    gap: 40px;
     padding: 0 24px;
   }
 
   @media (max-width: 850px) {
     flex-direction: column;
-    gap: 30px;
     padding: 0 16px;
   }
 `;
 
 export const LeftSidebar = styled.div`
-  width: 240px;
-  min-width: 240px;
+  width: 260px;
+  min-width: 260px;
   flex-shrink: 0;
-  padding-top: 10px;
+  padding: 50px 20px 50px 0;
+  display: flex;
 
   @media (max-width: 850px) {
     width: 100%;
     min-width: 0;
-    padding-top: 0;
+    padding: 30px 0 15px;
   }
 `;
 
 export const SidebarTitle = styled.h3`
   font-family: "Poppins", sans-serif;
   font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-weight: 600;
   text-transform: uppercase;
   color: #111111;
   line-height: 1.4;
@@ -60,33 +50,24 @@ export const SidebarTitle = styled.h3`
 
 export const RightContent = styled.div`
   flex: 1;
-  border-left: 1.5px solid #d0d0d0;
-  padding-left: 50px;
+  border-left: 2px solid #d0d0d0;
+  padding: 50px 0 50px 50px;
 
   @media (max-width: 1024px) {
-    padding-left: 30px;
+    padding: 40px 0 40px 30px;
   }
 
   @media (max-width: 850px) {
     border-left: none;
-    padding-left: 0;
+    padding: 15px 0 40px 0;
   }
 `;
 
 export const QuoteSymbol = styled.div`
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  border: 2px solid #891b1c;
-  color: #891b1c;
-  border-radius: 4px;
-  font-family: "Poppins", sans-serif;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  padding: 2px 10px;
-  line-height: 1;
-  margin-bottom: 24px;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 `;
 
 export const QuoteText = styled.p`

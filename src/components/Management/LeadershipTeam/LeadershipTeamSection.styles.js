@@ -133,7 +133,7 @@ export const Card = styled.div`
 `;
 
 export const CardInnerFrame = styled.div`
-  width: 80%;
+  width: 100%;
   height: 210px;
   background: #ffffff;
   border: 1.5px solid #e2e6ea;

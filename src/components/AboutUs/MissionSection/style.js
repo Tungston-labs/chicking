@@ -24,7 +24,7 @@ export const TopLeftGradientOverlay = styled.div`
   top: 0;
   left: 0;
   width: 45%;
-  height: 50%;
+  height: 70%;
   background: radial-gradient(
     ellipse at 5% 5%,
     rgba(243, 146, 0, 0.22) 0%,
@@ -94,7 +94,7 @@ export const Container = styled.div`
 
 export const DotArrowImage = styled.img`
   position: absolute;
-  top: 0.5rem;
+  top: 0rem;
   right: 2.5rem;
   width: 8.5rem;
   height: auto;
@@ -112,23 +112,21 @@ export const DotArrowImage = styled.img`
 `;
 
 export const SectionHeader = styled.div`
-  max-width: 52rem;
-  margin-bottom: 8rem;
-  margin-left: 2.5rem;
-@media (max-width: 1600px) {
-  margin-left: 6.5rem;
-    max-width: 52rem;
-  }
-  @media (max-width: 1300px) {
-    margin-left: 8rem;
-    max-width: 48rem;
-  }
+  max-width: 64rem;
+  margin-bottom: 2rem;
+  margin-top: -40px;
+  margin-left: 2rem;
+  @media (max-width: 1600px) {
+      max-width: 60rem;
 
-  @media (max-width: 1100px) {
-    margin-left: 7.5rem;
-    max-width: 42rem;
+    margin-left: 5rem;
   }
+  @media (max-width: 1200px) {
+      max-width: 45rem;
 
+    margin-left: 6rem;
+    max-width: 100%;
+  }
   @media (max-width: 992px) {
     margin-left: 0;
     max-width: 100%;
@@ -166,8 +164,20 @@ export const Subtitle = styled.p`
   font-weight: 300;
   line-height: 1.75;
   color: #555555;
-  max-width: 50rem;
+  max-width: 68rem;
+  margin: 0;
+  @media (max-width: 1600px) {
+      max-width: 60rem;
 
+  }
+  @media (max-width: 1200px) {
+      max-width: 55rem;
+
+  }
+  @media (max-width: 992px) {
+    margin-left: 0;
+    max-width: 100%;
+  }
   @media (max-width: 768px) {
     font-size: 0.81rem;
   }
@@ -186,15 +196,14 @@ export const ContentWrapper = styled.div`
 
 export const MissionCard = styled.div`
   width: 100%;
-  max-width: 56rem;
+  max-width: 54rem;
   position: relative;
   z-index: 3;
-  border-radius: 1.5rem;
-  padding: 2.75rem 3rem;
+  border-radius: 1.25rem;
+  padding: 1.5rem 2.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  bottom:4rem;
+  gap: 1.1rem;
   /* 🪄 PREMIUM GLASSMORPHISM EFFECT */
   background: linear-gradient(
     135deg,
@@ -226,28 +235,28 @@ export const MissionCard = styled.div`
   }
   @media (max-width: 1600px) {
     max-width: 50.5rem;
-    padding: 1.25rem 2.25rem;
-    gap: 0.5rem;
+    padding: 1.25rem 2rem;
+    gap: 0.85rem;
   }
   @media (max-width: 1300px) {
     max-width: 45.5rem;
-    padding: 1.25rem 2.25rem;
-    gap: 0.5rem;
+    padding: 1.25rem 2rem;
+    gap: 0.85rem;
   }
 
   @media (max-width: 1100px) {
     max-width: 40rem;
-    padding: 2rem 1.8rem;
-    gap: 1.35rem;
+    padding: 1.25rem 1.75rem;
+    gap: 0.85rem;
   }
 
   @media (max-width: 992px) {
     max-width: 100%;
-    padding: 1.75rem 1.5rem;
+    padding: 1.5rem 1.5rem;
   }
 
   @media (max-width: 768px) {
-    padding: 1.5rem 1.25rem;
+    padding: 1.25rem 1.25rem;
   }
 `;
 

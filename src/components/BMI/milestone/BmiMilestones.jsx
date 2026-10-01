@@ -43,10 +43,11 @@ const CheckIcon = () => (
 
 const ITEM_STEP_HEIGHT_REM = 5.2; // 2.0rem item height + 3.2rem gap
 
-// Map items so 1999 - 2000 (index 10) precedes 2026 (index 0) matching Image 2 layout
+// Tripled list for infinite rolling timeline without gaps at top or bottom
 const displayTimelineItems = [
-  { ...bmiMilestones[10], originalIndex: 10 },
-  ...bmiMilestones.slice(0, 10).map((item, idx) => ({ ...item, originalIndex: idx })),
+  ...bmiMilestones.map((item, idx) => ({ ...item, originalIndex: idx, keyId: `prev-${idx}` })),
+  ...bmiMilestones.map((item, idx) => ({ ...item, originalIndex: idx, keyId: `curr-${idx}` })),
+  ...bmiMilestones.map((item, idx) => ({ ...item, originalIndex: idx, keyId: `next-${idx}` })),
 ];
 
 const BmiMilestones = () => {
@@ -71,12 +72,11 @@ const BmiMilestones = () => {
   const activeCounter = activeMilestone.counter || "01/11";
   const [activeNum, totalNum] = activeCounter.split("/");
 
-  const activeDisplayIndex = displayTimelineItems.findIndex(
-    (item) => item.originalIndex === activeMilestoneIndex
-  );
+  // Active item in middle set of displayTimelineItems
+  const activeDisplayIndex = activeMilestoneIndex + bmiMilestones.length;
 
-  // Smooth translateY in rem placing active item right at the content top level
-  const trackTranslateY = -(activeDisplayIndex * ITEM_STEP_HEIGHT_REM) + 0.15;
+  // Position active item at the 2nd dot (offset by 1 step from top)
+  const trackTranslateY = -((activeDisplayIndex - 1) * ITEM_STEP_HEIGHT_REM);
 
   return (
     <MilestonesSection ref={containerRef}>
@@ -115,7 +115,7 @@ const BmiMilestones = () => {
               const isActive = item.originalIndex === activeMilestoneIndex;
               return (
                 <TimelineYearItem
-                  key={`${item.year}-${item.originalIndex}`}
+                  key={item.keyId}
                   onClick={() => goToMilestone(item.originalIndex)}
                   title={`Select ${item.year}`}
                 >

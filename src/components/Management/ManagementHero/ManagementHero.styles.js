@@ -9,15 +9,15 @@ export const HeroWrapper = styled.section`
   background-repeat: no-repeat;
   background-color: #891b1c;
   color: #ffffff;
-  padding: 60px 0 50px;
+  padding: 50px 0 0;
   overflow: hidden;
 
   @media (max-width: 1024px) {
-    padding: 50px 0 40px;
+    padding: 35px 0 0;
   }
 
   @media (max-width: 768px) {
-    padding: 40px 0 30px;
+    padding: 30px 0 0;
   }
 `;
 
@@ -25,21 +25,7 @@ export const HorizontalDividerLine = styled.div`
   width: 100%;
   height: 1px;
   background-color: rgba(255, 255, 255, 0.25);
-
-  &.top-line {
-    position: absolute;
-    top: 320px;
-    left: 0;
-    right: 0;
-    z-index: 1;
-
-    @media (max-width: 992px) {
-      display: none;
-    }
-  }
-
-  &.bottom-line {
-  }
+  margin: 0;
 `;
 
 export const Container = styled.div`
@@ -60,10 +46,10 @@ export const Container = styled.div`
 
 export const HeroHeader = styled.div`
   max-width: 720px;
-  margin-bottom: 50px;
+  margin-bottom: 28px;
 
   @media (max-width: 768px) {
-    margin-bottom: 35px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -74,98 +60,125 @@ export const Tag = styled.div`
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 `;
 
 export const Title = styled.h1`
   font-family: "Poppins", sans-serif;
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 700;
   line-height: 1.25;
   color: #ffffff;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 
   @media (max-width: 1024px) {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   @media (max-width: 768px) {
-    font-size: 26px;
+    font-size: 24px;
   }
 `;
 
 export const Subtitle = styled.p`
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.9);
-  max-width: 640px;
+  max-width: 660px;
+  margin: 0;
 
   @media (max-width: 768px) {
-    font-size: 13px;
+    font-size: 12.5px;
   }
+`;
+
+export const ChairmanSectionWrapper = styled.div`
+  width: 100%;
+  position: relative;
 `;
 
 export const ChairmanCardContainer = styled.div`
   display: flex;
-  gap: 40px;
-  align-items: flex-start;
+  align-items: stretch;
+  height: 380px;
+  position: relative;
 
   @media (max-width: 992px) {
     flex-direction: column;
-    gap: 30px;
+    height: auto;
+    gap: 24px;
+    padding: 24px 0;
+  }
+`;
+
+export const VerticalTextStripCol = styled.div`
+  width: 50px;
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  flex-shrink: 0;
+
+  span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: "Poppins", sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+`;
+
+export const VerticalDividerLine = styled.div`
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+
+  &.left-vertical-line {
+    height: 100%;
+  }
+
+  &.left-vertical-line-bottom {
+    height: 48px;
+  }
+
+  &.middle-vertical-line-bottom {
+    height: 48px;
+  }
+
+  @media (max-width: 992px) {
+    display: none;
   }
 `;
 
 export const ImageCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 320px;
-  min-width: 320px;
+  width: 270px;
+  min-width: 270px;
   flex-shrink: 0;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
 
   @media (max-width: 992px) {
     width: 100%;
-    max-width: 340px;
+    max-width: 280px;
+    height: 340px;
     margin: 0 auto;
   }
 `;
 
-export const ImageBox = styled.div`
-  position: relative;
-  width: 100%;
-  height: 417px;
-  background: #ffffff;
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  display: flex;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  z-index: 2;
-`;
-
-export const VerticalTextStrip = styled.div`
-  width: 42px;
-  background: #891b1c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-family: "Poppins", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #ffffff;
-  text-transform: uppercase;
-  border-right: 1px solid rgba(255, 255, 255, 0.25);
-  user-select: none;
-`;
-
 export const FounderImage = styled.img`
-  width: calc(100% - 42px);
+  width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
@@ -176,16 +189,17 @@ export const ChairmanInfoContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 10px;
+  justify-content: center;
+  padding: 20px 0 20px 45px;
+  height: 100%;
+  box-sizing: border-box;
 
   @media (max-width: 992px) {
     width: 100%;
-    padding-top: 0;
+    padding: 0;
+    height: auto;
   }
 `;
-
-export const InfoTop = styled.div``;
 
 export const InfoTag = styled.div`
   font-family: "Poppins", sans-serif;
@@ -194,7 +208,7 @@ export const InfoTag = styled.div`
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 `;
 
 export const InfoTitle = styled.h2`
@@ -202,11 +216,12 @@ export const InfoTitle = styled.h2`
   font-size: 32px;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 16px;
   letter-spacing: 0.02em;
+  margin-bottom: 12px;
 
   @media (max-width: 768px) {
-    font-size: 26px;
+    font-size: 24px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -214,9 +229,10 @@ export const InfoBio = styled.p`
   font-family: "Poppins", sans-serif;
   font-size: 13.5px;
   font-weight: 300;
-  line-height: 1.75;
+  line-height: 1.7;
   color: rgba(255, 255, 255, 0.9);
   text-align: justify;
+  margin: 0;
 
   @media (max-width: 768px) {
     font-size: 13px;
@@ -224,30 +240,47 @@ export const InfoBio = styled.p`
   }
 `;
 
+export const BottomSectionWrapper = styled.div`
+  width: 100%;
+  padding: 28px 0 45px;
+
+  @media (max-width: 992px) {
+    padding: 24px 0 35px;
+  }
+`;
+
 export const BottomSectionRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 40px;
 
   @media (max-width: 992px) {
     flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
+    gap: 24px;
+    align-items: center;
+  }
+`;
+
+export const VerticalTextStripSpace = styled.div`
+  width: 50px;
+  min-width: 50px;
+  flex-shrink: 0;
+
+  @media (max-width: 992px) {
+    display: none;
   }
 `;
 
 export const SocialIconsRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-  width: 320px;
-  min-width: 320px;
+  justify-content: center;
+  gap: 18px;
+  width: 270px;
+  min-width: 270px;
   flex-shrink: 0;
 
   @media (max-width: 992px) {
     width: 100%;
-    justify-content: center;
     min-width: 0;
   }
 
@@ -272,21 +305,17 @@ export const SocialIconsRow = styled.div`
   }
 `;
 
-export const VerticalDividerLine = styled.div`
-  width: 1px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.25);
-
-  @media (max-width: 992px) {
-    display: none;
-  }
-`;
-
 export const StatsGrid = styled.div`
   flex: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  padding-left: 45px;
+
+  @media (max-width: 992px) {
+    padding-left: 0;
+    width: 100%;
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -307,7 +336,7 @@ export const StatItem = styled.div`
 export const StatNumber = styled.div`
   font-family: "Poppins", sans-serif;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 500;
   color: #ffffff;
   line-height: 1.1;
   margin-bottom: 4px;
