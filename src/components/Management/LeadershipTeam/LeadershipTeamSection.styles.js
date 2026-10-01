@@ -126,21 +126,34 @@ export const Card = styled.div`
 
 export const CardInnerFrame = styled.div`
   width: 100%;
-  height: 290px;
+  height: 310px;
   background: #ffffff;
   border: 1.5px solid #e2e6ea;
-  border-radius: 6px;
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
   margin-bottom: 16px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  box-sizing: border-box;
+`;
+
+export const InnerBorderBox = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid #e2e6ea;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 `;
 
 export const AvatarBox = styled.div`
-  width: 140px;
-  height: 140px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   overflow: hidden;
   background: #cfd4d9;
@@ -157,7 +170,7 @@ export const AvatarBox = styled.div`
 export const AvatarImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center top;
 `;
 

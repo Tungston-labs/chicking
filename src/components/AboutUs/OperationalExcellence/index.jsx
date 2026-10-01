@@ -29,8 +29,8 @@ const OperationalExcellence = ({ videoUrl }) => {
   return (
     <>
       <Section data-animate="fade-up">
+        <WingsDishImage src={about2Img} alt="Chicking Chicken Wings Dish" />
         <Container>
-          <WingsDishImage src={about2Img} alt="Chicking Chicken Wings Dish" />
           <HeaderWrapper>
             <Heading>
               Operational <span>Excellence</span>

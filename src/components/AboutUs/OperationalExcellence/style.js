@@ -77,17 +77,21 @@ export const Subtitle = styled.p`
 
 export const WingsDishImage = styled.img`
   position: absolute;
-  top: -2.5rem;
-  right: -1rem;
+  top: 1.5rem;
+  right: 0;
   width: 22rem;
   height: auto;
   object-fit: contain;
   pointer-events: none;
   z-index: 2;
 
+  @media (max-width: 1600px) {
+    top: 2rem;
+    width: 20rem;
+  }
+
   @media (max-width: 1300px) {
-    top: -1.5rem;
-    right: 0;
+    top: 2.5rem;
     width: 17rem;
   }
 
@@ -195,7 +199,6 @@ export const FeatureTitle = styled.h3`
   font-size: 0.875rem;
   font-weight: 400;
   color: #111111;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: 0.375rem;
 

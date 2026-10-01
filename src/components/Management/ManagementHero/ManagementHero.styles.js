@@ -65,7 +65,7 @@ export const Tag = styled.div`
 
 export const Title = styled.h1`
   font-family: "Poppins", sans-serif;
-  font-size: 2rem;
+  font-size: 36px;
   font-weight: 700;
   line-height: 1.2;
   color: #ffffff;
@@ -115,7 +115,7 @@ export const ChairmanCardContainer = styled.div`
 
 export const VerticalDividerLine = styled.div`
   width: 1px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.45);
   flex-shrink: 0;
 
   &.middle-vertical-line {
@@ -132,8 +132,8 @@ export const VerticalDividerLine = styled.div`
 `;
 
 export const ImageCardWrapper = styled.div`
-  width: 270px;
-  min-width: 270px;
+  width: 300px;
+  min-width: 300px;
   flex-shrink: 0;
   height: 100%;
   overflow: hidden;
@@ -238,8 +238,8 @@ export const SocialIconsRow = styled.div`
   align-items: center;
   justify-content: center;
   gap: 18px;
-  width: 270px;
-  min-width: 270px;
+  width: 300px;
+  min-width: 300px;
   flex-shrink: 0;
 
   @media (max-width: 992px) {

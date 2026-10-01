@@ -9,6 +9,7 @@ import {
   GridContainer,
   Card,
   CardInnerFrame,
+  InnerBorderBox,
   AvatarBox,
   AvatarImage,
   MemberName,
@@ -75,9 +76,11 @@ const LeadershipTeamSection = ({ onSelectMember }) => {
           {teamMembers.map((member) => (
             <Card key={member.id} onClick={() => onSelectMember && onSelectMember(member)}>
               <CardInnerFrame>
-                <AvatarBox>
-                  <AvatarImage src={member.image} alt={member.name} />
-                </AvatarBox>
+                <InnerBorderBox>
+                  <AvatarBox>
+                    <AvatarImage src={member.image} alt={member.name} />
+                  </AvatarBox>
+                </InnerBorderBox>
               </CardInnerFrame>
               <MemberName>{member.name}</MemberName>
               <MemberRole>{member.role}</MemberRole>
