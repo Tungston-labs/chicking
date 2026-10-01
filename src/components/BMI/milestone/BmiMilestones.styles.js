@@ -26,7 +26,7 @@ export const MilestonesSection = styled.section`
   height: calc(100vh - 75px);
   min-height: 640px;
   max-height: 860px;
-  background: transparent;
+  background: #891b1c;
   overflow: hidden;
   color: #ffffff;
   font-family: inherit;
@@ -50,15 +50,39 @@ export const BackgroundLayer = styled.div`
   height: 100%;
   z-index: 1;
   pointer-events: none;
+`;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: left center;
-    display: block;
-    animation: ${bgSlowFadeIn} 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-  }
+export const BackgroundImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+  opacity: ${(props) => (props.$active ? 1 : 0)};
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity;
+`;
+
+export const FixedGradientOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #891b1c 0%,
+    #891b1c 34%,
+    rgba(137, 27, 28, 0.9) 48%,
+    rgba(137, 27, 28, 0.6) 65%,
+    rgba(20, 5, 5, 0.45) 85%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
 `;
 
 export const HeaderOverlay = styled.div`
@@ -245,8 +269,8 @@ export const YearText = styled.span`
 export const TimelineDot = styled.div`
   justify-self: center;
   z-index: 2;
-  width: ${(props) => (props.$active ? "26px" : "10px")};
-  height: ${(props) => (props.$active ? "26px" : "10px")};
+  width: ${(props) => (props.$active ? "20px" : "15px")};
+  height: ${(props) => (props.$active ? "20px" : "15px")};
   border-radius: 50%;
   background: ${(props) => (props.$active ? "#ffffff" : "rgba(255, 255, 255, 0.6)")};
   box-shadow: ${(props) => (props.$active ? "0 0 0 10px rgba(255, 255, 255, 0.25)" : "none")};
@@ -290,7 +314,7 @@ export const ContentBox = styled.div`
 
 export const MilestoneTitle = styled.h3`
   margin: 0;
-  font-size: clamp(2rem, 3.2vw, 2.65rem);
+  font-size: clamp(1.5rem, 2.7vw, 2rem);
   font-weight: 800;
   line-height: 1.16;
   color: #ffffff;
@@ -302,7 +326,7 @@ export const MilestoneTitle = styled.h3`
 
 export const MilestoneDescription = styled.p`
   margin: 1.1rem 0 0;
-  font-size: clamp(0.88rem, 1.05vw, 0.98rem);
+  font-size: clamp(0.84rem, 0.9vw, 0.92rem);
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.92);
   max-width: 680px;

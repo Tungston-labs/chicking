@@ -3,12 +3,14 @@ import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
 import { bmiMilestones } from "../data/bmiData.js";
 import useActiveTimelineMilestone from "./useActiveTimelineMilestone.js";
 import {
+  BackgroundImg,
   BackgroundLayer,
   BulletItem,
   BulletList,
   CheckIconWrapper,
   ContentArea,
   ContentBox,
+  FixedGradientOverlay,
   FullHeightVerticalLine,
   HeaderOverlay,
   KeyBrandTitle,
@@ -79,13 +81,18 @@ const BmiMilestones = () => {
   return (
     <MilestonesSection ref={containerRef}>
       <BackgroundLayer>
-        <img
-          key={activeMilestone.bgImage || activeMilestoneIndex}
-          src={activeMilestone.bgImage || "/images/bmi/bmi1.svg"}
-          alt=""
-          aria-hidden="true"
-        />
+        {bmiMilestones.map((item, idx) => (
+          <BackgroundImg
+            key={item.bgImage || idx}
+            src={item.bgImage || `/images/bmi/nogradient/bmi${idx + 1}.svg`}
+            alt=""
+            aria-hidden="true"
+            $active={idx === activeMilestoneIndex}
+          />
+        ))}
       </BackgroundLayer>
+
+      <FixedGradientOverlay />
 
 
       <FullHeightVerticalLine />
