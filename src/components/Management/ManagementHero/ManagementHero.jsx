@@ -9,7 +9,6 @@ import {
   Subtitle,
   ChairmanSectionWrapper,
   ChairmanCardContainer,
-  VerticalTextStripCol,
   ImageCardWrapper,
   FounderImage,
   ChairmanInfoContent,
@@ -18,7 +17,6 @@ import {
   InfoBio,
   BottomSectionWrapper,
   BottomSectionRow,
-  VerticalTextStripSpace,
   SocialIconsRow,
   StatsGrid,
   StatItem,
@@ -48,17 +46,13 @@ const ManagementHero = () => {
       <HorizontalDividerLine />
 
       <ChairmanSectionWrapper>
-        <Container style={{ height: "100%" }}>
+        <Container>
           <ChairmanCardContainer>
-            <VerticalTextStripCol>
-              <span>FOUNDER &amp; CEO</span>
-            </VerticalTextStripCol>
-
-            <VerticalDividerLine className="left-vertical-line" />
-
             <ImageCardWrapper>
               <FounderImage src={founderImageSrc} alt="A K Mansoor" />
             </ImageCardWrapper>
+
+            <VerticalDividerLine className="middle-vertical-line" />
 
             <ChairmanInfoContent>
               <InfoTag>FOUNDER &amp; CHAIRMAN</InfoTag>
@@ -88,8 +82,6 @@ const ManagementHero = () => {
       <BottomSectionWrapper>
         <Container>
           <BottomSectionRow>
-            <VerticalTextStripSpace />
-            <VerticalDividerLine className="left-vertical-line-bottom" />
             <SocialIconsRow>
               <a href="#twitter" aria-label="Twitter">
                 <FaTwitter />
@@ -101,7 +93,9 @@ const ManagementHero = () => {
                 <FaGlobe />
               </a>
             </SocialIconsRow>
-            <VerticalDividerLine className="middle-vertical-line-bottom" />
+
+            <VerticalDividerLine className="bottom-vertical-line" />
+
             <StatsGrid>
               <StatItem>
                 <StatNumber>2000</StatNumber>

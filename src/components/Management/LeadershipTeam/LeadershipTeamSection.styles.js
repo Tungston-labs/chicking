@@ -32,10 +32,10 @@ export const Container = styled.div`
 `;
 
 export const SectionHeader = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 24px;
 
   @media (max-width: 768px) {
-    margin-bottom: 35px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -46,7 +46,7 @@ export const Tag = styled.div`
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #333333;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 `;
 
 export const Title = styled.h2`
@@ -54,8 +54,8 @@ export const Title = styled.h2`
   font-size: 36px;
   font-weight: 700;
   color: #111111;
-  line-height: 1.3;
-  margin-bottom: 16px;
+  line-height: 1.25;
+  margin-bottom: 6px;
 
   @media (max-width: 1024px) {
     font-size: 30px;
@@ -70,9 +70,10 @@ export const Description = styled.p`
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.65;
   color: #555555;
   max-width: 820px;
+  margin: 0;
 
   @media (max-width: 768px) {
     font-size: 13px;
@@ -85,16 +86,7 @@ export const GridContainer = styled.div`
   gap: 24px;
   position: relative;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -40px;
-    right: -40px;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.06);
-    z-index: 1;
-  }
+
 
   @media (max-width: 1100px) {
     grid-template-columns: repeat(3, 1fr);
@@ -125,7 +117,7 @@ export const Card = styled.div`
     transform: translateY(-4px);
 
     & > div {
-      border-color: #c0c5cc;
+      border-color: #c3ccc0;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
     }
   }
@@ -134,7 +126,7 @@ export const Card = styled.div`
 
 export const CardInnerFrame = styled.div`
   width: 100%;
-  height: 210px;
+  height: 290px;
   background: #ffffff;
   border: 1.5px solid #e2e6ea;
   border-radius: 6px;

@@ -9,15 +9,15 @@ export const HeroWrapper = styled.section`
   background-repeat: no-repeat;
   background-color: #891b1c;
   color: #ffffff;
-  padding: 50px 0 0;
+  padding: 40px 0 0;
   overflow: hidden;
 
   @media (max-width: 1024px) {
-    padding: 35px 0 0;
+    padding: 30px 0 0;
   }
 
   @media (max-width: 768px) {
-    padding: 30px 0 0;
+    padding: 25px 0 0;
   }
 `;
 
@@ -46,10 +46,10 @@ export const Container = styled.div`
 
 export const HeroHeader = styled.div`
   max-width: 720px;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
 
   @media (max-width: 768px) {
-    margin-bottom: 20px;
+    margin-bottom: 14px;
   }
 `;
 
@@ -60,23 +60,23 @@ export const Tag = styled.div`
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 `;
 
 export const Title = styled.h1`
   font-family: "Poppins", sans-serif;
-  font-size: 38px;
+  font-size: 2rem;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
   color: #ffffff;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 
   @media (max-width: 1024px) {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   @media (max-width: 768px) {
-    font-size: 24px;
+    font-size: 22px;
   }
 `;
 
@@ -84,7 +84,7 @@ export const Subtitle = styled.p`
   font-family: "Poppins", sans-serif;
   font-size: 13.5px;
   font-weight: 300;
-  line-height: 1.65;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   max-width: 660px;
   margin: 0;
@@ -108,33 +108,8 @@ export const ChairmanCardContainer = styled.div`
   @media (max-width: 992px) {
     flex-direction: column;
     height: auto;
-    gap: 24px;
-    padding: 24px 0;
-  }
-`;
-
-export const VerticalTextStripCol = styled.div`
-  width: 50px;
-  min-width: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  flex-shrink: 0;
-
-  span {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family: "Poppins", sans-serif;
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: #ffffff;
-    opacity: 0.9;
-  }
-
-  @media (max-width: 992px) {
-    display: none;
+    gap: 20px;
+    padding: 20px 0;
   }
 `;
 
@@ -143,16 +118,12 @@ export const VerticalDividerLine = styled.div`
   background-color: rgba(255, 255, 255, 0.25);
   flex-shrink: 0;
 
-  &.left-vertical-line {
+  &.middle-vertical-line {
     height: 100%;
   }
 
-  &.left-vertical-line-bottom {
-    height: 48px;
-  }
-
-  &.middle-vertical-line-bottom {
-    height: 48px;
+  &.bottom-vertical-line {
+    height: 100%;
   }
 
   @media (max-width: 992px) {
@@ -190,7 +161,7 @@ export const ChairmanInfoContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 0 20px 45px;
+  padding: 15px 0 15px 45px;
   height: 100%;
   box-sizing: border-box;
 
@@ -208,7 +179,7 @@ export const InfoTag = styled.div`
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 `;
 
 export const InfoTitle = styled.h2`
@@ -217,11 +188,11 @@ export const InfoTitle = styled.h2`
   font-weight: 700;
   color: #ffffff;
   letter-spacing: 0.02em;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 
   @media (max-width: 768px) {
     font-size: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 `;
 
@@ -229,7 +200,7 @@ export const InfoBio = styled.p`
   font-family: "Poppins", sans-serif;
   font-size: 13.5px;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.9);
   text-align: justify;
   margin: 0;
@@ -242,31 +213,23 @@ export const InfoBio = styled.p`
 
 export const BottomSectionWrapper = styled.div`
   width: 100%;
-  padding: 28px 0 45px;
+  padding: 0 0 35px;
 
   @media (max-width: 992px) {
-    padding: 24px 0 35px;
+    padding: 20px 0 30px;
   }
 `;
 
 export const BottomSectionRow = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  min-height: 75px;
 
   @media (max-width: 992px) {
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
     align-items: center;
-  }
-`;
-
-export const VerticalTextStripSpace = styled.div`
-  width: 50px;
-  min-width: 50px;
-  flex-shrink: 0;
-
-  @media (max-width: 992px) {
-    display: none;
+    min-height: auto;
   }
 `;
 
@@ -311,6 +274,7 @@ export const StatsGrid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding-left: 45px;
+  align-content: center;
 
   @media (max-width: 992px) {
     padding-left: 0;

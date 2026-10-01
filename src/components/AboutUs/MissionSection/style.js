@@ -94,15 +94,15 @@ export const Container = styled.div`
 
 export const DotArrowImage = styled.img`
   position: absolute;
-  top: 0rem;
-  right: 2.5rem;
+  top: 1rem;
+  right: 1rem;
   width: 8.5rem;
   height: auto;
   pointer-events: none;
   z-index: 4;
 
   @media (max-width: 1200px) {
-    right: 1.5rem;
+    right: 0.5rem;
     width: 7rem;
   }
 
@@ -117,13 +117,11 @@ export const SectionHeader = styled.div`
   margin-top: -40px;
   margin-left: 2rem;
   @media (max-width: 1600px) {
-      max-width: 60rem;
-
+    max-width: 60rem;
     margin-left: 5rem;
   }
   @media (max-width: 1200px) {
-      max-width: 45rem;
-
+    max-width: 45rem;
     margin-left: 6rem;
     max-width: 100%;
   }
@@ -167,12 +165,10 @@ export const Subtitle = styled.p`
   max-width: 68rem;
   margin: 0;
   @media (max-width: 1600px) {
-      max-width: 60rem;
-
+    max-width: 60rem;
   }
   @media (max-width: 1200px) {
-      max-width: 55rem;
-
+    max-width: 55rem;
   }
   @media (max-width: 992px) {
     margin-left: 0;
@@ -196,14 +192,15 @@ export const ContentWrapper = styled.div`
 
 export const MissionCard = styled.div`
   width: 100%;
-  max-width: 54rem;
+  max-width: 60rem;
   position: relative;
   z-index: 3;
   border-radius: 1.25rem;
-  padding: 1.5rem 2.25rem;
+  padding: 1.65rem 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
+
   /* 🪄 PREMIUM GLASSMORPHISM EFFECT */
   background: linear-gradient(
     135deg,
@@ -233,20 +230,21 @@ export const MissionCard = styled.div`
       inset 0 1px 2px rgba(255, 255, 255, 1),
       inset 0 -1px 2px rgba(255, 255, 255, 0.4);
   }
+
   @media (max-width: 1600px) {
-    max-width: 50.5rem;
-    padding: 1.25rem 2rem;
-    gap: 0.85rem;
+    max-width: 56rem;
+    padding: 1.4rem 2.25rem;
+    gap: 0.95rem;
   }
   @media (max-width: 1300px) {
-    max-width: 45.5rem;
-    padding: 1.25rem 2rem;
-    gap: 0.85rem;
+    max-width: 48rem;
+    padding: 1.35rem 2.25rem;
+    gap: 0.9rem;
   }
 
   @media (max-width: 1100px) {
-    max-width: 40rem;
-    padding: 1.25rem 1.75rem;
+    max-width: 42rem;
+    padding: 1.25rem 1.85rem;
     gap: 0.85rem;
   }
 

@@ -294,7 +294,7 @@ export const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 5.2rem;
+  padding-top: 0.2rem;
   padding-left: 3.5rem;
   max-width: 800px;
   height: 100%;
@@ -302,7 +302,7 @@ export const ContentArea = styled.div`
 
   @media (max-width: 1024px) {
     padding-left: 2rem;
-    padding-top: 5.2rem;
+    padding-top: 0.2rem;
   }
 
   @media (max-width: 768px) {
