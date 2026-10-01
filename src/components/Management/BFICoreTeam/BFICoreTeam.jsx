@@ -20,7 +20,7 @@ const logo = "/images/management/chicklogo.svg";
 import {
   leftTeam,
   rightTeam,
-} from "./leadershipData";
+} from "../LeadershipTeam/leadershipData";
 
 const BFICoreTeam = () => {
   return (

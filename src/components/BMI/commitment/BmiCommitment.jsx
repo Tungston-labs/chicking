@@ -16,7 +16,7 @@ const BmiCommitment = () => (
   <CommitmentSection>
     <SharedBanner
       background="transparent"
-      bottomEdgeImage={bmiImages.edges.darkBottom}
+      bottomEdgeImage={null}
       edgeColor="#ffffff"
       forceEdgeImages
       headerAlign="center"

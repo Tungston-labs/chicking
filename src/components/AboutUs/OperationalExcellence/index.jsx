@@ -1,65 +1,81 @@
+import React, { useState } from "react";
 import {
   Section,
   Container,
-  LeftContent,
+  HeaderWrapper,
   Heading,
-  CardWrapper,
-  Card,
-  Content,
-  Title,
-  Description,
-  RightContent,
-  MainImage,
+  Subtitle,
+  WingsDishImage,
+  MainGrid,
+  VideoCardWrapper,
+  VideoCardImage,
+  FeaturesWrapper,
+  FeatureCard,
+  IconBox,
+  FeatureContent,
+  FeatureTitle,
+  FeatureDescription,
 } from "./style";
 
 import { excellenceData } from "./data";
+import VideoModal from "../VideoModal/VideoModal";
 
-import SharedBanner from "../../SharedBanner";
+const about2Img = "/images/about/about2.svg";
+const videoFrame2Img = "/images/about/videoframe2.svg";
 
-import sharedBannerImages from "../../../assets/images/sharedBannerImages";
+const OperationalExcellence = ({ videoUrl }) => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-const FranchiseImage = "/images/about/chicking1.png";
-
-const BEIGE_TOP = sharedBannerImages.edges.beigeTop;
-
-const OperationalExcellence = () => {
   return (
-    <SharedBanner
-      topEdgeImage={BEIGE_TOP}
-      bottomEdgeImage={sharedBannerImages.edges.beigeBottom}
-      forceEdgeImages={true}
-      background="#eaddcd"
-    >
-      <Section>
+    <>
+      <Section data-animate="fade-up">
+        <WingsDishImage src={about2Img} alt="Chicking Chicken Wings Dish" />
         <Container>
-          <LeftContent>
+          <HeaderWrapper>
             <Heading>
               Operational <span>Excellence</span>
             </Heading>
+            <Subtitle>
+              Receive Ongoing Support Across Operations, Training, Products, Services And
+              Marketing To Help Franchise Partners Operate Successfully. Become Part Of
+              Chicking's Expanding International Network And Explore Opportunities Across
+              Established And Emerging Markets.
+            </Subtitle>
+          </HeaderWrapper>
 
-            <CardWrapper>
-              {excellenceData.map((item) => (
-                <Card key={item.id}>
-                  <img src={item.icon} alt={item.highlight} />
+          <MainGrid>
+            <VideoCardWrapper onClick={() => setIsVideoOpen(true)}>
+              <VideoCardImage src={videoFrame2Img} alt="Operational Excellence Video" />
+            </VideoCardWrapper>
 
-                  <Content>
-                    <Title>
-                      {item.title} <span>{item.highlight}</span>
-                    </Title>
-
-                    <Description>{item.description}</Description>
-                  </Content>
-                </Card>
-              ))}
-            </CardWrapper>
-          </LeftContent>
-
-          <RightContent>
-            <MainImage src={FranchiseImage} alt="Operational Excellence" />
-          </RightContent>
+            <FeaturesWrapper>
+              {excellenceData.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <FeatureCard key={item.id}>
+                    <IconBox>
+                      <IconComponent />
+                    </IconBox>
+                    <FeatureContent>
+                      <FeatureTitle>
+                        {item.title} <span>{item.highlight}</span>
+                      </FeatureTitle>
+                      <FeatureDescription>{item.description}</FeatureDescription>
+                    </FeatureContent>
+                  </FeatureCard>
+                );
+              })}
+            </FeaturesWrapper>
+          </MainGrid>
         </Container>
       </Section>
-    </SharedBanner>
+
+      <VideoModal
+        isOpen={isVideoOpen}
+        onClose={() => setIsVideoOpen(false)}
+        videoUrl={videoUrl}
+      />
+    </>
   );
 };
 

@@ -10,7 +10,7 @@ import {
   IconWrap,
   CardTitle,
   CardDescription,
-} from "./styles";
+} from "./LeadershipEffect.styles";
 
 import { leadershipData } from "./leadershipData";
 

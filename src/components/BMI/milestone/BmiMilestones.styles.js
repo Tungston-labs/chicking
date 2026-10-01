@@ -1,293 +1,458 @@
 import styled, { keyframes } from "styled-components";
 
-const visualFadeIn = keyframes`
+const smoothSlowFadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(0.8rem) scale(0.985);
+    transform: translateY(18px);
   }
-
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
+  }
+`;
+
+const bgSlowFadeIn = keyframes`
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
   }
 `;
 
 export const MilestonesSection = styled.section`
-  padding: 2.5rem 0 2rem;
-  background: #ffffff;
+  --container-pad-left: 9.5rem;
+  --year-col-width: 16.75rem;
+  --dot-col-width: 2.75rem;
+
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 75px);
+  min-height: 640px;
+  max-height: 860px;
+  background: #891b1c;
+  overflow: hidden;
+  color: #ffffff;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  @media (max-width: 1440px) {
+    --container-pad-left: 6rem;
+  }
+
+  @media (max-width: 1200px) {
+    --container-pad-left: 4.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    --container-pad-left: 2.5rem;
+    --year-col-width: 12.625rem;
+  }
 
   @media (max-width: 768px) {
-    padding: 2.75rem 0 3rem;
-  }
-`;
-export const BrandStamp = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-
-  img {
-    width: clamp(6rem, 8vw, 7rem);
+    --container-pad-left: 1.25rem;
     height: auto;
-    display: block;
-  }
-
-  &.mobile-brand {
-    display: none;
-  }
-
-  @media (max-width: 899px) {
-    justify-content: flex-start;
-    margin-bottom: 0;
-    margin-top: 1.4rem;
-
-    &.desktop-brand {
-      display: none;
-    }
-
-    &.mobile-brand {
-      display: flex;
-    }
+    min-height: auto;
+    max-height: none;
+    padding-bottom: 2rem;
   }
 `;
 
-export const MilestonesGrid = styled.div`
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: start;
+export const BackgroundLayer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+`;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
-    gap: 1.4rem;
+export const BackgroundImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+  opacity: ${(props) => (props.$active ? 1 : 0)};
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity;
+`;
+
+export const FixedGradientOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #891b1c 0%,
+    #891b1c 34%,
+    rgba(137, 27, 28, 0.9) 48%,
+    rgba(137, 27, 28, 0.6) 65%,
+    rgba(20, 5, 5, 0.45) 85%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+`;
+
+export const HeaderOverlay = styled.div`
+  position: relative;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.25rem 4rem 1rem;
+  pointer-events: none;
+  flex-shrink: 0;
+
+  @media (max-width: 1024px) {
+    padding: 1.75rem 2.5rem 1rem;
   }
 
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
+  @media (max-width: 768px) {
+    padding: 1.25rem 1.25rem 0.5rem;
   }
 `;
 
-export const MilestonesIntro = styled.div`
-  min-width: 0;
-`;
-
-export const MilestonesHeading = styled.h2`
+export const KeyBrandTitle = styled.h2`
   margin: 0;
-  color: #181818;
-  font-size: clamp(1.85rem, 2.2vw, 2.2rem);
-  line-height: 1.18;
-  font-weight: 400;
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 1.95rem;
-  }
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  pointer-events: auto;
 
   strong {
-    font-weight: 700;
+    color: #f39200;
+    font-weight: 800;
   }
 `;
 
-export const MilestonesText = styled.p`
-  margin: 0.8rem 0 0;
-  color: #000000;
-  font-size: 0.96rem;
-  line-height: 1.7;
+export const StepCounter = styled.div`
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  pointer-events: auto;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.875rem;
-    line-height: 1.65;
+  .active-num {
+    color: #f39200;
   }
 
-  @media (max-width: 767px) {
-    font-size: 0.875rem;
-    line-height: 1.65;
+  .total-num {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
   }
 `;
 
-export const MilestoneVisual = styled.div`
-  margin-top: 1.8rem;
-  border-radius: 1.1rem;
-  overflow: hidden;
-  background: linear-gradient(180deg, #fff7ef 0%, #ffffff 100%);
+export const FullHeightVerticalLine = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--container-pad-left) + var(--year-col-width) + (var(--dot-col-width) / 2));
+  transform: translateX(-50%);
+  width: 2px;
+  background: rgba(243, 146, 0, 0.85);
+  z-index: 12;
+  pointer-events: none;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
-export const MilestoneVisualImage = styled.img`
-  width: 100%;
-  height: auto;
-  display: block;
-  animation: ${visualFadeIn} 420ms ease both;
-`;
-
-export const Timeline = styled.div`
-  --timeline-line-x: 0.35rem;
-  --timeline-year-icon-size: clamp(1.45rem, 2.3vw, 1.85rem);
-  --timeline-year-gap: clamp(0.7rem, 1.3vw, 0.95rem);
-
+export const MainContainer = styled.div`
   position: relative;
-  min-width: 0;
+  z-index: 10;
+  display: flex;
+  flex: 1;
   width: 100%;
+  padding: 0 9.5rem 2rem var(--container-pad-left);
+  align-items: flex-start;
   box-sizing: border-box;
-  padding-left: 1.5rem;
+  overflow: hidden;
 
-  &::before {
-    content: "";
-    position: absolute;
-    left: var(--timeline-line-x);
-    top: 0.25rem;
-    bottom: 0.25rem;
-    width: 1px;
-    background: rgba(243, 146, 0, 0.35);
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    --timeline-year-icon-size: clamp(1.35rem, 2.8vw, 1.65rem);
-    --timeline-year-gap: 0.8rem;
+  @media (max-width: 1024px) {
+    padding: 0 2.5rem 2rem var(--container-pad-left);
   }
 
   @media (max-width: 768px) {
-    --timeline-year-icon-size: 1.35rem;
-    --timeline-year-gap: 0.72rem;
-    padding-left: 1.2rem;
+    flex-direction: column;
+    padding: 0 1.25rem 1rem;
   }
 `;
 
-export const TimelineScrollArea = styled.div`
-  max-height: 39rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 0.85rem;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(137, 27, 28, 0.32) transparent;
-
-  &::-webkit-scrollbar {
-    width: 0.32rem;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 999rem;
-    background: rgba(137, 27, 28, 0.32);
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    max-height: 34rem;
-  }
-
-  @media (max-width: 767px) {
-    max-height: 30rem;
-    padding-right: 0.55rem;
-  }
-`;
-
-export const TimelineGroup = styled.article`
-  --timeline-group-indent: 1rem;
-
+export const TimelineSidebar = styled.aside`
   position: relative;
-  min-width: 0;
-  padding: 0 0 1.8rem var(--timeline-group-indent);
+  width: calc(var(--year-col-width) + var(--dot-col-width));
+  height: 100%;
+  max-height: 560px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  z-index: 15;
+  overflow: visible;
 
-  &:last-child {
-    padding-bottom: 0;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+`;
+
+export const TimelineTrack = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  transform: translateY(${(props) => props.$translateY || 0}rem);
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 0;
+    transform: none !important;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.4rem 0.25rem 0.75rem;
+    gap: 0.65rem;
+    scrollbar-width: thin;
+    scrollbar-color: #f39200 rgba(255, 255, 255, 0.2);
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+      display: block;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #f39200;
+      border-radius: 4px;
+    }
+  }
+`;
+
+export const TimelineYearItem = styled.div`
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--year-col-width) var(--dot-col-width);
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+  user-select: none;
+  height: 2rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 0.45rem 0.85rem;
+    border-radius: 20px;
+    background: ${(props) => (props.$active ? "#f39200" : "rgba(255, 255, 255, 0.15)")};
+    border: 1px solid ${(props) => (props.$active ? "#f39200" : "rgba(255, 255, 255, 0.25)")};
+    box-shadow: ${(props) => (props.$active ? "0 2px 8px rgba(243, 146, 0, 0.4)" : "none")};
+    transition: all 0.3s ease;
+  }
+`;
+
+export const YearText = styled.span`
+  text-align: right;
+  white-space: nowrap;
+  font-size: ${(props) => (props.$active ? "1.65rem" : "0.95rem")};
+  font-weight: ${(props) => (props.$active ? "800" : "600")};
+  color: ${(props) => (props.$active ? "#ffffff" : "rgba(255, 255, 255, 0.65)")};
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  padding-right: 1.75rem;
+
+  @media (max-width: 1024px) {
+    font-size: ${(props) => (props.$active ? "1.3rem" : "0.85rem")};
+    padding-right: 1.15rem;
   }
 
   @media (max-width: 768px) {
-    --timeline-group-indent: 0.85rem;
+    font-size: 0.825rem;
+    font-weight: ${(props) => (props.$active ? "700" : "600")};
+    color: ${(props) => (props.$active ? "#ffffff" : "rgba(255, 255, 255, 0.9)")};
+    padding-right: 0;
+    text-align: center;
   }
 `;
 
-export const TimelineYearHeader = styled.div`
-  display: grid;
-  grid-template-columns: var(--timeline-year-icon-size) minmax(0, 1fr);
-  align-items: start;
-  gap: var(--timeline-year-gap);
-  margin-left: calc(var(--timeline-line-x) - var(--timeline-group-indent));
+export const TimelineDot = styled.div`
+  justify-self: center;
+  align-self: center;
+  z-index: 2;
+  width: ${(props) => (props.$active ? "1.25rem" : "0.9375rem")};
+  height: ${(props) => (props.$active ? "1.25rem" : "0.9375rem")};
+  border-radius: 50%;
+  background: ${(props) => (props.$active ? "#ffffff" : "rgba(255, 255, 255, 0.6)")};
+  box-shadow: ${(props) => (props.$active ? "0 0 0 0.625rem rgba(255, 255, 255, 0.25)" : "none")};
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
-export const TimelineYearIcon = styled.span`
-  display: grid;
-  flex: 0 0 auto;
-  place-items: center;
-  width: var(--timeline-year-icon-size);
-  height: var(--timeline-year-icon-size);
-  color: #f39200;
-  transform: translateY(0.08rem);
+export const ContentArea = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 0.2rem;
+  padding-left: 3.5rem;
+  max-width: 800px;
+  height: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
+    padding-left: 2rem;
+    padding-top: 0.2rem;
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+    padding-top: 0;
+    max-width: 100%;
+    height: auto;
+  }
+`;
+
+export const ContentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  animation: ${smoothSlowFadeIn} 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+`;
+
+export const MilestoneTitle = styled.h3`
+  margin: 0;
+  font-size: clamp(1.5rem, 2.7vw, 2rem);
+  font-weight: 800;
+  line-height: 1.16;
+  color: #ffffff;
+
+  span.highlight {
+    color: #f39200;
+  }
+`;
+
+export const MilestoneDescription = styled.p`
+  margin: 1.1rem 0 0;
+  font-size: clamp(0.84rem, 0.9vw, 0.92rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 680px;
+`;
+
+export const MilestoneIntro = styled.h4`
+  margin: 1.4rem 0 0.9rem;
+  font-size: clamp(0.92rem, 1.1vw, 1.02rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.4;
+`;
+
+export const BulletList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-width: 680px;
+`;
+
+export const BulletItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: clamp(0.85rem, 0.98vw, 0.95rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+`;
+
+export const CheckIconWrapper = styled.div`
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   svg {
     width: 100%;
     height: 100%;
+    color: #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
   }
 `;
 
-export const TimelineYear = styled.h3`
-  margin: 0;
-  color: #000000;
-  font-size: 1.08rem;
-  line-height: 1.3;
-  font-weight: 700;
-  overflow-wrap: anywhere;
+export const ScrollIndicator = styled.button`
+  position: absolute;
+  bottom: 2rem;
+  right: 3.5rem;
+  z-index: 20;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  color: #f39200;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 
-  @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.875rem;
+  &:hover {
+    transform: translateY(3px);
   }
 
-  @media (max-width: 767px) {
-    font-size: 0.96rem;
-  }
-`;
-
-export const TimelineDescription = styled.p`
-  margin: 0.7rem 0 0
-    calc(var(--timeline-year-icon-size) + var(--timeline-year-gap));
-  color: #000000;
-  font-size: 0.96rem;
-  line-height: 1.7;
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.875rem;
-    line-height: 1.65;
+  span {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #f39200;
   }
 
-  @media (max-width: 767px) {
-    font-size: 0.875rem;
-    line-height: 1.65;
-  }
-`;
-
-export const TimelineList = styled.ul`
-  margin: 0.8rem 0 0
-    calc(var(--timeline-year-icon-size) + var(--timeline-year-gap));
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 0.7rem;
-`;
-
-export const TimelineItem = styled.li`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: start;
-  gap: 0.65rem;
-  color: #000000;
-  font-size: 0.875rem;
-  line-height: 1.65;
-  overflow-wrap: anywhere;
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    font-size: 0.875rem;
-    line-height: 1.65;
+  svg {
+    font-size: 1.35rem;
+    color: #f39200;
   }
 
-  @media (max-width: 767px) {
-    font-size: 0.875rem;
-    line-height: 1.65;
+  @media (max-width: 768px) {
+    bottom: 1rem;
+    right: 1.25rem;
+
+    span {
+      font-size: 0.6rem;
+    }
+
+    svg {
+      font-size: 1rem;
+    }
   }
 `;
 
-export const TimelineItemIcon = styled.img`
-  width: 1rem;
-  height: 1rem;
-  display: block;
-  margin-top: 0.28rem;
-  flex: 0 0 auto;
-`;
