@@ -225,7 +225,7 @@ export const BottomSectionRow = styled.div`
   display: flex;
   align-items: stretch;
   min-height: 75px;
-
+  margin-top: 1.5rem;
   @media (max-width: 992px) {
     flex-direction: column;
     gap: 20px;
