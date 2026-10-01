@@ -21,6 +21,10 @@ const bgSlowFadeIn = keyframes`
 `;
 
 export const MilestonesSection = styled.section`
+  --container-pad-left: 9.5rem;
+  --year-col-width: 16.75rem;
+  --dot-col-width: 2.75rem;
+
   position: relative;
   width: 100%;
   height: calc(100vh - 75px);
@@ -34,7 +38,21 @@ export const MilestonesSection = styled.section`
   flex-direction: column;
   box-sizing: border-box;
 
+  @media (max-width: 1440px) {
+    --container-pad-left: 6rem;
+  }
+
+  @media (max-width: 1200px) {
+    --container-pad-left: 4.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    --container-pad-left: 2.5rem;
+    --year-col-width: 12.625rem;
+  }
+
   @media (max-width: 768px) {
+    --container-pad-left: 1.25rem;
     height: auto;
     min-height: auto;
     max-height: none;
@@ -139,15 +157,12 @@ export const FullHeightVerticalLine = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 450px;
+  left: calc(var(--container-pad-left) + var(--year-col-width) + (var(--dot-col-width) / 2));
+  transform: translateX(-50%);
   width: 2px;
   background: rgba(243, 146, 0, 0.85);
   z-index: 12;
   pointer-events: none;
-
-  @media (max-width: 1024px) {
-    left: 280px;
-  }
 
   @media (max-width: 768px) {
     display: none;
@@ -160,13 +175,13 @@ export const MainContainer = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
-  padding: 0 9.5rem 2rem;
+  padding: 0 9.5rem 2rem var(--container-pad-left);
   align-items: flex-start;
   box-sizing: border-box;
   overflow: hidden;
 
   @media (max-width: 1024px) {
-    padding: 0 2.5rem 2rem;
+    padding: 0 2.5rem 2rem var(--container-pad-left);
   }
 
   @media (max-width: 768px) {
@@ -177,18 +192,14 @@ export const MainContainer = styled.div`
 
 export const TimelineSidebar = styled.aside`
   position: relative;
-  width: 296px;
+  width: calc(var(--year-col-width) + var(--dot-col-width));
   height: 100%;
   max-height: 560px;
   flex-shrink: 0;
   display: flex;
   align-items: flex-start;
   z-index: 15;
-  overflow: hidden;
-
-  @media (max-width: 1024px) {
-    width: 230px;
-  }
+  overflow: visible;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -207,7 +218,7 @@ export const TimelineTrack = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
-  transform: translateY(${(props) => props.$translateY || 0}px);
+  transform: translateY(${(props) => props.$translateY || 0}rem);
   transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
 
   @media (max-width: 768px) {
@@ -226,16 +237,12 @@ export const TimelineTrack = styled.div`
 export const TimelineYearItem = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 268px 28px;
+  grid-template-columns: var(--year-col-width) var(--dot-col-width);
   align-items: center;
   gap: 0;
   cursor: pointer;
   user-select: none;
-  height: 32px;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 202px 28px;
-  }
+  height: 2rem;
 
   @media (max-width: 768px) {
     display: flex;
@@ -268,12 +275,13 @@ export const YearText = styled.span`
 
 export const TimelineDot = styled.div`
   justify-self: center;
+  align-self: center;
   z-index: 2;
-  width: ${(props) => (props.$active ? "20px" : "15px")};
-  height: ${(props) => (props.$active ? "20px" : "15px")};
+  width: ${(props) => (props.$active ? "1.25rem" : "0.9375rem")};
+  height: ${(props) => (props.$active ? "1.25rem" : "0.9375rem")};
   border-radius: 50%;
   background: ${(props) => (props.$active ? "#ffffff" : "rgba(255, 255, 255, 0.6)")};
-  box-shadow: ${(props) => (props.$active ? "0 0 0 10px rgba(255, 255, 255, 0.25)" : "none")};
+  box-shadow: ${(props) => (props.$active ? "0 0 0 0.625rem rgba(255, 255, 255, 0.25)" : "none")};
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 
   @media (max-width: 768px) {

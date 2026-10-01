@@ -41,7 +41,7 @@ const CheckIcon = () => (
   </svg>
 );
 
-const ITEM_STEP_HEIGHT = 83.2; // 32px height + 51.2px (3.2rem) gap
+const ITEM_STEP_HEIGHT_REM = 5.2; // 2.0rem item height + 3.2rem gap
 
 // Map items so 1999 - 2000 (index 10) precedes 2026 (index 0) matching Image 2 layout
 const displayTimelineItems = [
@@ -75,8 +75,8 @@ const BmiMilestones = () => {
     (item) => item.originalIndex === activeMilestoneIndex
   );
 
-  // Smooth translateY placing active item right at the content top level
-  const trackTranslateY = -(activeDisplayIndex * ITEM_STEP_HEIGHT) + 3;
+  // Smooth translateY in rem placing active item right at the content top level
+  const trackTranslateY = -(activeDisplayIndex * ITEM_STEP_HEIGHT_REM) + 0.15;
 
   return (
     <MilestonesSection ref={containerRef}>
