@@ -201,6 +201,8 @@ export const FeatureTitle = styled.h3`
   color: #111111;
   letter-spacing: 0.04em;
   margin-bottom: 0.375rem;
+  margin-top: -0rem;
+
 
   span {
     font-weight: 700;

@@ -365,11 +365,11 @@ export const MilestoneDescription = styled.p`
   max-width: 680px;
 `;
 
-export const MilestoneIntro = styled.h4`
+export const MilestoneIntro = styled.p`
   margin: 1.4rem 0 0.9rem;
-  font-size: clamp(0.92rem, 1.1vw, 1.02rem);
-  font-weight: 600;
-  color: #ffffff;
+  font-size: clamp(0.84rem, 0.9vw, 0.92rem);
+  font-weight: 400;
+  color: #fefdff;
   line-height: 1.4;
 `;
 
