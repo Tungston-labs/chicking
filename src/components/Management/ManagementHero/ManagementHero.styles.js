@@ -247,6 +247,7 @@ export const SocialIconsRow = styled.div`
   @media (max-width: 992px) {
     width: 100%;
     min-width: 0;
+    justify-content: flex-start;
   }
 
   a {

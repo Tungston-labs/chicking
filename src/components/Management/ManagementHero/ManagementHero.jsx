@@ -86,7 +86,7 @@ const ManagementHero = () => {
               <a href="#twitter" aria-label="Twitter">
                 <FaTwitter />
               </a>
-              <a href="#instagram" aria-label="Instagram">
+              <a href="https://www.instagram.com/chickinguk" aria-label="Instagram">
                 <FaInstagram />
               </a>
               <a href="#website" aria-label="Website">

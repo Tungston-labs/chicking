@@ -21,16 +21,16 @@ export const BannerShell = styled.section`
     inset: 0;
 
     background-image: ${({ $backgroundImage }) =>
-      $backgroundImage ? `url(${$backgroundImage})` : "none"};
+    $backgroundImage ? `url(${$backgroundImage})` : "none"};
 
     background-repeat: ${({ $backgroundImageRepeat }) =>
-      $backgroundImageRepeat || "no-repeat"};
+    $backgroundImageRepeat || "no-repeat"};
     background-position: center;
     background-size: ${({ $backgroundImageSize }) =>
-      $backgroundImageSize || "cover"};
+    $backgroundImageSize || "cover"};
 
     opacity: ${({ $hideBackgroundImage }) =>
-      $hideBackgroundImage ? 0 : 1};
+    $hideBackgroundImage ? 0 : 1};
 
     z-index: 0;
 
@@ -90,7 +90,7 @@ export const BannerContent = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: ${({ $compact }) =>
-    $compact ? "4.8rem 2rem 4.6rem" : "6rem 2rem 5.5rem"};
+    $compact ? "4.8rem 2rem 4.5rem" : "6rem 2rem 5.5rem"};
 
   ${({ $reverse }) =>
     $reverse &&
@@ -102,7 +102,7 @@ export const BannerContent = styled.div`
   @media (max-width: 768px) {
     min-height: auto;
     padding: ${({ $compact }) =>
-      $compact ? "3.4rem 1.25rem" : "4.25rem 1.25rem 3.5rem"};
+    $compact ? "3.4rem 1.25rem" : "4.25rem 1.25rem 3.5rem"};
     text-align: left;
     align-items: stretch;
   }
