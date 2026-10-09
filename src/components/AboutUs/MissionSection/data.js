@@ -33,7 +33,7 @@ export const missionData = [
     },
   },
   {
-    
+
     description:
       "Most recently, Chicking has opened in Australia and New Zealand, and in the future it hopes to develop a stronger presence on the European and African continents. We're already in countries such as the UK, the Netherlands and Morocco, and by the end of 2019 we will expand to 12 more countries in Europe, Central Asia and Africa. Part of my plan is to open 1,000 Chicking stores globally by 2025.",
     leftImage: aboutImages.food,

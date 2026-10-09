@@ -46,7 +46,8 @@ export const Container = styled.div`
 
 export const HeroHeader = styled.div`
   max-width: 720px;
-  margin-bottom: 16px;
+  margin-bottom: 60px;
+  margin-top: 30px;
 
   @media (max-width: 768px) {
     margin-bottom: 14px;
@@ -199,9 +200,9 @@ export const InfoTitle = styled.h2`
 
 export const InfoBio = styled.p`
   font-family: "Poppins", sans-serif;
-  font-size: 13.5px;
-  font-weight: 300;
-  line-height: 1.65;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 2;
   color: rgba(255, 255, 255, 0.9);
   text-align: justify;
   margin: 0;

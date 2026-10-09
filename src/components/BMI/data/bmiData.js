@@ -135,8 +135,8 @@ export const bmiMilestones = [
     highlightWord: "Growth",
     titleSuffix: " — & a new test of resilience.",
     description:
-      "Chicking Reaches Its 20-Year Milestone While Navigating The Challenges Of The",
-    intro: "Global Pandemic.",
+      "Chicking reaches its 20-year milestone while navigating the challenges of the global pandemic.",
+    intro: "   ",
     items: [
       "Two decades since the first Deira outlet",
       "Existing markets continue operating",
@@ -198,14 +198,14 @@ export const bmiMilestones = [
     ],
     bgImage: bmiImages.milestoneBackgrounds[10],
   },
-  
- 
- 
-  
- 
-  
-  
-  
+
+
+
+
+
+
+
+
 
 ];
 
