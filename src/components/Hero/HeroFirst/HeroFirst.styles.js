@@ -168,7 +168,7 @@ export const ImageWrapper = styled.div`
   }
   .star {
     right: -80px;
-    top: 20%;
+    top: 40%;
   }
   .rightCenter {
     right: -280px;
@@ -193,6 +193,7 @@ export const ImageWrapper = styled.div`
     }
 
     .star {
+     top: 20px;
       transform: translate(0, 0);
     }
   }
@@ -279,8 +280,9 @@ export const ImageWrapper = styled.div`
     }
 
     .star {
+        display: none;
       right: -1.5rem;
-      top: 8%;
+      top: 18%;
     }
 
     &.state-0,
