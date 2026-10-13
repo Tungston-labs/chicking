@@ -58,12 +58,14 @@ function FAQPage() {
                     </>
                 }
                 image={faqImg}
+                  showBottomGraphic={false}
             />
             <div data-animate="fade-up">
                 <FAQ />
             </div>
             <div data-animate="fade-up">
                 <PartnerCta
+                  hasEdges={false}
                     action={{
                         to: "/franchiseform",
                         label: "Franchise Inquiry",

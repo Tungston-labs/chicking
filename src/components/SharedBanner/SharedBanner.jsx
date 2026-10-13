@@ -153,7 +153,7 @@ const SharedBanner = ({
   headerAlignMobile,
   headerAlignTablet,
   headerWidth = "var(--section-max-width)",
-  hasEdges = true,
+  hasEdges = false,
   image,
   hideBackgroundImage = false,
   imageAlt = "",

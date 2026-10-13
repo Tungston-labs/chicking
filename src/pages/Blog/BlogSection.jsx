@@ -57,6 +57,7 @@ function BlogSections() {
           </>
         }
         image={franchiseImg}
+        showBottomGraphic={false}
       />
       <div data-animate="fade-up">
         <BlogSection
@@ -68,6 +69,7 @@ function BlogSections() {
 
       <div data-animate="fade-up">
         <PartnerCta
+          hasEdges={false}
         action={{
           to: "/franchiseform",
           label: "Franchise Inquiry",

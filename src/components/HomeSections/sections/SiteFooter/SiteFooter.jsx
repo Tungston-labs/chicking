@@ -78,19 +78,11 @@ const socialLinks = (
   </>
 );
 
-const SiteFooter = ({ topEdgeImage, topedgeImage }) => {
+const SiteFooter = () => {
   const location = useLocation();
-  const resolvedTopEdgeImage = topEdgeImage ?? topedgeImage;
 
   return (
     <Footer>
-      {resolvedTopEdgeImage && (
-        <FooterEdge
-          src={resolvedTopEdgeImage}
-          alt=""
-          aria-hidden="true"
-        />
-      )}
 
       <FooterTop>
         {footerInfo.map((item) => (

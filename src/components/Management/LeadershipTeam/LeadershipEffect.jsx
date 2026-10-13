@@ -14,13 +14,13 @@ import {
 
 import { leadershipData } from "./leadershipData";
 
-const brushImg = "/images/sharedbanner/footerblack.webp";
+// const brushImg = "/images/sharedbanner/footerblack.webp";
 
 const LeadershipEffect = () => {
   return (
     <Wrapper>
 
-      <BrushTop src={brushImg} alt="" aria-hidden="true" />
+      {/* <BrushTop alt="" aria-hidden="true" /> */}
 
       <Content>
         <Heading>

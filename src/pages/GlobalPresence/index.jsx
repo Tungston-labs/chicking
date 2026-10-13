@@ -36,6 +36,7 @@ const GlobalPresence = () => (
       title={renderGlobalPresenceBannerTitle(globalPresenceBanner.titleLines)}
       description={globalPresenceBanner.description}
       image={franchiseImg}
+        showBottomGraphic={false}
     />
 
     <div data-animate="fade-up">
@@ -47,6 +48,7 @@ const GlobalPresence = () => (
 
     <div data-animate="fade-up">
       <PartnerCta
+        hasEdges={false}
         action={{
           to: "/franchiseform",
           label: "Franchise Inquiry",

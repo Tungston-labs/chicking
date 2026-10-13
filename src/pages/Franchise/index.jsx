@@ -19,7 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useFranchiseForm from "./useFranchiseForm";
 
 const franchiseImg = "/images/franchise/franchise.svg";
-const tornEdge = "/images/franchise/bottom.webp";
+// const tornEdge = "/images/franchise/bottom.webp";
 
 const FranchiseForm = () => {
   const {
@@ -73,7 +73,7 @@ const FranchiseForm = () => {
           </div>
         </HeroSection>
 
-        <TornBottom src={tornEdge} alt="" aria-hidden="true" />
+        {/* <TornBottom src={tornEdge} alt="" aria-hidden="true" /> */}
         <div data-animate="fade-up">
           <PartnerCta />
         </div>
