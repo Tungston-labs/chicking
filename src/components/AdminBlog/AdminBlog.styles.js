@@ -606,6 +606,10 @@ export const EditorGrid = styled.div`
 
 export const EditorCard = styled(ContentCard)`
   padding: 1rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 `;
 
 export const SettingsCard = styled(ContentCard)`
@@ -679,6 +683,10 @@ export const EditorSurface = styled.div`
   border-radius: 0.25rem;
   overflow: hidden;
   background: rgba(245, 243, 243, 0.4);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 `;
 
 export const EditorToolbar = styled.div`
@@ -741,7 +749,12 @@ export const ToolColorInput = styled.input`
 
 export const EditorArea = styled.div`
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 20rem;
+  max-height: 38rem;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
   padding: 1rem;
   border: 0;
   background: rgba(245, 243, 243, 0.4);
@@ -749,7 +762,27 @@ export const EditorArea = styled.div`
   font-size: 0.82rem;
   line-height: 1.7;
   outline: none;
-  overflow: auto;
+  box-sizing: border-box;
+
+  /* Force all content to wrap line by line within container width */
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+
+  /* Custom scrollbar for clean appearance */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.04);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(137, 27, 28, 0.25);
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(137, 27, 28, 0.45);
+  }
 
   &[contenteditable="true"]:empty::before {
     content: attr(data-placeholder);
@@ -757,8 +790,30 @@ export const EditorArea = styled.div`
     font-style: italic;
   }
 
+  *,
+  p,
+  div,
+  span,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  pre,
+  code,
+  blockquote,
+  table {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
   p {
     margin: 0 0 0.8rem;
+    width: 100% !important;
   }
 
   p:last-child {
@@ -769,27 +824,39 @@ export const EditorArea = styled.div`
   ol {
     margin: 0 0 0.8rem 1.2rem;
     padding: 0;
+    max-width: 100%;
   }
 
   a {
     color: #891b1c;
+    word-break: break-all;
+  }
+
+  figure {
+    margin: 0.8rem 0;
+    max-width: 100%;
   }
 
   img,
   video {
-    max-width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: #f7f2eb;
     display: block;
-    margin: 0.8rem 0;
+    margin: 0.8rem auto;
     border-radius: 0.35rem;
+    box-sizing: border-box;
   }
 
   img {
-    height: auto;
     cursor: pointer;
+    transition: outline 0.15s ease;
   }
 
   img:hover {
-    outline: 0.125rem solid rgba(137, 27, 28, 0.28);
+    outline: 0.125rem solid rgba(137, 27, 28, 0.35);
     outline-offset: 0.2rem;
   }
 `;

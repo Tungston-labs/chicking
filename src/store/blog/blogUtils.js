@@ -7,16 +7,25 @@ const resolveBlogImageSource = (source = "") => {
   }
 
   const trimmedSource = source.trim();
-  if (/^https?:\/\//i.test(trimmedSource)) {
-    return trimmedSource;
+
+  // If source contains /uploads/ from localhost or 127.0.0.1, rewrite to API_BASE_URL
+  if (/^https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\/uploads\//i.test(trimmedSource)) {
+    return trimmedSource.replace(
+      /^https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\/uploads\//i,
+      `${API_BASE_URL}/uploads/`
+    );
   }
 
   if (trimmedSource.startsWith("/uploads/")) {
-    return trimmedSource;
+    return `${API_BASE_URL}${trimmedSource}`;
   }
 
   if (trimmedSource.startsWith("uploads/")) {
-    return `/${trimmedSource}`;
+    return `${API_BASE_URL}/${trimmedSource}`;
+  }
+
+  if (/^https?:\/\//i.test(trimmedSource)) {
+    return trimmedSource;
   }
 
   if (trimmedSource.startsWith("/api/")) {
@@ -284,13 +293,33 @@ const normalizePublishedAt = (publishedAt, dateLabel) => {
   return dateLabel || EMPTY_PUBLISHED_AT;
 };
 
+export const normalizeContentHtml = (value = "") => {
+  if (typeof value !== "string" || !value.trim()) {
+    return "";
+  }
+
+  // Rewrite any http://localhost:.../uploads/ or http://127.0.0.1:.../uploads/ to API_BASE_URL/uploads/
+  let normalized = value.replace(
+    /https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\/uploads\//gi,
+    `${API_BASE_URL}/uploads/`
+  );
+
+  // If relative src="/uploads/..." appears in img tags, prefix with API_BASE_URL
+  normalized = normalized.replace(
+    /(<img\b[^>]*?\bsrc=["'])\/uploads\/([^"'>]+)(["'])/gi,
+    `$1${API_BASE_URL}/uploads/$2$3`
+  );
+
+  return normalized;
+};
+
 export const normalizeBlog = (blog) => {
   if (!blog) {
     return null;
   }
 
   const contentSource = Array.isArray(blog.content) ? blog.content.filter(Boolean).join("\n\n") : blog.content || "";
-  const contentHtml = toContentHtml(contentSource);
+  const contentHtml = normalizeContentHtml(toContentHtml(contentSource));
   const contentBlocks = splitContent(blog.content);
   const publishDateValue = toInputDate(blog.publishedAt) || toInputDate(blog.date);
   const contentImage = resolveBlogImageSource(extractFirstImageSrc(contentHtml || contentSource));

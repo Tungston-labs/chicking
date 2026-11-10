@@ -222,12 +222,41 @@ export const Content = styled.div`
   p,
   span,
   pre,
-  code {
+  code,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  figure,
+  blockquote {
     max-width: 100% !important;
     box-sizing: border-box;
     white-space: normal !important;
     word-break: break-word !important;
     overflow-wrap: break-word !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 1.5rem 0 0.8rem;
+    color: #1d1d1d;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
   }
 
   pre {
@@ -240,15 +269,22 @@ export const Content = styled.div`
     width: 100% !important;
   }
 
+  figure {
+    margin: 2rem 0;
+    width: 100% !important;
+  }
+
   img,
   video {
     width: 100% !important;
-    max-width: 100%;
-    height: auto;
-    display: block;
+    max-width: 100% !important;
+    aspect-ratio: 16 / 9;
     object-fit: contain;
     background: #f7f2eb;
-    margin: 1rem 0;
+    display: block;
+    margin: 2rem 0;
+    border-radius: 4px;
+    box-sizing: border-box;
   }
 
   ul,

@@ -65,6 +65,7 @@ const AdminBlogEditor = ({
   const [formValues, setFormValues] = useState(getEditorInitialValues(post));
   const [tagInput, setTagInput] = useState("");
   const [hasInlineImage, setHasInlineImage] = useState(false);
+  const [selectedImageState, setSelectedImageState] = useState(false);
   const editorRef = useRef(null);
   const selectionRef = useRef(null);
   const selectedImageRef = useRef(null);
@@ -76,7 +77,13 @@ const AdminBlogEditor = ({
     const selectedImage = selectedImageRef.current;
 
     if (!selectedImage || !images.includes(selectedImage)) {
+      if (selectedImageRef.current) {
+        selectedImageRef.current.style.outline = "";
+      }
       selectedImageRef.current = null;
+      setSelectedImageState(false);
+    } else {
+      setSelectedImageState(true);
     }
 
     setHasInlineImage(images.length > 0);
@@ -223,14 +230,52 @@ const AdminBlogEditor = ({
 
   const handleEditorClick = (event) => {
     if (event.target instanceof HTMLImageElement) {
+      if (selectedImageRef.current && selectedImageRef.current !== event.target) {
+        selectedImageRef.current.style.outline = "";
+      }
       selectedImageRef.current = event.target;
+      selectedImageRef.current.style.outline = "3px solid #891b1c";
+      selectedImageRef.current.style.outlineOffset = "3px";
+      setSelectedImageState(true);
       setHasInlineImage(true);
       return;
     }
 
+    if (selectedImageRef.current) {
+      selectedImageRef.current.style.outline = "";
+    }
     selectedImageRef.current = null;
+    setSelectedImageState(false);
     refreshInlineImageState();
     saveSelection();
+  };
+
+  const handleEditorKeyDown = (event) => {
+    if ((event.key === "Delete" || event.key === "Backspace") && selectedImageRef.current) {
+      event.preventDefault();
+      handleRemoveInlineImage();
+    }
+  };
+
+  const handlePaste = (event) => {
+    event.preventDefault();
+    const html = event.clipboardData?.getData("text/html");
+    const text = event.clipboardData?.getData("text/plain");
+
+    if (html && /<img\b/i.test(html)) {
+      const sanitized = html.replace(/style=["'][^"']*["']/gi, (match) =>
+        match
+          .replace(/white-space\s*:[^;"]+;?/gi, "")
+          .replace(/width\s*:[^;"]+;?/gi, "")
+          .replace(/min-width\s*:[^;"]+;?/gi, "")
+          .replace(/max-width\s*:[^;"]+;?/gi, "")
+      );
+      document.execCommand("insertHTML", false, sanitized);
+    } else if (text) {
+      document.execCommand("insertText", false, text);
+    }
+
+    syncEditorContent();
   };
 
   const handleRemoveInlineImage = () => {
@@ -240,17 +285,25 @@ const AdminBlogEditor = ({
       return;
     }
 
-    const imageToRemove = editorElement.contains(selectedImageRef.current)
-      ? selectedImageRef.current
-      : editorElement.querySelector("img");
+    const imageToRemove =
+      selectedImageRef.current && editorElement.contains(selectedImageRef.current)
+        ? selectedImageRef.current
+        : editorElement.querySelector("img");
 
     if (!imageToRemove) {
       refreshInlineImageState();
       return;
     }
 
+    const parentElement = imageToRemove.parentElement;
     imageToRemove.remove();
+
+    if (parentElement && parentElement !== editorElement && !parentElement.innerHTML.trim()) {
+      parentElement.remove();
+    }
+
     selectedImageRef.current = null;
+    setSelectedImageState(false);
     syncEditorContent();
     editorElement.focus();
   };
@@ -382,7 +435,8 @@ const AdminBlogEditor = ({
                 aria-label="Remove image"
                 disabled={!hasInlineImage}
                 onClick={handleRemoveInlineImage}
-                title={hasInlineImage ? "Remove selected image" : "No image to remove"}
+                style={hasInlineImage ? { color: "#c13a3a" } : undefined}
+                title={hasInlineImage ? (selectedImageState ? "Remove selected image" : "Remove image") : "No image to remove"}
                 type="button"
               >
                 <FiTrash2 />
@@ -406,13 +460,57 @@ const AdminBlogEditor = ({
                 <FiX />
               </Tool>
             </EditorToolbar>
+            {hasInlineImage ? (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "0.5rem",
+                  padding: "0.45rem 0.8rem",
+                  background: selectedImageState ? "#fff1f1" : "#fdf7f2",
+                  borderBottom: "0.0625rem solid #ececec",
+                  fontSize: "0.76rem",
+                  color: selectedImageState ? "#891b1c" : "#575757",
+                  fontWeight: 500,
+                }}
+              >
+                <span>
+                  {selectedImageState
+                    ? "Image selected. Click 'Remove Image' or press Delete / Backspace."
+                    : "Tip: Click any image to select and delete it, or remove image directly."}
+                </span>
+                <button
+                  onClick={handleRemoveInlineImage}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                    padding: "0.3rem 0.65rem",
+                    borderRadius: "0.25rem",
+                    border: "1px solid #c13a3a",
+                    background: selectedImageState ? "#891b1c" : "#ffffff",
+                    color: selectedImageState ? "#ffffff" : "#c13a3a",
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                  }}
+                  type="button"
+                >
+                  <FiTrash2 /> {selectedImageState ? "Remove Selected Image" : "Remove Image"}
+                </button>
+              </div>
+            ) : null}
             <EditorArea
               contentEditable
               data-placeholder="Write your blog content here..."
               onClick={handleEditorClick}
               onInput={syncEditorContent}
+              onKeyDown={handleEditorKeyDown}
               onKeyUp={saveSelection}
               onMouseUp={saveSelection}
+              onPaste={handlePaste}
               ref={editorRef}
               suppressContentEditableWarning
             />
