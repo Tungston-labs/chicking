@@ -1012,6 +1012,17 @@ export const HeroImage = styled.img`
 `;
 
 export const ContentArticle = styled.article`
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+
+  pre,
+  code {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
   h2 {
     margin: 0 0 1rem;
     color: #1d1d1d;

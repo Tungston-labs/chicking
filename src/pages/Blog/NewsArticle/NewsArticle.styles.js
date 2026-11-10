@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Wrapper = styled.section`
   padding: 40px 6rem;
+  overflow-x: hidden;
 
   @media (max-width:1024px){
     padding:20px 3rem;
@@ -216,12 +217,22 @@ export const Content = styled.div`
     max-width: 100% !important;
   }
 
+  *,
   div,
   p,
-  span {
+  span,
+  pre,
+  code {
     max-width: 100% !important;
     box-sizing: border-box;
     white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  pre {
+    font-family: inherit !important;
+    white-space: pre-wrap !important;
   }
 
   p {
